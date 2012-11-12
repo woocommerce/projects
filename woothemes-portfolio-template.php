@@ -76,10 +76,10 @@ function woothemes_portfolios ( $args = '' ) {
 
 				setup_postdata( $post );
 				
-				$term_list = wp_get_post_terms($post->ID, 'portfolio_cat', array("fields" => "slugs"));
+				$term_list = wp_get_post_terms( $post->ID, 'portfolio_cat', array( "fields" => "slugs" ) );
 
 				$class = 'portfolio ';
-				$class .= implode(" ", $term_list);
+				$class .= implode( " ", $term_list );
 				
 				if( ( 0 == $i % $args['per_row'] ) ) {
 					$class .= ' last';

@@ -1,0 +1,20 @@
+<?php
+/**
+ * Plugin Name: Portfolio
+ * Plugin URI: http://woothemes.com/
+ * Description: Hi, I'm your portfolio showcase plugin for WordPress. Show off your recent work, using our shortcode, widget or template tag.
+ * Author: WooThemes
+ * Version: 1.0.0
+ * Author URI: http://woothemes.com/
+ *
+ * @package WordPress
+ * @subpackage Woothemes_portfolios
+ * @author Matty
+ * @since 1.0.0
+ */
+
+require_once( 'classes/class-woothemes-portfolio.php' );
+require_once( 'woothemes-portfolio-template.php' );
+require_once( 'classes/class-woothemes-widget-portfolio.php' );
+global $woothemes_portfolios;
+$woothemes_portfolios = new Woothemes_Portfolios( __FILE__ );

@@ -56,6 +56,7 @@ function woothemes_portfolios ( $args = '' ) {
 
 		// The Display.
 		if ( ! is_wp_error( $query ) && is_array( $query ) && count( $query ) > 0 ) {
+			
 			$html .= '<div class="widget widget_woothemes_portfolios">' . "\n";
 			$html .= '<div class="portfolios">' . "\n";
 
@@ -64,6 +65,7 @@ function woothemes_portfolios ( $args = '' ) {
 			}
 			
 			// Begin templating logic.
+			
 			$tpl = '<div class="%%CLASS%%">%%IMAGE%%<h3 class="portfolio-title">%%TITLE%%</h3><div class="portfolio-content">%%CONTENT%%</div></div>';
 			$tpl = apply_filters( 'woothemes_portfolios_item_template', $tpl, $args );
 
@@ -74,8 +76,11 @@ function woothemes_portfolios ( $args = '' ) {
 
 				setup_postdata( $post );
 				
-				$class = 'portfolio';
+				$term_list = wp_get_post_terms($post->ID, 'portfolio_cat', array("fields" => "slugs"));
 
+				$class = 'portfolio ';
+				$class .= implode(" ", $term_list);
+				
 				if( ( 0 == $i % $args['per_row'] ) ) {
 					$class .= ' last';
 				} elseif ( 0 == ( $i - 1 ) % ( $args['per_row'] ) ) {

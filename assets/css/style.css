@@ -1,0 +1,28 @@
+.widget_woothemes_portfolios ul.portfolios {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio {
+  margin: 0;
+  padding: 0;
+  width: 30.75%;
+  float: left;
+  margin-right: 3.8%;
+  -webkit-transition: all .3s linear;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio img {
+  max-width: 100%;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio.first {
+  clear: both;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio.last {
+  margin-right: 0;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio.hidden {
+  display: none;
+}
+.widget_woothemes_portfolios ul.portfolios li.portfolio.visible {
+  display: block;
+}

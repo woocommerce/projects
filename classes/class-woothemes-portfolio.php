@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 /**
  * WooThemes portfolios Class
  *
- * All functionality pertaining to the portfolios portfolio.
+ * All functionality pertaining to the portfolio.
  *
  * @package WordPress
  * @subpackage WooThemes_portfolios
@@ -100,7 +100,7 @@ class Woothemes_Portfolios {
 			'capability_type' => 'post',
 			'has_archive' => array( 'slug' => 'portfolios' ),
 			'hierarchical' => false,
-			'supports' => array( 'title', 'editor', 'thumbnail' ), 
+			'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ), 
 			'menu_position' => 5, 
 			'menu_icon' => ''
 		);
@@ -154,6 +154,8 @@ class Woothemes_Portfolios {
 					foreach ( $terms as $c )
 						$out[] = "<a href='edit-tags.php?action=edit&taxonomy=$_taxonomy&post_type=portfolio&tag_ID={$c->term_id}'> " . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . "</a>";
 					echo join( ', ', $out );
+				} else {
+					echo '&mdash;';
 				}
 
 			break;
@@ -401,8 +403,8 @@ class Woothemes_Portfolios {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) { 
-			add_image_size( 'portfolio-category', 150, 9999 ); // 150 pixels wide (and unlimited height)
-			add_image_size( 'portfolio-single', 1024, 9999 ); // 150 pixels wide (and unlimited height)
+			add_image_size( 'portfolio-category', 250, 9999 ); // 250 pixels wide (and unlimited height) for archive
+			add_image_size( 'portfolio-single', 1024, 9999 ); // 150 pixels wide (and unlimited height) for single
 		}
 	} // End register_image_sizes()
 

@@ -1,18 +1,18 @@
-.widget_woothemes_portfolios ul.portfolios {
+.widget_woothemes_portfolio ul.portfolios {
   list-style: none;
   margin: 0;
   padding: 0;
   *zoom: 1;
 }
-.widget_woothemes_portfolios ul.portfolios:before,
-.widget_woothemes_portfolios ul.portfolios:after {
+.widget_woothemes_portfolio ul.portfolios:before,
+.widget_woothemes_portfolio ul.portfolios:after {
   content: " ";
   display: table;
 }
-.widget_woothemes_portfolios ul.portfolios:after {
+.widget_woothemes_portfolio ul.portfolios:after {
   clear: both;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio {
+.widget_woothemes_portfolio ul.portfolios li.portfolio {
   margin: 0;
   padding: 0;
   width: 30.75%;
@@ -20,18 +20,18 @@
   margin-right: 3.8%;
   -webkit-transition: all .3s linear;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio img {
+.widget_woothemes_portfolio ul.portfolios li.portfolio img {
   max-width: 100%;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio.first {
+.widget_woothemes_portfolio ul.portfolios li.portfolio.first {
   clear: both;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio.last {
+.widget_woothemes_portfolio ul.portfolios li.portfolio.last {
   margin-right: 0;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio.hidden {
+.widget_woothemes_portfolio ul.portfolios li.portfolio.hidden {
   display: none;
 }
-.widget_woothemes_portfolios ul.portfolios li.portfolio.visible {
+.widget_woothemes_portfolio ul.portfolios li.portfolio.visible {
   display: block;
 }

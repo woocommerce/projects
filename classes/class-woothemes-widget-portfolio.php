@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_portfolios' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_portfolio' ) ) exit; // Exit if accessed directly.
 
 /**
  * WooThemes portfolios Widget
@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_portfolios' ) ) exi
  * A WooThemes standardized portfolios widget.
  *
  * @package WordPress
- * @subpackage WooThemes_portfolios
+ * @subpackage woothemes_portfolio
  * @category Widgets
  * @author WooThemes
  * @since 1.0.0
@@ -38,9 +38,9 @@ class Woothemes_Widget_Portfolios extends WP_Widget {
 	 */
 	public function __construct() {
 		/* Widget variable settings. */
-		$this->woothemes_widget_cssclass = 'widget_woothemes_portfolios';
+		$this->woothemes_widget_cssclass = 'widget_woothemes_portfolio';
 		$this->woothemes_widget_description = __( 'Recent portfolios listed on your site.', 'woothemes-portfolios' );
-		$this->woothemes_widget_idbase = 'woothemes_portfolios';
+		$this->woothemes_widget_idbase = 'woothemes_portfolio';
 		$this->woothemes_widget_title = __( 'portfolios', 'woothemes-portfolios' );
 
 		/* Widget settings. */
@@ -89,7 +89,7 @@ class Woothemes_Widget_Portfolios extends WP_Widget {
 		if ( isset( $instance['order'] ) && in_array( $instance['order'], array_keys( $this->get_order_options() ) ) ) { $args['order'] = $instance['order']; }
 
 		// Display the portfolios.
-		woothemes_portfolios( $args );
+		woothemes_portfolio( $args );
 
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->woothemes_widget_cssclass . '_bottom' );

@@ -16,5 +16,5 @@
 require_once( 'classes/class-woothemes-portfolio.php' );
 require_once( 'woothemes-portfolio-template.php' );
 require_once( 'classes/class-woothemes-widget-portfolio.php' );
-global $woothemes_portfolios;
-$woothemes_portfolios = new Woothemes_Portfolios( __FILE__ );
+global $woothemes_portfolio;
+$woothemes_portfolio = new Woothemes_Portfolio( __FILE__ );

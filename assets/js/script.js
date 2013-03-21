@@ -1,25 +1,32 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
 	jQuery('ul.sorting a').click(function(e) {
+		e.preventDefault();
 		jQuery(this).css('outline','none');
 		jQuery('ul.sorting .current').removeClass('current');
 		jQuery(this).parent().addClass('current');
-		
+
+		// filterVal = slug of active link
 		var filterVal = jQuery(this).text().toLowerCase().replace(' ','-');
-				
+
+		// filterVal default = 'all'
 		if( filterVal == 'all' ) {
-			jQuery('ul.portfolios li.hidden').fadeIn('fast').removeClass('hidden').addClass('visible');
+			jQuery('ul.portfolios li.hidden').show().removeClass('hidden').addClass('visible');
 		} else {
-			
+
+			// Show / hide based on active link
 			jQuery('ul.portfolios li').each(function() {
+
 				if( ! jQuery(this).hasClass( filterVal ) ) {
+					// If the li doesn't have a class = filterVal, hide it
 					jQuery(this).hide().addClass('hidden').removeClass('visible');
 				} else {
+					// If it does, show it
 					jQuery(this).show().removeClass('hidden').addClass('visible');
 				}
 			});
 		}
 
-		jQuery('ul.portfolios').hide().fadeIn('fast');
+		//jQuery('ul.portfolios').hide().fadeIn(300);
 
 		return false;
 	});

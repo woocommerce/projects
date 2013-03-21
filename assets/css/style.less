@@ -1,0 +1,37 @@
+.widget_woothemes_portfolio {
+	ul.portfolios {
+		list-style: none;
+		margin:0;
+		padding:0;
+		*zoom: 1;
+		&:before, &:after {
+			content: " ";
+    		display: table;
+		}
+		&:after {
+			clear:both;
+		}
+		li.portfolio {
+			margin:0;
+			padding:0;
+			width:30.75%;
+			float: left;
+			margin-right:3.8%;
+			img {
+				width:100%;
+			}
+			&.first {
+				clear:both;
+			}
+			&.last {
+				margin-right:0;
+			}
+			&.hidden {
+				//display:none;
+			}
+			&.visible {
+				//display:block;
+			}
+		}
+	}
+}

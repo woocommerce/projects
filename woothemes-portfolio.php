@@ -14,6 +14,7 @@
  */
 
 require_once( 'classes/class-woothemes-portfolio.php' );
+require_once( 'classes/class-woothemes-portfolio-taxonomy.php' );
 require_once( 'woothemes-portfolio-template.php' );
 require_once( 'classes/class-woothemes-widget-portfolio.php' );
 global $woothemes_portfolio;

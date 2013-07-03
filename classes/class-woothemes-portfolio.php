@@ -20,6 +20,7 @@ class Woothemes_Portfolio {
 	private $post_type;
 	public $version;
 	private $file;
+	public $taxonomy_category;
 
 	/**
 	 * Constructor function.
@@ -43,7 +44,7 @@ class Woothemes_Portfolio {
 		register_activation_hook( $this->file, array( $this, 'activation' ) );
 
 		add_action( 'init', array( $this, 'register_post_type' ) );
-		add_action( 'init', array( $this, 'register_tax' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
 		if ( is_admin() ) {
 			global $pagenow;
@@ -102,22 +103,19 @@ class Woothemes_Portfolio {
 			'menu_position' => 5,
 			'menu_icon' => ''
 		);
-		register_post_type( $this->token, $args );
+		register_post_type( $this->post_type, $args );
 	} // End register_post_type()
 
-	public function register_tax() {
-	// create a new taxonomy
-		register_taxonomy(
-			'portfolio_cat',
-			'portfolio',
-			array( 'hierarchical' => true,
-				'label' => 'Categories',
-				'query_var' => true,
-				'rewrite' => array( 'slug' => 'portfolio-category' ),
-				'capabilities' => array('assign_terms'=>'edit_guides', 'edit_terms'=>'publish_guides')
-			)
-		);
-	}
+	/**
+	 * Register the "project-category" taxonomy.
+	 * @access public
+	 * @since  1.3.0
+	 * @return void
+	 */
+	public function register_taxonomy () {
+		$this->taxonomy_category = new Woothemes_Portfolio_Taxonomy(); // Leave arguments empty, to use the default arguments.
+		$this->taxonomy_category->register();
+	} // End register_taxonomy()
 
 	/**
 	 * Add custom columns for the "manage" screen of this post type.
@@ -334,8 +332,8 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function enter_title_here ( $title ) {
-		if ( get_post_type() == $this->token ) {
-			$title = __( 'Enter the portfolio title here', 'woothemes-portfolio' );
+		if ( get_post_type() == $this->post_type ) {
+			$title = __( 'Enter the project title here', 'woothemes-portfolio' );
 		}
 		return $title;
 	} // End enter_title_here()

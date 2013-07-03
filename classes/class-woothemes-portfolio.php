@@ -218,7 +218,7 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function meta_box_setup () {
-		add_meta_box( 'portfolio-data', __( 'Portfolio Details', 'woothemes-portfolio' ), array( $this, 'meta_box_content' ), $this->token, 'normal', 'high' );
+		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-portfolio' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 	} // End meta_box_setup()
 
 	/**

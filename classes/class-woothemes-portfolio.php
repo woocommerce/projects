@@ -2,12 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes portfolios Class
+ * WooThemes Portfolio Class
  *
  * All functionality pertaining to the portfolio.
  *
  * @package WordPress
- * @subpackage WooThemes_portfolios
+ * @subpackage Woothemes_Portfolio
  * @category Plugin
  * @author Matty
  * @since 1.0.0
@@ -17,6 +17,7 @@ class Woothemes_Portfolio {
 	private $assets_dir;
 	private $assets_url;
 	private $token;
+	private $post_type;
 	public $version;
 	private $file;
 
@@ -32,7 +33,8 @@ class Woothemes_Portfolio {
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
-		$this->token = 'portfolio';
+		$this->token = 'woothemes-portfolio';
+		$this->post_type = 'project';
 
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
@@ -52,7 +54,7 @@ class Woothemes_Portfolio {
 			add_action( 'admin_print_styles', array( $this, 'enqueue_admin_styles' ), 10 );
 			add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
-			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->token ) {
+			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 				add_filter( 'manage_edit-' . $this->token . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
 				add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			}
@@ -66,27 +68,23 @@ class Woothemes_Portfolio {
 	 * Register the post type.
 	 *
 	 * @access public
-	 * @param string $token
-	 * @param string 'portfolios'
-	 * @param string 'portfolios'
-	 * @param array $supports
 	 * @return void
 	 */
 	public function register_post_type () {
 		$labels = array(
-			'name' => _x( 'Portfolio', 'post type general name', 'woothemes-portfolios' ),
-			'singular_name' => _x( 'project', 'post type singular name', 'woothemes-portfolios' ),
-			'add_new' => _x( 'Add Project', 'portfolio', 'woothemes-portfolios' ),
-			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-portfolios' ), __( 'Project', 'woothemes-portfolios' ) ),
-			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-portfolios' ), __( 'Project', 'woothemes-portfolios' ) ),
-			'new_item' => sprintf( __( 'New %s', 'woothemes-portfolios' ), __( 'Project', 'woothemes-portfolios' ) ),
-			'all_items' => _x( 'Portfolio', 'portfolio', 'woothemes-portfolios' ),
-			'view_item' => sprintf( __( 'View %s', 'woothemes-portfolios' ), __( 'Project', 'woothemes-portfolios' ) ),
-			'search_items' => sprintf( __( 'Search %a', 'woothemes-portfolios' ), __( 'Projects', 'woothemes-portfolios' ) ),
-			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-portfolios' ), __( 'Projects', 'woothemes-portfolios' ) ),
-			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-portfolios' ), __( 'Projects', 'woothemes-portfolios' ) ),
+			'name' => _x( 'Projects', 'post type general name', 'woothemes-portfolio' ),
+			'singular_name' => _x( 'Project', 'post type singular name', 'woothemes-portfolio' ),
+			'add_new' => sprintf( _x( 'Add %s', $this->post_type, 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'new_item' => sprintf( __( 'New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'all_items' => sprintf( _x( 'All %s', $this->post_type, 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
+			'view_item' => sprintf( __( 'View %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'search_items' => sprintf( __( 'Search %a', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
+			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
+			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
 			'parent_item_colon' => '',
-			'menu_name' => __( 'Portfolio', 'woothemes-portfolios' )
+			'menu_name' => __( 'Portfolio', 'woothemes-portfolio' )
 
 		);
 		$args = array(
@@ -176,8 +174,8 @@ class Woothemes_Portfolio {
 	 */
 	public function register_custom_column_headings ( $defaults ) {
 		$new_columns = array(
-			'image' => __( 'Image', 'woothemes-portfolios' ),
-			'portfolio_cat' => __( 'Categories', 'woothemes-portfolios' )
+			'image' => __( 'Image', 'woothemes-portfolio' ),
+			'portfolio_cat' => __( 'Categories', 'woothemes-portfolio' )
 		);
 
 		$last_item = '';
@@ -212,19 +210,19 @@ class Woothemes_Portfolio {
 
 	  $messages[$this->token] = array(
 	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'portfolio updated. %sView portfolio%s', 'woothemes-portfolios' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    2 => __( 'Custom field updated.', 'woothemes-portfolios' ),
-	    3 => __( 'Custom field deleted.', 'woothemes-portfolios' ),
-	    4 => __( 'portfolio updated.', 'woothemes-portfolios' ),
+	    1 => sprintf( __( 'portfolio updated. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    2 => __( 'Custom field updated.', 'woothemes-portfolio' ),
+	    3 => __( 'Custom field deleted.', 'woothemes-portfolio' ),
+	    4 => __( 'portfolio updated.', 'woothemes-portfolio' ),
 	    /* translators: %s: date and time of the revision */
-	    5 => isset($_GET['revision']) ? sprintf( __( 'portfolio restored to revision from %s', 'woothemes-portfolios' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 => sprintf( __( 'portfolio published. %sView portfolio%s', 'woothemes-portfolios' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    5 => isset($_GET['revision']) ? sprintf( __( 'portfolio restored to revision from %s', 'woothemes-portfolio' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 => sprintf( __( 'portfolio published. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
 	    7 => __('portfolio saved.'),
-	    8 => sprintf( __( 'portfolio submitted. %sPreview portfolio%s', 'woothemes-portfolios' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 => sprintf( __( 'portfolio scheduled for: %1$s. %2$sPreview portfolio%3$s', 'woothemes-portfolios' ),
+	    8 => sprintf( __( 'portfolio submitted. %sPreview portfolio%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    9 => sprintf( __( 'portfolio scheduled for: %1$s. %2$sPreview portfolio%3$s', 'woothemes-portfolio' ),
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 => sprintf( __( 'portfolio draft updated. %sPreview portfolio%s', 'woothemes-portfolios' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    10 => sprintf( __( 'portfolio draft updated. %sPreview portfolio%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
 	  );
 
 	  return $messages;
@@ -238,7 +236,7 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function meta_box_setup () {
-		add_meta_box( 'portfolio-data', __( 'Portfolio Details', 'woothemes-portfolios' ), array( $this, 'meta_box_content' ), $this->token, 'normal', 'high' );
+		add_meta_box( 'portfolio-data', __( 'Portfolio Details', 'woothemes-portfolio' ), array( $this, 'meta_box_content' ), $this->token, 'normal', 'high' );
 	} // End meta_box_setup()
 
 	/**
@@ -337,7 +335,7 @@ class Woothemes_Portfolio {
 	 */
 	public function enter_title_here ( $title ) {
 		if ( get_post_type() == $this->token ) {
-			$title = __( 'Enter the portfolio title here', 'woothemes-portfolios' );
+			$title = __( 'Enter the portfolio title here', 'woothemes-portfolio' );
 		}
 		return $title;
 	} // End enter_title_here()
@@ -350,8 +348,8 @@ class Woothemes_Portfolio {
 	 * @return   void
 	 */
 	public function enqueue_admin_styles () {
-		wp_register_style( 'woothemes-portfolios-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
-		wp_enqueue_style( 'woothemes-portfolios-admin' );
+		wp_register_style( 'woothemes-portfolio-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
+		wp_enqueue_style( 'woothemes-portfolio-admin' );
 	} // End enqueue_admin_styles()
 
 	/**
@@ -363,8 +361,8 @@ class Woothemes_Portfolio {
 		$fields = array();
 
 		$fields['url'] = array(
-		    'name' => __( 'URL', 'woothemes-portfolios' ),
-		    'description' => __( 'Enter a URL that applies to this portfolio (for example: http://woothemes.com/).', 'woothemes-portfolios' ),
+		    'name' => __( 'URL', 'woothemes-portfolio' ),
+		    'description' => __( 'Enter a URL that applies to this portfolio (for example: http://woothemes.com/).', 'woothemes-portfolio' ),
 		    'type' => 'url',
 		    'default' => '',
 		    'section' => 'info'
@@ -483,7 +481,7 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'woothemes-portfolios', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'woothemes-portfolio', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation()
 
 	/**
@@ -492,7 +490,7 @@ class Woothemes_Portfolio {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'woothemes-portfolios';
+	    $domain = 'woothemes-portfolio';
 	    // The "plugin_locale" filter is also used in load_plugin_textdomain()
 	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
@@ -518,7 +516,7 @@ class Woothemes_Portfolio {
 	 */
 	private function register_plugin_version () {
 		if ( $this->version != '' ) {
-			update_option( 'woothemes-portfolios' . '-version', $this->version );
+			update_option( 'woothemes-portfolio' . '-version', $this->version );
 		}
 	} // End register_plugin_version()
 

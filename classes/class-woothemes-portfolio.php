@@ -85,7 +85,7 @@ class Woothemes_Portfolio {
 			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
 			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
 			'parent_item_colon' => '',
-			'menu_name' => __( 'Portfolio', 'woothemes-portfolio' )
+			'menu_name' => __( 'Projects', 'woothemes-portfolio' )
 
 		);
 		$args = array(

@@ -3,14 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! function_exists( 'woothemes_get_portfolios' ) ) {
 /**
- * Wrapper function to get the portfolios from the WooDojo_Portfolios class.
+ * Wrapper function to get the portfolio items from the Woothemes_Portfolio class.
  * @param  string/array $args  Arguments.
  * @since  1.0.0
  * @return array/boolean       Array if true, boolean if false.
  */
-function woothemes_get_portfolios ( $args = '' ) {
+function woothemes_get_portfolio_items ( $args = '' ) {
 	global $woothemes_portfolio;
-	return $woothemes_portfolio->get_portfolios( $args );
+	return $woothemes_portfolio->get_portfolio_items( $args );
 } // End woothemes_get_portfolios()
 }
 
@@ -79,7 +79,7 @@ function woothemes_portfolio ( $args = '' ) {
 	do_action( 'woothemes_portfolio_before', $args );
 
 		// The Query.
-		$query = woothemes_get_portfolios( $args );
+		$query = woothemes_get_portfolio_items( $args );
 
 		// The Display.
 		if ( ! is_wp_error( $query ) && is_array( $query ) && count( $query ) > 0 ) {

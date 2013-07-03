@@ -390,12 +390,12 @@ class Woothemes_Portfolio {
 	} // End register_image_sizes()
 
 	/**
-	 * Get portfolios.
+	 * Get portfolio items.
 	 * @param  string/array $args Arguments to be passed to the query.
 	 * @since  1.0.0
 	 * @return array/boolean      Array if true, boolean if false.
 	 */
-	public function get_portfolios ( $args = '' ) {
+	public function get_portfolio_itmes ( $args = '' ) {
 		$defaults = array(
 			'limit' => 5,
 			'orderby' => 'menu_order',
@@ -406,11 +406,11 @@ class Woothemes_Portfolio {
 		$args = wp_parse_args( $args, $defaults );
 
 		// Allow child themes/plugins to filter here.
-		$args = apply_filters( 'woothemes_get_portfolios_args', $args );
+		$args = apply_filters( 'woothemes_get_portfolio_items_args', $args );
 
 		// The Query Arguments.
 		$query_args = array();
-		$query_args['post_type'] = 'portfolio';
+		$query_args['post_type'] = 'project';
 		$query_args['numberposts'] = $args['limit'];
 		$query_args['orderby'] = $args['orderby'];
 		$query_args['order'] = $args['order'];
@@ -429,7 +429,7 @@ class Woothemes_Portfolio {
 		}
 
 		if ( ! in_array( $query_args['post_type'], get_post_types() ) ) {
-			$query_args['post_type'] = 'portfolio';
+			$query_args['post_type'] = 'project';
 		}
 
 		// The Query.
@@ -505,7 +505,7 @@ class Woothemes_Portfolio {
 
 	/**
 	 * Ensure that "post-thumbnails" support is available for those themes that don't register it.
-	 * @since  1.0.1
+	 * @since  1.0.0
 	 * @return  void
 	 */
 	public function ensure_post_thumbnails_support () {

@@ -190,21 +190,21 @@ class Woothemes_Portfolio {
 	public function updated_messages ( $messages ) {
 	  global $post, $post_ID;
 
-	  $messages[$this->token] = array(
+	  $messages[$this->post_type] = array(
 	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'portfolio updated. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    1 => sprintf( __( 'Project updated. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
 	    2 => __( 'Custom field updated.', 'woothemes-portfolio' ),
 	    3 => __( 'Custom field deleted.', 'woothemes-portfolio' ),
-	    4 => __( 'portfolio updated.', 'woothemes-portfolio' ),
+	    4 => __( 'Project updated.', 'woothemes-portfolio' ),
 	    /* translators: %s: date and time of the revision */
-	    5 => isset($_GET['revision']) ? sprintf( __( 'portfolio restored to revision from %s', 'woothemes-portfolio' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 => sprintf( __( 'portfolio published. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    7 => __('portfolio saved.'),
-	    8 => sprintf( __( 'portfolio submitted. %sPreview portfolio%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 => sprintf( __( 'portfolio scheduled for: %1$s. %2$sPreview portfolio%3$s', 'woothemes-portfolio' ),
+	    5 => isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'woothemes-portfolio' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 => sprintf( __( 'Project published. %sView Project%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    7 => __('Project saved.'),
+	    8 => sprintf( __( 'Project submitted. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    9 => sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'woothemes-portfolio' ),
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 => sprintf( __( 'portfolio draft updated. %sPreview portfolio%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    10 => sprintf( __( 'Project draft updated. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
 	  );
 
 	  return $messages;
@@ -344,7 +344,7 @@ class Woothemes_Portfolio {
 
 		$fields['url'] = array(
 		    'name' => __( 'URL', 'woothemes-portfolio' ),
-		    'description' => __( 'Enter a URL that applies to this portfolio (for example: http://woothemes.com/).', 'woothemes-portfolio' ),
+		    'description' => __( 'Enter a URL that applies to this project (for example: http://woothemes.com/).', 'woothemes-portfolio' ),
 		    'type' => 'url',
 		    'default' => '',
 		    'section' => 'info'
@@ -383,8 +383,9 @@ class Woothemes_Portfolio {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
+			add_image_size( 'portfolio-thumbnail', 100, 9999 ); // 100 pixels wide (and unlimited height) for single
 			add_image_size( 'portfolio-category', 250, 9999 ); // 250 pixels wide (and unlimited height) for archive
-			add_image_size( 'portfolio-single', 1024, 9999 ); // 150 pixels wide (and unlimited height) for single
+			add_image_size( 'portfolio-single', 1024, 9999 ); // 1024 pixels wide (and unlimited height) for single
 		}
 	} // End register_image_sizes()
 

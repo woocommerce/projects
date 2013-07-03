@@ -56,7 +56,7 @@ class Woothemes_Portfolio {
 			add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
 			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
-				add_filter( 'manage_edit-' . $this->token . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+				add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
 				add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			}
 		}
@@ -75,7 +75,7 @@ class Woothemes_Portfolio {
 		$labels = array(
 			'name' => _x( 'Projects', 'post type general name', 'woothemes-portfolio' ),
 			'singular_name' => _x( 'Project', 'post type singular name', 'woothemes-portfolio' ),
-			'add_new' => sprintf( _x( 'Add %s', $this->post_type, 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
+			'add_new' => _x( 'Add New', $this->post_type, 'woothemes-portfolio' ),
 			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
 			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
 			'new_item' => sprintf( __( 'New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
@@ -141,21 +141,6 @@ class Woothemes_Portfolio {
 				echo $value;
 			break;
 
-			case 'portfolio_cat':
-
-				$_taxonomy = 'portfolio_cat';
-				$terms = get_the_terms( $post->ID, $_taxonomy );
-				if ( !empty( $terms ) ) {
-					$out = array();
-					foreach ( $terms as $c )
-						$out[] = "<a href='edit-tags.php?action=edit&taxonomy=$_taxonomy&post_type=portfolio&tag_ID={$c->term_id}'> " . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . "</a>";
-					echo join( ', ', $out );
-				} else {
-					echo '&mdash;';
-				}
-
-			break;
-
 			default:
 			break;
 
@@ -172,8 +157,7 @@ class Woothemes_Portfolio {
 	 */
 	public function register_custom_column_headings ( $defaults ) {
 		$new_columns = array(
-			'image' => __( 'Image', 'woothemes-portfolio' ),
-			'portfolio_cat' => __( 'Categories', 'woothemes-portfolio' )
+			'image' => __( 'Image', 'woothemes-portfolio' )
 		);
 
 		$last_item = '';

@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'woothemes_get_portfolios' ) ) {
+if ( ! function_exists( 'woothemes_get_portfolio_items' ) ) {
 /**
  * Wrapper function to get the portfolio items from the Woothemes_Portfolio class.
  * @param  string/array $args  Arguments.
@@ -113,7 +113,7 @@ function woothemes_portfolio ( $args = '' ) {
 
 				setup_postdata( $post );
 
-				$term_list = wp_get_post_terms( $post->ID, 'portfolio_cat', array( "fields" => "slugs" ) );
+				$term_list = wp_get_post_terms( $post->ID, 'project-category', array( "fields" => "slugs" ) );
 
 				$class = 'portfolio ';
 				$class .= implode( " ", $term_list );
@@ -174,3 +174,4 @@ function woothemes_portfolio_shortcode () {
 }
 
 add_shortcode( 'woothemes_portfolio', 'woothemes_portfolio_shortcode' );
+?>

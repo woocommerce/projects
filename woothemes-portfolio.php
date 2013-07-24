@@ -15,8 +15,11 @@
 
 require_once( 'classes/class-woothemes-portfolio.php' );
 require_once( 'classes/class-woothemes-portfolio-taxonomy.php' );
+// require_once( 'classes/class-woothemes-widget-portfolio.php' );
+
 require_once( 'woothemes-portfolio-template.php' );
-require_once( 'classes/class-woothemes-widget-portfolio.php' );
+require_once( 'woothemes-portfolio-core-functions.php' );
+
 global $woothemes_portfolio;
 $woothemes_portfolio = new Woothemes_Portfolio( __FILE__ );
 $woothemes_portfolio->version = '1.0.0';

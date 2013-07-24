@@ -22,6 +22,11 @@ class Woothemes_Portfolio {
 	private $file;
 	public $taxonomy_category;
 
+	public $template_url;
+
+	public $admin;
+	public $frontend;
+
 	/**
 	 * Constructor function.
 	 *
@@ -30,12 +35,16 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function __construct( $file ) {
+		// add_rewrite_tag( '%project_category%','([^&]+)' );
 		$this->dir = dirname( $file );
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
 		$this->token = 'woothemes-portfolio';
 		$this->post_type = 'project';
+
+		// Variables
+		$this->template_url	= apply_filters( 'woothemes_portfolio_template_url', 'woothemes-portfolio/' );
 
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
@@ -46,23 +55,16 @@ class Woothemes_Portfolio {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
-		if ( is_admin() ) {
-			global $pagenow;
-
-			add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
-			add_action( 'save_post', array( $this, 'meta_box_save' ) );
-			add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
-			add_action( 'admin_print_styles', array( $this, 'enqueue_admin_styles' ), 10 );
-			add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
-
-			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
-				add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-				add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
-			}
-		}
-
 		add_action( 'after_setup_theme', array( $this, 'ensure_post_thumbnails_support' ) );
 		add_action( 'after_theme_setup', array( $this, 'register_image_sizes' ) );
+
+		if ( is_admin() ) {
+			require_once( 'class-woothemes-portfolio-admin.php' );
+			$this->admin = new Woothemes_Portfolio_Admin( $file );
+		} else {
+			require_once( 'class-woothemes-portfolio-frontend.php' );
+			$this->frontend = new Woothemes_Portfolio_Frontend( $file );
+		}
 	} // End __construct()
 
 	/**
@@ -95,7 +97,7 @@ class Woothemes_Portfolio {
 			'show_ui' => true,
 			'show_in_menu' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'project', 'with_front' => false ),
+			'rewrite' => array( 'slug' => 'projects/%project_category%', 'with_front' => false ),
 			'capability_type' => 'post',
 			'has_archive' => 'projects',
 			'hierarchical' => false,
@@ -118,265 +120,6 @@ class Woothemes_Portfolio {
 	} // End register_taxonomy()
 
 	/**
-	 * Add custom columns for the "manage" screen of this post type.
-	 *
-	 * @access public
-	 * @param string $column_name
-	 * @param int $id
-	 * @since  1.0.0
-	 * @return void
-	 */
-	public function register_custom_columns ( $column_name, $id ) {
-		global $wpdb, $post;
-
-		$meta = get_post_custom( $id );
-
-		switch ( $column_name ) {
-
-			case 'image':
-				$value = '';
-
-				$value = $this->get_image( $id, 40 );
-
-				echo $value;
-			break;
-
-			default:
-			break;
-
-		}
-	} // End register_custom_columns()
-
-	/**
-	 * Add custom column headings for the "manage" screen of this post type.
-	 *
-	 * @access public
-	 * @param array $defaults
-	 * @since  1.0.0
-	 * @return void
-	 */
-	public function register_custom_column_headings ( $defaults ) {
-		$new_columns = array(
-			'image' => __( 'Image', 'woothemes-portfolio' )
-		);
-
-		$last_item = '';
-
-		if ( isset( $defaults['date'] ) ) { unset( $defaults['date'] ); }
-
-		if ( count( $defaults ) > 2 ) {
-			$last_item = array_slice( $defaults, -1 );
-
-			array_pop( $defaults );
-		}
-		$defaults = array_merge( $defaults, $new_columns );
-
-		if ( $last_item != '' ) {
-			foreach ( $last_item as $k => $v ) {
-				$defaults[$k] = $v;
-				break;
-			}
-		}
-
-		return $defaults;
-	} // End register_custom_column_headings()
-
-	/**
-	 * Update messages for the post type admin.
-	 * @since  1.0.0
-	 * @param  array $messages Array of messages for all post types.
-	 * @return array           Modified array.
-	 */
-	public function updated_messages ( $messages ) {
-	  global $post, $post_ID;
-
-	  $messages[$this->post_type] = array(
-	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'Project updated. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    2 => __( 'Custom field updated.', 'woothemes-portfolio' ),
-	    3 => __( 'Custom field deleted.', 'woothemes-portfolio' ),
-	    4 => __( 'Project updated.', 'woothemes-portfolio' ),
-	    /* translators: %s: date and time of the revision */
-	    5 => isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'woothemes-portfolio' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 => sprintf( __( 'Project published. %sView Project%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    7 => __('Project saved.'),
-	    8 => sprintf( __( 'Project submitted. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 => sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'woothemes-portfolio' ),
-	      // translators: Publish box date format, see http://php.net/date
-	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 => sprintf( __( 'Project draft updated. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	  );
-
-	  return $messages;
-	} // End updated_messages()
-
-	/**
-	 * Setup the meta box.
-	 *
-	 * @access public
-	 * @since  1.1.0
-	 * @return void
-	 */
-	public function meta_box_setup () {
-		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-portfolio' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
-	} // End meta_box_setup()
-
-	/**
-	 * The contents of our meta box.
-	 *
-	 * @access public
-	 * @since  1.1.0
-	 * @return void
-	 */
-	public function meta_box_content () {
-		global $post_id;
-		$fields = get_post_custom( $post_id );
-		$field_data = $this->get_custom_fields_settings();
-
-		$html = '';
-
-		$html .= '<input type="hidden" name="woo_' . $this->token . '_noonce" id="woo_' . $this->token . '_noonce" value="' . wp_create_nonce( plugin_basename( $this->dir ) ) . '" />';
-
-		if ( 0 < count( $field_data ) ) {
-			$html .= '<table class="form-table">' . "\n";
-			$html .= '<tbody>' . "\n";
-
-			foreach ( $field_data as $k => $v ) {
-				$data = $v['default'];
-				if ( isset( $fields['_' . $k] ) && isset( $fields['_' . $k][0] ) ) {
-					$data = $fields['_' . $k][0];
-				}
-
-				$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td><input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />' . "\n";
-				$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
-				$html .= '</td><tr/>' . "\n";
-			}
-
-			$html .= '</tbody>' . "\n";
-			$html .= '</table>' . "\n";
-		}
-
-		echo $html;
-	} // End meta_box_content()
-
-	/**
-	 * Save meta box fields.
-	 *
-	 * @access public
-	 * @since  1.1.0
-	 * @param int $post_id
-	 * @return void
-	 */
-	public function meta_box_save ( $post_id ) {
-		global $post, $messages;
-
-		// Verify
-		if ( ( get_post_type() != $this->token ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
-			return $post_id;
-		}
-
-		if ( 'page' == $_POST['post_type'] ) {
-			if ( ! current_user_can( 'edit_page', $post_id ) ) {
-				return $post_id;
-			}
-		} else {
-			if ( ! current_user_can( 'edit_post', $post_id ) ) {
-				return $post_id;
-			}
-		}
-
-		$field_data = $this->get_custom_fields_settings();
-		$fields = array_keys( $field_data );
-
-		foreach ( $fields as $f ) {
-
-			${$f} = strip_tags(trim($_POST[$f]));
-
-			// Escape the URLs.
-			if ( 'url' == $field_data[$f]['type'] ) {
-				${$f} = esc_url( ${$f} );
-			}
-
-			if ( get_post_meta( $post_id, '_' . $f ) == '' ) {
-				add_post_meta( $post_id, '_' . $f, ${$f}, true );
-			} elseif( ${$f} != get_post_meta( $post_id, '_' . $f, true ) ) {
-				update_post_meta( $post_id, '_' . $f, ${$f} );
-			} elseif ( ${$f} == '' ) {
-				delete_post_meta( $post_id, '_' . $f, get_post_meta( $post_id, '_' . $f, true ) );
-			}
-		}
-	} // End meta_box_save()
-
-	/**
-	 * Customise the "Enter title here" text.
-	 *
-	 * @access public
-	 * @since  1.0.0
-	 * @param string $title
-	 * @return void
-	 */
-	public function enter_title_here ( $title ) {
-		if ( get_post_type() == $this->post_type ) {
-			$title = __( 'Enter the project title here', 'woothemes-portfolio' );
-		}
-		return $title;
-	} // End enter_title_here()
-
-	/**
-	 * Enqueue post type admin CSS.
-	 *
-	 * @access public
-	 * @since   1.0.0
-	 * @return   void
-	 */
-	public function enqueue_admin_styles () {
-		wp_register_style( 'woothemes-portfolio-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
-		wp_enqueue_style( 'woothemes-portfolio-admin' );
-	} // End enqueue_admin_styles()
-
-	/**
-	 * Get the settings for the custom fields.
-	 * @since  1.1.0
-	 * @return array
-	 */
-	public function get_custom_fields_settings () {
-		$fields = array();
-
-		$fields['url'] = array(
-		    'name' => __( 'URL', 'woothemes-portfolio' ),
-		    'description' => __( 'Enter a URL that applies to this project (for example: http://woothemes.com/).', 'woothemes-portfolio' ),
-		    'type' => 'url',
-		    'default' => '',
-		    'section' => 'info'
-		);
-
-		return $fields;
-	} // End get_custom_fields_settings()
-
-	/**
-	 * Get the image for the given ID.
-	 * @param  int 				$id   Post ID.
-	 * @param  string/array/int $size Image dimension. (default: "portfolio-thumbnail")
-	 * @since  1.0.0
-	 * @return string       	<img> tag.
-	 */
-	protected function get_image ( $id, $size = 'portfolio-thumbnail' ) {
-		$response = '';
-
-		if ( has_post_thumbnail( $id ) ) {
-			// If not a string or an array, and not an integer, default to 150x9999.
-			if ( is_int( $size ) || ( 0 < intval( $size ) ) ) {
-				$size = array( intval( $size ), intval( $size ) );
-			} elseif ( ! is_string( $size ) && ! is_array( $size ) ) {
-				$size = array( 150, 9999 );
-			}
-			$response = get_the_post_thumbnail( intval( $id ), $size );
-		}
-
-		return $response;
-	} // End get_image()
-
-	/**
 	 * Register image sizes.
 	 * @since  1.0.0
 	 * @return void
@@ -395,7 +138,7 @@ class Woothemes_Portfolio {
 	 * @since  1.0.0
 	 * @return array/boolean      Array if true, boolean if false.
 	 */
-	public function get_portfolio_itmes ( $args = '' ) {
+	public function get_portfolio_items ( $args = '' ) {
 		$defaults = array(
 			'limit' => 5,
 			'orderby' => 'menu_order',
@@ -441,7 +184,7 @@ class Woothemes_Portfolio {
 				$meta = get_post_custom( $v->ID );
 
 				// Get the image.
-				$query[$k]->image = $this->get_image( $v->ID, $args['size'] );
+				$query[$k]->image = woothemes_portfolio_get_image( $v->ID, $args['size'] );
 
 				// Get the URL.
 				if ( isset( $meta['_url'][0] ) && '' != $meta['_url'][0] ) {
@@ -455,7 +198,7 @@ class Woothemes_Portfolio {
 		}
 
 		return $query;
-	} // End get_portfolios()
+	} // End get_portfolio_items()
 
 	/**
 	 * Load the plugin's localisation file.
@@ -511,4 +254,50 @@ class Woothemes_Portfolio {
 	public function ensure_post_thumbnails_support () {
 		if ( ! current_theme_supports( 'post-thumbnails' ) ) { add_theme_support( 'post-thumbnails' ); }
 	} // End ensure_post_thumbnails_support()
+
+	/**
+	 * Get the plugin url.
+	 * @access public
+	 * @since  1.0.0
+	 * @return string
+	 */
+	public function plugin_url () {
+		return untrailingslashit( plugins_url( '/', $this->file ) );
+	} // End plugin_url()
+
+
+	/**
+	 * Get the plugin path.
+	 * @access public
+	 * @since  1.0.0
+	 * @return string
+	 */
+	public function plugin_path () {
+		return untrailingslashit( plugin_dir_path( $this->file ) );
+	} // End plugin_path()
+
+
+	/**
+	 * Get an image size.
+	 *
+	 * Variable is filtered by woothemes_portfolio_get_image_size_{image_size}
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 * @param  mixed $image_size
+	 * @return string
+	 */
+	public function get_image_size ( $image_size ) {
+		// Only return sizes we define in settings
+		if ( ! in_array( $image_size, array( 'portfolio-thumbnail', 'portfolio-category', 'portfolio-single' ) ) )
+			return apply_filters( 'woothemes_portfolio_get_image_size_' . $image_size, '' );
+
+		$size = get_option( $image_size . '_image_size', array() );
+
+		$size['width'] 	= isset( $size['width'] ) ? $size['width'] : '300';
+		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
+		$size['crop'] 	= isset( $size['crop'] ) ? $size['crop'] : 1;
+
+		return apply_filters( 'woothemes_portfolio_get_image_size_' . $image_size, $size );
+	} // End get_image_size()
 } // End Class

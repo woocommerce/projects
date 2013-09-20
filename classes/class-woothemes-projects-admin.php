@@ -151,6 +151,7 @@ class Woothemes_Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_setup () {
+		// Project Details Meta Box Load
 		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 	} // End meta_box_setup()
 

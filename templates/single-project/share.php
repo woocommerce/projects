@@ -5,7 +5,7 @@
  * Sharing plugins can hook into here or you can add your own code directly.
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     1.6.4
  */
 

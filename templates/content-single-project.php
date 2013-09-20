@@ -14,29 +14,29 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <?php
 	/**
-	 * woothemes_projects_before_single_product hook
+	 * woothemes_projects_before_single_project hook
 	 *
 	 * @hooked wc_print_messages - 10
 	 */
-	 do_action( 'woothemes_projects_before_single_product' );
+	 do_action( 'woothemes_projects_before_single_project' );
 ?>
 
-<div itemscope itemtype="http://schema.org/Product" id="project-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="project-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<?php
 		/**
-		 * woothemes_projects_show_product_images hook
+		 * woothemes_projects_show_project_images hook
 		 *
-		 * @hooked woothemes_projects_show_product_images - 20
+		 * @hooked woothemes_projects_show_project_images - 20
 		 */
-		do_action( 'woothemes_projects_before_single_product_summary' );
+		do_action( 'woothemes_projects_before_single_project_summary' );
 	?>
 
 	<div class="summary entry-summary">
 
 		<?php
 			/**
-			 * woocommerce_single_product_summary hook
+			 * woocommerce_single_project_summary hook
 			 *
 			 * @hooked woocommerce_template_single_title - 5
 			 * @hooked woocommerce_template_single_excerpt - 20
@@ -50,12 +50,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	<?php
 		/**
-		 * woothemes_projects_after_single_product_summary hook
+		 * woothemes_projects_after_single_project_summary hook
 		 *
 		 */
 		do_action( 'woothemes_projects_after_single_project_summary' );
 	?>
 
-</div><!-- #product-<?php the_ID(); ?> -->
+</div><!-- #project-<?php the_ID(); ?> -->
 
 <?php do_action( 'woothemes_projects_after_single_project' ); ?>

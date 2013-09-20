@@ -125,7 +125,7 @@ class Woothemes_Projects_Admin {
 
 	  $messages[$this->post_type] = array(
 	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'Project updated. %sView projects%s', 'woothemes-projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    1 => sprintf( __( 'Project updated. %sView project%s', 'woothemes-projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
 	    2 => __( 'Custom field updated.', 'woothemes-projects' ),
 	    3 => __( 'Custom field deleted.', 'woothemes-projects' ),
 	    4 => __( 'Project updated.', 'woothemes-projects' ),
@@ -153,6 +153,8 @@ class Woothemes_Projects_Admin {
 	public function meta_box_setup () {
 		// Project Details Meta Box Load
 		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+		// Project Images Meta Bog Load
+		add_meta_box( 'project-images', __( 'Project Gallery', 'woothemes-projects' ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
 	} // End meta_box_setup()
 
 	/**
@@ -194,6 +196,158 @@ class Woothemes_Projects_Admin {
 	} // End meta_box_content()
 
 	/**
+	 * Display the project images meta box.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function meta_box_content_project_images () {
+		global $post;
+		?>
+		<div id="project_images_container">
+			<ul class="project_images">
+				<?php
+					if ( metadata_exists( 'post', $post->ID, '_project_image_gallery' ) ) {
+						$project_image_gallery = get_post_meta( $post->ID, '_project_image_gallery', true );
+					} else {
+						// Backwards compat
+						$attachment_ids = get_posts( 'post_parent=' . $post->ID . '&numberposts=-1&post_type=attachment&orderby=menu_order&order=ASC&post_mime_type=image&fields=ids' );
+						$attachment_ids = array_diff( $attachment_ids, array( get_post_thumbnail_id() ) );
+						$project_image_gallery = implode( ',', $attachment_ids );
+					}
+
+					$attachments = array_filter( explode( ',', $project_image_gallery ) );
+
+					if ( $attachments )
+						foreach ( $attachments as $attachment_id ) {
+							echo '<li class="image" data-attachment_id="' . $attachment_id . '">
+								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
+								<ul class="actions">
+									<li><a href="#" class="delete" title="' . __( 'Delete image', 'woothemes-projects' ) . '">' . __( 'Delete', 'woothemes-projects' ) . '</a></li>
+								</ul>
+							</li>';
+						}
+				?>
+			</ul>
+
+			<input type="hidden" id="project_image_gallery" name="project_image_gallery" value="<?php echo esc_attr( $project_image_gallery ); ?>" />
+
+		</div>
+		<p class="add_project_images hide-if-no-js">
+			<a href="#"><?php _e( 'Add project gallery images', 'woothemes-projects' ); ?></a>
+		</p>
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+
+				// Uploading files
+				var project_gallery_frame;
+				var $image_gallery_ids = $( '#project_image_gallery' );
+				var $project_images = $( '#project_images_container ul.project_images' );
+
+				jQuery( '.add_project_images' ).on( 'click', 'a', function( event ) {
+
+					var $el = $(this);
+					var attachment_ids = $image_gallery_ids.val();
+
+					event.preventDefault();
+
+					// If the media frame already exists, reopen it.
+					if ( project_gallery_frame ) {
+						project_gallery_frame.open();
+						return;
+					}
+
+					// Create the media frame.
+					project_gallery_frame = wp.media.frames.downloadable_file = wp.media({
+						// Set the title of the modal.
+						title: '<?php _e( 'Add Images to Project Gallery', 'woothemes-projects' ); ?>',
+						button: {
+							text: '<?php _e( 'Add to gallery', 'woothemes-projects' ); ?>',
+						},
+						multiple: true
+					});
+
+					// When an image is selected, run a callback.
+					project_gallery_frame.on( 'select', function() {
+
+						var selection = project_gallery_frame.state().get('selection');
+
+						selection.map( function( attachment ) {
+
+							attachment = attachment.toJSON();
+
+							if ( attachment.id ) {
+								attachment_ids = attachment_ids ? attachment_ids + "," + attachment.id : attachment.id;
+
+								$project_images.append('\
+									<li class="image" data-attachment_id="' + attachment.id + '">\
+										<img src="' + attachment.url + '" />\
+										<ul class="actions">\
+											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'woothemes-projects' ); ?>"><?php _e( 'Delete', 'woothemes-projects' ); ?></a></li>\
+										</ul>\
+									</li>');
+							}
+
+						} );
+
+						$image_gallery_ids.val( attachment_ids );
+					});
+
+					// Finally, open the modal.
+					project_gallery_frame.open();
+				});
+
+				// Image ordering
+				$project_images.sortable({
+					items: 'li.image',
+					cursor: 'move',
+					scrollSensitivity:40,
+					forcePlaceholderSize: true,
+					forceHelperSize: false,
+					helper: 'clone',
+					opacity: 0.65,
+					placeholder: 'woothemes-projects-metabox-sortable-placeholder',
+					start:function(event,ui){
+						ui.item.css('background-color','#f6f6f6');
+					},
+					stop:function(event,ui){
+						ui.item.removeAttr('style');
+					},
+					update: function(event, ui) {
+						var attachment_ids = '';
+
+						$('#project_images_container ul li.image').css('cursor','default').each(function() {
+							var attachment_id = jQuery(this).attr( 'data-attachment_id' );
+							attachment_ids = attachment_ids + attachment_id + ',';
+						});
+
+						$image_gallery_ids.val( attachment_ids );
+					}
+				});
+
+				// Remove images
+				$('#project_images_container').on( 'click', 'a.delete', function() {
+
+					$(this).closest('li.image').remove();
+
+					var attachment_ids = '';
+
+					$('#project_images_container ul li.image').css('cursor','default').each(function() {
+						var attachment_id = jQuery(this).attr( 'data-attachment_id' );
+						attachment_ids = attachment_ids + attachment_id + ',';
+					});
+
+					$image_gallery_ids.val( attachment_ids );
+
+					return false;
+				} );
+
+			});
+		</script>
+		<?php
+	} // End meta_box_content_project_images()
+
+	/**
 	 * Save meta box fields.
 	 *
 	 * @access public
@@ -205,7 +359,7 @@ class Woothemes_Projects_Admin {
 		global $post, $messages;
 
 		// Verify
-		if ( ( get_post_type() != $this->token ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
+		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
 			return $post_id;
 		}
 
@@ -239,6 +393,10 @@ class Woothemes_Projects_Admin {
 				delete_post_meta( $post_id, '_' . $f, get_post_meta( $post_id, '_' . $f, true ) );
 			}
 		}
+
+		// Save the project gallery image IDs.
+		$attachment_ids = array_filter( explode( ',', sanitize_text_field( $_POST['project_image_gallery'] ) ) );
+		update_post_meta( $post_id, '_project_image_gallery', implode( ',', $attachment_ids ) );
 	} // End meta_box_save()
 
 	/**

@@ -35,3 +35,82 @@ only screen and (        min-device-pixel-ratio: 2),
 		background-size: 32px 187px;
 	}
 }
+
+// Project Gallery
+#project-images {
+	.inside {
+		margin: 0;
+		padding: 0;
+		.add_project_images {
+			padding: 0 9px;
+		}
+		#project_images_container {
+			padding: 0 0 0 9px;
+			ul {
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+				li.image, li.add, li.wc-metabox-sortable-placeholder {
+					width: 80px;
+					height: 80px;
+					overflow: hidden;
+					float: left;
+					cursor: move;
+					border: 1px solid #d5d5d5;
+					margin: 9px 9px 0 0;
+					background: #f7f7f7;
+					-webkit-border-radius: 2px;
+					-moz-border-radius: 2px;
+					border-radius: 2px;
+					position: relative;
+					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+					-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+					box-sizing: border-box;         /* Opera/IE 8+ */
+					img {
+						width: 100%;
+						height: auto;
+						display: block;
+					}
+				}
+				li.wc-metabox-sortable-placeholder {
+					border: 4px dashed #dddddd;
+					background: #f7f7f7 url(../images/image_watermark.png) no-repeat center;
+				}
+				ul.actions {
+					position: absolute;
+					top:0;
+					right: 0;
+					padding: 2px;
+					display: none;
+					li {
+						background: #eee;
+						border: 1px solid #ddd;
+						-webkit-border-radius: 2px;
+						-moz-border-radius: 2px;
+						border-radius: 2px;
+						padding: 1px;
+						float: right;
+						margin: 0 0 0 2px;
+						a {
+							width: 10px;
+							padding: 10px 0 0 0;
+							margin: 0;
+							height: 0;
+							display: block;
+							overflow: hidden;
+						}
+						a.view {
+							background: url(../images/icons/image_10.png) no-repeat top left;
+						}
+						a.delete {
+							background: url(../images/icons/delete_10.png) no-repeat top left;
+						}
+					}
+				}
+				li:hover ul.actions {
+					display: block;
+				}
+			}
+		}
+	}
+}

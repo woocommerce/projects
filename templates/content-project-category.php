@@ -1,11 +1,11 @@
 <?php
 /**
- * The template for displaying product category thumbnails within loops.
+ * The template for displaying project category thumbnails within loops.
  *
- * Override this template by copying it to yourtheme/woocommerce/content-product_cat.php
+ * Override this template by copying it to yourtheme/woocommerce/content-project_cat.php
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     1.6.4
  */
 
@@ -24,7 +24,7 @@ if ( empty( $woocommerce_loop['columns'] ) )
 // Increase loop count
 $woocommerce_loop['loop']++;
 ?>
-<li class="product-category product<?php
+<li class="project-category project<?php
     if ( ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] == 0 || $woocommerce_loop['columns'] == 1)
         echo ' first';
 	if ( $woocommerce_loop['loop'] % $woocommerce_loop['columns'] == 0 )
@@ -33,7 +33,7 @@ $woocommerce_loop['loop']++;
 
 	<?php do_action( 'woocommerce_before_subcategory', $category ); ?>
 
-	<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>">
+	<a href="<?php echo get_term_link( $category->slug, 'project_cat' ); ?>">
 
 		<?php
 			/**

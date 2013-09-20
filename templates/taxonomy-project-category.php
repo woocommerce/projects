@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/woothemes-projects/taxonomy-project-category.php
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     1.6.4
  */
 

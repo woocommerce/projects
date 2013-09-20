@@ -3,7 +3,7 @@
  * Product Loop End
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     2.0.0
  */
 ?>

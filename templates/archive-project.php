@@ -1,11 +1,11 @@
 <?php
 /**
- * The Template for displaying product archives, including the main shop page which is a post type archive.
+ * The Template for displaying project archives, including the main shop page which is a post type archive.
  *
- * Override this template by copying it to yourtheme/woocommerce/archive-product.php
+ * Override this template by copying it to yourtheme/woocommerce/archive-project.php
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     2.0.0
  */
 
@@ -43,17 +43,17 @@ get_header('shop'); ?>
 				do_action( 'woocommerce_before_shop_loop' );
 			?>
 
-			<?php woocommerce_product_loop_start(); ?>
+			<?php woocommerce_project_loop_start(); ?>
 
-				<?php woocommerce_product_subcategories(); ?>
+				<?php woocommerce_project_subcategories(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php woocommerce_get_template_part( 'content', 'product' ); ?>
+					<?php woocommerce_get_template_part( 'content', 'project' ); ?>
 
 				<?php endwhile; // end of the loop. ?>
 
-			<?php woocommerce_product_loop_end(); ?>
+			<?php woocommerce_project_loop_end(); ?>
 
 			<?php
 				/**
@@ -64,9 +64,9 @@ get_header('shop'); ?>
 				do_action( 'woocommerce_after_shop_loop' );
 			?>
 
-		<?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
+		<?php elseif ( ! woocommerce_project_subcategories( array( 'before' => woocommerce_project_loop_start( false ), 'after' => woocommerce_project_loop_end( false ) ) ) ) : ?>
 
-			<?php woocommerce_get_template( 'loop/no-products-found.php' ); ?>
+			<?php woocommerce_get_template( 'loop/no-projects-found.php' ); ?>
 
 		<?php endif; ?>
 

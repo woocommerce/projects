@@ -3,7 +3,7 @@
  * Sidebar
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     1.6.4
  */
 

@@ -1,24 +1,24 @@
 <?php
 /**
- * Single Product Thumbnails
+ * Single Project Thumbnails
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     2.0.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $post, $product, $woocommerce;
+global $post, $project, $woothemes_projects;
 
-$attachment_ids = $product->get_gallery_attachment_ids();
+$attachment_ids = $project->get_gallery_attachment_ids();
 
 if ( $attachment_ids ) {
 	?>
 	<div class="thumbnails"><?php
 
 		$loop = 0;
-		$columns = apply_filters( 'woocommerce_product_thumbnails_columns', 3 );
+		$columns = apply_filters( 'woothemes_projects_project_thumbnails_columns', 3 );
 
 		foreach ( $attachment_ids as $attachment_id ) {
 
@@ -35,11 +35,11 @@ if ( $attachment_ids ) {
 			if ( ! $image_link )
 				continue;
 
-			$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ) );
+			$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_project_small_thumbnail_size', 'shop_thumbnail' ) );
 			$image_class = esc_attr( implode( ' ', $classes ) );
 			$image_title = esc_attr( get_the_title( $attachment_id ) );
 
-			echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<a href="%s" class="%s" title="%s"  rel="prettyPhoto[product-gallery]">%s</a>', $image_link, $image_class, $image_title, $image ), $attachment_id, $post->ID, $image_class );
+			echo apply_filters( 'woocommerce_single_project_image_thumbnail_html', sprintf( '<a href="%s" class="%s" title="%s"  rel="prettyPhoto[project-gallery]">%s</a>', $image_link, $image_class, $image_title, $image ), $attachment_id, $post->ID, $image_class );
 
 			$loop++;
 		}

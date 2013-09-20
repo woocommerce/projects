@@ -5,18 +5,18 @@
  * Shows text: Showing x - x of x results
  *
  * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @package 	Woothemes_Projects/Templates
  * @version     2.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce, $wp_query;
+global $woothemes_projects, $wp_query;
 
-if ( ! woocommerce_products_will_display() )
+if ( ! woocommerce_projects_will_display() )
 	return;
 ?>
-<p class="woocommerce-result-count">
+<p class="woothemes-projects-result-count">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
 	$per_page = $wp_query->get( 'posts_per_page' );

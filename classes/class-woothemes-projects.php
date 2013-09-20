@@ -2,17 +2,17 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Portfolio Class
+ * WooThemes Projects Class
  *
- * All functionality pertaining to the portfolio.
+ * All functionality pertaining to the projects.
  *
  * @package WordPress
- * @subpackage Woothemes_Portfolio
+ * @subpackage Woothemes_Projects
  * @category Plugin
  * @author Matty
  * @since 1.0.0
  */
-class Woothemes_Portfolio {
+class Woothemes_Projects {
 	private $dir;
 	private $assets_dir;
 	private $assets_url;
@@ -40,11 +40,11 @@ class Woothemes_Portfolio {
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
-		$this->token = 'woothemes-portfolio';
+		$this->token = 'woothemes-projects';
 		$this->post_type = 'project';
 
 		// Variables
-		$this->template_url	= apply_filters( 'woothemes_portfolio_template_url', 'woothemes-portfolio/' );
+		$this->template_url	= apply_filters( 'woothemes_projects_template_url', 'woothemes-projects/' );
 
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
@@ -59,11 +59,11 @@ class Woothemes_Portfolio {
 		add_action( 'after_theme_setup', array( $this, 'register_image_sizes' ) );
 
 		if ( is_admin() ) {
-			require_once( 'class-woothemes-portfolio-admin.php' );
-			$this->admin = new Woothemes_Portfolio_Admin( $file );
+			require_once( 'class-woothemes-projects-admin.php' );
+			$this->admin = new Woothemes_Projects_Admin( $file );
 		} else {
-			require_once( 'class-woothemes-portfolio-frontend.php' );
-			$this->frontend = new Woothemes_Portfolio_Frontend( $file );
+			require_once( 'class-woothemes-projects-frontend.php' );
+			$this->frontend = new Woothemes_Projects_Frontend( $file );
 		}
 	} // End __construct()
 
@@ -75,19 +75,19 @@ class Woothemes_Portfolio {
 	 */
 	public function register_post_type () {
 		$labels = array(
-			'name' => _x( 'Projects', 'post type general name', 'woothemes-portfolio' ),
-			'singular_name' => _x( 'Project', 'post type singular name', 'woothemes-portfolio' ),
-			'add_new' => _x( 'Add New', $this->post_type, 'woothemes-portfolio' ),
-			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
-			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
-			'new_item' => sprintf( __( 'New %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
-			'all_items' => sprintf( _x( 'All %s', $this->post_type, 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
-			'view_item' => sprintf( __( 'View %s', 'woothemes-portfolio' ), __( 'Project', 'woothemes-portfolio' ) ),
-			'search_items' => sprintf( __( 'Search %a', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
-			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
-			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-portfolio' ), __( 'Projects', 'woothemes-portfolio' ) ),
+			'name' => _x( 'Projects', 'post type general name', 'woothemes-projects' ),
+			'singular_name' => _x( 'Project', 'post type singular name', 'woothemes-projects' ),
+			'add_new' => _x( 'Add New', $this->post_type, 'woothemes-projects' ),
+			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'new_item' => sprintf( __( 'New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'all_items' => sprintf( _x( 'All %s', $this->post_type, 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'view_item' => sprintf( __( 'View %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'search_items' => sprintf( __( 'Search %a', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
 			'parent_item_colon' => '',
-			'menu_name' => __( 'Projects', 'woothemes-portfolio' )
+			'menu_name' => __( 'Projects', 'woothemes-projects' )
 
 		);
 		$args = array(
@@ -115,7 +115,7 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function register_taxonomy () {
-		$this->taxonomy_category = new Woothemes_Portfolio_Taxonomy(); // Leave arguments empty, to use the default arguments.
+		$this->taxonomy_category = new Woothemes_Projects_Taxonomy(); // Leave arguments empty, to use the default arguments.
 		$this->taxonomy_category->register();
 	} // End register_taxonomy()
 
@@ -126,19 +126,19 @@ class Woothemes_Portfolio {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'portfolio-thumbnail', 100, 9999 ); // 100 pixels wide (and unlimited height) for single
-			add_image_size( 'portfolio-category', 250, 9999 ); // 250 pixels wide (and unlimited height) for archive
-			add_image_size( 'portfolio-single', 1024, 9999 ); // 1024 pixels wide (and unlimited height) for single
+			add_image_size( 'project-thumbnail', 100, 9999 ); // 100 pixels wide (and unlimited height) for single
+			add_image_size( 'project-category', 250, 9999 ); // 250 pixels wide (and unlimited height) for archive
+			add_image_size( 'project-single', 1024, 9999 ); // 1024 pixels wide (and unlimited height) for single
 		}
 	} // End register_image_sizes()
 
 	/**
-	 * Get portfolio items.
+	 * Get projects.
 	 * @param  string/array $args Arguments to be passed to the query.
 	 * @since  1.0.0
 	 * @return array/boolean      Array if true, boolean if false.
 	 */
-	public function get_portfolio_items ( $args = '' ) {
+	public function get_projects ( $args = '' ) {
 		$defaults = array(
 			'limit' => 5,
 			'orderby' => 'menu_order',
@@ -149,7 +149,7 @@ class Woothemes_Portfolio {
 		$args = wp_parse_args( $args, $defaults );
 
 		// Allow child themes/plugins to filter here.
-		$args = apply_filters( 'woothemes_get_portfolio_items_args', $args );
+		$args = apply_filters( 'woothemes_get_projects_args', $args );
 
 		// The Query Arguments.
 		$query_args = array();
@@ -184,7 +184,7 @@ class Woothemes_Portfolio {
 				$meta = get_post_custom( $v->ID );
 
 				// Get the image.
-				$query[$k]->image = woothemes_portfolio_get_image( $v->ID, $args['size'] );
+				$query[$k]->image = woothemes_projects_get_image( $v->ID, $args['size'] );
 
 				// Get the URL.
 				if ( isset( $meta['_url'][0] ) && '' != $meta['_url'][0] ) {
@@ -198,7 +198,7 @@ class Woothemes_Portfolio {
 		}
 
 		return $query;
-	} // End get_portfolio_items()
+	} // End get_projects()
 
 	/**
 	 * Load the plugin's localisation file.
@@ -207,7 +207,7 @@ class Woothemes_Portfolio {
 	 * @return void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'woothemes-portfolio', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'woothemes-projects', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation()
 
 	/**
@@ -216,7 +216,7 @@ class Woothemes_Portfolio {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'woothemes-portfolio';
+	    $domain = 'woothemes-projects';
 	    // The "plugin_locale" filter is also used in load_plugin_textdomain()
 	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
@@ -242,7 +242,7 @@ class Woothemes_Portfolio {
 	 */
 	private function register_plugin_version () {
 		if ( $this->version != '' ) {
-			update_option( 'woothemes-portfolio' . '-version', $this->version );
+			update_option( 'woothemes-projects' . '-version', $this->version );
 		}
 	} // End register_plugin_version()
 
@@ -280,7 +280,7 @@ class Woothemes_Portfolio {
 	/**
 	 * Get an image size.
 	 *
-	 * Variable is filtered by woothemes_portfolio_get_image_size_{image_size}
+	 * Variable is filtered by woothemes_projects_get_image_size_{image_size}
 	 *
 	 * @access public
 	 * @since  1.0.0
@@ -289,8 +289,8 @@ class Woothemes_Portfolio {
 	 */
 	public function get_image_size ( $image_size ) {
 		// Only return sizes we define in settings
-		if ( ! in_array( $image_size, array( 'portfolio-thumbnail', 'portfolio-category', 'portfolio-single' ) ) )
-			return apply_filters( 'woothemes_portfolio_get_image_size_' . $image_size, '' );
+		if ( ! in_array( $image_size, array( 'project-thumbnail', 'project-category', 'project-single' ) ) )
+			return apply_filters( 'woothemes_projects_get_image_size_' . $image_size, '' );
 
 		$size = get_option( $image_size . '_image_size', array() );
 
@@ -298,6 +298,6 @@ class Woothemes_Portfolio {
 		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
 		$size['crop'] 	= isset( $size['crop'] ) ? $size['crop'] : 1;
 
-		return apply_filters( 'woothemes_portfolio_get_image_size_' . $image_size, $size );
+		return apply_filters( 'woothemes_projects_get_image_size_' . $image_size, $size );
 	} // End get_image_size()
 } // End Class

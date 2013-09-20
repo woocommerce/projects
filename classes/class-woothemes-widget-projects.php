@@ -1,13 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_portfolio' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_projects' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Portfolio Items Widget
+ * WooThemes Projects Widget
  *
- * A WooThemes standardized portfolio items widget.
+ * A WooThemes standardized projects widget.
  *
  * @package WordPress
- * @subpackage Woothemes_Portfolio
+ * @subpackage Woothemes_Projects
  * @category Widgets
  * @author WooThemes
  * @since 1.0.0
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_portfolio' ) ) exit
  * - form()
  * - get_orderby_options()
  */
-class Woothemes_Widget_Portfolio_Items extends WP_Widget {
+class Woothemes_Widget_Projects extends WP_Widget {
 	protected $woothemes_widget_cssclass;
 	protected $woothemes_widget_description;
 	protected $woothemes_widget_idbase;
@@ -38,10 +38,10 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 	 */
 	public function __construct() {
 		/* Widget variable settings. */
-		$this->woothemes_widget_cssclass = 'widget_woothemes_portfolio_items';
-		$this->woothemes_widget_description = __( 'Recent portfolios listed on your site.', 'woothemes-portfolio' );
-		$this->woothemes_widget_idbase = 'woothemes_portfolio';
-		$this->woothemes_widget_title = __( 'Recent Portfolio Items', 'woothemes-portfolio' );
+		$this->woothemes_widget_cssclass = 'widget_woothemes_projects_items';
+		$this->woothemes_widget_description = __( 'Recent projects listed on your site.', 'woothemes-projects' );
+		$this->woothemes_widget_idbase = 'woothemes_projects';
+		$this->woothemes_widget_title = __( 'Recent Projects', 'woothemes-projects' );
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => $this->woothemes_widget_cssclass, 'description' => $this->woothemes_widget_description );
@@ -88,8 +88,8 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 		if ( isset( $instance['orderby'] ) && in_array( $instance['orderby'], array_keys( $this->get_orderby_options() ) ) ) { $args['orderby'] = $instance['orderby']; }
 		if ( isset( $instance['order'] ) && in_array( $instance['order'], array_keys( $this->get_order_options() ) ) ) { $args['order'] = $instance['order']; }
 
-		// Display the portfolios.
-		woothemes_portfolio( $args );
+		// Display the projects.
+		woothemes_projects( $args );
 
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->woothemes_widget_cssclass . '_bottom' );
@@ -149,27 +149,27 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 ?>
 		<!-- Widget Title: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
 		<!-- Widget Limit: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>"  value="<?php echo $instance['limit']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" />
 		</p>
 		<!-- Widget Image Size: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Image Size (in pixels):', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Image Size (in pixels):', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'size' ); ?>"  value="<?php echo $instance['size']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'size' ); ?>" />
 		</p>
 		<!-- Widget Per Row: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'per_row' ); ?>"><?php _e( 'Items Per Row:', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'per_row' ); ?>"><?php _e( 'Items Per Row:', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'per_row' ); ?>"  value="<?php echo $instance['per_row']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'per_row' ); ?>" />
 		</p>
 		<!-- Widget Order By: Select Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e( 'Order By:', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e( 'Order By:', 'woothemes-projects' ); ?></label>
 			<select name="<?php echo $this->get_field_name( 'orderby' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'orderby' ); ?>">
 			<?php foreach ( $this->get_orderby_options() as $k => $v ) { ?>
 				<option value="<?php echo $k; ?>"<?php selected( $instance['orderby'], $k ); ?>><?php echo $v; ?></option>
@@ -178,7 +178,7 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 		</p>
 		<!-- Widget Order: Select Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Order Direction:', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Order Direction:', 'woothemes-projects' ); ?></label>
 			<select name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'order' ); ?>">
 			<?php foreach ( $this->get_order_options() as $k => $v ) { ?>
 				<option value="<?php echo $k; ?>"<?php selected( $instance['order'], $k ); ?>><?php echo $v; ?></option>
@@ -187,10 +187,10 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 		</p>
 		<!-- Widget ID: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'specific_id' ); ?>"><?php _e( 'Specific ID (optional):', 'woothemes-portfolio' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'specific_id' ); ?>"><?php _e( 'Specific ID (optional):', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'specific_id' ); ?>"  value="<?php echo $instance['specific_id']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'specific_id' ); ?>" />
 		</p>
-		<p><small><?php _e( 'Display a specific testimonial, rather than a list.', 'woothemes-portfolio' ); ?></small></p>
+		<p><small><?php _e( 'Display a specific testimonial, rather than a list.', 'woothemes-projects' ); ?></small></p>
 <?php
 	} // End form()
 
@@ -201,11 +201,11 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 	 */
 	protected function get_orderby_options () {
 		return array(
-					'none' => __( 'No Order', 'woothemes-portfolio' ),
-					'ID' => __( 'Entry ID', 'woothemes-portfolio' ),
-					'title' => __( 'Title', 'woothemes-portfolio' ),
-					'date' => __( 'Date Added', 'woothemes-portfolio' ),
-					'menu_order' => __( 'Specified Order Setting', 'woothemes-portfolio' )
+					'none' => __( 'No Order', 'woothemes-projects' ),
+					'ID' => __( 'Entry ID', 'woothemes-projects' ),
+					'title' => __( 'Title', 'woothemes-projects' ),
+					'date' => __( 'Date Added', 'woothemes-projects' ),
+					'menu_order' => __( 'Specified Order Setting', 'woothemes-projects' )
 					);
 	} // End get_orderby_options()
 
@@ -216,11 +216,11 @@ class Woothemes_Widget_Portfolio_Items extends WP_Widget {
 	 */
 	protected function get_order_options () {
 		return array(
-					'asc' => __( 'Ascending', 'woothemes-portfolio' ),
-					'desc' => __( 'Descending', 'woothemes-portfolio' )
+					'asc' => __( 'Ascending', 'woothemes-projects' ),
+					'desc' => __( 'Descending', 'woothemes-projects' )
 					);
 	} // End get_order_options()
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget("Woothemes_Widget_Portfolio_Items");' ), 1 );
+add_action( 'widgets_init', create_function( '', 'return register_widget("Woothemes_Widget_Projects");' ), 1 );

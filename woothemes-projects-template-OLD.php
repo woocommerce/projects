@@ -1,17 +1,17 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'woothemes_get_portfolio_items' ) ) {
+if ( ! function_exists( 'woothemes_get_projects' ) ) {
 /**
- * Wrapper function to get the portfolio items from the Woothemes_Portfolio class.
+ * Wrapper function to get the projects items from the Woothemes_Projects class.
  * @param  string/array $args  Arguments.
  * @since  1.0.0
  * @return array/boolean       Array if true, boolean if false.
  */
-function woothemes_get_portfolio_items ( $args = '' ) {
-	global $woothemes_portfolio;
-	return $woothemes_portfolio->get_portfolio_items( $args );
-} // End woothemes_get_portfolios()
+function woothemes_get_projects ( $args = '' ) {
+	global $woothemes_projects;
+	return $woothemes_projects->get_projects ( $args );
+} // End woothemes_get_projects()
 }
 
 /**
@@ -20,42 +20,42 @@ function woothemes_get_portfolio_items ( $args = '' ) {
  * @since  1.0.0
  */
 if ( ! is_admin() ) {
-	add_action( 'wp_enqueue_scripts', 'woothemes_portfolio_styles' );
+	add_action( 'wp_enqueue_scripts', 'woothemes_projects_styles' );
 }
-function woothemes_portfolio_styles() {
+function woothemes_projects_styles() {
 	global $post;
 
-	wp_register_style( 'portfolio-styles', plugins_url( '/assets/css/style.css', __FILE__ ) );
-	wp_register_script( 'portfolio-script', plugins_url( '/assets/js/script.min.js', __FILE__ ), array( 'jquery' ) );
+	wp_register_style( 'woothemes-projects-styles', plugins_url( '/assets/css/style.css', __FILE__ ) );
+	wp_register_script( 'woothemes-projects-script', plugins_url( '/assets/js/script.min.js', __FILE__ ), array( 'jquery' ) );
 
 
 	// Only enqueue the styles / scripts if the shortcode is present
 
 	if ( !empty($post) ){
 		// check the post content for the short code
-		if ( stripos($post->post_content, '[woothemes_portfolio]')!==FALSE ){
-			wp_enqueue_style( 'portfolio-styles' );
-			wp_enqueue_script( 'portfolio-script' );
+		if ( stripos($post->post_content, '[woothemes_projects]')!==FALSE ){
+			wp_enqueue_style( 'woothemes-projects-styles' );
+			wp_enqueue_script( 'woothemes-projects-script' );
 		}
 	}
 
 }
 
 /**
- * Enable the usage of do_action( 'woothemes_portfolio' ) to display portfolios within a theme/plugin.
+ * Enable the usage of do_action( 'woothemes_projects' ) to display projects within a theme/plugin.
  *
  * @since  1.0.0
  */
-add_action( 'woothemes_portfolio', 'woothemes_portfolio' );
+add_action( 'woothemes_projects', 'woothemes_projects' );
 
-if ( ! function_exists( 'woothemes_portfolio' ) ) {
+if ( ! function_exists( 'woothemes_projects' ) ) {
 /**
  * Display or return HTML-formatted testimonials.
  * @param  string/array $args  Arguments.
  * @since  1.0.0
  * @return string
  */
-function woothemes_portfolio ( $args = '' ) {
+function woothemes_projects ( $args = '' ) {
 	global $post;
 
 	$defaults = array(
@@ -73,26 +73,26 @@ function woothemes_portfolio ( $args = '' ) {
 	$args = wp_parse_args( $args, $defaults );
 
 	// Allow child themes/plugins to filter here.
-	$args = apply_filters( 'woothemes_portfolio_args', $args );
+	$args = apply_filters( 'woothemes_projects_args', $args );
 	$html = '';
 
-	do_action( 'woothemes_portfolio_before', $args );
+	do_action( 'woothemes_projects_before', $args );
 
 		// The Query.
-		$query = woothemes_get_portfolio_items( $args );
+		$query = woothemes_get_projects( $args );
 
 		// The Display.
 		if ( ! is_wp_error( $query ) && is_array( $query ) && count( $query ) > 0 ) {
 
-			$html .= '<div class="widget widget_woothemes_portfolio">' . "\n";
-			$html .= '<ul class="portfolios">' . "\n";
+			$html .= '<div class="widget widget_woothemes_projects">' . "\n";
+			$html .= '<ul class="projects">' . "\n";
 
 			if ( '' != $args['title'] ) {
 				$html .= '<h2>' . esc_html( $args['title'] ) . '</h2>' . "\n";
 			}
 
 			// Sorting
-			$terms = get_terms( 'portfolio_cat' );
+			$terms = get_terms( 'projects_cat' );
 			$count = count($terms);
 			if ( $count > 0 ){
 				echo '<ul class="sorting"><li class="current"><a href="#">' . __('All','woothemes-portoflios') . '</a></li>';
@@ -103,8 +103,8 @@ function woothemes_portfolio ( $args = '' ) {
 			}
 
 			// Begin templating logic.
-			$tpl = '<li class="%%CLASS%%">%%IMAGE%%<h3 class="portfolio-title">%%TITLE%%</h3><div class="portfolio-content">%%CONTENT%%</div></li>';
-			$tpl = apply_filters( 'woothemes_portfolio_item_template', $tpl, $args );
+			$tpl = '<li class="%%CLASS%%">%%IMAGE%%<h3 class="projects-title">%%TITLE%%</h3><div class="projects-content">%%CONTENT%%</div></li>';
+			$tpl = apply_filters( 'woothemes_projects_item_template', $tpl, $args );
 
 			$i = 0;
 			foreach ( $query as $post ) {
@@ -115,7 +115,7 @@ function woothemes_portfolio ( $args = '' ) {
 
 				$term_list = wp_get_post_terms( $post->ID, 'project-category', array( "fields" => "slugs" ) );
 
-				$class = 'portfolio ';
+				$class = 'projects ';
 				$class .= implode( " ", $term_list );
 
 				if( ( 0 == $i % $args['per_row'] ) ) {
@@ -132,12 +132,12 @@ function woothemes_portfolio ( $args = '' ) {
 
 				// Optionally display the image, if it is available.
 				if ( isset( $post->image ) && ( '' != $post->image ) ) {
-					$portfolio_image = '<a href="' . esc_url( $post->url ) . '" title="' . get_the_title() . '">' . $post->image . '</a>';
+					$projects_image = '<a href="' . esc_url( $post->url ) . '" title="' . get_the_title() . '">' . $post->image . '</a>';
 				} else {
-					$portfolio_image = $post->image;
+					$projects_image = $post->image;
 				}
 
-				$template = str_replace( '%%IMAGE%%', $portfolio_image, $template );
+				$template = str_replace( '%%IMAGE%%', $projects_image, $template );
 				$template = str_replace( '%%CLASS%%', $class, $template );
 				$template = str_replace( '%%TITLE%%', $title, $template );
 				$template = str_replace( '%%CONTENT%%', get_the_excerpt(), $template );
@@ -149,29 +149,29 @@ function woothemes_portfolio ( $args = '' ) {
 				}*/
 			}
 
-			$html .= '</ul><!--/.portfolios-->' . "\n";
-			$html .= '</div><!--/.widget widget_woothemes_portfolio-->' . "\n";
+			$html .= '</ul><!--/.projects-->' . "\n";
+			$html .= '</div><!--/.widget widget_woothemes_projects-->' . "\n";
 
 			wp_reset_postdata();
 		}
 
 		// Allow child themes/plugins to filter here.
-		$html = apply_filters( 'woothemes_portfolio_html', $html, $query, $args );
+		$html = apply_filters( 'woothemes_projects_html', $html, $query, $args );
 
 		if ( $args['echo'] != true ) { return $html; }
 
 		// Should only run is "echo" is set to true.
 		echo $html;
 
-		do_action( 'woothemes_portfolio_after', $args ); // Only if "echo" is set to true.
-} // End woothemes_portfolio()
+		do_action( 'woothemes_projects_after', $args ); // Only if "echo" is set to true.
+} // End woothemes_projects()
 }
 
-if ( ! function_exists( 'woothemes_portfolio_shortcode' ) ) {
-function woothemes_portfolio_shortcode () {
-	woothemes_portfolio();
-} // End woothemes_portfolio_shortcode()
+if ( ! function_exists( 'woothemes_projects_shortcode' ) ) {
+function woothemes_projects_shortcode () {
+	woothemes_projects();
+} // End woothemes_projects_shortcode()
 }
 
-add_shortcode( 'woothemes_portfolio', 'woothemes_portfolio_shortcode' );
+add_shortcode( 'woothemes_projects', 'woothemes_projects_shortcode' );
 ?>

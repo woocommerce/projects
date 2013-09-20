@@ -2,18 +2,18 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Portfolio Admin Class
+ * WooThemes Projects Admin Class
  *
- * All functionality pertaining to the portfolio admin.
+ * All functionality pertaining to the projects admin.
  *
  * @package WordPress
- * @subpackage Woothemes_Portfolio_Admin
+ * @subpackage Woothemes_Projects_Admin
  * @category Plugin
  * @author Matty
  * @since 1.0.0
  */
 
-class Woothemes_Portfolio_Admin {
+class Woothemes_Projects_Admin {
 	private $dir;
 	private $assets_dir;
 	private $assets_url;
@@ -33,7 +33,7 @@ class Woothemes_Portfolio_Admin {
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
-		$this->token = 'woothemes-portfolio';
+		$this->token = 'woothemes-projects';
 		$this->post_type = 'project';
 
 		global $pagenow;
@@ -69,7 +69,7 @@ class Woothemes_Portfolio_Admin {
 			case 'image':
 				$value = '';
 
-				$value = woothemes_portfolio_get_image( $id, 40 );
+				$value = woothemes_projects_get_image( $id, 40 );
 
 				echo $value;
 			break;
@@ -90,7 +90,7 @@ class Woothemes_Portfolio_Admin {
 	 */
 	public function register_custom_column_headings ( $defaults ) {
 		$new_columns = array(
-			'image' => __( 'Image', 'woothemes-portfolio' )
+			'image' => __( 'Image', 'woothemes-projects' )
 		);
 
 		$last_item = '';
@@ -125,19 +125,19 @@ class Woothemes_Portfolio_Admin {
 
 	  $messages[$this->post_type] = array(
 	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'Project updated. %sView portfolio%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    2 => __( 'Custom field updated.', 'woothemes-portfolio' ),
-	    3 => __( 'Custom field deleted.', 'woothemes-portfolio' ),
-	    4 => __( 'Project updated.', 'woothemes-portfolio' ),
+	    1 => sprintf( __( 'Project updated. %sView projects%s', 'woothemes-projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    2 => __( 'Custom field updated.', 'woothemes-projects' ),
+	    3 => __( 'Custom field deleted.', 'woothemes-projects' ),
+	    4 => __( 'Project updated.', 'woothemes-projects' ),
 	    /* translators: %s: date and time of the revision */
-	    5 => isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'woothemes-portfolio' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 => sprintf( __( 'Project published. %sView Project%s', 'woothemes-portfolio' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    5 => isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'woothemes-projects' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 => sprintf( __( 'Project published. %sView Project%s', 'woothemes-projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
 	    7 => __('Project saved.'),
-	    8 => sprintf( __( 'Project submitted. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 => sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'woothemes-portfolio' ),
+	    8 => sprintf( __( 'Project submitted. %sPreview Project%s', 'woothemes-projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    9 => sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'woothemes-projects' ),
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 => sprintf( __( 'Project draft updated. %sPreview Project%s', 'woothemes-portfolio' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    10 => sprintf( __( 'Project draft updated. %sPreview Project%s', 'woothemes-projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
 	  );
 
 	  return $messages;
@@ -151,7 +151,7 @@ class Woothemes_Portfolio_Admin {
 	 * @return void
 	 */
 	public function meta_box_setup () {
-		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-portfolio' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'project-data', __( 'Project Details', 'woothemes-projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 	} // End meta_box_setup()
 
 	/**
@@ -249,8 +249,8 @@ class Woothemes_Portfolio_Admin {
 		$fields = array();
 
 		$fields['url'] = array(
-		    'name' => __( 'URL', 'woothemes-portfolio' ),
-		    'description' => __( 'Enter a URL that applies to this project (for example: http://woothemes.com/).', 'woothemes-portfolio' ),
+		    'name' => __( 'URL', 'woothemes-projects' ),
+		    'description' => __( 'Enter a URL that applies to this project (for example: http://woothemes.com/).', 'woothemes-projects' ),
 		    'type' => 'url',
 		    'default' => '',
 		    'section' => 'info'
@@ -269,7 +269,7 @@ class Woothemes_Portfolio_Admin {
 	 */
 	public function enter_title_here ( $title ) {
 		if ( get_post_type() == $this->post_type ) {
-			$title = __( 'Enter the project title here', 'woothemes-portfolio' );
+			$title = __( 'Enter the project title here', 'woothemes-projects' );
 		}
 		return $title;
 	} // End enter_title_here()
@@ -282,8 +282,8 @@ class Woothemes_Portfolio_Admin {
 	 * @return   void
 	 */
 	public function enqueue_admin_styles () {
-		wp_register_style( 'woothemes-portfolio-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
-		wp_enqueue_style( 'woothemes-portfolio-admin' );
+		wp_register_style( 'woothemes-projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
+		wp_enqueue_style( 'woothemes-projects-admin' );
 	} // End enqueue_admin_styles()
 } // End Class
 ?>

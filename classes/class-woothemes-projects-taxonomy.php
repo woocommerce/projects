@@ -2,17 +2,17 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Portfolio Taxonomy Class
+ * WooThemes Projects Taxonomy Class
  *
- * Re-usable class for registering portfolio taxonomies.
+ * Re-usable class for registering projects taxonomies.
  *
  * @package WordPress
- * @subpackage WooThemes_Portfolio
+ * @subpackage WooThemes_Projects
  * @category Plugin
  * @author Matty
  * @since 1.3.0
  */
-class Woothemes_Portfolio_Taxonomy {
+class Woothemes_Projects_Taxonomy {
 	/**
 	 * The post type to register the taxonomy for.
 	 * @access  private
@@ -68,8 +68,8 @@ class Woothemes_Portfolio_Taxonomy {
 		$this->singular = esc_html( $singular );
 		$this->plural = esc_html( $plural );
 
-		if ( '' == $this->singular ) $this->singular = __( 'Category', 'woothemes-portfolio' );
-		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'woothemes-portfolio' );
+		if ( '' == $this->singular ) $this->singular = __( 'Category', 'woothemes-projects' );
+		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'woothemes-projects' );
 
 		$this->args = wp_parse_args( $args, $this->_get_default_args() );
 	} // End __construct()
@@ -92,17 +92,17 @@ class Woothemes_Portfolio_Taxonomy {
 	 */
 	private function _get_default_labels () {
 		return array(
-			    'name'                => sprintf( _x( '%s', 'taxonomy general name', 'woothemes-portfolio' ), $this->plural ),
-			    'singular_name'       => sprintf( _x( '%s', 'taxonomy singular name', 'woothemes-portfolio' ), $this->singular ),
-			    'search_items'        => sprintf( __( 'Search %s', 'woothemes-portfolio' ), $this->plural ),
-			    'all_items'           => sprintf( __( 'All %s', 'woothemes-portfolio' ), $this->plural ),
-			    'parent_item'         => sprintf( __( 'Parent %s', 'woothemes-portfolio' ), $this->singular ),
-			    'parent_item_colon'   => sprintf( __( 'Parent %s:', 'woothemes-portfolio' ), $this->singular ),
-			    'edit_item'           => sprintf( __( 'Edit %s', 'woothemes-portfolio' ), $this->singular ),
-			    'update_item'         => sprintf( __( 'Update %s', 'woothemes-portfolio' ), $this->singular ),
-			    'add_new_item'        => sprintf( __( 'Add New %s', 'woothemes-portfolio' ), $this->singular ),
-			    'new_item_name'       => sprintf( __( 'New %s Name', 'woothemes-portfolio' ), $this->singular ),
-			    'menu_name'           => sprintf( __( '%s', 'woothemes-portfolio' ), $this->plural )
+			    'name'                => sprintf( _x( '%s', 'taxonomy general name', 'woothemes-projects' ), $this->plural ),
+			    'singular_name'       => sprintf( _x( '%s', 'taxonomy singular name', 'woothemes-projects' ), $this->singular ),
+			    'search_items'        => sprintf( __( 'Search %s', 'woothemes-projects' ), $this->plural ),
+			    'all_items'           => sprintf( __( 'All %s', 'woothemes-projects' ), $this->plural ),
+			    'parent_item'         => sprintf( __( 'Parent %s', 'woothemes-projects' ), $this->singular ),
+			    'parent_item_colon'   => sprintf( __( 'Parent %s:', 'woothemes-projects' ), $this->singular ),
+			    'edit_item'           => sprintf( __( 'Edit %s', 'woothemes-projects' ), $this->singular ),
+			    'update_item'         => sprintf( __( 'Update %s', 'woothemes-projects' ), $this->singular ),
+			    'add_new_item'        => sprintf( __( 'Add New %s', 'woothemes-projects' ), $this->singular ),
+			    'new_item_name'       => sprintf( __( 'New %s Name', 'woothemes-projects' ), $this->singular ),
+			    'menu_name'           => sprintf( __( '%s', 'woothemes-projects' ), $this->plural )
 			  );
 	} // End _get_default_labels()
 

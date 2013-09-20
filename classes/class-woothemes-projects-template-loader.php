@@ -1,9 +1,9 @@
 <?php
-class Woothemes_Portfolio_Template_Loader {
+class Woothemes_Projects_Template_Loader {
 	public $template_url;
 
 	public function __construct() {
-		$this->template_url = apply_filters( 'woothemes_portfolio_template_url', 'woothemes-portfolio/' );
+		$this->template_url = apply_filters( 'woothemes_projects_template_url', 'woothemes-projects/' );
 	}
 
 	/**
@@ -11,15 +11,15 @@ class Woothemes_Portfolio_Template_Loader {
 	 *
 	 * Handles template usage so that we can use our own templates instead of the themes.
 	 *
-	 * Templates are in the 'templates' folder. woothemes-portfolio looks for theme
-	 * overrides in /theme/woothemes-portfolio/ by default
+	 * Templates are in the 'templates' folder. woothemes-projects looks for theme
+	 * overrides in /theme/woothemes-projects/ by default
 	 *
 	 * @access public
 	 * @param mixed $template
 	 * @return string
 	 */
 	public function template_loader( $template ) {
-		global $woothemes_portfolio;
+		global $woothemes_projects;
 
 		$find = array();
 		$file = '';
@@ -40,7 +40,7 @@ class Woothemes_Portfolio_Template_Loader {
 			$find[] 	= $file;
 			$find[] 	= $this->template_url . $file;
 
-		} elseif ( is_post_type_archive( 'project' ) || is_page( woothemes_portfolio_get_page_id( 'showcase' ) ) ) {
+		} elseif ( is_post_type_archive( 'project' ) || is_page( woothemes_projects_get_page_id( 'showcase' ) ) ) {
 
 			$file 	= 'archive-project.php';
 			$find[] = $file;
@@ -50,7 +50,7 @@ class Woothemes_Portfolio_Template_Loader {
 
 		if ( $file ) {
 			$template = locate_template( $find );
-			if ( ! $template ) $template = $woothemes_portfolio->plugin_path() . '/templates/' . $file;
+			if ( ! $template ) $template = $woothemes_projects->plugin_path() . '/templates/' . $file;
 		}
 
 		return $template;

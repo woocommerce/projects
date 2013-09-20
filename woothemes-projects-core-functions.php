@@ -1,19 +1,19 @@
 <?php
 /**
- * WooThemes Portfolio Core Functions
+ * WooThemes Projects Core Functions
  *
  * Functions available on both the front-end and admin.
  *
  * @author 		WooThemes
  * @category 	Core
- * @package 	Woothemes_Portfolio/Functions
+ * @package 	Woothemes_Projects/Functions
  * @version     1.0.0
  */
 
-if ( ! function_exists( 'woothemes_portfolio_get_page_id' ) ) {
+if ( ! function_exists( 'woothemes_projects_get_page_id' ) ) {
 
 	/**
-	 * WooThemes Portfolio page IDs
+	 * WooThemes Projects page IDs
 	 *
 	 * retrieve page ids - used for showcase
 	 *
@@ -23,23 +23,23 @@ if ( ! function_exists( 'woothemes_portfolio_get_page_id' ) ) {
 	 * @param string $page
 	 * @return int
 	 */
-	function woothemes_portfolio_get_page_id( $page ) {
-		$page = apply_filters( 'woothemes_portfolio_get_' . $page . '_page_id', get_option('woothemes_portfolio_' . $page . '_page_id' ) );
+	function woothemes_projects_get_page_id ( $page ) {
+		$page = apply_filters( 'woothemes_projects_get_' . $page . '_page_id', get_option( 'woothemes_projects_' . $page . '_page_id' ) );
 
 		return $page ? $page : -1;
-	} // End woothemes_portfolio_get_page_id()
+	} // End woothemes_projects_get_page_id()
 }
 
-if ( ! function_exists( 'woothemes_portfolio_get_image' ) ) {
+if ( ! function_exists( 'woothemes_projects_get_image' ) ) {
 
 	/**
 	 * Get the image for the given ID.
 	 * @param  int 				$id   Post ID.
-	 * @param  string/array/int $size Image dimension. (default: "portfolio-thumbnail")
+	 * @param  string/array/int $size Image dimension. (default: "projects-thumbnail")
 	 * @since  1.0.0
 	 * @return string       	<img> tag.
 	 */
-	function woothemes_portfolio_get_image ( $id, $size = 'portfolio-thumbnail' ) {
+	function woothemes_projects_get_image ( $id, $size = 'projects-thumbnail' ) {
 		$response = '';
 
 		if ( has_post_thumbnail( $id ) ) {
@@ -53,19 +53,19 @@ if ( ! function_exists( 'woothemes_portfolio_get_image' ) ) {
 		}
 
 		return $response;
-	} // End woothemes_portfolio_get_image()
+	} // End woothemes_projects_get_image()
 
 }
 
 /**
- * is_woothemes_portfolio - Returns true if on a page which uses WooThemes Portfolio templates
+ * is_woothemes_projects - Returns true if on a page which uses WooThemes Projects templates
  *
  * @access public
  * @return bool
  */
-function is_woothemes_portfolio() {
+function is_woothemes_projects() {
 	return ( is_showcase() || is_project_category() || is_project() ) ? true : false;
-} // End is_woothemes_portfolio()
+} // End is_woothemes_projects()
 
 if ( ! function_exists( 'is_showcase' ) ) {
 
@@ -76,7 +76,7 @@ if ( ! function_exists( 'is_showcase' ) ) {
 	 * @return bool
 	 */
 	function is_showcase() {
-		return ( is_post_type_archive( 'project' ) || is_page( woothemes_portfolio_get_page_id( 'showcase' ) ) ) ? true : false;
+		return ( is_post_type_archive( 'project' ) || is_page( woothemes_projects_get_page_id( 'showcase' ) ) ) ? true : false;
 	} // End is_showcase()
 }
 
@@ -144,25 +144,25 @@ if ( ! function_exists( 'is_ajax' ) ) {
  * @param string $name (default: '')
  * @return void
  */
-function woothemes_portfolio_get_template_part( $slug, $name = '' ) {
-	global $woothemes_portfolio;
+function woothemes_projects_get_template_part( $slug, $name = '' ) {
+	global $woothemes_projects;
 	$template = '';
 
-	// Look in yourtheme/slug-name.php and yourtheme/woothemes-portfolio/slug-name.php
+	// Look in yourtheme/slug-name.php and yourtheme/woothemes-projects/slug-name.php
 	if ( $name )
-		$template = locate_template( array ( "{$slug}-{$name}.php", "{$woothemes_portfolio->template_url}{$slug}-{$name}.php" ) );
+		$template = locate_template( array ( "{$slug}-{$name}.php", "{$woothemes_projects->template_url}{$slug}-{$name}.php" ) );
 
 	// Get default slug-name.php
-	if ( !$template && $name && file_exists( $woothemes_portfolio->plugin_path() . "/templates/{$slug}-{$name}.php" ) )
-		$template = $woothemes_portfolio->plugin_path() . "/templates/{$slug}-{$name}.php";
+	if ( !$template && $name && file_exists( $woothemes_projects->plugin_path() . "/templates/{$slug}-{$name}.php" ) )
+		$template = $woothemes_projects->plugin_path() . "/templates/{$slug}-{$name}.php";
 
 	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/woocommerce/slug.php
 	if ( !$template )
-		$template = locate_template( array ( "{$slug}.php", "{$woothemes_portfolio->template_url}{$slug}.php" ) );
+		$template = locate_template( array ( "{$slug}.php", "{$woothemes_projects->template_url}{$slug}.php" ) );
 
 	if ( $template )
 		load_template( $template, false );
-} // End woothemes_portfolio_get_template_part()
+} // End woothemes_projects_get_template_part()
 
 
 /**
@@ -175,20 +175,20 @@ function woothemes_portfolio_get_template_part( $slug, $name = '' ) {
  * @param string $default_path (default: '')
  * @return void
  */
-function woothemes_portfolio_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
-	global $woothemes_portfolio;
+function woothemes_projects_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+	global $woothemes_projects;
 
 	if ( $args && is_array($args) )
 		extract( $args );
 
-	$located = woothemes_portfolio_locate_template( $template_name, $template_path, $default_path );
+	$located = woothemes_projects_locate_template( $template_name, $template_path, $default_path );
 
-	do_action( 'woothemes_portfolio_before_template_part', $template_name, $template_path, $located, $args );
+	do_action( 'woothemes_projects_before_template_part', $template_name, $template_path, $located, $args );
 
 	include( $located );
 
-	do_action( 'woothemes_portfolio_after_template_part', $template_name, $template_path, $located, $args );
-} // End woothemes_portfolio_get_template()
+	do_action( 'woothemes_projects_after_template_part', $template_name, $template_path, $located, $args );
+} // End woothemes_projects_get_template()
 
 
 /**
@@ -206,11 +206,11 @@ function woothemes_portfolio_get_template( $template_name, $args = array(), $tem
  * @param string $default_path (default: '')
  * @return string
  */
-function woothemes_portfolio_locate_template( $template_name, $template_path = '', $default_path = '' ) {
-	global $woothemes_portfolio;
+function woothemes_projects_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+	global $woothemes_projects;
 
-	if ( ! $template_path ) $template_path = $woothemes_portfolio->template_url;
-	if ( ! $default_path ) $default_path = $woothemes_portfolio->plugin_path() . '/templates/';
+	if ( ! $template_path ) $template_path = $woothemes_projects->template_url;
+	if ( ! $default_path ) $default_path = $woothemes_projects->plugin_path() . '/templates/';
 
 	// Look within passed path within the theme - this is priority
 	$template = locate_template(
@@ -225,8 +225,8 @@ function woothemes_portfolio_locate_template( $template_name, $template_path = '
 		$template = $default_path . $template_name;
 
 	// Return what we found
-	return apply_filters('woothemes_portfolio_locate_template', $template, $template_name, $template_path);
-} // End woothemes_portfolio_locate_template()
+	return apply_filters('woothemes_projects_locate_template', $template, $template_name, $template_path);
+} // End woothemes_projects_locate_template()
 
 /**
  * Filter to allow project-category in the permalinks for projects.
@@ -236,7 +236,7 @@ function woothemes_portfolio_locate_template( $template_name, $template_path = '
  * @param object $post
  * @return string
  */
-function woothemes_portfolio_project_post_type_link( $permalink, $post ) {
+function woothemes_projects_project_post_type_link( $permalink, $post ) {
     // Abort if post is not a project
     if ( $post->post_type !== 'project' )
     	return $permalink;
@@ -250,7 +250,7 @@ function woothemes_portfolio_project_post_type_link( $permalink, $post ) {
 
     if ( empty( $terms ) ) {
     	// If no terms are assigned to this post, use a string instead (can't leave the placeholder there)
-        $project_cat = _x( 'uncategorized', 'slug', 'woothemes-portfolio' );
+        $project_cat = _x( 'uncategorized', 'slug', 'woothemes-projects' );
     } else {
     	// Replace the placeholder rewrite tag with the first term's slug
         $first_term = array_shift( $terms );
@@ -286,7 +286,7 @@ function woothemes_portfolio_project_post_type_link( $permalink, $post ) {
     $permalink = str_replace( $find, $replace, $permalink );
 
     return $permalink;
-} // End woothemes_portfolio_project_post_type_link()
+} // End woothemes_projects_project_post_type_link()
 
-add_filter( 'post_type_link', 'woothemes_portfolio_project_post_type_link', 10, 2 );
+add_filter( 'post_type_link', 'woothemes_projects_project_post_type_link', 10, 2 );
 ?>

@@ -2,20 +2,20 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Portfolio Frontend Class
+ * WooThemes Projects Frontend Class
  *
- * All functionality pertaining to the portfolio frontend.
+ * All functionality pertaining to the projects frontend.
  *
  * @package WordPress
- * @subpackage Woothemes_Portfolio_Frontend
+ * @subpackage Woothemes_Projects_Frontend
  * @category Plugin
  * @author Matty
  * @since 1.0.0
  */
 
-class Woothemes_Portfolio_Frontend {
+class Woothemes_Projects_Frontend {
 	/**
-	 * Instance of Woothemes_Portfolio_Template_Loader.
+	 * Instance of Woothemes_Projects_Template_Loader.
 	 * @access  public
 	 * @since   1.0.0
 	 * @var     object
@@ -30,8 +30,8 @@ class Woothemes_Portfolio_Frontend {
 	 * @return void
 	 */
 	public function __construct () {
-		require_once( 'class-woothemes-portfolio-template-loader.php' );
-		$this->template_loader = new Woothemes_Portfolio_Template_Loader();
+		require_once( 'class-woothemes-projects-template-loader.php' );
+		$this->template_loader = new Woothemes_Projects_Template_Loader();
 		add_filter( 'template_include', array( $this->template_loader, 'template_loader' ) );
 	} // End __construct()
 } // End Class

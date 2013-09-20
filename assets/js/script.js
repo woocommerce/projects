@@ -10,11 +10,11 @@ jQuery(document).ready(function($){
 
 		// filterVal default = 'all'
 		if( filterVal == 'all' ) {
-			jQuery('ul.portfolios li.hidden').show().removeClass('hidden').addClass('visible');
+			jQuery('ul.projects li.hidden').show().removeClass('hidden').addClass('visible');
 		} else {
 
 			// Show / hide based on active link
-			jQuery('ul.portfolios li').each(function() {
+			jQuery('ul.projects li').each(function() {
 
 				if( ! jQuery(this).hasClass( filterVal ) ) {
 					// If the li doesn't have a class = filterVal, hide it
@@ -26,17 +26,17 @@ jQuery(document).ready(function($){
 			});
 		}
 
-		//jQuery('ul.portfolios').hide().fadeIn(300);
+		//jQuery('ul.projects').hide().fadeIn(300);
 
 		return false;
 	});
 
 	jQuery('ul.sorting a').click(function() {
-		jQuery('ul.portfolios').find('li').removeClass('last').removeClass('first');
+		jQuery('ul.projects').find('li').removeClass('last').removeClass('first');
 	});
 
 	jQuery('ul.sorting a').click(function() {
-		jQuery('ul.portfolios li.visible').each(function(i) {
+		jQuery('ul.projects li.visible').each(function(i) {
 			i=( i+1 );
 			x=( i+2 );
 			if ( i%3==0 ) {

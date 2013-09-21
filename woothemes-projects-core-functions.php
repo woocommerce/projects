@@ -63,14 +63,14 @@ if ( ! function_exists( 'woothemes_projects_get_image' ) ) {
  * @access public
  * @return bool
  */
-function is_woothemes_projects() {
+function is_woothemes_projects () {
 	return ( is_showcase() || is_project_category() || is_project() ) ? true : false;
 } // End is_woothemes_projects()
 
 if ( ! function_exists( 'is_showcase' ) ) {
 
 	/**
-	 * is_showcase - Returns true when viewing the project type archive (shop).
+	 * is_showcase - Returns true when viewing the project type archive (showcase).
 	 *
 	 * @access public
 	 * @return bool
@@ -156,7 +156,7 @@ function woothemes_projects_get_template_part( $slug, $name = '' ) {
 	if ( !$template && $name && file_exists( $woothemes_projects->plugin_path() . "/templates/{$slug}-{$name}.php" ) )
 		$template = $woothemes_projects->plugin_path() . "/templates/{$slug}-{$name}.php";
 
-	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/woocommerce/slug.php
+	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/woothemes_projects/slug.php
 	if ( !$template )
 		$template = locate_template( array ( "{$slug}.php", "{$woothemes_projects->template_url}{$slug}.php" ) );
 
@@ -175,7 +175,7 @@ function woothemes_projects_get_template_part( $slug, $name = '' ) {
  * @param string $default_path (default: '')
  * @return void
  */
-function woothemes_projects_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+function woothemes_projects_get_template ( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	global $woothemes_projects;
 
 	if ( $args && is_array($args) )
@@ -289,4 +289,52 @@ function woothemes_projects_project_post_type_link( $permalink, $post ) {
 } // End woothemes_projects_project_post_type_link()
 
 add_filter( 'post_type_link', 'woothemes_projects_project_post_type_link', 10, 2 );
+
+/**
+ * Get the placeholder image URL for projects etc
+ *
+ * @access public
+ * @since  1.0.0
+ * @return string
+ */
+function woothemes_projects_placeholder_img_src () {
+	global $woothemes_projects;
+
+	return apply_filters('woothemes_projects_placeholder_img_src', $woothemes_projects->plugin_url() . '/assets/images/placeholder.png' );
+} // End woothemes_projects_placeholder_img_src()
+
+/**
+ * Get the placeholder image
+ *
+ * @access public
+ * @since  1.0.0
+ * @return string
+ */
+function woothemes_projects_placeholder_img ( $size = 'project-thumbnail' ) {
+	global $woothemes_projects;
+
+	$dimensions = $woothemes_projects->get_image_size( $size );
+
+	return apply_filters('woothemes_projects_placeholder_img', '<img src="' . woothemes_projects_placeholder_img_src() . '" alt="Placeholder" width="' . $dimensions['width'] . '" height="' . $dimensions['height'] . '" />' );
+} // End woothemes_projects_placeholder_img()
+
+/**
+ * woothemes_projects_get_gallery_attachment_ids function.
+ *
+ * @access public
+ * @return array
+ */
+function woothemes_projects_get_gallery_attachment_ids ( $post_id = 0 ) {
+	global $post;
+	if ( 0 == $post_id ) $post_id = get_the_ID();
+	$project_image_gallery = get_post_meta( $post_id, '_project_image_gallery', true );
+	if ( '' == $project_image_gallery ) {
+		// Backwards compat
+		$attachment_ids = get_posts( 'post_parent=' . intval( $post_id ) . '&numberposts=-1&post_type=attachment&orderby=menu_order&order=ASC&post_mime_type=image&fields=ids' );
+		$attachment_ids = array_diff( $attachment_ids, array( get_post_thumbnail_id() ) );
+		$project_image_gallery = implode( ',', $attachment_ids );
+	}
+	return array_filter( (array) explode( ',', $project_image_gallery ) );
+} // End woothemes_projects_get_gallery_attachment_ids()
+
 ?>

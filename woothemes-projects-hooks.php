@@ -46,7 +46,7 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'woothemes_projects_archive_description', 'woothemes_projects_project_archive_description', 10 );
 
 	/**
-	 * Product Loop Items
+	 * Project Loop Items
 	 *
 	 * @see woothemes_projects_template_loop_add_to_cart()
 	 * @see woothemes_projects_template_loop_project_thumbnail()
@@ -57,7 +57,7 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'woothemes_projects_before_showcase_loop_item_title', 'woothemes_projects_template_loop_project_thumbnail', 10 );
 
 	/**
-	 * Before Single Products Summary Div
+	 * Before Single Projects Summary Div
 	 *
 	 * @see woothemes_projects_show_project_images()
 	 * @see woothemes_projects_show_project_thumbnails()
@@ -66,21 +66,18 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'woothemes_projects_project_thumbnails', 'woothemes_projects_show_project_thumbnails', 20 );
 
 	/**
-	 * Product Summary Box
+	 * Project Summary Box
 	 *
 	 * @see woothemes_projects_template_single_title()
-	 * @see woothemes_projects_template_single_price()
 	 * @see woothemes_projects_template_single_excerpt()
 	 * @see woothemes_projects_template_single_meta()
-	 * @see woothemes_projects_template_single_sharing()
 	 */
 	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_title', 5 );
 	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_excerpt', 20 );
 	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_meta', 40 );
-	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_sharing', 50 );
 
 	/**
-	 * Pagination after shop loops
+	 * Pagination after showcase loops
 	 *
 	 * @see woothemes_projects_pagination()
 	 */

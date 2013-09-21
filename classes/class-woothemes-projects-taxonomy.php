@@ -4,19 +4,19 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 /**
  * WooThemes Projects Taxonomy Class
  *
- * Re-usable class for registering projects taxonomies.
+ * Re-usable class for registering project taxonomies.
  *
  * @package WordPress
  * @subpackage WooThemes_Projects
  * @category Plugin
  * @author Matty
- * @since 1.3.0
+ * @since 1.0.0
  */
 class Woothemes_Projects_Taxonomy {
 	/**
 	 * The post type to register the taxonomy for.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @var     string
 	 */
 	private $post_type;
@@ -24,7 +24,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * The key of the taxonomy.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @var     string
 	 */
 	private $token;
@@ -32,7 +32,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * The singular name for the taxonomy.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @var     string
 	 */
 	private $singular;
@@ -40,7 +40,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * The plural name for the taxonomy.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @var     string
 	 */
 	private $plural;
@@ -48,7 +48,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * The arguments to use when registering the taxonomy.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @var     string
 	 */
 	private $args;
@@ -56,7 +56,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * Class constructor.
 	 * @access  public
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @param   string $token    The taxonomy key.
 	 * @param   string $singular Singular name.
 	 * @param   string $plural   Plural  name.
@@ -77,7 +77,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * Return an array of default arguments.
 	 * @access  private
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @return  array Default arguments.
 	 */
 	private function _get_default_args () {
@@ -109,7 +109,7 @@ class Woothemes_Projects_Taxonomy {
 	/**
 	 * Register the taxonomy.
 	 * @access  public
-	 * @since   1.3.0
+	 * @since   1.0.0
 	 * @return  void
 	 */
 	public function register () {

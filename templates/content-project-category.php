@@ -2,7 +2,7 @@
 /**
  * The template for displaying project category thumbnails within loops.
  *
- * Override this template by copying it to yourtheme/woocommerce/content-project_cat.php
+ * Override this template by copying it to yourtheme/woothemes_projects/content-project_cat.php
  *
  * @author 		WooThemes
  * @package 	Woothemes_Projects/Templates
@@ -11,37 +11,37 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce_loop;
+global $woothemes_projects_loop;
 
 // Store loop count we're currently on
-if ( empty( $woocommerce_loop['loop'] ) )
-	$woocommerce_loop['loop'] = 0;
+if ( empty( $woothemes_projects_loop['loop'] ) )
+	$woothemes_projects_loop['loop'] = 0;
 
 // Store column count for displaying the grid
-if ( empty( $woocommerce_loop['columns'] ) )
-	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
+if ( empty( $woothemes_projects_loop['columns'] ) )
+	$woothemes_projects_loop['columns'] = apply_filters( 'loop_showcase_columns', 4 );
 
 // Increase loop count
-$woocommerce_loop['loop']++;
+$woothemes_projects_loop['loop']++;
 ?>
 <li class="project-category project<?php
-    if ( ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] == 0 || $woocommerce_loop['columns'] == 1)
+    if ( ( $woothemes_projects_loop['loop'] - 1 ) % $woothemes_projects_loop['columns'] == 0 || $woothemes_projects_loop['columns'] == 1)
         echo ' first';
-	if ( $woocommerce_loop['loop'] % $woocommerce_loop['columns'] == 0 )
+	if ( $woothemes_projects_loop['loop'] % $woothemes_projects_loop['columns'] == 0 )
 		echo ' last';
 	?>">
 
-	<?php do_action( 'woocommerce_before_subcategory', $category ); ?>
+	<?php do_action( 'woothemes_projects_before_subcategory', $category ); ?>
 
 	<a href="<?php echo get_term_link( $category->slug, 'project_cat' ); ?>">
 
 		<?php
 			/**
-			 * woocommerce_before_subcategory_title hook
+			 * woothemes_projects_before_subcategory_title hook
 			 *
-			 * @hooked woocommerce_subcategory_thumbnail - 10
+			 * @hooked woothemes_projects_subcategory_thumbnail - 10
 			 */
-			do_action( 'woocommerce_before_subcategory_title', $category );
+			do_action( 'woothemes_projects_before_subcategory_title', $category );
 		?>
 
 		<h3>
@@ -49,19 +49,19 @@ $woocommerce_loop['loop']++;
 				echo $category->name;
 
 				if ( $category->count > 0 )
-					echo apply_filters( 'woocommerce_subcategory_count_html', ' <mark class="count">(' . $category->count . ')</mark>', $category );
+					echo apply_filters( 'woothemes_projects_subcategory_count_html', ' <mark class="count">(' . $category->count . ')</mark>', $category );
 			?>
 		</h3>
 
 		<?php
 			/**
-			 * woocommerce_after_subcategory_title hook
+			 * woothemes_projects_after_subcategory_title hook
 			 */
-			do_action( 'woocommerce_after_subcategory_title', $category );
+			do_action( 'woothemes_projects_after_subcategory_title', $category );
 		?>
 
 	</a>
 
-	<?php do_action( 'woocommerce_after_subcategory', $category ); ?>
+	<?php do_action( 'woothemes_projects_after_subcategory', $category ); ?>
 
 </li>

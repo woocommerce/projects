@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes_projects' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes-projects' ) ) exit; // Exit if accessed directly.
 
 /**
  * WooThemes Projects Widget
@@ -40,7 +40,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Widget variable settings. */
 		$this->woothemes_widget_cssclass = 'widget_woothemes_projects_items';
 		$this->woothemes_widget_description = __( 'Recent projects listed on your site.', 'woothemes-projects' );
-		$this->woothemes_widget_idbase = 'woothemes_projects';
+		$this->woothemes_widget_idbase = 'woothemes-projects';
 		$this->woothemes_widget_title = __( 'Recent Projects', 'woothemes-projects' );
 
 		/* Widget settings. */

@@ -142,7 +142,7 @@ if ( ! function_exists( 'woothemes_projects_taxonomy_archive_description' ) ) {
 if ( ! function_exists( 'woothemes_projects_project_archive_description' ) ) {
 
 	/**
-	 * Show a shop page description on project archives
+	 * Show a showcase page description on project archives
 	 *
 	 * @access public
 	 * @subpackage	Archives
@@ -198,7 +198,7 @@ if ( ! function_exists( 'woothemes_projects_get_project_thumbnail' ) ) {
 	 *
 	 * @access public
 	 * @subpackage	Loop
-	 * @param string $size (default: 'shop_catalog')
+	 * @param string $size (default: 'showcase_catalog')
 	 * @param int $placeholder_width (default: 0)
 	 * @param int $placeholder_height (default: 0)
 	 * @return string
@@ -241,7 +241,7 @@ if ( ! function_exists( 'woothemes_projects_pagination' ) ) {
 	}
 }
 
-/** Single Product ********************************************************/
+/** Single Project ********************************************************/
 
 if ( ! function_exists( 'woothemes_projects_show_project_images' ) ) {
 
@@ -249,7 +249,7 @@ if ( ! function_exists( 'woothemes_projects_show_project_images' ) ) {
 	 * Output the project image before the single project summary.
 	 *
 	 * @access public
-	 * @subpackage	Product
+	 * @subpackage	Project
 	 * @return void
 	 */
 	function woothemes_projects_show_project_images() {
@@ -262,7 +262,7 @@ if ( ! function_exists( 'woothemes_projects_show_project_thumbnails' ) ) {
 	 * Output the project thumbnails.
 	 *
 	 * @access public
-	 * @subpackage	Product
+	 * @subpackage	Project
 	 * @return void
 	 */
 	function woothemes_projects_show_project_thumbnails() {
@@ -275,7 +275,7 @@ if ( ! function_exists( 'woothemes_projects_template_single_title' ) ) {
 	 * Output the project title.
 	 *
 	 * @access public
-	 * @subpackage	Product
+	 * @subpackage	Project
 	 * @return void
 	 */
 	function woothemes_projects_template_single_title() {
@@ -288,7 +288,7 @@ if ( ! function_exists( 'woothemes_projects_template_single_excerpt' ) ) {
 	 * Output the project short description (excerpt).
 	 *
 	 * @access public
-	 * @subpackage	Product
+	 * @subpackage	Project
 	 * @return void
 	 */
 	function woothemes_projects_template_single_excerpt() {
@@ -301,7 +301,7 @@ if ( ! function_exists( 'woothemes_projects_template_single_meta' ) ) {
 	 * Output the project meta.
 	 *
 	 * @access public
-	 * @subpackage	Product
+	 * @subpackage	Project
 	 * @return void
 	 */
 	function woothemes_projects_template_single_meta() {

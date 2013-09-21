@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying project archives, including the main shop page which is a post type archive.
+ * The Template for displaying project archives, including the main showcase page which is a post type archive.
  *
- * Override this template by copying it to yourtheme/woocommerce/archive-project.php
+ * Override this template by copying it to yourtheme/woothemes_projects/archive-project.php
  *
  * @author 		WooThemes
  * @package 	Woothemes_Projects/Templates
@@ -11,81 +11,80 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-get_header('shop'); ?>
+get_header( 'showcase' ); ?>
 
 	<?php
 		/**
-		 * woocommerce_before_main_content hook
+		 * woothemes_projects_before_main_content hook
 		 *
-		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked woocommerce_breadcrumb - 20
+		 * @hooked woothemes_projects_output_content_wrapper - 10 (outputs opening divs for the content)
 		 */
-		do_action('woocommerce_before_main_content');
+		do_action( 'woothemes_projects_before_main_content' );
 	?>
 
-		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+		<?php if ( apply_filters( 'woothemes_projects_show_page_title', true ) ) : ?>
 
-			<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
+			<h1 class="page-title"><?php woothemes_projects_page_title(); ?></h1>
 
 		<?php endif; ?>
 
-		<?php do_action( 'woocommerce_archive_description' ); ?>
+		<?php do_action( 'woothemes_projects_archive_description' ); ?>
 
 		<?php if ( have_posts() ) : ?>
 
 			<?php
 				/**
-				 * woocommerce_before_shop_loop hook
+				 * woothemes_projects_before_showcase_loop hook
 				 *
-				 * @hooked woocommerce_result_count - 20
-				 * @hooked woocommerce_catalog_ordering - 30
+				 * @hooked woothemes_projects_result_count - 20
+				 * @hooked woothemes_projects_catalog_ordering - 30
 				 */
-				do_action( 'woocommerce_before_shop_loop' );
+				do_action( 'woothemes_projects_before_showcase_loop' );
 			?>
 
-			<?php woocommerce_project_loop_start(); ?>
+			<?php woothemes_projects_project_loop_start(); ?>
 
-				<?php woocommerce_project_subcategories(); ?>
+				<?php woothemes_projects_project_subcategories(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php woocommerce_get_template_part( 'content', 'project' ); ?>
+					<?php woothemes_projects_get_template_part( 'content', 'project' ); ?>
 
 				<?php endwhile; // end of the loop. ?>
 
-			<?php woocommerce_project_loop_end(); ?>
+			<?php woothemes_projects_project_loop_end(); ?>
 
 			<?php
 				/**
-				 * woocommerce_after_shop_loop hook
+				 * woothemes_projects_after_showcase_loop hook
 				 *
-				 * @hooked woocommerce_pagination - 10
+				 * @hooked woothemes_projects_pagination - 10
 				 */
-				do_action( 'woocommerce_after_shop_loop' );
+				do_action( 'woothemes_projects_after_showcase_loop' );
 			?>
 
-		<?php elseif ( ! woocommerce_project_subcategories( array( 'before' => woocommerce_project_loop_start( false ), 'after' => woocommerce_project_loop_end( false ) ) ) ) : ?>
+		<?php elseif ( ! woothemes_projects_project_subcategories( array( 'before' => woothemes_projects_project_loop_start( false ), 'after' => woothemes_projects_project_loop_end( false ) ) ) ) : ?>
 
-			<?php woocommerce_get_template( 'loop/no-projects-found.php' ); ?>
+			<?php woothemes_projects_get_template( 'loop/no-projects-found.php' ); ?>
 
 		<?php endif; ?>
 
 	<?php
 		/**
-		 * woocommerce_after_main_content hook
+		 * woothemes_projects_after_main_content hook
 		 *
-		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+		 * @hooked woothemes_projects_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
-		do_action('woocommerce_after_main_content');
+		do_action('woothemes_projects_after_main_content');
 	?>
 
 	<?php
 		/**
-		 * woocommerce_sidebar hook
+		 * woothemes_projects_sidebar hook
 		 *
-		 * @hooked woocommerce_get_sidebar - 10
+		 * @hooked woothemes_projects_get_sidebar - 10
 		 */
-		do_action('woocommerce_sidebar');
+		do_action('woothemes_projects_sidebar');
 	?>
 
-<?php get_footer('shop'); ?>
+<?php get_footer( 'showcase' ); ?>

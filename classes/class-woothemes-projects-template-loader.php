@@ -2,9 +2,15 @@
 class Woothemes_Projects_Template_Loader {
 	public $template_url;
 
+	/**
+	 * Constructor function.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
 	public function __construct() {
 		$this->template_url = apply_filters( 'woothemes_projects_template_url', 'woothemes-projects/' );
-	}
+	} // End __construct()
 
 	/**
 	 * Load a template.
@@ -18,18 +24,16 @@ class Woothemes_Projects_Template_Loader {
 	 * @param mixed $template
 	 * @return string
 	 */
-	public function template_loader( $template ) {
-		global $woothemes_projects;
+	public function template_loader ( $template ) {
+		global $woothemes_projects, $post;
 
 		$find = array();
 		$file = '';
 
 		if ( is_single() && 'project' == get_post_type() ) {
-
 			$file 	= 'single-project.php';
 			$find[] = $file;
 			$find[] = $this->template_url . $file;
-
 		} elseif ( is_tax( 'project-category' ) ) {
 
 			$term = get_queried_object();
@@ -54,5 +58,5 @@ class Woothemes_Projects_Template_Loader {
 		}
 
 		return $template;
-	}
+	} // End template_loader()
 } // End Class

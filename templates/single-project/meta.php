@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Product Meta
+ * Single Project Meta
  *
  * @author 		WooThemes
  * @package 	Woothemes_Projects/Templates
@@ -13,8 +13,8 @@ global $post;
 ?>
 <div class="project_meta">
 
-	<?php do_action( 'woocommerce_project_meta_start' ); ?>
+	<?php do_action( 'woothemes_projects_project_meta_start' ); ?>
 
-	<?php do_action( 'woocommerce_project_meta_end' ); ?>
+	<?php do_action( 'woothemes_projects_project_meta_end' ); ?>
 
 </div>

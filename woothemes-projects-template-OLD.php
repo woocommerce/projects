@@ -42,13 +42,13 @@ function woothemes_projects_styles() {
 }
 
 /**
- * Enable the usage of do_action( 'woothemes_projects' ) to display projects within a theme/plugin.
+ * Enable the usage of do_action( 'woothemes-projects' ) to display projects within a theme/plugin.
  *
  * @since  1.0.0
  */
-add_action( 'woothemes_projects', 'woothemes_projects' );
+add_action( 'woothemes-projects', 'woothemes-projects' );
 
-if ( ! function_exists( 'woothemes_projects' ) ) {
+if ( ! function_exists( 'woothemes-projects' ) ) {
 /**
  * Display or return HTML-formatted testimonials.
  * @param  string/array $args  Arguments.
@@ -173,5 +173,5 @@ function woothemes_projects_shortcode () {
 } // End woothemes_projects_shortcode()
 }
 
-add_shortcode( 'woothemes_projects', 'woothemes_projects_shortcode' );
+add_shortcode( 'woothemes-projects', 'woothemes_projects_shortcode' );
 ?>

@@ -18,7 +18,7 @@ Hi, I'm your projects showcase plugin for WordPress. Show off your recent work, 
 
 To display your features via a theme or a custom plugin, please use the following code:
 
-`<?php do_action( 'woothemes_projects' ); ?>`
+`<?php do_action( 'woothemes-projects' ); ?>`
 
 == Installation ==
 
@@ -27,7 +27,7 @@ Installing "Features by WooThemes" can be done either by searching for "Features
 1. Download the plugin via WordPress.org.
 1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action( 'woothemes_projects' ); ?>` in your templates, or use the provided widget or shortcode.
+1. Place `<?php do_action( 'woothemes-projects' ); ?>` in your templates, or use the provided widget or shortcode.
 
 == Frequently Asked Questions ==
 

@@ -36,12 +36,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		<?php
 			/**
-			 * woocommerce_single_project_summary hook
+			 * woothemes_projects_single_project_summary hook
 			 *
-			 * @hooked woocommerce_template_single_title - 5
-			 * @hooked woocommerce_template_single_excerpt - 20
-			 * @hooked woocommerce_template_single_meta - 40
-			 * @hooked woocommerce_template_single_sharing - 50
+			 * @hooked woothemes_projects_template_single_title - 5
+			 * @hooked woothemes_projects_template_single_excerpt - 20
+			 * @hooked woothemes_projects_template_single_meta - 40
+			 * @hooked woothemes_projects_template_single_sharing - 50
 			 */
 			do_action( 'woothemes_projects_single_project_summary' );
 		?>

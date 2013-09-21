@@ -35,7 +35,6 @@ class Woothemes_Projects {
 	 * @return void
 	 */
 	public function __construct( $file ) {
-		// add_rewrite_tag( '%project_category%','([^&]+)' );
 		$this->dir = dirname( $file );
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
@@ -52,6 +51,7 @@ class Woothemes_Projects {
 		// Run this on activation.
 		register_activation_hook( $this->file, array( $this, 'activation' ) );
 
+		add_action( 'init', array( $this, 'register_rewrite_tags' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
@@ -66,6 +66,16 @@ class Woothemes_Projects {
 			$this->frontend = new Woothemes_Projects_Frontend( $file );
 		}
 	} // End __construct()
+
+	/**
+	 * Register custom rewrite tags.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function register_rewrite_tags () {
+		add_rewrite_tag( '%project_category%','([^&]+)' );
+	} // End register_rewrite_tags()
 
 	/**
 	 * Register the post type.

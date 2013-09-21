@@ -1,6 +1,6 @@
 <?php
 /**
- * Product Loop Start
+ * Project Loop Start
  *
  * @author 		WooThemes
  * @package 	Woothemes_Projects/Templates

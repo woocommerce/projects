@@ -21,8 +21,6 @@ _deprecated_file( basename(__FILE__), '1.6', '', 'Use your own loop code, as wel
 
 	<?php woothemes_projects_project_loop_start(); ?>
 
-		<?php woothemes_projects_project_subcategories(); ?>
-
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php woothemes_projects_get_template_part( 'content', 'project' ); ?>
@@ -35,11 +33,7 @@ _deprecated_file( basename(__FILE__), '1.6', '', 'Use your own loop code, as wel
 
 <?php else : ?>
 
-	<?php if ( ! woothemes_projects_project_subcategories( array( 'before' => woothemes_projects_project_loop_start( false ), 'after' => woothemes_projects_project_loop_end( false ) ) ) ) : ?>
-
-		<p><?php _e( 'No projects found which match your selection.', 'woothemes-projects' ); ?></p>
-
-	<?php endif; ?>
+	<p><?php _e( 'No projects found which match your selection.', 'woothemes-projects' ); ?></p>
 
 <?php endif; ?>
 

@@ -44,8 +44,6 @@ get_header( 'showcase' ); ?>
 
 			<?php woothemes_projects_project_loop_start(); ?>
 
-				<?php woothemes_projects_project_subcategories(); ?>
-
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php woothemes_projects_get_template_part( 'content', 'project' ); ?>
@@ -63,7 +61,7 @@ get_header( 'showcase' ); ?>
 				do_action( 'woothemes_projects_after_showcase_loop' );
 			?>
 
-		<?php elseif ( ! woothemes_projects_project_subcategories( array( 'before' => woothemes_projects_project_loop_start( false ), 'after' => woothemes_projects_project_loop_end( false ) ) ) ) : ?>
+		<?php else : ?>
 
 			<?php woothemes_projects_get_template( 'loop/no-projects-found.php' ); ?>
 

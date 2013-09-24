@@ -30,11 +30,7 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 *
 	 * @see woothemes_projects_get_sidebar()
 	 */
-	if ( defined( 'THEME_FRAMEWORK' ) && 'woothemes' == constant( 'THEME_FRAMEWORK' ) ) {
-		add_action( 'woo_main_after', 'woothemes_projects_get_sidebar', 10 );
-	} else {
-		add_action( 'woothemes_projects_sidebar', 'woothemes_projects_get_sidebar', 10 );
-	}
+	add_action( 'woothemes_projects_sidebar', 'woothemes_projects_get_sidebar', 10 );
 
 	/**
 	 * Archive descriptions

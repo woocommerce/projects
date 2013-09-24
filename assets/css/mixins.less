@@ -1,6 +1,4 @@
-/**
- * Variables
- */
+// Vars
 // Colors
 @color_links:       #52a8e8;        // Links / Main theme colour
 @color_body:        #555;           // Body Copy
@@ -23,9 +21,7 @@
 @imagepath:         'images';
 @fontpath:          'includes/fonts/';
 
-/**
- * Functions
- */
+// Functions
 .iconbefore( @glyph: "\f179" ) {
     font-family: "FontAwesome";
     font-weight: normal;
@@ -78,9 +74,7 @@
     content: @glyph;
 }
 
-/**
- * Mixins
- */
+// Mixins
 .clearfix() {
 	&:after {
 		content: "\0020";
@@ -206,9 +200,7 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-/**
- * Animations
- */
+// Animations
 @-webkit-keyframes spin-360 {
     from { .rotate(0); }
     50% { .rotate(180deg); }

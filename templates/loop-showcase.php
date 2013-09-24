@@ -6,7 +6,7 @@
  *
  * @author 		WooThemes
  * @package 	Woothemes_Projects/Templates
- * @version     1.6.4
+ * @version     1.0.0
  * @deprecated 	1.6
  */
 

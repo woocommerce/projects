@@ -7,7 +7,7 @@
  * @author 		WooThemes
  * @category 	Core
  * @package 	Woothemes_Projects/Templates
- * @version     1.6.4
+ * @version     1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

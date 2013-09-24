@@ -98,3 +98,16 @@
 .projects-page ul.projects li.project.last {
   margin-right: 0;
 }
+.single-project .project .images a {
+  display: block;
+  margin-bottom: 1em;
+}
+.single-project .project .images img {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  max-width: 100%;
+  height: auto;
+}

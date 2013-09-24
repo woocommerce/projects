@@ -271,4 +271,3 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 
 	} // End woo_portfolio_item_settings()
 }
-?>

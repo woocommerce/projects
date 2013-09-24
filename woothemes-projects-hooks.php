@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( ! is_admin() || defined('DOING_AJAX') ) {
 
+	add_filter( 'body_class', 'woo_projects_body_class' );
+
 	/**
 	 * Content Wrappers
 	 *

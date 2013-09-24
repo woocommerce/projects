@@ -337,4 +337,20 @@ function woothemes_projects_get_gallery_attachment_ids ( $post_id = 0 ) {
 	return array_filter( (array) explode( ',', $project_image_gallery ) );
 } // End woothemes_projects_get_gallery_attachment_ids()
 
-?>
+
+/**
+ * Add body classes for Projects pages
+ *
+ * @param  array $classes
+ * @return array
+ */
+function woo_projects_body_class( $classes ) {
+	$classes = (array) $classes;
+
+	if ( is_woothemes_projects() ) {
+		$classes[] = 'projects';
+		$classes[] = 'projects-page';
+	}
+
+	return array_unique( $classes );
+}

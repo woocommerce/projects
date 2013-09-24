@@ -223,7 +223,7 @@ class Woothemes_Projects_Admin {
 							echo '<li class="image" data-attachment_id="' . $attachment_id . '">
 								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
 								<ul class="actions">
-									<li><a href="#" class="delete" title="' . __( 'Delete image', 'woothemes-projects' ) . '">' . __( 'Delete', 'woothemes-projects' ) . '</a></li>
+									<li><a href="#" class="delete" title="' . __( 'Delete image', 'woothemes-projects' ) . '">&times;</a></li>
 								</ul>
 							</li>';
 						}
@@ -283,7 +283,7 @@ class Woothemes_Projects_Admin {
 									<li class="image" data-attachment_id="' + attachment.id + '">\
 										<img src="' + attachment.url + '" />\
 										<ul class="actions">\
-											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'woothemes-projects' ); ?>"><?php _e( 'Delete', 'woothemes-projects' ); ?></a></li>\
+											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'woothemes-projects' ); ?>">&times;</a></li>\
 										</ul>\
 									</li>');
 							}

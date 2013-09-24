@@ -1,3 +1,6 @@
+// Imports
+@import url(mixins.less);
+
 // Admin icons
 #menu-posts-project {
 	.wp-menu-image {
@@ -47,22 +50,19 @@ only screen and (        min-device-pixel-ratio: 2),
 		#project_images_container {
 			padding: 0 0 0 9px;
 			ul {
-				overflow: hidden;
 				margin: 0;
 				padding: 0;
-				li.image, li.add, li.wc-metabox-sortable-placeholder {
+				.clearfix;
+				li.image, li.add, li.woothemes-projects-metabox-sortable-placeholder {
 					width: 80px;
-					height: 80px;
-					overflow: hidden;
 					float: left;
 					cursor: move;
-					border: 1px solid #d5d5d5;
 					margin: 9px 9px 0 0;
 					background: #f7f7f7;
-					-webkit-border-radius: 2px;
-					-moz-border-radius: 2px;
-					border-radius: 2px;
+					.border_radius(2px);
 					position: relative;
+					background: #fff;
+					.border_radius(2px);
 					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 					-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 					box-sizing: border-box;         /* Opera/IE 8+ */
@@ -70,45 +70,56 @@ only screen and (        min-device-pixel-ratio: 2),
 						width: 100%;
 						height: auto;
 						display: block;
+						.transition;
+						.border_radius(2px);
+					}
+					&:hover {
+						img {
+							.opacity(0.75);
+						}
 					}
 				}
-				li.wc-metabox-sortable-placeholder {
+				li.woothemes-projects-metabox-sortable-placeholder {
 					border: 4px dashed #dddddd;
-					background: #f7f7f7 url(../images/image_watermark.png) no-repeat center;
+					background: #f7f7f7;
 				}
 				ul.actions {
 					position: absolute;
-					top:0;
-					right: 0;
-					padding: 2px;
-					display: none;
+					top:4px;
+					right: 4px;
+					.transition;
+					.opacity(0);
 					li {
-						background: #eee;
-						border: 1px solid #ddd;
-						-webkit-border-radius: 2px;
-						-moz-border-radius: 2px;
-						border-radius: 2px;
-						padding: 1px;
+						-webkit-border-radius: 100%;
+						border-radius: 100%;
 						float: right;
 						margin: 0 0 0 2px;
 						a {
-							width: 10px;
-							padding: 10px 0 0 0;
+							width: 20px;
 							margin: 0;
-							height: 0;
+							height: 20px;
+							font-size: 16px;
 							display: block;
 							overflow: hidden;
-						}
-						a.view {
-							background: url(../images/icons/image_10.png) no-repeat top left;
-						}
-						a.delete {
-							background: url(../images/icons/delete_10.png) no-repeat top left;
+							color: #fff;
+							background:#000;
+							font-weight: 300;
+							line-height: 20px;
+							text-align: center;
+							.border_radius(2px);
+							text-decoration: none;
+							.transition;
+							&.delete {
+								background: @error;
+								&:hover {
+									background: @error + #222;
+								}
+							}
 						}
 					}
 				}
 				li:hover ul.actions {
-					display: block;
+					.opacity(1);
 				}
 			}
 		}

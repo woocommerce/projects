@@ -20,7 +20,7 @@ global $post, $woothemes_projects, $project;
 			$image       		= get_the_post_thumbnail( $post->ID, apply_filters( 'single_project_large_thumbnail_size', 'showcase_single' ) );
 			$image_title 		= esc_attr( get_the_title( get_post_thumbnail_id() ) );
 			$image_link  		= wp_get_attachment_url( get_post_thumbnail_id() );
-			$attachment_count   = count( $project->get_gallery_attachment_ids() );
+			$attachment_count   = count( woothemes_projects_get_gallery_attachment_ids() );
 
 			if ( $attachment_count > 0 ) {
 				$gallery = '[project-gallery]';

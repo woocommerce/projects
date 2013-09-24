@@ -44,11 +44,11 @@ return $output;
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* Woo Portfolio Navigation */
+/* Woo Projects Navigation */
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( 'woo_portfolio_navigation' ) ) {
-	function woo_portfolio_navigation ( $galleries ) {
+if ( ! function_exists( 'woo_projects_navigation' ) ) {
+	function woo_projects_navigation ( $galleries ) {
 
 		// Sanity check.
 		if ( ! is_array( $galleries ) || ( count( $galleries ) <= 0 ) ) { return; }
@@ -61,7 +61,7 @@ if ( ! function_exists( 'woo_portfolio_navigation' ) ) {
 						'display_all' => true
 						 );
 
-		$settings = apply_filters( 'woo_portfolio_navigation_args', $settings );
+		$settings = apply_filters( 'woo_project_navigation_args', $settings );
 
 		// Prepare the anchor tags of the various gallery items.
 		$gallery_anchors = '';
@@ -89,19 +89,19 @@ if ( ! function_exists( 'woo_portfolio_navigation' ) ) {
 		$html .= '</div><!--/#' . $settings['id'] . ' .port-tags-->' . "\n";
 
 
-		$html = apply_filters( 'woo_portfolio_navigation', $html );
+		$html = apply_filters( 'woo_project_navigation', $html );
 
 		echo $html;
 
-	} // End woo_portfolio_navigation()
+	} // End woo_project_navigation()
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* Woo Portfolio Item Extras (Testimonial and Link) */
+/* Woo Project Item Extras (Testimonial and Link) */
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
-	function woo_portfolio_item_extras ( $data ) {
+if ( ! function_exists( 'woo_project_item_extras' ) ) {
+	function woo_project_item_extras ( $data ) {
 
 		$settings = array(
 							'id' => 'extras',
@@ -109,7 +109,7 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 						 );
 
 		// Allow child themes/plugins to filter these settings.
-		$settings = apply_filters( 'woo_portfolio_item_extras_settings', $settings, $data );
+		$settings = apply_filters( 'woo_project_item_extras_settings', $settings, $data );
 
 		$html = '';
 
@@ -128,20 +128,20 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 			$html .= '</div><!--/#extras-->' . "\n";
 
 			// Allow child themes/plugins to filter this HTML.
-			$html = apply_filters( 'woo_portfolio_item_extras_html', $html, $data );
+			$html = apply_filters( 'woo_project_item_extras_html', $html, $data );
 
 			echo $html;
 
-	} // End woo_portfolio_item_extras()
+	} // End woo_project_item_extras()
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* Woo Portfolio Item Settings */
-/* @uses woo_portfolio_image_dimensions() */
+/* Woo Project Item Settings */
+/* @uses woo_project_image_dimensions() */
 /*-----------------------------------------------------------------------------------*/
 
-	if ( ! function_exists( 'woo_portfolio_item_settings' ) ) {
-	function woo_portfolio_item_settings ( $id ) {
+	if ( ! function_exists( 'woo_project_item_settings' ) ) {
+	function woo_project_item_settings ( $id ) {
 
 		global $woo_options;
 
@@ -154,20 +154,20 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 		if ( isset( $woo_options['woo_layout'] ) ) { $website_layout = $woo_options['woo_layout']; }
 		if ( isset( $woo_options['woo_layout_width'] ) ) { $website_width = $woo_options['woo_layout_width']; }
 
-		$dimensions = woo_portfolio_image_dimensions( $website_layout, $website_width );
+		$dimensions = woo_project_image_dimensions( $website_layout, $website_width );
 
 		$width = $dimensions['width'];
 		$height = $dimensions['height'];
 
 		$enable_gallery = false;
-		if ( isset( $woo_options['woo_portfolio_gallery'] ) ) { $enable_gallery = $woo_options['woo_portfolio_gallery']; }
+		if ( isset( $woo_options['woo_project_gallery'] ) ) { $enable_gallery = $woo_options['woo_project_gallery']; }
 
 		$settings = array(
 							'large' => '',
 							'caption' => '',
 							'rel' => '',
 							'gallery' => array(),
-							'css_classes' => 'group post portfolio-img',
+							'css_classes' => 'group post project-img',
 							'embed' => '',
 							'enable_gallery' => $enable_gallery,
 							'testimonial' => '',
@@ -183,8 +183,8 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 		// woo_get_post_images is offset by 1 by default. Setting to offset by 0 to show all images.
 
     	$large = '';
-    	if ( isset( $meta['portfolio-image'][0] ) ) {
-    		$large = $meta['portfolio-image'][0];
+    	if ( isset( $meta['project-image'][0] ) ) {
+    		$large = $meta['project-image'][0];
     	}
 
     	$caption = '';
@@ -231,7 +231,7 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 		// Create CSS classes string.
 		$css = '';
 		$galleries = array();
-		$terms = get_the_terms( $id, 'portfolio-gallery' );
+		$terms = get_the_terms( $id, 'project-gallery' );
 		if ( is_array( $terms ) && ( count( $terms ) > 0 ) ) { foreach ( $terms as $t ) { $galleries[] = $t->slug; } }
 		$css = join( ' ', $galleries );
 
@@ -247,7 +247,7 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 			$settings['testimonial_author'] = $meta['testimonial_author'][0];
 		}
 
-		// Look for a custom display URL of the portfolio item (used if it's a website, for example)
+		// Look for a custom display URL of the project item (used if it's a website, for example)
 		if ( isset( $meta['url'] ) && ( $meta['url'][0] != '' ) ) {
 			$settings['display_url'] = $meta['url'][0];
 		}
@@ -265,9 +265,9 @@ if ( ! function_exists( 'woo_portfolio_item_extras' ) ) {
 		}
 
 		// Allow child themes/plugins to filter these settings.
-		$settings = apply_filters( 'woo_portfolio_item_settings', $settings, $id );
+		$settings = apply_filters( 'woo_project_item_settings', $settings, $id );
 
 		return $settings;
 
-	} // End woo_portfolio_item_settings()
+	} // End woo_project_item_settings()
 }

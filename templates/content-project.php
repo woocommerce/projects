@@ -21,10 +21,6 @@ if ( empty( $woothemes_projects_loop['loop'] ) )
 if ( empty( $woothemes_projects_loop['columns'] ) )
 	$woothemes_projects_loop['columns'] = apply_filters( 'loop_showcase_columns', 4 );
 
-// Ensure visibility
-if ( ! $project->is_visible() )
-	return;
-
 // Increase loop count
 $woothemes_projects_loop['loop']++;
 

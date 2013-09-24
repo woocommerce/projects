@@ -1,1 +1,48 @@
+@import url(mixins.less);
+
 // Gloss styles
+.projects, .projects-page {
+	ul.projects {
+		li.project {
+			position: relative;
+			img {
+				.transition;
+				&:after {
+					content: "hello";
+				}
+			}
+			.project-thumbnail {
+				display: block;
+				position: relative;
+				&:before {
+					content: "\254b";
+					display: block;
+					position: absolute;
+					top:50%;
+					left:50%;
+					.opacity(0);
+					.transition;
+					height:20px;
+					width:20px;
+					margin-top:-10px;
+					margin-left:-10px;
+					font-size:20px;
+					line-height: 1;
+					text-align: center;
+				}
+			}
+			.project-permalink {
+				&:hover {
+					img {
+						.opacity(0.2);
+					}
+					.project-thumbnail {
+						&:before {
+							.opacity(1);
+						}
+					}
+				}
+			}
+		}
+	}
+}

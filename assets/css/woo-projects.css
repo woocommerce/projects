@@ -89,6 +89,14 @@
 .projects ul.projects li.project img,
 .projects-page ul.projects li.project img {
   width: 100%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 .projects ul.projects li.project.first,
 .projects-page ul.projects li.project.first {
@@ -110,4 +118,7 @@
   background-clip: padding-box;
   max-width: 100%;
   height: auto;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }

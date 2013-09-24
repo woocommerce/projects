@@ -35,7 +35,7 @@ if ( 0 == $woothemes_projects_loop['loop'] % $woothemes_projects_loop['columns']
 
 	<?php do_action( 'woothemes_projects_before_showcase_loop_item' ); ?>
 
-	<a href="<?php the_permalink(); ?>">
+	<a href="<?php the_permalink(); ?>" class="project-permalink">
 
 		<?php
 			/**

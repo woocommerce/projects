@@ -169,7 +169,7 @@ if ( ! function_exists( 'woothemes_projects_template_loop_project_thumbnail' ) )
 	 * @return void
 	 */
 	function woothemes_projects_template_loop_project_thumbnail() {
-		echo woothemes_projects_get_project_thumbnail();
+		echo '<figure class="project-thumbnail">' . woothemes_projects_get_project_thumbnail() . '</figure>';
 	}
 }
 if ( ! function_exists( 'woothemes_projects_reset_loop' ) ) {

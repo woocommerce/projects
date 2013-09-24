@@ -1,0 +1,20 @@
+// Styles for handheld devices
+
+@media only screen and ( max-width: 768px ) {
+
+	.projects, .projects-page {
+		ul.projects {
+			li.project {
+				width:48%;
+				float: left;
+				clear:both;
+				&:nth-child(2n) {
+					margin-right:0;
+					float: right;
+					clear: none !important;
+				}
+			}
+		}
+	}
+
+}

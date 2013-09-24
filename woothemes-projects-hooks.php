@@ -64,11 +64,11 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * Project Summary Box
 	 *
 	 * @see woothemes_projects_template_single_title()
-	 * @see woothemes_projects_template_single_excerpt()
+	 * @see woothemes_projects_template_single_description()
 	 * @see woothemes_projects_template_single_meta()
 	 */
 	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_title', 5 );
-	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_excerpt', 20 );
+	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_description', 20 );
 	add_action( 'woothemes_projects_single_project_summary', 'woothemes_projects_template_single_meta', 40 );
 
 	/**

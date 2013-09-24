@@ -282,7 +282,7 @@ if ( ! function_exists( 'woothemes_projects_template_single_title' ) ) {
 		woothemes_projects_get_template( 'single-project/title.php' );
 	}
 }
-if ( ! function_exists( 'woothemes_projects_template_single_excerpt' ) ) {
+if ( ! function_exists( 'woothemes_projects_template_single_description' ) ) {
 
 	/**
 	 * Output the project short description (excerpt).
@@ -291,8 +291,8 @@ if ( ! function_exists( 'woothemes_projects_template_single_excerpt' ) ) {
 	 * @subpackage	Project
 	 * @return void
 	 */
-	function woothemes_projects_template_single_excerpt() {
-		woothemes_projects_get_template( 'single-project/short-description.php' );
+	function woothemes_projects_template_single_description() {
+		woothemes_projects_get_template( 'single-project/description.php' );
 	}
 }
 if ( ! function_exists( 'woothemes_projects_template_single_meta' ) ) {

@@ -49,14 +49,14 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  .projects ul.projects li.project,
-  .projects-page ul.projects li.project {
+  .woothemes-projects ul.projects li.project,
+  .woothemes-projects-page ul.projects li.project {
     width: 48%;
     float: left;
     clear: both;
   }
-  .projects ul.projects li.project:nth-child(2n),
-  .projects-page ul.projects li.project:nth-child(2n) {
+  .woothemes-projects ul.projects li.project:nth-child(2n),
+  .woothemes-projects-page ul.projects li.project:nth-child(2n) {
     margin-right: 0;
     float: right;
     clear: none !important;

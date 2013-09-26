@@ -48,34 +48,34 @@
     zoom: 1;
   }
 }
-.projects ul.projects,
-.projects-page ul.projects {
+.woothemes-projects ul.projects,
+.woothemes-projects-page ul.projects {
   list-style: none;
   margin: 0;
   padding: 0;
   *zoom: 1;
 }
-.projects ul.projects:before,
-.projects-page ul.projects:before,
-.projects ul.projects:after,
-.projects-page ul.projects:after {
+.woothemes-projects ul.projects:before,
+.woothemes-projects-page ul.projects:before,
+.woothemes-projects ul.projects:after,
+.woothemes-projects-page ul.projects:after {
   content: " ";
   display: table;
 }
-.projects ul.projects:after,
-.projects-page ul.projects:after {
+.woothemes-projects ul.projects:after,
+.woothemes-projects-page ul.projects:after {
   clear: both;
 }
-.projects ul.projects li.project,
-.projects-page ul.projects li.project {
+.woothemes-projects ul.projects li.project,
+.woothemes-projects-page ul.projects li.project {
   margin: 0;
   padding: 0;
   width: 30.75%;
   float: left;
   margin-right: 3.8%;
 }
-.projects ul.projects li.project img,
-.projects-page ul.projects li.project img {
+.woothemes-projects ul.projects li.project img,
+.woothemes-projects-page ul.projects li.project img {
   width: 100%;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -86,12 +86,12 @@
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.projects ul.projects li.project.first,
-.projects-page ul.projects li.project.first {
+.woothemes-projects ul.projects li.project.first,
+.woothemes-projects-page ul.projects li.project.first {
   clear: both;
 }
-.projects ul.projects li.project.last,
-.projects-page ul.projects li.project.last {
+.woothemes-projects ul.projects li.project.last,
+.woothemes-projects-page ul.projects li.project.last {
   margin-right: 0;
 }
 .single-project .project .images a {

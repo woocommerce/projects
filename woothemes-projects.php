@@ -15,6 +15,7 @@
 
 require_once( 'classes/class-woothemes-projects.php' );
 require_once( 'classes/class-woothemes-projects-taxonomy.php' );
+require_once( 'classes/class-woothemes-projects-shortcodes.php' );
 // require_once( 'classes/class-woothemes-widget-projects.php' );
 
 require_once( 'woothemes-projects-template.php' );

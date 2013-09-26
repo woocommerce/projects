@@ -348,8 +348,8 @@ function woo_projects_body_class( $classes ) {
 	$classes = (array) $classes;
 
 	if ( is_woothemes_projects() ) {
-		$classes[] = 'projects';
-		$classes[] = 'projects-page';
+		$classes[] = 'woothemes-projects';
+		$classes[] = 'woothemes-projects-page';
 	}
 
 	return array_unique( $classes );
@@ -365,10 +365,8 @@ function woothemes_projects_script() {
 	wp_register_style( 'woothemes-projects-handheld', plugins_url( '/assets/css/woo-projects-handheld.css', __FILE__ ) );
 	wp_register_style( 'woothemes-projects-general', plugins_url( '/assets/css/woo-projects-general.css', __FILE__ ) );
 
-	if ( is_woothemes_projects() ) {
-		wp_enqueue_style( 'woothemes-projects-styles' );
-		wp_enqueue_style( 'woothemes-projects-handheld' );
-		wp_enqueue_style( 'woothemes-projects-general' );
-	}
+	wp_enqueue_style( 'woothemes-projects-styles' );
+	wp_enqueue_style( 'woothemes-projects-handheld' );
+	wp_enqueue_style( 'woothemes-projects-general' );
 
 }

@@ -48,29 +48,29 @@
     zoom: 1;
   }
 }
-.projects ul.projects li.project,
-.projects-page ul.projects li.project {
+.woothemes-projects ul.projects li.project,
+.woothemes-projects-page ul.projects li.project {
   position: relative;
 }
-.projects ul.projects li.project img,
-.projects-page ul.projects li.project img {
+.woothemes-projects ul.projects li.project img,
+.woothemes-projects-page ul.projects li.project img {
   -webkit-transition: all ease-in-out 0.2s;
   -moz-transition: all ease-in-out 0.2s;
   -ms-transition: all ease-in-out 0.2s;
   -o-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
-.projects ul.projects li.project img:after,
-.projects-page ul.projects li.project img:after {
+.woothemes-projects ul.projects li.project img:after,
+.woothemes-projects-page ul.projects li.project img:after {
   content: "hello";
 }
-.projects ul.projects li.project .project-thumbnail,
-.projects-page ul.projects li.project .project-thumbnail {
+.woothemes-projects ul.projects li.project .project-thumbnail,
+.woothemes-projects-page ul.projects li.project .project-thumbnail {
   display: block;
   position: relative;
 }
-.projects ul.projects li.project .project-thumbnail:before,
-.projects-page ul.projects li.project .project-thumbnail:before {
+.woothemes-projects ul.projects li.project .project-thumbnail:before,
+.woothemes-projects-page ul.projects li.project .project-thumbnail:before {
   content: "\254b";
   display: block;
   position: absolute;
@@ -91,13 +91,13 @@
   line-height: 1;
   text-align: center;
 }
-.projects ul.projects li.project .project-permalink:hover img,
-.projects-page ul.projects li.project .project-permalink:hover img {
+.woothemes-projects ul.projects li.project .project-permalink:hover img,
+.woothemes-projects-page ul.projects li.project .project-permalink:hover img {
   opacity: 0.2;
   filter: alpha(opacity=@opacity * 100);
 }
-.projects ul.projects li.project .project-permalink:hover .project-thumbnail:before,
-.projects-page ul.projects li.project .project-permalink:hover .project-thumbnail:before {
+.woothemes-projects ul.projects li.project .project-permalink:hover .project-thumbnail:before,
+.woothemes-projects-page ul.projects li.project .project-permalink:hover .project-thumbnail:before {
   opacity: 1;
   filter: alpha(opacity=@opacity * 100);
 }

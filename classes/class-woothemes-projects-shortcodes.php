@@ -14,6 +14,7 @@ class Woothemes_Projects_Shortcodes {
 	public function __construct() {
 		// Regular shortcodes
 		add_shortcode( 'woothemes_recent_projects', array( $this, 'woothemes_recent_projects' ) );
+		add_shortcode( 'woothemes_projects_categories', array( $this, 'woothemes_projects_categories' ) );
 	}
 
 	/**
@@ -94,8 +95,34 @@ class Woothemes_Projects_Shortcodes {
 		wp_reset_postdata();
 
 		return '<div class="woothemes-projects columns-' . $columns . '">' . ob_get_clean() . '</div>';
+
+	}
+
+	public function woothemes_projects_categories() {
+
+		$term_args 	= array(
+						'taxonomy' => 'project-category'
+					);
+		$terms 		= get_terms( 'project-category', $term_args );
+		$term_list 	= '';
+		$count 		= count( $terms );
+		$i 			= 0;
+
+		ob_start();
+
+		if ( $count > 0 ) {
+		    foreach ( $terms as $term ) {
+		        $i++;
+		    	$term_list .= '<li class="project-category-link"><a href="' . get_term_link( $term ) . '" title="' . sprintf( __( 'View all projects in %s', 'woothemes-projects' ), $term->name ) . '">' . $term->name . '<span class="count"> ' . $term->count . '</span>' . '</a></li>';
+		    }
+		    echo '<nav><ul class="project-categories">' . $term_list . '</ul></nav>';
+		}
+
+		return '<div class="woothemes-projects">' . ob_get_clean() . '</div>';
+
 	}
 
 }
+
 
 new Woothemes_Projects_Shortcodes();

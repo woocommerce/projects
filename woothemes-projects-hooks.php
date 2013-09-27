@@ -82,13 +82,6 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 /** Store Event Hooks *****************************************************/
 
 /**
- * Showcase Page Handling and Support
- *
- * @see woothemes_projects_nav_menu_item_classes()
- */
-add_filter( 'wp_nav_menu_objects',  'woothemes_projects_nav_menu_item_classes', 2, 20 );
-
-/**
  * Filters
  */
 add_filter( 'woothemes_projects_short_description', 'wptexturize'        );

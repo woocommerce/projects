@@ -54,6 +54,7 @@
 }
 .woothemes-projects ul.projects li.project img,
 .woothemes-projects-page ul.projects li.project img {
+  -webkit-transform: translateZ(0);
   -webkit-transition: all ease-in-out 0.2s;
   -moz-transition: all ease-in-out 0.2s;
   -ms-transition: all ease-in-out 0.2s;
@@ -83,13 +84,14 @@
   -ms-transition: all ease-in-out 0.2s;
   -o-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
-  height: 20px;
-  width: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  font-size: 20px;
-  line-height: 1;
+  height: 2em;
+  width: 2em;
+  margin-top: -1em;
+  margin-left: -1em;
+  font-size: 2em;
+  line-height: 2;
   text-align: center;
+  color: #000;
 }
 .woothemes-projects ul.projects li.project .project-permalink:hover img,
 .woothemes-projects-page ul.projects li.project .project-permalink:hover img {

@@ -52,7 +52,8 @@
 .woothemes-projects-page ul.projects {
   list-style: none;
   margin: 0;
-  padding: 0;
+  margin-left: 0 !important;
+  padding: 0 !important;
   *zoom: 1;
 }
 .woothemes-projects ul.projects:before,
@@ -85,6 +86,9 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  padding: 0;
+  border: 0;
+  margin: 0;
 }
 .woothemes-projects ul.projects li.project.first,
 .woothemes-projects-page ul.projects li.project.first {
@@ -93,6 +97,36 @@
 .woothemes-projects ul.projects li.project.last,
 .woothemes-projects-page ul.projects li.project.last {
   margin-right: 0;
+}
+.woothemes-projects ul.project-categories,
+.woothemes-projects-page ul.project-categories {
+  margin-left: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+.woothemes-projects ul.project-categories:after,
+.woothemes-projects-page ul.project-categories:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.woothemes-projects ul.project-categories li,
+.woothemes-projects-page ul.project-categories li {
+  display: inline-block;
+  margin-right: .5em;
+  list-style: none;
+}
+.woothemes-projects ul.project-categories li:after,
+.woothemes-projects-page ul.project-categories li:after {
+  content: "|";
+  display: inline-block;
+  padding-left: .5em;
+}
+.woothemes-projects ul.project-categories li:last-child:after,
+.woothemes-projects-page ul.project-categories li:last-child:after {
+  display: none;
 }
 .single-project .project .images a {
   display: block;

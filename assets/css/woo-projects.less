@@ -6,7 +6,8 @@
 	ul.projects {
 		list-style: none;
 		margin:0;
-		padding:0;
+		margin-left:0 !important;
+		padding:0 !important;
 		*zoom: 1;
 		&:before, &:after {
 			content: " ";
@@ -27,12 +28,36 @@
 				-moz-box-shadow:none;
 				box-shadow:none;
 				.border_radius(0);
+				padding:0;
+				border:0;
+				margin:0;
 			}
 			&.first {
 				clear:both;
 			}
 			&.last {
 				margin-right:0;
+			}
+		}
+	}
+	ul.project-categories {
+		margin-left:0 !important;
+		padding:0 !important;
+		.clearfix;
+		list-style: none;
+		li {
+			display: inline-block;
+			margin-right:.5em;
+			list-style: none;
+			&:after {
+				content: "|";
+				display: inline-block;
+				padding-left:.5em;
+			}
+			&:last-child {
+				&:after {
+					display: none;
+				}
 			}
 		}
 	}

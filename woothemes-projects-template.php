@@ -308,7 +308,7 @@ if ( ! function_exists( 'woothemes_projects_template_single_meta' ) ) {
 		woothemes_projects_get_template( 'single-project/meta.php' );
 	}
 }
-if ( ! function_exists( 'woothemes_projects_categories' ) ) {
+if ( ! function_exists( 'woothemes_projects_template_categories' ) ) {
 
 	/**
 	 * Output the project categories.
@@ -317,7 +317,7 @@ if ( ! function_exists( 'woothemes_projects_categories' ) ) {
 	 * @subpackage	Project
 	 * @return void
 	 */
-	function woothemes_projects_categories() {
+	function woothemes_projects_template_categories() {
 		woothemes_projects_get_template( 'loop/categories.php' );
 	}
 }

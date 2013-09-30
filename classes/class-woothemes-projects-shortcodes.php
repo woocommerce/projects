@@ -102,7 +102,7 @@ class Woothemes_Projects_Shortcodes {
 
 		ob_start();
 
-		woothemes_projects_categories();
+		woothemes_projects_template_categories();
 
 		return '<div class="woothemes-projects">' . ob_get_clean() . '</div>';
 

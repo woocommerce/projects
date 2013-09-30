@@ -324,7 +324,7 @@ if ( ! function_exists( 'woothemes_projects_template_categories' ) ) {
 if ( ! function_exists( 'woothemes_projects_template_short_description' ) ) {
 
 	/**
-	 * Output the project categories.
+	 * Output the project short description.
 	 *
 	 * @access public
 	 * @subpackage	Project

@@ -51,6 +51,7 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 */
 	add_action( 'woothemes_projects_before_showcase_loop', 'woothemes_projects_categories', 10 );
 	add_action( 'woothemes_projects_before_showcase_loop_item_title', 'woothemes_projects_template_loop_project_thumbnail', 10 );
+	add_action( 'woothemes_projects_after_showcase_loop_item_title', 'woothemes_projects_template_short_description', 10 );
 
 	/**
 	 * Before Single Projects Summary Div

@@ -321,3 +321,16 @@ if ( ! function_exists( 'woothemes_projects_categories' ) ) {
 		woothemes_projects_get_template( 'loop/categories.php' );
 	}
 }
+if ( ! function_exists( 'woothemes_projects_template_short_description' ) ) {
+
+	/**
+	 * Output the project categories.
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function woothemes_projects_template_short_description() {
+		woothemes_projects_get_template( 'loop/short-description.php' );
+	}
+}

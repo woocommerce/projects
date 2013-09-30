@@ -14,5 +14,5 @@ global $post;
 if ( ! $post->post_content ) return;
 ?>
 <div itemprop="description">
-	<?php echo apply_filters( 'woothemes_projects_short_description', $post->post_content ) ?>
+	<?php echo apply_filters( 'woothemes_projects_description', $post->post_content ) ?>
 </div>

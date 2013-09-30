@@ -308,3 +308,16 @@ if ( ! function_exists( 'woothemes_projects_template_single_meta' ) ) {
 		woothemes_projects_get_template( 'single-project/meta.php' );
 	}
 }
+if ( ! function_exists( 'woothemes_projects_categories' ) ) {
+
+	/**
+	 * Output the project categories.
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function woothemes_projects_categories() {
+		woothemes_projects_get_template( 'loop/categories.php' );
+	}
+}

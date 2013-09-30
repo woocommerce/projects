@@ -78,6 +78,7 @@
 .woothemes-projects ul.projects li.project img,
 .woothemes-projects-page ul.projects li.project img {
   width: 100%;
+  height: auto;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;

@@ -113,7 +113,14 @@ class Woothemes_Projects_Shortcodes {
 		if ( $count > 0 ) {
 		    foreach ( $terms as $term ) {
 		        $i++;
-		    	$term_list .= '<li class="project-category-link"><a href="' . get_term_link( $term ) . '" title="' . sprintf( __( 'View all projects in %s', 'woothemes-projects' ), $term->name ) . '">' . $term->name . '<span class="count"> ' . $term->count . '</span>' . '</a></li>';
+
+		        if ( apply_filters( 'woothemes_projects_category_display_count', true ) ) {
+					$display_count = '<span class="count"> ' . $term->count . '</span>';
+				} else {
+					$display_count = '';
+				}
+
+		    	$term_list .= '<li class="project-category-link"><a href="' . get_term_link( $term ) . '" title="' . sprintf( __( 'View all projects in %s', 'woothemes-projects' ), $term->name ) . '">' . $term->name . '</a>' . $display_count . '</li>';
 		    }
 		    echo '<nav><ul class="project-categories">' . $term_list . '</ul></nav>';
 		}

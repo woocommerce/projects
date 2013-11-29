@@ -73,7 +73,7 @@ get_header( 'showcase' ); ?>
 		 *
 		 * @hooked woothemes_projects_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
-		do_action('woothemes_projects_after_main_content');
+		do_action( 'woothemes_projects_after_main_content' );
 	?>
 
 	<?php
@@ -82,7 +82,7 @@ get_header( 'showcase' ); ?>
 		 *
 		 * @hooked woothemes_projects_get_sidebar - 10
 		 */
-		do_action('woothemes_projects_sidebar');
+		do_action( 'woothemes_projects_sidebar' );
 	?>
 
 <?php get_footer( 'showcase' ); ?>

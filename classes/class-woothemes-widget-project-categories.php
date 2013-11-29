@@ -2,9 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
- * WooThemes Projects Widget
+ * WooThemes Project Categories Widget
  *
- * A WooThemes standardized projects widget.
+ * A WooThemes standardized project categories widget.
  *
  * @package WordPress
  * @subpackage Woothemes_Projects
@@ -23,8 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  * - widget()
  * - update()
  * - form()
+ * - get_orderby_options()
  */
-class Woothemes_Widget_Projects extends WP_Widget {
+class Woothemes_Widget_Project_Categories extends WP_Widget {
 	protected $woothemes_widget_cssclass;
 	protected $woothemes_widget_description;
 	protected $woothemes_widget_idbase;
@@ -37,10 +38,10 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 */
 	public function __construct() {
 		/* Widget variable settings. */
-		$this->woothemes_widget_cssclass 	= 'widget_woothemes_projects_items';
-		$this->woothemes_widget_description = __( 'Recent projects listed on your site.', 'woothemes-projects' );
-		$this->woothemes_widget_idbase 		= 'woothemes-projects';
-		$this->woothemes_widget_title 		= __( 'Recent Projects', 'woothemes-projects' );
+		$this->woothemes_widget_cssclass 	= 'widget_woothemes_projects_categories';
+		$this->woothemes_widget_description = __( 'Project Categories', 'woothemes-projects' );
+		$this->woothemes_widget_idbase 		= 'woothemes-project-categories';
+		$this->woothemes_widget_title 		= __( 'Project Categories', 'woothemes-projects' );
 
 		/* Widget settings. */
 		$widget_ops = array(
@@ -79,40 +80,35 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->woothemes_widget_cssclass . '_top' );
 
-		// Integer values.
-		if ( isset( $instance['limit'] ) && ( 0 < count( $instance['limit'] ) ) ) { $args['limit'] = intval( $instance['limit'] ); }
+		// Checkbox values.
+		if ( isset( $instance['count'] ) ) { $args['count'] = $instance['count']; }
+		if ( isset( $instance['hierarchical'] ) ) { $args['hierarchical'] = $instance['hierarchical']; }
 
-		// Display the projects.
+		echo $before_widget;
 
-		$args = array(
-			'post_type'				=> 'project',
-			'post_status' 			=> 'publish',
-			'ignore_sticky_posts'	=> 1,
-			'posts_per_page' 		=> $args['limit'],
-			'orderby' 				=> 'date',
-			'order' 				=> 'DESC'
-		);
-
-		$r = new WP_Query( $args );
-
-		if ( $r->have_posts() ) {
-
-			echo $before_widget;
-
-			if ( $title )
-				echo $before_title . $title . $after_title;
-
-			echo '<ul class="projects_list_widget">';
-
-			while ( $r->have_posts()) {
-				$r->the_post();
-				woothemes_projects_get_template_part( 'content', 'project-widget' );
-			}
-
-			echo '</ul>';
-
-			echo $after_widget;
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
 		}
+
+		// Display the project categories
+		$project_taxonomies = get_object_taxonomies( 'project' );
+
+		if ( count( $project_taxonomies ) > 0) {
+		     foreach ( $project_taxonomies as $project_tax ) {
+			     $args = array(
+		         	  'orderby' 		=> 'name',
+			          'show_count' 		=> $instance['count'],
+		        	  'pad_counts' 		=> 0,
+			          'hierarchical' 	=> $instance['hierarchical'],
+		        	  'taxonomy' 		=> $project_tax,
+		        	  'title_li' 		=> ''
+		        	);
+
+			     wp_list_categories( $args );
+		     }
+		}
+
+		echo $after_widget;
 
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->woothemes_widget_cssclass . '_bottom' );
@@ -132,8 +128,9 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Strip tags for title and name to remove HTML (important for text inputs). */
 		$instance['title'] 			= strip_tags( $new_instance['title'] );
 
-		/* Make sure the integer values are definitely integers. */
-		$instance['limit'] 			= intval( $new_instance['limit'] );
+		/* Escape checkbox values */
+		$instance['count']  		= esc_attr( $new_instance['count'] );
+		$instance['hierarchical']  	= esc_attr( $new_instance['hierarchical'] );
 
 		return $instance;
 	} // End update()
@@ -150,8 +147,9 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' 		=> __( 'Recent Projects', 'woothemes-projects' ),
-			'limit' 		=> 5,
+			'title' 		=> __( 'Project Categories', 'woothemes-projects' ),
+			'count'			=> 1,
+			'hierarchical'	=> 1,
 		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -161,10 +159,17 @@ class Woothemes_Widget_Projects extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
-		<!-- Widget Limit: Text Input -->
+
+		<!-- Widget Show Count: Checkbox Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'woothemes-projects' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>"  value="<?php echo $instance['limit']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" />
+			<input id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['count'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Show Count:', 'woothemes-projects' ); ?></label>
+		</p>
+
+		<!-- Widget Hierarchical: Checkbox Input -->
+		<p>
+			<input id="<?php echo $this->get_field_id( 'hierarchical' ); ?>" name="<?php echo $this->get_field_name( 'hierarchical' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['hierarchical'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'hierarchical' ); ?>"><?php _e( 'Show Hierarchy:', 'woothemes-projects' ); ?></label>
 		</p>
 <?php
 	} // End form()
@@ -172,4 +177,4 @@ class Woothemes_Widget_Projects extends WP_Widget {
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Projects" );' ), 1 );
+add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Project_Categories" );' ), 1 );

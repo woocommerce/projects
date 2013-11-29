@@ -161,3 +161,7 @@
 .projects_list_widget li .project-title {
   float: left;
 }
+.widget_woothemes_projects_categories ul.children {
+  margin-left: 2.618em;
+  list-style-type: disc;
+}

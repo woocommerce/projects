@@ -38,16 +38,23 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 */
 	public function __construct() {
 		/* Widget variable settings. */
-		$this->woothemes_widget_cssclass = 'widget_woothemes_projects_items';
+		$this->woothemes_widget_cssclass 	= 'widget_woothemes_projects_items';
 		$this->woothemes_widget_description = __( 'Recent projects listed on your site.', 'woothemes-projects' );
-		$this->woothemes_widget_idbase = 'woothemes-projects';
-		$this->woothemes_widget_title = __( 'Recent Projects', 'woothemes-projects' );
+		$this->woothemes_widget_idbase 		= 'woothemes-projects';
+		$this->woothemes_widget_title 		= __( 'Recent Projects', 'woothemes-projects' );
 
 		/* Widget settings. */
-		$widget_ops = array( 'classname' => $this->woothemes_widget_cssclass, 'description' => $this->woothemes_widget_description );
+		$widget_ops = array(
+			'classname' 	=> $this->woothemes_widget_cssclass,
+			'description' 	=> $this->woothemes_widget_description
+			);
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 250, 'height' => 350, 'id_base' => $this->woothemes_widget_idbase );
+		$control_ops = array(
+			'width' 	=> 300,
+			'height' 	=> 300,
+			'id_base' 	=> $this->woothemes_widget_idbase
+			);
 
 		/* Create the widget. */
 		$this->WP_Widget( $this->woothemes_widget_idbase, $this->woothemes_widget_title, $widget_ops, $control_ops );
@@ -109,17 +116,17 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		$instance = $old_instance;
 
 		/* Strip tags for title and name to remove HTML (important for text inputs). */
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title'] 			= strip_tags( $new_instance['title'] );
 
 		/* Make sure the integer values are definitely integers. */
-		$instance['limit'] = intval( $new_instance['limit'] );
-		$instance['specific_id'] = intval( $new_instance['specific_id'] );
-		$instance['size'] = intval( $new_instance['size'] );
-		$instance['per_row'] = intval( $new_instance['per_row'] );
+		$instance['limit'] 			= intval( $new_instance['limit'] );
+		$instance['specific_id'] 	= intval( $new_instance['specific_id'] );
+		$instance['size'] 			= intval( $new_instance['size'] );
+		$instance['per_row'] 		= intval( $new_instance['per_row'] );
 
 		/* The select box is returning a text value, so we escape it. */
-		$instance['orderby'] = esc_attr( $new_instance['orderby'] );
-		$instance['order'] = esc_attr( $new_instance['order'] );
+		$instance['orderby'] 		= esc_attr( $new_instance['orderby'] );
+		$instance['order'] 			= esc_attr( $new_instance['order'] );
 
 		return $instance;
 	} // End update()
@@ -136,13 +143,13 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' => '',
-			'limit' => 5,
-			'orderby' => 'menu_order',
-			'order' => 'DESC',
-			'specific_id' => '',
-			'size' => 50,
-			'per_row' => 3
+			'title' 		=> '',
+			'limit' 		=> 5,
+			'orderby' 		=> 'menu_order',
+			'order' 		=> 'DESC',
+			'specific_id' 	=> '',
+			'size' 			=> 50,
+			'per_row' 		=> 3
 		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -201,11 +208,11 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 */
 	protected function get_orderby_options () {
 		return array(
-					'none' => __( 'No Order', 'woothemes-projects' ),
-					'ID' => __( 'Entry ID', 'woothemes-projects' ),
-					'title' => __( 'Title', 'woothemes-projects' ),
-					'date' => __( 'Date Added', 'woothemes-projects' ),
-					'menu_order' => __( 'Specified Order Setting', 'woothemes-projects' )
+					'none' 			=> __( 'No Order', 'woothemes-projects' ),
+					'ID' 			=> __( 'Entry ID', 'woothemes-projects' ),
+					'title' 		=> __( 'Title', 'woothemes-projects' ),
+					'date' 			=> __( 'Date Added', 'woothemes-projects' ),
+					'menu_order' 	=> __( 'Specified Order Setting', 'woothemes-projects' )
 					);
 	} // End get_orderby_options()
 
@@ -216,8 +223,8 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 */
 	protected function get_order_options () {
 		return array(
-					'asc' => __( 'Ascending', 'woothemes-projects' ),
-					'desc' => __( 'Descending', 'woothemes-projects' )
+					'asc' 	=> __( 'Ascending', 'woothemes-projects' ),
+					'desc' 	=> __( 'Descending', 'woothemes-projects' )
 					);
 	} // End get_order_options()
 } // End Class

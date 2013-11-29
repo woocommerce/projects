@@ -2,8 +2,8 @@
 Contributors: woothemes, mattyza, jameskoster
 Donate link: http://woothemes.com/
 Tags: portoflio, projects, widget, shortcode, template-tag, services
-Requires at least: 3.4.2
-Tested up to: 3.5-beta2
+Requires at least: 3.8
+Tested up to: 3.8-beta1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

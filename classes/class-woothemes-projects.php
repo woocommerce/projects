@@ -144,9 +144,9 @@ class Woothemes_Projects {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'project-thumbnail', 100, 9999 ); 	// 100 pixels wide (and unlimited height) for thumbs
-			add_image_size( 'project-category', 300, 9999 ); 	// 250 pixels wide (and unlimited height) for archive
-			add_image_size( 'project-single', 1024, 9999 ); 	// 1024 pixels wide (and unlimited height) for single
+			add_image_size( 'project-thumbnail', 100, 9999 ); 	// Thumbs
+			add_image_size( 'project-category', 300, 9999 ); 	// Archive
+			add_image_size( 'project-single', 1024, 9999 ); 	// Single
 		}
 	} // End register_image_sizes()
 

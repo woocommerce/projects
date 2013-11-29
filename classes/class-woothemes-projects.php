@@ -35,12 +35,12 @@ class Woothemes_Projects {
 	 * @return void
 	 */
 	public function __construct( $file ) {
-		$this->dir = dirname( $file );
-		$this->file = $file;
-		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
-		$this->token = 'woothemes-projects';
-		$this->post_type = 'project';
+		$this->dir 			= dirname( $file );
+		$this->file 		= $file;
+		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
+		$this->assets_url 	= esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->token 		= 'woothemes-projects';
+		$this->post_type 	= 'project';
 
 		// Variables
 		$this->template_url	= apply_filters( 'woothemes_projects_template_url', 'woothemes-projects/' );
@@ -60,7 +60,7 @@ class Woothemes_Projects {
 
 		if ( is_admin() ) {
 			require_once( 'class-woothemes-projects-admin.php' );
-			$this->admin = new Woothemes_Projects_Admin( $file );
+			$this->admin 	= new Woothemes_Projects_Admin( $file );
 		} else {
 			require_once( 'class-woothemes-projects-frontend.php' );
 			$this->frontend = new Woothemes_Projects_Frontend( $file );
@@ -85,35 +85,43 @@ class Woothemes_Projects {
 	 */
 	public function register_post_type () {
 		$labels = array(
-			'name' => _x( 'Projects', 'post type general name', 'woothemes-projects' ),
-			'singular_name' => _x( 'Project', 'post type singular name', 'woothemes-projects' ),
-			'add_new' => _x( 'Add New', $this->post_type, 'woothemes-projects' ),
-			'add_new_item' => sprintf( __( 'Add New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
-			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
-			'new_item' => sprintf( __( 'New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
-			'all_items' => sprintf( _x( 'All %s', $this->post_type, 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
-			'view_item' => sprintf( __( 'View %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
-			'search_items' => sprintf( __( 'Search %a', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
-			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
-			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
-			'parent_item_colon' => '',
-			'menu_name' => __( 'Projects', 'woothemes-projects' )
+			'name' 					=> _x( 'Projects', 'post type general name', 'woothemes-projects' ),
+			'singular_name' 		=> _x( 'Project', 'post type singular name', 'woothemes-projects' ),
+			'add_new' 				=> _x( 'Add New', $this->post_type, 'woothemes-projects' ),
+			'add_new_item' 			=> sprintf( __( 'Add New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'edit_item' 			=> sprintf( __( 'Edit %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'new_item' 				=> sprintf( __( 'New %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'view_item' 			=> sprintf( __( 'View %s', 'woothemes-projects' ), __( 'Project', 'woothemes-projects' ) ),
+			'search_items' 			=> sprintf( __( 'Search %a', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'not_found' 			=>  sprintf( __( 'No %s Found', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'woothemes-projects' ), __( 'Projects', 'woothemes-projects' ) ),
+			'parent_item_colon' 	=> '',
+			'menu_name' 			=> __( 'Projects', 'woothemes-projects' )
 
 		);
 		$args = array(
-			'labels' => $labels,
-			'public' => true,
-			'publicly_queryable' => true,
-			'show_ui' => true,
-			'show_in_menu' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'projects/%project_category%', 'with_front' => false ),
-			'capability_type' => 'post',
-			'has_archive' => 'projects',
-			'hierarchical' => false,
-			'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-			'menu_position' => 5,
-			'menu_icon' => ''
+			'labels' 				=> $labels,
+			'public' 				=> true,
+			'publicly_queryable' 	=> true,
+			'show_ui' 				=> true,
+			'show_in_menu' 			=> true,
+			'query_var' 			=> true,
+			'rewrite' 				=> array(
+										'slug' 			=> 'projects/%project_category%',
+										'with_front' 	=> false
+										),
+			'capability_type' 		=> 'post',
+			'has_archive' 			=> 'projects',
+			'hierarchical' 			=> false,
+			'supports' 				=> array(
+										'title',
+										'editor',
+										'thumbnail',
+										'excerpt'
+										),
+			'menu_position' 		=> 5,
+			'menu_icon' 			=> ''
 		);
 		register_post_type( $this->post_type, $args );
 	} // End register_post_type()
@@ -136,9 +144,9 @@ class Woothemes_Projects {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'project-thumbnail', 100, 9999 ); // 100 pixels wide (and unlimited height) for single
-			add_image_size( 'project-category', 250, 9999 ); // 250 pixels wide (and unlimited height) for archive
-			add_image_size( 'project-single', 1024, 9999 ); // 1024 pixels wide (and unlimited height) for single
+			add_image_size( 'project-thumbnail', 100, 9999 ); 	// 100 pixels wide (and unlimited height) for thumbs
+			add_image_size( 'project-category', 300, 9999 ); 	// 250 pixels wide (and unlimited height) for archive
+			add_image_size( 'project-single', 1024, 9999 ); 	// 1024 pixels wide (and unlimited height) for single
 		}
 	} // End register_image_sizes()
 
@@ -150,10 +158,10 @@ class Woothemes_Projects {
 	 */
 	public function get_projects ( $args = '' ) {
 		$defaults = array(
-			'limit' => 5,
-			'orderby' => 'menu_order',
-			'order' => 'DESC',
-			'id' => 0
+			'limit' 	=> 5,
+			'orderby' 	=> 'menu_order',
+			'order' 	=> 'DESC',
+			'id' 		=> 0
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -162,11 +170,11 @@ class Woothemes_Projects {
 		$args = apply_filters( 'woothemes_get_projects_args', $args );
 
 		// The Query Arguments.
-		$query_args = array();
-		$query_args['post_type'] = 'project';
-		$query_args['numberposts'] = $args['limit'];
-		$query_args['orderby'] = $args['orderby'];
-		$query_args['order'] = $args['order'];
+		$query_args 				= array();
+		$query_args['post_type'] 	= 'project';
+		$query_args['numberposts'] 	= $args['limit'];
+		$query_args['orderby'] 		= $args['orderby'];
+		$query_args['order'] 		= $args['order'];
 
 		if ( is_numeric( $args['id'] ) && ( intval( $args['id'] ) > 0 ) ) {
 			$query_args['p'] = intval( $args['id'] );

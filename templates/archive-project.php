@@ -36,8 +36,7 @@ get_header( 'showcase' ); ?>
 				/**
 				 * woothemes_projects_before_showcase_loop hook
 				 *
-				 * @hooked woothemes_projects_result_count - 20
-				 * @hooked woothemes_projects_catalog_ordering - 30
+				 * @hooked woothemes_projects_template_categories - 10
 				 */
 				do_action( 'woothemes_projects_before_showcase_loop' );
 			?>

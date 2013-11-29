@@ -36,6 +36,9 @@
     zoom: 1;
   }
 }
+/**
+ * Layout Styles
+ */
 .woothemes-projects ul.projects,
 .woothemes-projects-page ul.projects {
   list-style: none;
@@ -133,4 +136,28 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+/**
+ * Widgets
+ */
+.projects_list_widget li {
+  margin-bottom: 1.618em;
+}
+.projects_list_widget li a {
+  display: block;
+}
+.projects_list_widget li a:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.projects_list_widget li img {
+  float: right;
+  max-width: 60px;
+  height: auto;
+}
+.projects_list_widget li .project-title {
+  float: left;
 }

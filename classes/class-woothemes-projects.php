@@ -56,7 +56,7 @@ class Woothemes_Projects {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
 		add_action( 'after_setup_theme', array( $this, 'ensure_post_thumbnails_support' ) );
-		add_action( 'after_theme_setup', array( $this, 'register_image_sizes' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_image_sizes' ) );
 
 		if ( is_admin() ) {
 			require_once( 'class-woothemes-projects-admin.php' );

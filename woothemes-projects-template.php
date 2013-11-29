@@ -203,7 +203,7 @@ if ( ! function_exists( 'woothemes_projects_get_project_thumbnail' ) ) {
 	 * @param int $placeholder_height (default: 0)
 	 * @return string
 	 */
-	function woothemes_projects_get_project_thumbnail( $size = 'projects-catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
+	function woothemes_projects_get_project_thumbnail( $size = 'project-catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 		global $post;
 
 		if ( has_post_thumbnail() )

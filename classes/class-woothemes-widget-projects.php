@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes-projects' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
 /**
  * WooThemes Projects Widget
@@ -23,7 +23,6 @@ if ( ! defined( 'ABSPATH' ) || ! function_exists( 'woothemes-projects' ) ) exit;
  * - widget()
  * - update()
  * - form()
- * - get_orderby_options()
  */
 class Woothemes_Widget_Projects extends WP_Widget {
 	protected $woothemes_widget_cssclass;
@@ -71,7 +70,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		extract( $args, EXTR_SKIP );
 
 		/* Our variables from the widget settings. */
-		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base );
+		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		/* Before widget (defined by themes). */
 		// echo $before_widget;
@@ -87,22 +86,42 @@ class Woothemes_Widget_Projects extends WP_Widget {
 
 		// Integer values.
 		if ( isset( $instance['limit'] ) && ( 0 < count( $instance['limit'] ) ) ) { $args['limit'] = intval( $instance['limit'] ); }
-		if ( isset( $instance['specific_id'] ) && ( 0 < count( $instance['specific_id'] ) ) ) { $args['id'] = intval( $instance['specific_id'] ); }
-		if ( isset( $instance['size'] ) && ( 0 < count( $instance['size'] ) ) ) { $args['size'] = intval( $instance['size'] ); }
-		if ( isset( $instance['per_row'] ) && ( 0 < count( $instance['per_row'] ) ) ) { $args['per_row'] = intval( $instance['per_row'] ); }
-
-		// Select boxes.
-		if ( isset( $instance['orderby'] ) && in_array( $instance['orderby'], array_keys( $this->get_orderby_options() ) ) ) { $args['orderby'] = $instance['orderby']; }
-		if ( isset( $instance['order'] ) && in_array( $instance['order'], array_keys( $this->get_order_options() ) ) ) { $args['order'] = $instance['order']; }
 
 		// Display the projects.
-		woothemes_projects( $args );
+
+		$args = array(
+			'post_type'				=> 'project',
+			'post_status' 			=> 'publish',
+			'ignore_sticky_posts'	=> 1,
+			'posts_per_page' 		=> $args['limit'],
+			'orderby' 				=> 'date',
+			'order' 				=> 'DESC'
+		);
+
+		$r = new WP_Query( $args );
+
+		if ( $r->have_posts() ) {
+
+			echo $before_widget;
+
+			if ( $title )
+				echo $before_title . $title . $after_title;
+
+			echo '<ul class="projects_list_widget">';
+
+			while ( $r->have_posts()) {
+				$r->the_post();
+				woothemes_projects_get_template_part( 'content', 'project-widget' );
+			}
+
+			echo '</ul>';
+
+			echo $after_widget;
+		}
 
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->woothemes_widget_cssclass . '_bottom' );
 
-		/* After widget (defined by themes). */
-		// echo $after_widget;
 	} // End widget()
 
 	/**
@@ -120,13 +139,6 @@ class Woothemes_Widget_Projects extends WP_Widget {
 
 		/* Make sure the integer values are definitely integers. */
 		$instance['limit'] 			= intval( $new_instance['limit'] );
-		$instance['specific_id'] 	= intval( $new_instance['specific_id'] );
-		$instance['size'] 			= intval( $new_instance['size'] );
-		$instance['per_row'] 		= intval( $new_instance['per_row'] );
-
-		/* The select box is returning a text value, so we escape it. */
-		$instance['orderby'] 		= esc_attr( $new_instance['orderby'] );
-		$instance['order'] 			= esc_attr( $new_instance['order'] );
 
 		return $instance;
 	} // End update()
@@ -143,13 +155,8 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' 		=> '',
+			'title' 		=> __( 'Recent Projects', 'woothemes-projects' ),
 			'limit' 		=> 5,
-			'orderby' 		=> 'menu_order',
-			'order' 		=> 'DESC',
-			'specific_id' 	=> '',
-			'size' 			=> 50,
-			'per_row' 		=> 3
 		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -164,69 +171,9 @@ class Woothemes_Widget_Projects extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'woothemes-projects' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>"  value="<?php echo $instance['limit']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" />
 		</p>
-		<!-- Widget Image Size: Text Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Image Size (in pixels):', 'woothemes-projects' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'size' ); ?>"  value="<?php echo $instance['size']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'size' ); ?>" />
-		</p>
-		<!-- Widget Per Row: Text Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'per_row' ); ?>"><?php _e( 'Items Per Row:', 'woothemes-projects' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'per_row' ); ?>"  value="<?php echo $instance['per_row']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'per_row' ); ?>" />
-		</p>
-		<!-- Widget Order By: Select Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e( 'Order By:', 'woothemes-projects' ); ?></label>
-			<select name="<?php echo $this->get_field_name( 'orderby' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'orderby' ); ?>">
-			<?php foreach ( $this->get_orderby_options() as $k => $v ) { ?>
-				<option value="<?php echo $k; ?>"<?php selected( $instance['orderby'], $k ); ?>><?php echo $v; ?></option>
-			<?php } ?>
-			</select>
-		</p>
-		<!-- Widget Order: Select Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Order Direction:', 'woothemes-projects' ); ?></label>
-			<select name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'order' ); ?>">
-			<?php foreach ( $this->get_order_options() as $k => $v ) { ?>
-				<option value="<?php echo $k; ?>"<?php selected( $instance['order'], $k ); ?>><?php echo $v; ?></option>
-			<?php } ?>
-			</select>
-		</p>
-		<!-- Widget ID: Text Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'specific_id' ); ?>"><?php _e( 'Specific ID (optional):', 'woothemes-projects' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'specific_id' ); ?>"  value="<?php echo $instance['specific_id']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'specific_id' ); ?>" />
-		</p>
-		<p><small><?php _e( 'Display a specific testimonial, rather than a list.', 'woothemes-projects' ); ?></small></p>
 <?php
 	} // End form()
 
-	/**
-	 * Get an array of the available orderby options.
-	 * @since  1.0.0
-	 * @return array
-	 */
-	protected function get_orderby_options () {
-		return array(
-					'none' 			=> __( 'No Order', 'woothemes-projects' ),
-					'ID' 			=> __( 'Entry ID', 'woothemes-projects' ),
-					'title' 		=> __( 'Title', 'woothemes-projects' ),
-					'date' 			=> __( 'Date Added', 'woothemes-projects' ),
-					'menu_order' 	=> __( 'Specified Order Setting', 'woothemes-projects' )
-					);
-	} // End get_orderby_options()
-
-	/**
-	 * Get an array of the available order options.
-	 * @since  1.0.0
-	 * @return array
-	 */
-	protected function get_order_options () {
-		return array(
-					'asc' 	=> __( 'Ascending', 'woothemes-projects' ),
-					'desc' 	=> __( 'Descending', 'woothemes-projects' )
-					);
-	} // End get_order_options()
 } // End Class
 
 /* Register the widget. */

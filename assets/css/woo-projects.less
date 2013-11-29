@@ -1,61 +1,74 @@
 // Imports
 @import url(mixins.less);
 
-// Style
-.woothemes-projects, .woothemes-projects-page {
+/**
+ * Layout Styles
+ */
+.woothemes-projects,
+.woothemes-projects-page {
 	ul.projects {
 		list-style: none;
-		margin:0;
-		margin-left:0 !important;
-		padding:0 !important;
+		margin: 0;
+		margin-left: 0 !important;
+		padding: 0 !important;
 		*zoom: 1;
+
 		&:before, &:after {
 			content: " ";
     		display: table;
 		}
+
 		&:after {
-			clear:both;
+			clear: both;
 		}
+
 		li.project {
-			margin:0;
-			padding:0;
-			width:30.75%;
+			margin: 0;
+			padding: 0;
+			width: 30.75%;
 			float: left;
-			margin-right:3.8%;
+			margin-right: 3.8%;
+
 			img {
-				width:100%;
+				width: 100%;
 				height: auto;
-				-webkit-box-shadow:none;
-				-moz-box-shadow:none;
-				box-shadow:none;
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
 				.border_radius(0);
-				padding:0;
-				border:0;
-				margin:0;
+				padding: 0;
+				border: 0;
+				margin: 0;
 			}
+
 			&.first {
-				clear:both;
+				clear: both;
 			}
+
 			&.last {
-				margin-right:0;
+				margin-right: 0;
 			}
 		}
 	}
+
 	ul.project-categories {
-		margin-left:0 !important;
-		padding:0 !important;
+		margin-left: 0 !important;
+		padding: 0 !important;
 		.clearfix;
 		list-style: none;
+
 		li {
 			display: inline-block;
-			margin-right:.5em;
+			margin-right: .5em;
 			list-style: none;
 			margin-left: 0 !important;
+
 			&:after {
 				content: "|";
 				display: inline-block;
-				padding-left:.5em;
+				padding-left: .5em;
 			}
+
 			&:last-child {
 				&:after {
 					display: none;
@@ -72,14 +85,39 @@
 				display: block;
 				margin-bottom:1em;
 			}
+
 			img {
 				.border_radius(0);
-				max-width:100%;
+				max-width: 100%;
 				height: auto;
-				-webkit-box-shadow:none;
-				-moz-box-shadow:none;
-				box-shadow:none;
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
 			}
+		}
+	}
+}
+
+/**
+ * Widgets
+ */
+.projects_list_widget {
+	li {
+		margin-bottom: 1.618em;
+
+		a {
+			display: block;
+			.clearfix;
+		}
+
+		img {
+			float: right;
+			max-width: 60px;
+			height: auto;
+		}
+
+		.project-title {
+			float: left;
 		}
 	}
 }

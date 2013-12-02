@@ -1,49 +1,5 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
-/* Get Post image attachments */
-/*-----------------------------------------------------------------------------------*/
-/*
-Description:
-
-This function will get all the attached post images that have been uploaded via the
-WP post image upload and return them in an array.
-
-*/
-if ( ! function_exists( 'woo_get_post_images' ) ) {
-function woo_get_post_images($offset = 1) {
-
-// Arguments
-$repeat = 100; 				// Number of maximum attachments to get
-$photo_size = 'large';		// The WP "size" to use for the large image
-
-global $post;
-
-$output = array();
-
-$id = get_the_id();
-$attachments = get_children( array(
-'post_parent' => $id,
-'numberposts' => $repeat,
-'post_type' => 'attachment',
-'post_mime_type' => 'image',
-'order' => 'ASC',
-'orderby' => 'menu_order date' )
-);
-if ( !empty($attachments) ) :
-	$output = array();
-	$count = 0;
-	foreach ( $attachments as $att_id => $attachment ) {
-		$count++;
-		if ($count <= $offset) continue;
-		$url = wp_get_attachment_image_src($att_id, $photo_size, true);
-			$output[] = array( 'url' => $url[0], 'caption' => $attachment->post_excerpt, 'id' => $att_id, 'alt' => get_post_meta( $att_id, '_wp_attachment_image_alt', true ) );
-	}
-endif;
-return $output;
-} // End woo_get_post_images()
-}
-
-/*-----------------------------------------------------------------------------------*/
 /* Woo Projects Navigation */
 /*-----------------------------------------------------------------------------------*/
 

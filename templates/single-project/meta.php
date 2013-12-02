@@ -14,7 +14,7 @@ global $post;
 <div class="project_meta">
 
 	<?php
-		$terms_as_text = get_the_term_list( $post->ID, 'project_cat', '', ', ', '' );
+		$terms_as_text = get_the_term_list( $post->ID, 'project-category', '', ', ', '' );
 		echo '<div class="categories">' . $terms_as_text . '</div>';
 	?>
 

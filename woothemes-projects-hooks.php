@@ -18,7 +18,8 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 
 	add_filter( 'body_class', 'woo_projects_body_class' );
 	add_action( 'wp_enqueue_scripts', 'woothemes_projects_script' );
-	add_action( 'template_redirect', 'wc_template_redirect' );
+	add_action( 'template_redirect', 'woothemes_projects_template_redirect' );
+	add_filter( 'wp_nav_menu_objects',  'woothemes_projects_nav_menu_item_classes', 2, 20 );
 
 	/**
 	 * Content Wrappers

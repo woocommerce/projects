@@ -358,6 +358,73 @@ function woo_projects_body_class( $classes ) {
 
 
 /**
+ * Find a category image.
+ * @since  1.0.0
+ * @return string
+ */
+function woothemes_projects_category_image ( $cat_id = 0 ) {
+
+	global $post;
+
+	if ( 0 == $cat_id  ) return;
+
+	$image = '';
+
+	if ( false === ( $image = get_transient( 'woothemes_projects_category_image_' . $cat_id ) ) ) {	
+
+		$cat = get_term( $cat_id, 'project-category' );
+
+		$query_args = array(
+			'post_type' => 'project',
+			'posts_per_page' => -1,
+			'no_found_rows' => 1,
+			'tax_query' => array(
+				array(
+					'taxonomy'	=>	'project-category',
+					'field'		=>	'id',
+					'terms'		=>	array( $cat->term_id )
+				)
+			)
+		);
+
+		$query = new WP_Query( $query_args );
+
+		while ( $query->have_posts() && $image == '' ) : $query->the_post();
+
+			$image = woothemes_projects_get_image( get_the_ID() );
+
+			if ( $image ) {
+				$image = '<a href="' . get_term_link( $cat ) . '" title="' . $cat->name . '">' . $image . '</a>';
+				set_transient( 'woothemes_projects_category_image_' . $cat->term_id, $image, 60 * 60 ); // 1 Hour.
+			}
+
+		endwhile;
+
+		wp_reset_postdata();
+	
+	} // get transient
+
+	return $image;
+
+} // End woothemes_projects_category_image()
+
+/**
+ * When a post is saved, flush the transient used to store the category images.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_projects_category_image_flush_transient ( $post_id ) {
+	if ( get_post_type( $post_id ) != 'project' ) return; // we only want projects
+	$categories = get_the_terms( $post_id, 'project-category' );
+	if ( $categories ) {
+		foreach ($categories as $category ) {
+			delete_transient( 'woothemes_projects_category_image_' . $category->term_id );
+		}
+	}
+} // End woothemes_projects_category_image_flush_transient()
+add_action( 'save_post', 'woothemes_projects_category_image_flush_transient' );
+
+/**
  * Enqueue styles
  */
 function woothemes_projects_script() {

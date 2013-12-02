@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function wc_template_redirect() {
 	global $wp_query, $wp;
 
-	// When default permalinks are enabled, redirect shop page to post type archive url
+	// When default permalinks are enabled, redirect project base page to post type archive url
 	if ( ! empty( $_GET['page_id'] ) && $_GET['page_id'] == woothemes_projects_get_page_id( 'showcase' ) ) {
 		wp_safe_redirect( get_post_type_archive_link( 'project' ) );
 		exit;

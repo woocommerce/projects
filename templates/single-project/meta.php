@@ -15,7 +15,7 @@ global $post;
 
 	<?php
 		$terms_as_text = get_the_term_list( $post->ID, 'project-category', '', ', ', '' );
-		echo '<div class="categories">' . $terms_as_text . '</div>';
+		echo '<div class="categories">' . __( 'Posted in: ', 'woothemes-projects' ) . $terms_as_text . '</div>';
 	?>
 
 </div>

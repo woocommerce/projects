@@ -19,7 +19,7 @@ if ( empty( $woothemes_projects_loop['loop'] ) )
 
 // Store column count for displaying the grid
 if ( empty( $woothemes_projects_loop['columns'] ) )
-	$woothemes_projects_loop['columns'] = apply_filters( 'loop_showcase_columns', 4 );
+	$woothemes_projects_loop['columns'] = apply_filters( 'loop_showcase_columns', 2 );
 
 // Increase loop count
 $woothemes_projects_loop['loop']++;

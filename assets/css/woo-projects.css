@@ -62,7 +62,7 @@
 .woothemes-projects-page ul.projects li.project {
   margin: 0;
   padding: 0;
-  width: 30.75%;
+  width: 48%;
   float: left;
   margin-right: 3.8%;
 }
@@ -150,7 +150,7 @@
 }
 .single-project .project .summary {
   width: 40%;
-  padding: 0 2.618em;
+  padding: 0 0 0 2.618em;
   float: right;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */

@@ -35,11 +35,11 @@ if ( $attachment_ids ) {
 			if ( ! $image_link )
 				continue;
 
-			$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_project_small_thumbnail_size', 'project-thumbnail' ) );
+			$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_project_small_thumbnail_size', 'project-single' ) );
 			$image_class = esc_attr( implode( ' ', $classes ) );
 			$image_title = esc_attr( get_the_title( $attachment_id ) );
 
-			echo apply_filters( 'woothemes_projects_single_project_image_thumbnail_html', sprintf( '<a href="%s" class="%s" title="%s"  rel="prettyPhoto[project-gallery]">%s</a>', $image_link, $image_class, $image_title, $image ), $attachment_id, $post->ID, $image_class );
+			echo $image;
 
 			$loop++;
 		}

@@ -121,9 +121,19 @@
 .woothemes-projects-page ul.project-categories li:last-child:after {
   display: none;
 }
+.single-project .project:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.single-project .project .images {
+  width: 60%;
+  float: left;
+}
 .single-project .project .images a {
   display: block;
-  margin-bottom: 1em;
 }
 .single-project .project .images img {
   -webkit-border-radius: 0;
@@ -136,6 +146,21 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  display: block;
+}
+.single-project .project .summary {
+  width: 40%;
+  padding: 0 2.618em;
+  float: right;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.single-project .project .summary > div {
+  font-size: .857em;
 }
 /**
  * Widgets

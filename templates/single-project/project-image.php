@@ -28,7 +28,7 @@ global $post, $woothemes_projects, $project;
 				$gallery = '';
 			}
 
-			echo apply_filters( 'woothemes_projects_single_project_image_html', sprintf( '<a href="%s" itemprop="image" class="woothemes_projects-main-image zoom" title="%s"  rel="prettyPhoto' . $gallery . '">%s</a>', $image_link, $image_title, $image ), $post->ID );
+			echo $image;
 
 		} else {
 

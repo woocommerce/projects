@@ -13,8 +13,9 @@ global $post;
 ?>
 <div class="project_meta">
 
-	<?php do_action( 'woothemes_projects_project_meta_start' ); ?>
-
-	<?php do_action( 'woothemes_projects_project_meta_end' ); ?>
+	<?php
+		$terms_as_text = get_the_term_list( $post->ID, 'project_cat', '', ', ', '' );
+		echo '<div class="categories">' . $terms_as_text . '</div>';
+	?>
 
 </div>

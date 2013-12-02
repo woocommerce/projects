@@ -41,7 +41,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			 * @hooked woothemes_projects_template_single_title - 5
 			 * @hooked woothemes_projects_template_single_excerpt - 20
 			 * @hooked woothemes_projects_template_single_meta - 40
-			 * @hooked woothemes_projects_template_single_sharing - 50
 			 */
 			do_action( 'woothemes_projects_single_project_summary' );
 		?>

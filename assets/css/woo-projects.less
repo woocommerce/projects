@@ -80,10 +80,13 @@
 
 .single-project {
 	.project {
+		.clearfix;
+
 		.images {
+			width: 60%;
+			float: left;
 			a {
 				display: block;
-				margin-bottom:1em;
 			}
 
 			img {
@@ -93,6 +96,18 @@
 				-webkit-box-shadow: none;
 				-moz-box-shadow: none;
 				box-shadow: none;
+				display: block;
+			}
+		}
+
+		.summary {
+			width: 40%;
+			padding: 0 2.618em;
+			float: right;
+			.borderbox;
+
+			> div {
+				font-size: .857em;
 			}
 		}
 	}

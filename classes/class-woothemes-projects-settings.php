@@ -89,7 +89,23 @@ class Woothemes_Projects_Settings {
 	public function woothemes_projects_images_settings() {
 		?>
 		<p><?php _e ( 'These settings affect the actual dimensions of images in your catalog – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to' , 'woothemes-projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'woothemes-projects' ); ?></a>.</p>
-		<?php $options = get_option( 'woothemes_projects' ); ?>
+		<?php
+			$options = get_option( 'woothemes_projects' );
+
+			$defaults 	= array(
+			    'archive_image_width' 	=> 300,
+			    'archive_image_height' 	=> 300,
+			    'single_image_width' 	=> 1024,
+			    'single_image_height' 	=> 1024,
+			    'thumb_width' 			=> 100,
+			    'thumb_height' 			=> 100,
+			);
+
+			// Parse incomming $options into an array and merge it with $defaults
+			// @todo: make this work
+			$newoptions = wp_parse_args( $options, $defaults );
+
+		?>
 		<table class="form-table">
 			<tr valign="top">
 				<th scope="row">

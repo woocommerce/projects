@@ -24,7 +24,8 @@ if ( ! function_exists( 'woothemes_projects_get_page_id' ) ) {
 	 * @return int
 	 */
 	function woothemes_projects_get_page_id ( $page ) {
-		$page = apply_filters( 'woothemes_projects_get_' . $page . '_page_id', get_option( 'woothemes_projects_' . $page . '_page_id' ) );
+		$options 	= get_option( 'woothemes_projects' );
+		$page 		= apply_filters( 'woothemes_projects_get_' . $page . '_page_id', $options[ 'woothemes_projects_' . $page . '_page_id' ] );
 
 		return $page ? $page : -1;
 	} // End woothemes_projects_get_page_id()

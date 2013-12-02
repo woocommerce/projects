@@ -76,8 +76,8 @@ if ( ! function_exists( 'woothemes_projects_page_title' ) ) {
 
 		} else {
 
-			$showcase_page_id = woothemes_projects_get_page_id( 'showcase' );
-			$page_title   = get_the_title( $showcase_page_id );
+			$showcase_page_id 	= woothemes_projects_get_page_id( 'showcase' );
+			$page_title   		= get_the_title( $showcase_page_id );
 
 		}
 
@@ -150,8 +150,8 @@ if ( ! function_exists( 'woothemes_projects_project_archive_description' ) ) {
 	 */
 	function woothemes_projects_project_archive_description() {
 		if ( is_post_type_archive( 'project' ) && get_query_var( 'paged' ) == 0 ) {
-			$showcase_page   = get_post( woothemes_projects_get_page_id( 'showcase' ) );
-			$description = apply_filters( 'the_content', $showcase_page->post_content );
+			$showcase_page   	= get_post( woothemes_projects_get_page_id( 'showcase' ) );
+			$description 		= apply_filters( 'the_content', $showcase_page->post_content );
 			if ( $description ) {
 				echo '<div class="page-description">' . $description . '</div>';
 			}

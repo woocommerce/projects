@@ -65,8 +65,8 @@ class Woothemes_Projects_Settings {
 		<?php
 			$options = get_option( 'woothemes_projects' );
 			$args = array(
-				'name'					=> 'woothemes_projects[projects_page]',
-				'selected'				=> absint( $options['projects_page'] ),
+				'name'					=> 'woothemes_projects[woothemes_projects_showcase_page_id]',
+				'selected'				=> absint( $options['woothemes_projects_showcase_page_id'] ),
 				'sort_column' 			=> 'menu_order',
 	            'sort_order'			=> 'ASC',
 	            'show_option_none' 		=> ' ',
@@ -121,7 +121,7 @@ class Woothemes_Projects_Settings {
 
 	public function woothemes_projects_main_settings_validate( $input ) {
 
-		$input['projects_page'] 		= absint( $input['projects_page'] );
+		$input['woothemes_projects_showcase_page_id'] 		= absint( $input['woothemes_projects_showcase_page_id'] );
 
 		$input['archive_image_width'] 	= absint( $input['archive_image_width'] );
 		$input['archive_image_height'] 	= absint( $input['archive_image_height'] );

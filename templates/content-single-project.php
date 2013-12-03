@@ -16,7 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	/**
 	 * woothemes_projects_before_single_project hook
 	 *
-	 * @hooked wc_print_messages - 10
 	 */
 	 do_action( 'woothemes_projects_before_single_project' );
 ?>

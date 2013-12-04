@@ -60,6 +60,13 @@ if ( 0 == $woothemes_projects_loop['loop'] % $woothemes_projects_loop['columns']
 
 	</a>
 
-	<?php do_action( 'woothemes_projects_after_showcase_loop_item' ); ?>
+	<?php
+		/**
+		 * woothemes_projects_after_showcase_loop_item hook
+		 *
+		 * @hooked woothemes_projects_template_short_description - 10
+		 */
+		do_action( 'woothemes_projects_after_showcase_loop_item' );
+	?>
 
 </li>

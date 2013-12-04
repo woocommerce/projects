@@ -11,8 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $post;
 
-if ( ! $post->post_excerpt ) return;
 ?>
 <div itemprop="description" class="short-description">
-	<?php echo apply_filters( 'woothemes_projects_description', $post->post_excerpt ) ?>
+	<?php the_excerpt(); ?>
 </div>

@@ -60,11 +60,23 @@
 }
 .woothemes-projects ul.projects li.project,
 .woothemes-projects-page ul.projects li.project {
-  margin: 0;
+  margin: 0 0 1.618em;
   padding: 0;
   width: 48%;
   float: left;
   margin-right: 3.8%;
+}
+.woothemes-projects ul.projects li.project .project-thumbnail,
+.woothemes-projects-page ul.projects li.project .project-thumbnail {
+  margin: 0 0 1em;
+}
+.woothemes-projects ul.projects li.project a,
+.woothemes-projects-page ul.projects li.project a {
+  text-decoration: none;
+}
+.woothemes-projects ul.projects li.project h3,
+.woothemes-projects-page ul.projects li.project h3 {
+  margin-bottom: .618em;
 }
 .woothemes-projects ul.projects li.project img,
 .woothemes-projects-page ul.projects li.project img {

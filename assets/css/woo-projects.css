@@ -133,6 +133,15 @@
 .woothemes-projects-page ul.project-categories li:last-child:after {
   display: none;
 }
+.woothemes-projects .woothemes-projects-pagination,
+.woothemes-projects-page .woothemes-projects-pagination {
+  text-align: center;
+}
+.woothemes-projects .woothemes-projects-pagination li,
+.woothemes-projects-page .woothemes-projects-pagination li {
+  display: inline-block;
+  margin: 0 .236em;
+}
 .single-project .project:after {
   content: "\0020";
   display: block;

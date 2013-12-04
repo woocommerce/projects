@@ -14,7 +14,7 @@ global $wp_query;
 if ( $wp_query->max_num_pages <= 1 )
 	return;
 ?>
-<nav class="woothemes_projects-pagination">
+<nav class="woothemes-projects-pagination">
 	<?php
 		echo paginate_links( apply_filters( 'woothemes_projects_pagination_args', array(
 			'base' 			=> str_replace( 999999999, '%#%', get_pagenum_link( 999999999 ) ),

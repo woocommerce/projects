@@ -3,7 +3,7 @@
  * Single project description
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 

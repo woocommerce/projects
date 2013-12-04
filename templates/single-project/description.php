@@ -3,7 +3,7 @@
  * Single project description
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 
@@ -14,5 +14,5 @@ global $post;
 if ( ! $post->post_content ) return;
 ?>
 <div itemprop="description">
-	<?php echo apply_filters( 'woothemes_projects_description', wpautop( $post->post_content ) ) ?>
+	<?php echo apply_filters( 'projects_description', wpautop( $post->post_content ) ) ?>
 </div>

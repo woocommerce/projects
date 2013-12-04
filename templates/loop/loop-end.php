@@ -3,7 +3,7 @@
  * Project Loop End
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 ?>

@@ -3,22 +3,22 @@
  * Single Project Thumbnails
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $post, $woothemes_projects;
+global $post, $projects;
 
-$attachment_ids = woothemes_projects_get_gallery_attachment_ids();
+$attachment_ids = projects_get_gallery_attachment_ids();
 
 if ( $attachment_ids ) {
 	?>
 	<div class="thumbnails"><?php
 
 		$loop = 0;
-		$columns = apply_filters( 'woothemes_projects_project_thumbnails_columns', 3 );
+		$columns = apply_filters( 'projects_project_thumbnails_columns', 3 );
 
 		foreach ( $attachment_ids as $attachment_id ) {
 

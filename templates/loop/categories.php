@@ -3,7 +3,7 @@
  * Project Categories
  *
  * @author      WooThemes
- * @package     Woothemes_Projects/Templates
+ * @package     Projects/Templates
  * @version     1.0.0
  */
 $term_args      = array(
@@ -20,12 +20,12 @@ if ( $count > 0 ) {
         <nav>
             <ul class="project-categories">
                 <?php foreach ( $terms as $term ) :
-                    if ( apply_filters( 'woothemes_projects_category_display_count', true ) )
+                    if ( apply_filters( 'projects_category_display_count', true ) )
                         $display_count  = '<span class="count"> ' . $term->count . '</span>';
                 ?>
                     <li class="project-category-link">
-                        <?php echo woothemes_projects_category_image( $term->term_id ); ?>
-                        <a href="<?php echo get_term_link( $term ); ?>" title="<?php sprintf( __( 'View all projects in %s', 'woothemes-projects' ), $term->name ); ?>"> <?php echo $term->name; ?></a><?php echo $display_count; ?>
+                        <?php echo projects_category_image( $term->term_id ); ?>
+                        <a href="<?php echo get_term_link( $term ); ?>" title="<?php sprintf( __( 'View all projects in %s', 'projects' ), $term->name ); ?>"> <?php echo $term->name; ?></a><?php echo $display_count; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

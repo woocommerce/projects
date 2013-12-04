@@ -39,47 +39,47 @@
 /**
  * Layout Styles
  */
-.woothemes-projects ul.projects,
-.woothemes-projects-page ul.projects {
+.projects ul.projects,
+.projects-page ul.projects {
   list-style: none;
   margin: 0;
   margin-left: 0 !important;
   padding: 0 !important;
   *zoom: 1;
 }
-.woothemes-projects ul.projects:before,
-.woothemes-projects-page ul.projects:before,
-.woothemes-projects ul.projects:after,
-.woothemes-projects-page ul.projects:after {
+.projects ul.projects:before,
+.projects-page ul.projects:before,
+.projects ul.projects:after,
+.projects-page ul.projects:after {
   content: " ";
   display: table;
 }
-.woothemes-projects ul.projects:after,
-.woothemes-projects-page ul.projects:after {
+.projects ul.projects:after,
+.projects-page ul.projects:after {
   clear: both;
 }
-.woothemes-projects ul.projects li.project,
-.woothemes-projects-page ul.projects li.project {
+.projects ul.projects li.project,
+.projects-page ul.projects li.project {
   margin: 0 0 1.618em;
   padding: 0;
   width: 48%;
   float: left;
   margin-right: 3.8%;
 }
-.woothemes-projects ul.projects li.project .project-thumbnail,
-.woothemes-projects-page ul.projects li.project .project-thumbnail {
+.projects ul.projects li.project .project-thumbnail,
+.projects-page ul.projects li.project .project-thumbnail {
   margin: 0 0 1em;
 }
-.woothemes-projects ul.projects li.project a,
-.woothemes-projects-page ul.projects li.project a {
+.projects ul.projects li.project a,
+.projects-page ul.projects li.project a {
   text-decoration: none;
 }
-.woothemes-projects ul.projects li.project h3,
-.woothemes-projects-page ul.projects li.project h3 {
+.projects ul.projects li.project h3,
+.projects-page ul.projects li.project h3 {
   margin-bottom: .618em;
 }
-.woothemes-projects ul.projects li.project img,
-.woothemes-projects-page ul.projects li.project img {
+.projects ul.projects li.project img,
+.projects-page ul.projects li.project img {
   width: 100%;
   height: auto;
   -webkit-box-shadow: none;
@@ -94,51 +94,51 @@
   border: 0;
   margin: 0;
 }
-.woothemes-projects ul.projects li.project.first,
-.woothemes-projects-page ul.projects li.project.first {
+.projects ul.projects li.project.first,
+.projects-page ul.projects li.project.first {
   clear: both;
 }
-.woothemes-projects ul.projects li.project.last,
-.woothemes-projects-page ul.projects li.project.last {
+.projects ul.projects li.project.last,
+.projects-page ul.projects li.project.last {
   margin-right: 0;
 }
-.woothemes-projects ul.project-categories,
-.woothemes-projects-page ul.project-categories {
+.projects ul.project-categories,
+.projects-page ul.project-categories {
   margin-left: 0 !important;
   padding: 0 !important;
   list-style: none;
 }
-.woothemes-projects ul.project-categories:after,
-.woothemes-projects-page ul.project-categories:after {
+.projects ul.project-categories:after,
+.projects-page ul.project-categories:after {
   content: "\0020";
   display: block;
   height: 0;
   overflow: hidden;
   clear: both;
 }
-.woothemes-projects ul.project-categories li,
-.woothemes-projects-page ul.project-categories li {
+.projects ul.project-categories li,
+.projects-page ul.project-categories li {
   display: inline-block;
   margin-right: .5em;
   list-style: none;
   margin-left: 0 !important;
 }
-.woothemes-projects ul.project-categories li:after,
-.woothemes-projects-page ul.project-categories li:after {
+.projects ul.project-categories li:after,
+.projects-page ul.project-categories li:after {
   content: "|";
   display: inline-block;
   padding-left: .5em;
 }
-.woothemes-projects ul.project-categories li:last-child:after,
-.woothemes-projects-page ul.project-categories li:last-child:after {
+.projects ul.project-categories li:last-child:after,
+.projects-page ul.project-categories li:last-child:after {
   display: none;
 }
-.woothemes-projects .woothemes-projects-pagination,
-.woothemes-projects-page .woothemes-projects-pagination {
+.projects .projects-pagination,
+.projects-page .projects-pagination {
   text-align: center;
 }
-.woothemes-projects .woothemes-projects-pagination li,
-.woothemes-projects-page .woothemes-projects-pagination li {
+.projects .projects-pagination li,
+.projects-page .projects-pagination li {
   display: inline-block;
   margin: 0 .236em;
 }
@@ -207,7 +207,7 @@
 .projects_list_widget li .project-title {
   float: left;
 }
-.widget_woothemes_projects_categories ul.children {
+.widget_projects_categories ul.children {
   margin-left: 2.618em;
   list-style-type: disc;
 }

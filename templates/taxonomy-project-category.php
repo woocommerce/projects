@@ -2,13 +2,13 @@
 /**
  * The Template for displaying projects in a project category. Simply includes the archive template.
  *
- * Override this template by copying it to yourtheme/woothemes-projects/taxonomy-project-category.php
+ * Override this template by copying it to yourtheme/projects/taxonomy-project-category.php
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-woothemes_projects_get_template( 'archive-project.php' );
+projects_get_template( 'archive-project.php' );

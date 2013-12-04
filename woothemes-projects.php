@@ -8,22 +8,22 @@
  * Author URI: http://woothemes.com/
  *
  * @package WordPress
- * @subpackage Woothemes_Projects
+ * @subpackage Projects
  * @author Matty
  * @since 1.0.0
  */
 
-require_once( 'classes/class-woothemes-projects.php' );
-require_once( 'classes/class-woothemes-projects-taxonomy.php' );
-require_once( 'classes/class-woothemes-projects-shortcodes.php' );
-require_once( 'classes/class-woothemes-projects-settings.php' );
-require_once( 'classes/class-woothemes-widget-projects.php' );
-require_once( 'classes/class-woothemes-widget-project-categories.php' );
+require_once( 'classes/class-projects.php' );
+require_once( 'classes/class-projects-taxonomy.php' );
+require_once( 'classes/class-projects-shortcodes.php' );
+require_once( 'classes/class-projects-settings.php' );
+require_once( 'classes/class-widget-projects.php' );
+require_once( 'classes/class-widget-project-categories.php' );
 
-require_once( 'woothemes-projects-template.php' );
-require_once( 'woothemes-projects-core-functions.php' );
-require_once( 'woothemes-projects-hooks.php' );
+require_once( 'projects-template.php' );
+require_once( 'projects-core-functions.php' );
+require_once( 'projects-hooks.php' );
 
-global $woothemes_projects;
-$woothemes_projects = new Woothemes_Projects( __FILE__ );
-$woothemes_projects->version = '1.0.0';
+global $projects;
+$projects = new Projects( __FILE__ );
+$projects->version = '1.0.0';

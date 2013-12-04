@@ -3,7 +3,7 @@
  * Pagination - Show numbered pagination for catalog pages.
  *
  * @author 		WooThemes
- * @package 	Woothemes_Projects/Templates
+ * @package 	Projects/Templates
  * @version     1.0.0
  */
 
@@ -14,9 +14,9 @@ global $wp_query;
 if ( $wp_query->max_num_pages <= 1 )
 	return;
 ?>
-<nav class="woothemes-projects-pagination">
+<nav class="projects-pagination">
 	<?php
-		echo paginate_links( apply_filters( 'woothemes_projects_pagination_args', array(
+		echo paginate_links( apply_filters( 'projects_pagination_args', array(
 			'base' 			=> str_replace( 999999999, '%#%', get_pagenum_link( 999999999 ) ),
 			'format' 		=> '',
 			'current' 		=> max( 1, get_query_var('paged') ),

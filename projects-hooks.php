@@ -71,9 +71,16 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * @see projects_template_single_description()
 	 * @see projects_template_single_meta()
 	 */
-	add_action( 'projects_single_project_summary', 'projects_template_single_title', 5 );
+	add_action( 'projects_single_project_summary', 'projects_template_single_title', 10 );
 	add_action( 'projects_single_project_summary', 'projects_template_single_description', 20 );
 	add_action( 'projects_single_project_summary', 'projects_template_single_meta', 40 );
+
+	/**
+	 * After Single Project
+	 *
+	 * @see projects_single_pagination()
+	 */
+	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
 
 	/**
 	 * Pagination after showcase loops

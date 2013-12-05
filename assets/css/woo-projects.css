@@ -142,6 +142,9 @@
   display: inline-block;
   margin: 0 .236em;
 }
+.single-project .project {
+  margin-bottom: 1.618em;
+}
 .single-project .project:after {
   content: "\0020";
   display: block;
@@ -182,6 +185,19 @@
 }
 .single-project .project .summary > div {
   font-size: .857em;
+}
+.single-project .projects-single-pagination:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.single-project .projects-single-pagination .previous {
+  float: right;
+}
+.single-project .projects-single-pagination .next {
+  float: left;
 }
 /**
  * Widgets

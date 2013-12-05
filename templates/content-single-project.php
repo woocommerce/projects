@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			/**
 			 * projects_single_project_summary hook
 			 *
-			 * @hooked projects_template_single_title - 5
+			 * @hooked projects_template_single_title - 10
 			 * @hooked projects_template_single_excerpt - 20
 			 * @hooked projects_template_single_meta - 40
 			 */
@@ -56,4 +56,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 </div><!-- #project-<?php the_ID(); ?> -->
 
-<?php do_action( 'projects_after_single_project' ); ?>
+<?php
+	/**
+	 * projects_after_single_project hook
+	 *
+	 * @hooked projects_single_pagination - 10
+	 */
+	do_action( 'projects_after_single_project' );

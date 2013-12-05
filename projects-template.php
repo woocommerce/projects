@@ -302,6 +302,34 @@ if ( ! function_exists( 'projects_pagination' ) ) {
 	}
 }
 
+if ( ! function_exists( 'projects_template_categories' ) ) {
+
+	/**
+	 * Output the project categories.
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function projects_template_categories() {
+		projects_get_template( 'loop/categories.php' );
+	}
+}
+
+if ( ! function_exists( 'projects_template_short_description' ) ) {
+
+	/**
+	 * Output the project short description.
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function projects_template_short_description() {
+		projects_get_template( 'loop/short-description.php' );
+	}
+}
+
 /** Single Project ********************************************************/
 
 if ( ! function_exists( 'projects_show_project_images' ) ) {
@@ -317,6 +345,7 @@ if ( ! function_exists( 'projects_show_project_images' ) ) {
 		projects_get_template( 'single-project/project-image.php' );
 	}
 }
+
 if ( ! function_exists( 'projects_show_project_thumbnails' ) ) {
 
 	/**
@@ -330,6 +359,7 @@ if ( ! function_exists( 'projects_show_project_thumbnails' ) ) {
 		projects_get_template( 'single-project/project-thumbnails.php' );
 	}
 }
+
 if ( ! function_exists( 'projects_template_single_title' ) ) {
 
 	/**
@@ -343,6 +373,7 @@ if ( ! function_exists( 'projects_template_single_title' ) ) {
 		projects_get_template( 'single-project/title.php' );
 	}
 }
+
 if ( ! function_exists( 'projects_template_single_description' ) ) {
 
 	/**
@@ -356,6 +387,7 @@ if ( ! function_exists( 'projects_template_single_description' ) ) {
 		projects_get_template( 'single-project/description.php' );
 	}
 }
+
 if ( ! function_exists( 'projects_template_single_meta' ) ) {
 
 	/**
@@ -369,29 +401,17 @@ if ( ! function_exists( 'projects_template_single_meta' ) ) {
 		projects_get_template( 'single-project/meta.php' );
 	}
 }
-if ( ! function_exists( 'projects_template_categories' ) ) {
+
+if ( ! function_exists( 'projects_single_pagination' ) ) {
 
 	/**
-	 * Output the project categories.
+	 * Output the project pagination.
 	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
 	 */
-	function projects_template_categories() {
-		projects_get_template( 'loop/categories.php' );
-	}
-}
-if ( ! function_exists( 'projects_template_short_description' ) ) {
-
-	/**
-	 * Output the project short description.
-	 *
-	 * @access public
-	 * @subpackage	Project
-	 * @return void
-	 */
-	function projects_template_short_description() {
-		projects_get_template( 'loop/short-description.php' );
+	function projects_single_pagination() {
+		projects_get_template( 'single-project/pagination.php' );
 	}
 }

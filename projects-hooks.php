@@ -58,11 +58,9 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	/**
 	 * Before Single Projects Summary Div
 	 *
-	 * @see projects_show_project_images()
-	 * @see projects_show_project_thumbnails()
+	 * @see projects_template_single_gallery()
 	 */
-	add_action( 'projects_before_single_project_summary', 'projects_show_project_images', 20 );
-	add_action( 'projects_project_thumbnails', 'projects_show_project_thumbnails', 20 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 20 );
 
 	/**
 	 * Project Summary Box

@@ -152,14 +152,14 @@
   overflow: hidden;
   clear: both;
 }
-.single-project .project .images {
+.single-project .project .gallery {
   width: 60%;
   float: left;
 }
-.single-project .project .images a {
+.single-project .project .gallery a {
   display: block;
 }
-.single-project .project .images img {
+.single-project .project .gallery img {
   -webkit-border-radius: 0;
   border-radius: 0;
   -moz-background-clip: padding;
@@ -199,23 +199,27 @@
   overflow: hidden;
   clear: both;
 }
-.single-project .projects-single-pagination .previous:before,
-.single-project .projects-single-pagination .next:before,
-.single-project .projects-single-pagination .previous:after,
-.single-project .projects-single-pagination .next:after {
+.single-project .projects-single-pagination .previous a,
+.single-project .projects-single-pagination .next a {
+  text-decoration: none;
+}
+.single-project .projects-single-pagination .previous a:before,
+.single-project .projects-single-pagination .next a:before,
+.single-project .projects-single-pagination .previous a:after,
+.single-project .projects-single-pagination .next a:after {
   vertical-align: top;
   font-family: 'dashicons';
 }
 .single-project .projects-single-pagination .previous {
   float: right;
 }
-.single-project .projects-single-pagination .previous:after {
+.single-project .projects-single-pagination .previous a:after {
   content: "\f344";
 }
 .single-project .projects-single-pagination .next {
   float: left;
 }
-.single-project .projects-single-pagination .next:before {
+.single-project .projects-single-pagination .next a:before {
   content: "\f340";
 }
 /**

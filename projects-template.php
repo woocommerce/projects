@@ -332,31 +332,17 @@ if ( ! function_exists( 'projects_template_short_description' ) ) {
 
 /** Single Project ********************************************************/
 
-if ( ! function_exists( 'projects_show_project_images' ) ) {
+if ( ! function_exists( 'projects_template_single_gallery' ) ) {
 
 	/**
-	 * Output the project image before the single project summary.
+	 * Output the project gallery before the single project summary.
 	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
 	 */
-	function projects_show_project_images() {
-		projects_get_template( 'single-project/project-image.php' );
-	}
-}
-
-if ( ! function_exists( 'projects_show_project_thumbnails' ) ) {
-
-	/**
-	 * Output the project thumbnails.
-	 *
-	 * @access public
-	 * @subpackage	Project
-	 * @return void
-	 */
-	function projects_show_project_thumbnails() {
-		projects_get_template( 'single-project/project-thumbnails.php' );
+	function projects_template_single_gallery() {
+		projects_get_template( 'single-project/project-gallery.php' );
 	}
 }
 

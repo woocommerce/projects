@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		/**
 		 * projects_show_project_images hook
 		 *
-		 * @hooked projects_show_project_images - 20
+		 * @hooked projects_template_single_gallery - 20
 		 */
 		do_action( 'projects_before_single_project_summary' );
 	?>

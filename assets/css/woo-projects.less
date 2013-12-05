@@ -103,7 +103,7 @@
 		.clearfix;
 		margin-bottom: 1.618em;
 
-		.images {
+		.gallery {
 			width: 60%;
 			float: left;
 			a {
@@ -146,8 +146,12 @@
 
 		.previous,
 		.next {
-			&:before,
-			&:after {
+			a {
+				text-decoration: none;
+			}
+
+			a:before,
+			a:after {
 				vertical-align: top;
 				font-family: 'dashicons';
 			}
@@ -156,7 +160,7 @@
 		.previous {
 			float: right;
 
-			&:after {
+			a:after {
 				content: "\f344";
 			}
 		}
@@ -164,7 +168,7 @@
 		.next {
 			float: left;
 
-			&:before {
+			a:before {
 				content: "\f340";
 			}
 		}

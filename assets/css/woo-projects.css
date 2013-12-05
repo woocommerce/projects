@@ -186,6 +186,12 @@
 .single-project .project .summary > div {
   font-size: .857em;
 }
+.single-project .project .summary .categories:before {
+  font-family: 'dashicons';
+  vertical-align: top;
+  content: "\f318";
+  margin-right: .618em;
+}
 .single-project .projects-single-pagination:after {
   content: "\0020";
   display: block;
@@ -193,11 +199,24 @@
   overflow: hidden;
   clear: both;
 }
+.single-project .projects-single-pagination .previous:before,
+.single-project .projects-single-pagination .next:before,
+.single-project .projects-single-pagination .previous:after,
+.single-project .projects-single-pagination .next:after {
+  vertical-align: top;
+  font-family: 'dashicons';
+}
 .single-project .projects-single-pagination .previous {
   float: right;
 }
+.single-project .projects-single-pagination .previous:after {
+  content: "\f344";
+}
 .single-project .projects-single-pagination .next {
   float: left;
+}
+.single-project .projects-single-pagination .next:before {
+  content: "\f340";
 }
 /**
  * Widgets

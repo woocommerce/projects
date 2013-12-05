@@ -130,17 +130,43 @@
 			> div {
 				font-size: .857em;
 			}
+
+			.categories {
+				&:before {
+					font-family: 'dashicons';
+					vertical-align: top;
+					content: "\f318";
+					margin-right: .618em;
+				}
+			}
 		}
 	}
 	.projects-single-pagination {
 		.clearfix;
 
+		.previous,
+		.next {
+			&:before,
+			&:after {
+				vertical-align: top;
+				font-family: 'dashicons';
+			}
+		}
+
 		.previous {
 			float: right;
+
+			&:after {
+				content: "\f344";
+			}
 		}
 
 		.next {
 			float: left;
+
+			&:before {
+				content: "\f340";
+			}
 		}
 	}
 }

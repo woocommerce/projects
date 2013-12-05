@@ -429,10 +429,20 @@ add_action( 'save_post', 'projects_category_image_flush_transient' );
  */
 function projects_script() {
 
+	// Register projects CSS
 	wp_register_style( 'projects-styles', plugins_url( '/assets/css/woo-projects.css', __FILE__ ) );
 	wp_register_style( 'projects-handheld', plugins_url( '/assets/css/woo-projects-handheld.css', __FILE__ ) );
 
-	wp_enqueue_style( 'projects-styles' );
-	wp_enqueue_style( 'projects-handheld' );
+	if ( apply_filters( 'projects_enqueue_styles', true ) ) {
+
+		// Load Main styles
+		wp_enqueue_style( 'projects-styles' );
+
+		// Load styles applied to handheld devices
+		wp_enqueue_style( 'projects-handheld' );
+
+		// Load Dashicons
+		wp_enqueue_style( 'dashicons' );
+	}
 
 }

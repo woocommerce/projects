@@ -332,6 +332,20 @@ if ( ! function_exists( 'projects_template_short_description' ) ) {
 
 /** Single Project ********************************************************/
 
+if ( ! function_exists( 'projects_template_single_feature' ) ) {
+
+	/**
+	 * Output the project feature before the single project summary.
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function projects_template_single_feature() {
+		projects_get_template( 'single-project/project-feature.php' );
+	}
+}
+
 if ( ! function_exists( 'projects_template_single_gallery' ) ) {
 
 	/**

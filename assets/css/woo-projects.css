@@ -152,14 +152,23 @@
   overflow: hidden;
   clear: both;
 }
-.single-project .project .gallery {
+.single-project .project .summary .single-project-categories li:before {
+  font-family: 'dashicons';
+  vertical-align: top;
+  content: "\f318";
+  margin-right: .618em;
+}
+.single-project .single-featured {
+  margin-bottom: 1.618em;
+}
+.single-project.has-gallery .gallery {
   width: 60%;
   float: left;
 }
-.single-project .project .gallery a {
+.single-project.has-gallery .gallery a {
   display: block;
 }
-.single-project .project .gallery img {
+.single-project.has-gallery .gallery img {
   -webkit-border-radius: 0;
   border-radius: 0;
   -moz-background-clip: padding;
@@ -172,10 +181,10 @@
   box-shadow: none;
   display: block;
 }
-.single-project .project .summary {
+.single-project.has-gallery .summary {
   width: 40%;
-  padding: 0 0 0 2.618em;
   float: right;
+  padding: 0 0 0 2.618em;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -183,14 +192,24 @@
   box-sizing: border-box;
   /* Opera/IE 8+ */
 }
-.single-project .project .summary > div {
+.single-project.has-gallery .summary > div {
   font-size: .857em;
 }
-.single-project .project .summary .categories:before {
-  font-family: 'dashicons';
-  vertical-align: top;
-  content: "\f318";
-  margin-right: .618em;
+.single-project.no-gallery .summary:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.single-project.no-gallery .summary .project_title,
+.single-project.no-gallery .summary .single-project-description {
+  width: 70%;
+  float: left;
+}
+.single-project.no-gallery .summary .project-meta {
+  width: 26.2%;
+  float: right;
 }
 .single-project .projects-single-pagination:after {
   content: "\0020";

@@ -58,8 +58,10 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	/**
 	 * Before Single Projects Summary Div
 	 *
+	 * @see  projects_template_single_feature()
 	 * @see projects_template_single_gallery()
 	 */
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_feature', 10 );
 	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 20 );
 
 	/**

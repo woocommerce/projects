@@ -148,8 +148,8 @@ class Projects_Settings {
 		$input['project-archive']['width'] 		= absint( $input['project-archive']['width'] );
 		$input['project-archive']['height'] 	= absint( $input['project-archive']['height'] );
 
-		$input['project-single']['width'] 		= absint( $input['project-single']['single'] );
-		$input['project-single']['height'] 		= absint( $input['project-single']['single'] );
+		$input['project-single']['width'] 		= absint( $input['project-single']['width'] );
+		$input['project-single']['height'] 		= absint( $input['project-single']['height'] );
 
 		$input['project-thumbnail']['width'] 	= absint( $input['project-thumbnail']['width'] );
 		$input['project-thumbnail']['height'] 	= absint( $input['project-thumbnail']['height'] );

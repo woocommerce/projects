@@ -452,7 +452,9 @@ function projects_script() {
 		wp_enqueue_style( 'projects-handheld' );
 
 		// Load Dashicons
-		wp_enqueue_style( 'dashicons' );
+		if ( is_project() ) {
+			wp_enqueue_style( 'dashicons' );
+		}
 	}
 
 }

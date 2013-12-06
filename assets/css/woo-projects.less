@@ -189,19 +189,13 @@
 			a {
 				text-decoration: none;
 			}
-
-			a:before,
-			a:after {
-				vertical-align: top;
-				font-family: 'dashicons';
-			}
 		}
 
 		.previous {
 			float: right;
 
 			a:after {
-				content: "\f344";
+				.iconafter( "\f344" );
 			}
 		}
 
@@ -209,7 +203,7 @@
 			float: left;
 
 			a:before {
-				content: "\f340";
+				.iconbefore( "\f340" );
 			}
 		}
 	}

@@ -239,23 +239,22 @@
 .single-project .projects-single-pagination .next a {
   text-decoration: none;
 }
-.single-project .projects-single-pagination .previous a:before,
-.single-project .projects-single-pagination .next a:before,
-.single-project .projects-single-pagination .previous a:after,
-.single-project .projects-single-pagination .next a:after {
-  vertical-align: top;
-  font-family: 'dashicons';
-}
 .single-project .projects-single-pagination .previous {
   float: right;
 }
 .single-project .projects-single-pagination .previous a:after {
+  font-family: 'dashicons';
+  vertical-align: top;
+  margin-left: .618em;
   content: "\f344";
 }
 .single-project .projects-single-pagination .next {
   float: left;
 }
 .single-project .projects-single-pagination .next a:before {
+  font-family: 'dashicons';
+  vertical-align: top;
+  margin-right: .618em;
   content: "\f340";
 }
 /**

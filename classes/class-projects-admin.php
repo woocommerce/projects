@@ -29,12 +29,12 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function __construct ( $file ) {
-		$this->dir = dirname( $file );
-		$this->file = $file;
-		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
-		$this->token = 'projects';
-		$this->post_type = 'project';
+		$this->dir 			= dirname( $file );
+		$this->file 		= $file;
+		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
+		$this->assets_url 	= esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->token 		= 'projects';
+		$this->post_type 	= 'project';
 
 		global $pagenow;
 
@@ -124,20 +124,20 @@ class Projects_Admin {
 	  global $post, $post_ID;
 
 	  $messages[$this->post_type] = array(
-	    0 => '', // Unused. Messages start at index 1.
-	    1 => sprintf( __( 'Project updated. %sView project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    2 => __( 'Custom field updated.', 'projects' ),
-	    3 => __( 'Custom field deleted.', 'projects' ),
-	    4 => __( 'Project updated.', 'projects' ),
+	    0 	=> '', // Unused. Messages start at index 1.
+	    1 	=> sprintf( __( 'Project updated. %sView project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    2 	=> __( 'Custom field updated.', 'projects' ),
+	    3 	=> __( 'Custom field deleted.', 'projects' ),
+	    4 	=> __( 'Project updated.', 'projects' ),
 	    /* translators: %s: date and time of the revision */
-	    5 => isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'projects' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 => sprintf( __( 'Project published. %sView Project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    7 => __('Project saved.'),
-	    8 => sprintf( __( 'Project submitted. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 => sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'projects' ),
+	    5 	=> isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'projects' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 	=> sprintf( __( 'Project published. %sView Project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    7 	=> __( 'Project saved.' ),
+	    8 	=> sprintf( __( 'Project submitted. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    9 	=> sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'projects' ),
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 => sprintf( __( 'Project draft updated. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	    10 	=> sprintf( __( 'Project draft updated. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
 	  );
 
 	  return $messages;
@@ -166,7 +166,7 @@ class Projects_Admin {
 	 */
 	public function meta_box_content () {
 		global $post_id;
-		$fields = get_post_custom( $post_id );
+		$fields 	= get_post_custom( $post_id );
 		$field_data = $this->get_custom_fields_settings();
 
 		$html = '';
@@ -241,13 +241,13 @@ class Projects_Admin {
 
 				// Uploading files
 				var project_gallery_frame;
-				var $image_gallery_ids = $( '#project_image_gallery' );
-				var $project_images = $( '#project_images_container ul.project_images' );
+				var $image_gallery_ids 	= $( '#project_image_gallery' );
+				var $project_images 	= $( '#project_images_container ul.project_images' );
 
 				jQuery( '.add_project_images' ).on( 'click', 'a', function( event ) {
 
-					var $el = $(this);
-					var attachment_ids = $image_gallery_ids.val();
+					var $el 			= $(this);
+					var attachment_ids 	= $image_gallery_ids.val();
 
 					event.preventDefault();
 
@@ -270,7 +270,7 @@ class Projects_Admin {
 					// When an image is selected, run a callback.
 					project_gallery_frame.on( 'select', function() {
 
-						var selection = project_gallery_frame.state().get('selection');
+						var selection = project_gallery_frame.state().get( 'selection' );
 
 						selection.map( function( attachment ) {
 
@@ -308,15 +308,15 @@ class Projects_Admin {
 					opacity: 0.65,
 					placeholder: 'projects-metabox-sortable-placeholder',
 					start:function(event,ui){
-						ui.item.css('background-color','#f6f6f6');
+						ui.item.css( 'background-color','#f6f6f6' );
 					},
 					stop:function(event,ui){
-						ui.item.removeAttr('style');
+						ui.item.removeAttr( 'style' );
 					},
 					update: function(event, ui) {
 						var attachment_ids = '';
 
-						$('#project_images_container ul li.image').css('cursor','default').each(function() {
+						$( '#project_images_container ul li.image' ).css( 'cursor','default' ).each(function() {
 							var attachment_id = jQuery(this).attr( 'data-attachment_id' );
 							attachment_ids = attachment_ids + attachment_id + ',';
 						});
@@ -326,13 +326,13 @@ class Projects_Admin {
 				});
 
 				// Remove images
-				$('#project_images_container').on( 'click', 'a.delete', function() {
+				$( '#project_images_container' ).on( 'click', 'a.delete', function() {
 
-					$(this).closest('li.image').remove();
+					$(this).closest( 'li.image' ).remove();
 
 					var attachment_ids = '';
 
-					$('#project_images_container ul li.image').css('cursor','default').each(function() {
+					$( '#project_images_container ul li.image' ).css( 'cursor','default' ).each(function() {
 						var attachment_id = jQuery(this).attr( 'data-attachment_id' );
 						attachment_ids = attachment_ids + attachment_id + ',';
 					});
@@ -373,8 +373,8 @@ class Projects_Admin {
 			}
 		}
 
-		$field_data = $this->get_custom_fields_settings();
-		$fields = array_keys( $field_data );
+		$field_data 	= $this->get_custom_fields_settings();
+		$fields 		= array_keys( $field_data );
 
 		foreach ( $fields as $f ) {
 

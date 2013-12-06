@@ -107,11 +107,26 @@
 		.summary {
 			.single-project-categories {
 				li:before {
-					font-family: 'dashicons';
-					vertical-align: top;
-					content: "\f318";
-					margin-right: .618em;
+					.iconbefore( "\f318" );
 				}
+			}
+
+			.client-name {
+				&:before {
+					.iconbefore( "\f338" );
+				}
+			}
+
+			.project-url {
+				&:before {
+					.iconbefore( "\f319" );
+				}
+			}
+
+			.single-project-categories,
+			.url,
+			.client {
+				margin-bottom: 1.618em;
 			}
 		}
 	}

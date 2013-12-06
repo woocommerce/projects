@@ -155,8 +155,25 @@
 .single-project .project .summary .single-project-categories li:before {
   font-family: 'dashicons';
   vertical-align: top;
-  content: "\f318";
   margin-right: .618em;
+  content: "\f318";
+}
+.single-project .project .summary .client-name:before {
+  font-family: 'dashicons';
+  vertical-align: top;
+  margin-right: .618em;
+  content: "\f338";
+}
+.single-project .project .summary .project-url:before {
+  font-family: 'dashicons';
+  vertical-align: top;
+  margin-right: .618em;
+  content: "\f319";
+}
+.single-project .project .summary .single-project-categories,
+.single-project .project .summary .url,
+.single-project .project .summary .client {
+  margin-bottom: 1.618em;
 }
 .single-project .single-featured {
   margin-bottom: 1.618em;

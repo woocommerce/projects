@@ -407,12 +407,20 @@ class Projects_Admin {
 	public function get_custom_fields_settings () {
 		$fields = array();
 
+		$fields['client'] = array(
+		    'name' 			=> __( 'Client', 'projects' ),
+		    'description' 	=> __( 'Enter the client name for this project.', 'projects' ),
+		    'type' 			=> 'text',
+		    'default' 		=> '',
+		    'section' 		=> 'info'
+		);
+
 		$fields['url'] = array(
-		    'name' => __( 'URL', 'projects' ),
-		    'description' => __( 'Enter a URL that applies to this project (for example: http://woothemes.com/).', 'projects' ),
-		    'type' => 'url',
-		    'default' => '',
-		    'section' => 'info'
+		    'name' 			=> __( 'URL', 'projects' ),
+		    'description' 	=> __( 'Enter a URL that applies to this project.', 'projects' ),
+		    'type' 			=> 'url',
+		    'default' 		=> '',
+		    'section' 		=> 'info'
 		);
 
 		return $fields;

@@ -88,7 +88,7 @@ class Projects_Settings {
 
 	public function projects_images_settings() {
 		?>
-		<p><?php _e ( 'These settings affect the actual dimensions of images in your catalog – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to' , 'projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'projects' ); ?></a>.</p>
+		<p><?php _e ( 'These settings affect the actual dimensions of images in your projects – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to' , 'projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'projects' ); ?></a>.</p>
 		<?php
 
 			$options = get_option( 'projects' );

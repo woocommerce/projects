@@ -423,7 +423,7 @@ class Projects_Admin {
 		    'section' 		=> 'info'
 		);
 
-		return $fields;
+		return apply_filters( 'projects_custom_fields', $fields );
 	} // End get_custom_fields_settings()
 
 	/**

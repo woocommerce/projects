@@ -170,8 +170,6 @@ class Projects {
 				add_image_size( $image_size, $size['width'], $size['height'] );
 			}
 
-			print_r($options);
-
 		}
 	} // End register_image_sizes()
 

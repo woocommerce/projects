@@ -159,7 +159,7 @@ class Projects {
 				'project-thumbnail' => array(
 											'width' 	=> 100,
 											'height'	=> 100
-										)				
+										)
 			) );
 
 			// Parse incomming $options into an array and merge it with $defaults

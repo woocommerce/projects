@@ -17,7 +17,7 @@ global $post;
 	<?php
 		if ( has_post_thumbnail() ) {
 
-			$image       		= get_the_post_thumbnail( $post->ID, apply_filters( 'single_project_large_thumbnail_size', 'showcase_single' ) );
+			$image       		= get_the_post_thumbnail( $post->ID, apply_filters( 'single_project_large_thumbnail_size', 'project-single' ) );
 			$image_title 		= esc_attr( get_the_title( get_post_thumbnail_id() ) );
 			$image_link  		= wp_get_attachment_url( get_post_thumbnail_id() );
 			$attachment_count   = count( projects_get_gallery_attachment_ids() );

@@ -60,7 +60,7 @@
 }
 .projects ul.projects li.project,
 .projects-page ul.projects li.project {
-  margin: 0 0 1.618em;
+  margin: 0 0 2.618em;
   padding: 0;
   width: 48%;
   float: left;
@@ -80,7 +80,7 @@
 }
 .projects ul.projects li.project img,
 .projects-page ul.projects li.project img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -92,7 +92,8 @@
   background-clip: padding-box;
   padding: 0;
   border: 0;
-  margin: 0;
+  margin: 0 auto;
+  display: block;
 }
 .projects ul.projects li.project.first,
 .projects-page ul.projects li.project.first {

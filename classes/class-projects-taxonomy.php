@@ -63,10 +63,10 @@ class Projects_Taxonomy {
 	 * @param   array  $args     Array of argument overrides.
 	 */
 	public function __construct ( $token = 'project-category', $singular = '', $plural = '', $args = array() ) {
-		$this->post_type = 'project';
-		$this->token = esc_attr( $token );
-		$this->singular = esc_html( $singular );
-		$this->plural = esc_html( $plural );
+		$this->post_type 	= 'project';
+		$this->token 		= esc_attr( $token );
+		$this->singular 	= esc_html( $singular );
+		$this->plural 		= esc_html( $plural );
 
 		if ( '' == $this->singular ) $this->singular = __( 'Category', 'projects' );
 		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'projects' );

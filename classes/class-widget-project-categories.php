@@ -39,7 +39,7 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->projects_widget_cssclass 	= 'widget_projects_categories';
-		$this->projects_widget_description = __( 'Project Categories', 'projects' );
+		$this->projects_widget_description 	= __( 'Project Categories', 'projects' );
 		$this->projects_widget_idbase 		= 'woothemes-project-categories';
 		$this->projects_widget_title 		= __( 'Project Categories', 'projects' );
 

@@ -38,7 +38,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->projects_widget_cssclass 	= 'widget_projects_items';
-		$this->projects_widget_description = __( 'Recent projects listed on your site.', 'projects' );
+		$this->projects_widget_description 	= __( 'Recent projects listed on your site.', 'projects' );
 		$this->projects_widget_idbase 		= 'projects';
 		$this->projects_widget_title 		= __( 'Recent Projects', 'projects' );
 

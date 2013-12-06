@@ -144,9 +144,34 @@ class Projects {
 	 */
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'project-thumbnail', 100, 9999 ); 	// Thumbs
-			add_image_size( 'project-category', 300, 9999 ); 	// Archive
-			add_image_size( 'project-single', 1024, 9999 ); 	// Single
+
+			$options = get_option( 'projects' );
+
+			$defaults = apply_filters( 'projects_default_image_size', array(
+				'project-archive' 	=> array(
+											'width' 	=> 300,
+											'height'	=> 300
+										),
+				'project-single' 	=> array(
+											'width' 	=> 1024,
+											'height'	=> 1024
+										),
+				'project-thumbnail' => array(
+											'width' 	=> 100,
+											'height'	=> 100
+										)				
+			) );
+
+			// Parse incomming $options into an array and merge it with $defaults
+			$options = wp_parse_args( $options, $defaults );
+
+			// Register each image size
+			foreach ( $options as $image_size => $size ) {
+				add_image_size( $image_size, $size['width'], $size['height'] );
+			}
+
+			print_r($options);
+
 		}
 	} // End register_image_sizes()
 
@@ -307,10 +332,12 @@ class Projects {
 	 */
 	public function get_image_size ( $image_size ) {
 		// Only return sizes we define in settings
-		if ( ! in_array( $image_size, array( 'project-thumbnail', 'project-category', 'project-single' ) ) )
+		if ( ! in_array( $image_size, array( 'project-thumbnail', 'project-archive', 'project-single' ) ) )
 			return apply_filters( 'projects_get_image_size_' . $image_size, '' );
 
-		$size = get_option( $image_size . '_image_size', array() );
+		// Get image size from options
+		$options = get_option( 'projects', array() );
+		$size = $options[ $image_size ];
 
 		$size['width'] 	= isset( $size['width'] ) ? $size['width'] : '300';
 		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';

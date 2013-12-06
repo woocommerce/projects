@@ -90,20 +90,26 @@ class Projects_Settings {
 		?>
 		<p><?php _e ( 'These settings affect the actual dimensions of images in your catalog – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to' , 'projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'projects' ); ?></a>.</p>
 		<?php
+
 			$options = get_option( 'projects' );
 
-			$defaults 	= array(
-			    'archive_image_width' 	=> 300,
-			    'archive_image_height' 	=> 300,
-			    'single_image_width' 	=> 1024,
-			    'single_image_height' 	=> 1024,
-			    'thumb_width' 			=> 100,
-			    'thumb_height' 			=> 100,
-			);
+			$defaults = apply_filters( 'projects_default_image_size', array(
+				'project-archive' 	=> array(
+											'width' 	=> 300,
+											'height'	=> 300
+										),
+				'project-single' 	=> array(
+											'width' 	=> 1024,
+											'height'	=> 1024
+										),
+				'project-thumbnail' => array(
+											'width' 	=> 100,
+											'height'	=> 100
+										)				
+			) );
 
 			// Parse incomming $options into an array and merge it with $defaults
-			// @todo: make this work
-			$newoptions = wp_parse_args( $options, $defaults );
+			$options = wp_parse_args( $options, $defaults );
 
 		?>
 		<table class="form-table">
@@ -112,7 +118,7 @@ class Projects_Settings {
 					<?php _e( 'Archive Images', 'projects' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[archive_image_width]" value="<?php echo $options['archive_image_width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[archive_image_height]" value="<?php echo $options['archive_image_height']; ?>" />
+					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[project-archive][width]" value="<?php echo $options['project-archive']['width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[project-archive][height]" value="<?php echo $options['project-archive']['height']; ?>" />
 				</td>
 			</tr>
 			<tr valign="top">
@@ -120,7 +126,7 @@ class Projects_Settings {
 					<?php _e( 'Single Images', 'projects' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[single_image_width]" value="<?php echo $options['single_image_width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[single_image_height]" value="<?php echo $options['single_image_width']; ?>" />
+					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[project-single][width]" value="<?php echo $options['project-single']['width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[project-single][height]" value="<?php echo $options['project-single']['height']; ?>" />
 				</td>
 			</tr>
 			<tr valign="top">
@@ -128,7 +134,7 @@ class Projects_Settings {
 					<?php _e( 'Thumbnails', 'projects' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[thumb_width]" value="<?php echo $options['thumb_width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[thumb_height]" value="<?php echo $options['thumb_height']; ?>" />
+					<?php _e( 'Width:', 'projects' ); ?> <input type="text" size="3" name="projects[project-thumbnail][width]" value="<?php echo $options['project-thumbnail']['width']; ?>" /> <?php _e( 'Height:', 'projects' ); ?> <input type="text" size="3" name="projects[project-thumbnail][height]" value="<?php echo $options['project-thumbnail']['height']; ?>" />
 				</td>
 			</tr>
 		</table>
@@ -137,16 +143,16 @@ class Projects_Settings {
 
 	public function projects_main_settings_validate( $input ) {
 
-		$input['projects_showcase_page_id'] = absint( $input['projects_showcase_page_id'] );
+		$input['projects_showcase_page_id']		= absint( $input['projects_showcase_page_id'] );
 
-		$input['archive_image_width'] 		= absint( $input['archive_image_width'] );
-		$input['archive_image_height'] 		= absint( $input['archive_image_height'] );
+		$input['project-archive']['width'] 		= absint( $input['project-archive']['width'] );
+		$input['project-archive']['height'] 	= absint( $input['project-archive']['height'] );
 
-		$input['single_image_width'] 		= absint( $input['single_image_width'] );
-		$input['single_image_height'] 		= absint( $input['single_image_height'] );
+		$input['project-single']['width'] 		= absint( $input['project-archive']['single'] );
+		$input['project-single']['height'] 		= absint( $input['project-archive']['single'] );
 
-		$input['thumb_width'] 				= absint( $input['thumb_width'] );
-		$input['thumb_height'] 				= absint( $input['thumb_height'] );
+		$input['project-thumbnail']['width'] 	= absint( $input['project-thumbnail']['width'] );
+		$input['project-thumbnail']['height'] 	= absint( $input['project-thumbnail']['height'] );
 
 		return $input;
 	}

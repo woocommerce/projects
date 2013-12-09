@@ -264,13 +264,11 @@ if ( ! function_exists( 'projects_get_project_thumbnail' ) ) {
 	 * @param int $placeholder_height (default: 0)
 	 * @return string
 	 */
-	function projects_get_project_thumbnail( $size = 'project-archive', $placeholder_width = 0, $placeholder_height = 0  ) {
+	function projects_get_project_thumbnail( $size = 'project-archive' ) {
 		global $post;
 
 		if ( has_post_thumbnail() )
 			return get_the_post_thumbnail( $post->ID, $size );
-		elseif ( projects_placeholder_img_src() )
-			return projects_placeholder_img( $size );
 	}
 }
 

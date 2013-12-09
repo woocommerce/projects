@@ -292,34 +292,6 @@ function projects_project_post_type_link( $permalink, $post ) {
 add_filter( 'post_type_link', 'projects_project_post_type_link', 10, 2 );
 
 /**
- * Get the placeholder image URL for projects etc
- *
- * @access public
- * @since  1.0.0
- * @return string
- */
-function projects_placeholder_img_src () {
-	global $projects;
-
-	return apply_filters('projects_placeholder_img_src', $projects->plugin_url() . '/assets/images/placeholder.png' );
-} // End projects_placeholder_img_src()
-
-/**
- * Get the placeholder image
- *
- * @access public
- * @since  1.0.0
- * @return string
- */
-function projects_placeholder_img ( $size = 'project-thumbnail' ) {
-	global $projects;
-
-	$dimensions = $projects->get_image_size( $size );
-
-	return apply_filters('projects_placeholder_img', '<img src="' . projects_placeholder_img_src() . '" alt="Placeholder" width="' . $dimensions['width'] . '" height="' . $dimensions['height'] . '" />' );
-} // End projects_placeholder_img()
-
-/**
  * projects_get_gallery_attachment_ids function.
  *
  * @access public

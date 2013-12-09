@@ -30,10 +30,6 @@ global $post;
 
 			echo $image;
 
-		} else {
-
-			echo apply_filters( 'projects_single_project_image_html', sprintf( '<img src="%s" alt="Placeholder" />', projects_placeholder_img_src() ), $post->ID );
-
 		}
 
 	 ?>

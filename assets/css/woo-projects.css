@@ -153,6 +153,9 @@
   overflow: hidden;
   clear: both;
 }
+.single-project .project .single-project-short-description {
+  margin-bottom: 1.618em;
+}
 .single-project .project .summary .single-project-categories li:before {
   font-family: 'dashicons';
   vertical-align: top;

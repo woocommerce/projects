@@ -58,22 +58,24 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	/**
 	 * Before Single Projects Summary Div
 	 *
-	 * @see  projects_template_single_feature()
+	 * @see projects_template_single_title()
+	 * @see projects_template_single_short_description()
+	 * @see projects_template_single_feature()
 	 * @see projects_template_single_gallery()
 	 */
-	add_action( 'projects_before_single_project_summary', 'projects_template_single_feature', 10 );
-	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 20 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_title', 10 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_short_description', 20 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_feature', 20 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 30 );
 
 	/**
 	 * Project Summary Box
 	 *
-	 * @see projects_template_single_title()
 	 * @see projects_template_single_description()
 	 * @see projects_template_single_meta()
 	 */
-	add_action( 'projects_single_project_summary', 'projects_template_single_title', 10 );
-	add_action( 'projects_single_project_summary', 'projects_template_single_description', 20 );
-	add_action( 'projects_single_project_summary', 'projects_template_single_meta', 40 );
+	add_action( 'projects_single_project_summary', 'projects_template_single_description', 10 );
+	add_action( 'projects_single_project_summary', 'projects_template_single_meta', 20 );
 
 	/**
 	 * After Single Project

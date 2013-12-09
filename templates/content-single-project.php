@@ -25,8 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<?php
 		/**
 		 * projects_show_project_images hook
-		 *
-		 * @hooked projects_template_single_gallery - 20
+		 * @hooked projects_template_single_title - 10
+		 * @hooked projects_template_single_short_description - 20
+	 	 * @hooked projects_template_single_feature - 30
+	 	 * @hooked projects_template_single_gallery - 40
 		 */
 		do_action( 'projects_before_single_project_summary' );
 	?>
@@ -37,9 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			/**
 			 * projects_single_project_summary hook
 			 *
-			 * @hooked projects_template_single_title - 10
-			 * @hooked projects_template_single_excerpt - 20
-			 * @hooked projects_template_single_meta - 40
+			 * @hooked projects_template_single_description - 10
+			 * @hooked projects_template_single_meta - 20
 			 */
 			do_action( 'projects_single_project_summary' );
 		?>

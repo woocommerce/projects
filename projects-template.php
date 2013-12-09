@@ -358,10 +358,24 @@ if ( ! function_exists( 'projects_template_single_title' ) ) {
 	}
 }
 
-if ( ! function_exists( 'projects_template_single_description' ) ) {
+if ( ! function_exists( 'projects_template_single_short_description' ) ) {
 
 	/**
 	 * Output the project short description (excerpt).
+	 *
+	 * @access public
+	 * @subpackage	Project
+	 * @return void
+	 */
+	function projects_template_single_short_description() {
+		projects_get_template( 'single-project/short-description.php' );
+	}
+}
+
+if ( ! function_exists( 'projects_template_single_description' ) ) {
+
+	/**
+	 * Output the project description.
 	 *
 	 * @access public
 	 * @subpackage	Project

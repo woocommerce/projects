@@ -38,9 +38,14 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->projects_widget_cssclass 	= 'widget_projects_items';
-		$this->projects_widget_description 	= __( 'Recent projects listed on your site.', 'projects' );
+		$this->projects_widget_description = __( 'Recent projects listed on your site.', 'projects' );
 		$this->projects_widget_idbase 		= 'projects';
 		$this->projects_widget_title 		= __( 'Recent Projects', 'projects' );
+
+		// Cache
+		add_action( 'save_post', array($this, 'flush_widget_cache') );
+		add_action( 'deleted_post', array($this, 'flush_widget_cache') );
+		add_action( 'switch_theme', array($this, 'flush_widget_cache') );
 
 		/* Widget settings. */
 		$widget_ops = array(
@@ -65,6 +70,22 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
+
+		$cache = wp_cache_get('widget_projects_items', 'widget');
+
+		if ( !is_array($cache) )
+			$cache = array();
+
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = $this->id;
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		ob_start();
+
 		extract( $args, EXTR_SKIP );
 
 		/* Our variables from the widget settings. */
@@ -117,6 +138,10 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->projects_widget_cssclass . '_bottom' );
 
+		$cache[$args['widget_id']] = ob_get_flush();
+
+		wp_cache_set('widget_projects_items', $cache, 'widget');
+
 	} // End widget()
 
 	/**
@@ -134,6 +159,12 @@ class Woothemes_Widget_Projects extends WP_Widget {
 
 		/* Make sure the integer values are definitely integers. */
 		$instance['limit'] 			= intval( $new_instance['limit'] );
+
+		/* Flush cache. */
+		$this->flush_widget_cache();
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset($alloptions['widget_projects_items']) )
+			delete_option('widget_projects_items');
 
 		return $instance;
 	} // End update()
@@ -168,6 +199,15 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		</p>
 <?php
 	} // End form()
+
+	/**
+	 * Flush widget cache
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function flush_widget_cache() {
+		wp_cache_delete('widget_projects_items', 'widget');
+	}
 
 } // End Class
 

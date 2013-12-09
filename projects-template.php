@@ -272,20 +272,6 @@ if ( ! function_exists( 'projects_get_project_thumbnail' ) ) {
 	}
 }
 
-if ( ! function_exists( 'projects_result_count' ) ) {
-
-	/**
-	 * Output the result count text (Showing x - x of x results).
-	 *
-	 * @access public
-	 * @subpackage	Loop
-	 * @return void
-	 */
-	function projects_result_count() {
-		projects_get_template( 'loop/result-count.php' );
-	}
-}
-
 if ( ! function_exists( 'projects_pagination' ) ) {
 
 	/**

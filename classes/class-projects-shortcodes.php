@@ -57,19 +57,28 @@ class Projects_Shortcodes {
 		global $projects_loop;
 
 		extract( shortcode_atts( array(
-			'per_page' 				=> '12',
+			'limit' 				=> '12',
 			'columns' 				=> '2',
 			'orderby' 				=> 'date',
-			'order' 				=> 'desc'
+			'order' 				=> 'desc',
+			'exclude_categories'	=> array(),
 		), $atts ) );
 
 		$args = array(
 			'post_type'				=> 'project',
 			'post_status' 			=> 'publish',
 			'ignore_sticky_posts'	=> 1,
-			'posts_per_page' 		=> $per_page,
+			'posts_per_page' 		=> $limit,
 			'orderby' 				=> $orderby,
-			'order' 				=> $order
+			'order' 				=> $order,
+			'tax_query' 			=> array(
+										array(
+											'taxonomy' 	=> 'project-category',
+											'field' 	=> 'id',
+											'terms' 	=> explode( ',', $exclude_categories ),
+											'operator' 	=> 'NOT IN'
+										)
+									)
 		);
 
 		ob_start();

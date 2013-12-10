@@ -14,7 +14,6 @@ class Projects_Shortcodes {
 	public function __construct() {
 		// Regular shortcodes
 		add_shortcode( 'projects', array( $this, 'projects' ) );
-		add_shortcode( 'projects_categories', array( $this, 'projects_categories_shortcode' ) );
 	}
 
 	/**
@@ -104,16 +103,6 @@ class Projects_Shortcodes {
 		wp_reset_postdata();
 
 		return '<div class="projects columns-' . $columns . '">' . ob_get_clean() . '</div>';
-
-	}
-
-	public function projects_categories_shortcode() {
-
-		ob_start();
-
-		projects_template_categories();
-
-		return '<div class="projects">' . ob_get_clean() . '</div>';
 
 	}
 

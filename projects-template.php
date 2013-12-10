@@ -413,3 +413,61 @@ if ( ! function_exists( 'projects_single_pagination' ) ) {
 		projects_get_template( 'single-project/pagination.php' );
 	}
 }
+
+if ( ! function_exists( 'projects_content' ) ) {
+
+	/**
+	 * Output Projects content.
+	 *
+	 * This function is only used in the optional 'projects.php' template
+	 * which people can add to their themes to add basic projects support
+	 * without hooks or modifying core templates.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function projects_content() {
+
+		if ( is_singular( 'project' ) ) {
+
+			while ( have_posts() ) : the_post();
+
+				projects_get_template_part( 'content', 'single-project' );
+
+			endwhile;
+
+		} else { ?>
+
+			<?php if ( apply_filters( 'projects_show_page_title', true ) ) : ?>
+
+				<h1 class="page-title"><?php projects_page_title(); ?></h1>
+
+			<?php endif; ?>
+
+			<?php do_action( 'projects_archive_description' ); ?>
+
+			<?php if ( have_posts() ) : ?>
+
+				<?php do_action( 'projects_before_showcase_loop' ); ?>
+
+				<?php projects_project_loop_start(); ?>
+
+					<?php while ( have_posts() ) : the_post(); ?>
+
+						<?php projects_get_template_part( 'content', 'project' ); ?>
+
+					<?php endwhile; // end of the loop. ?>
+
+				<?php projects_project_loop_end(); ?>
+
+				<?php do_action( 'projects_after_showcase_loop' ); ?>
+
+			<?php else : ?>
+
+				<?php projects_get_template( 'loop/no-products-found.php' ); ?>
+
+			<?php endif;
+
+		}
+	}
+}

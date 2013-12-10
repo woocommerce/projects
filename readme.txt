@@ -1,5 +1,5 @@
 === Projects by WooThemes ===
-Contributors: woothemes, mattyza, jameskoster
+Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
 Tags: portoflio, projects, widget, shortcode, template-tag, services
 Requires at least: 3.8
@@ -16,7 +16,7 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 == Usage ==
 
-Once installed you can begin adding projects right away via the 'Projects' item in the main. The interface for adding projects is very similar to adding posts so you should feel right at home. But before you do that you should go ahead and create a page for your projects (via the Pages menu item) and specify that page as your projects base page in the projects settings.
+Once installed you can begin adding projects right away via the 'Projects' item in the main menu. The interface for adding projects is very similar to adding posts so you should feel right at home. But before you do that you should go ahead and create a page for your projects (via the Pages menu item) and specify that page as your projects base page in the projects settings.
 
 == Installation ==
 

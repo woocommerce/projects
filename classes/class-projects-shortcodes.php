@@ -13,7 +13,7 @@ class Projects_Shortcodes {
 
 	public function __construct() {
 		// Regular shortcodes
-		add_shortcode( 'projects_recent_projects', array( $this, 'projects_recent_projects' ) );
+		add_shortcode( 'recent_projects', array( $this, 'recent_projects' ) );
 		add_shortcode( 'projects_categories', array( $this, 'projects_categories_shortcode' ) );
 	}
 
@@ -52,7 +52,7 @@ class Projects_Shortcodes {
 	 * @param array $atts
 	 * @return string
 	 */
-	public function projects_recent_projects( $atts ) {
+	public function recent_projects( $atts ) {
 
 		global $projects_loop;
 

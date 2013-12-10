@@ -58,7 +58,7 @@ class Projects_Shortcodes {
 
 		extract( shortcode_atts( array(
 			'per_page' 				=> '12',
-			'columns' 				=> '4',
+			'columns' 				=> '2',
 			'orderby' 				=> 'date',
 			'order' 				=> 'desc'
 		), $atts ) );

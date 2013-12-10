@@ -19,7 +19,7 @@ if ( empty( $projects_loop['loop'] ) )
 
 // Store column count for displaying the grid
 if ( empty( $projects_loop['columns'] ) )
-	$projects_loop['columns'] = apply_filters( 'loop_showcase_columns', 2 );
+	$projects_loop['columns'] = apply_filters( 'loop_projects_columns', 2 );
 
 // Increase loop count
 $projects_loop['loop']++;
@@ -33,40 +33,40 @@ if ( 0 == $projects_loop['loop'] % $projects_loop['columns'] )
 ?>
 <li <?php post_class( $classes ); ?>>
 
-	<?php do_action( 'projects_before_showcase_loop_item' ); ?>
+	<?php do_action( 'projects_before_loop_item' ); ?>
 
 	<a href="<?php the_permalink(); ?>" class="project-permalink">
 
 		<?php
 			/**
-			 * projects_before_showcase_loop_item_title hook
+			 * projects_before_loop_item_title hook
 			 *
 			 * @hooked projects_show_project_loop_sale_flash - 10
 			 * @hooked projects_template_loop_project_thumbnail - 10
 			 */
-			do_action( 'projects_before_showcase_loop_item_title' );
+			do_action( 'projects_before_loop_item_title' );
 		?>
 
 		<h3><?php the_title(); ?></h3>
 
 		<?php
 			/**
-			 * projects_after_showcase_loop_item_title hook
+			 * projects_after_loop_item_title hook
 			 *
 			 * @hooked projects_template_loop_price - 10
 			 */
-			do_action( 'projects_after_showcase_loop_item_title' );
+			do_action( 'projects_after_loop_item_title' );
 		?>
 
 	</a>
 
 	<?php
 		/**
-		 * projects_after_showcase_loop_item hook
+		 * projects_after_loop_item hook
 		 *
 		 * @hooked projects_template_short_description - 10
 		 */
-		do_action( 'projects_after_showcase_loop_item' );
+		do_action( 'projects_after_loop_item' );
 	?>
 
 </li>

@@ -52,8 +52,8 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * @see projects_template_loop_project_thumbnail()
 	 * @see projects_template_short_description()
 	 */
-	add_action( 'projects_before_showcase_loop_item_title', 'projects_template_loop_project_thumbnail', 10 );
-	add_action( 'projects_after_showcase_loop_item', 'projects_template_short_description', 10 );
+	add_action( 'projects_before_loop_item_title', 'projects_template_loop_project_thumbnail', 10 );
+	add_action( 'projects_after_loop_item', 'projects_template_short_description', 10 );
 
 	/**
 	 * Before Single Projects Summary Div
@@ -85,11 +85,11 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
 
 	/**
-	 * Pagination after showcase loops
+	 * Pagination after projects loops
 	 *
 	 * @see projects_pagination()
 	 */
-	add_action( 'projects_after_showcase_loop', 'projects_pagination', 10 );
+	add_action( 'projects_after_loop', 'projects_pagination', 10 );
 }
 
 /** Store Event Hooks *****************************************************/

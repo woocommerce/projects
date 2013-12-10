@@ -23,7 +23,7 @@ function projects_template_redirect() {
 	global $wp_query, $wp;
 
 	// Redirect project base page to post type archive url
-	if ( is_page( projects_get_page_id( 'showcase' ) ) ) {
+	if ( is_page( projects_get_page_id( 'projects' ) ) ) {
 		wp_safe_redirect( get_post_type_archive_link( 'project' ) );
 		exit;
 	}
@@ -40,7 +40,7 @@ function projects_nav_menu_item_classes( $menu_items, $args ) {
 
 	if ( ! is_projects() ) return $menu_items;
 
-	$projects_page 	= (int) projects_get_page_id( 'showcase' );
+	$projects_page 	= (int) projects_get_page_id( 'projects' );
 	$page_for_posts = (int) get_option( 'page_for_posts' );
 
 	foreach ( (array) $menu_items as $key => $menu_item ) {
@@ -58,7 +58,7 @@ function projects_nav_menu_item_classes( $menu_items, $args ) {
 				unset( $classes[ array_search('current-menu-item', $classes) ] );
 
 		// Set active state if this is the shop page link
-		} elseif ( is_showcase() && $projects_page == $menu_item->object_id ) {
+		} elseif ( is_projects() && $projects_page == $menu_item->object_id ) {
 			$menu_items[$key]->current = true;
 			$classes[] = 'current-menu-item';
 			$classes[] = 'current_page_item';
@@ -84,7 +84,7 @@ if ( ! function_exists( 'projects_output_content_wrapper' ) ) {
 	 * @return void
 	 */
 	function projects_output_content_wrapper() {
-		projects_get_template( 'showcase/wrapper-start.php' );
+		projects_get_template( 'layout/wrapper-start.php' );
 	}
 }
 if ( ! function_exists( 'projects_output_content_wrapper_end' ) ) {
@@ -96,20 +96,20 @@ if ( ! function_exists( 'projects_output_content_wrapper_end' ) ) {
 	 * @return void
 	 */
 	function projects_output_content_wrapper_end() {
-		projects_get_template( 'showcase/wrapper-end.php' );
+		projects_get_template( 'layout/wrapper-end.php' );
 	}
 }
 
 if ( ! function_exists( 'projects_get_sidebar' ) ) {
 
 	/**
-	 * Get the showcase sidebar template.
+	 * Get the projects sidebar template.
 	 *
 	 * @access public
 	 * @return void
 	 */
 	function projects_get_sidebar() {
-		projects_get_template( 'showcase/sidebar.php' );
+		projects_get_template( 'layout/sidebar.php' );
 	}
 }
 
@@ -137,8 +137,8 @@ if ( ! function_exists( 'projects_page_title' ) ) {
 
 		} else {
 
-			$showcase_page_id 	= projects_get_page_id( 'showcase' );
-			$page_title   		= get_the_title( $showcase_page_id );
+			$projects_page_id 	= projects_get_page_id( 'projects' );
+			$page_title   		= get_the_title( $projects_page_id );
 
 		}
 
@@ -203,16 +203,16 @@ if ( ! function_exists( 'projects_taxonomy_archive_description' ) ) {
 if ( ! function_exists( 'projects_project_archive_description' ) ) {
 
 	/**
-	 * Show a showcase page description on project archives
+	 * Show a projects page description on project archives
 	 *
 	 * @access public
 	 * @subpackage	Archives
 	 * @return void
 	 */
 	function projects_project_archive_description() {
-		if ( is_post_type_archive( 'project' ) && get_query_var( 'paged' ) == 0 || is_page( projects_get_page_id( 'showcase' ) ) ) {
-			$showcase_page   	= get_post( projects_get_page_id( 'showcase' ) );
-			$description 		= apply_filters( 'the_content', $showcase_page->post_content );
+		if ( is_post_type_archive( 'project' ) && get_query_var( 'paged' ) == 0 || is_page( projects_get_page_id( 'projects' ) ) ) {
+			$projects_page   	= get_post( projects_get_page_id( 'projects' ) );
+			$description 		= apply_filters( 'the_content', $projects_page->post_content );
 			if ( $description ) {
 				echo '<div class="page-description">' . $description . '</div>';
 			}
@@ -259,7 +259,7 @@ if ( ! function_exists( 'projects_get_project_thumbnail' ) ) {
 	 *
 	 * @access public
 	 * @subpackage	Loop
-	 * @param string $size (default: 'showcase_catalog')
+	 * @param string $size (default: 'project-archive')
 	 * @param int $placeholder_width (default: 0)
 	 * @param int $placeholder_height (default: 0)
 	 * @return string
@@ -448,7 +448,7 @@ if ( ! function_exists( 'projects_content' ) ) {
 
 			<?php if ( have_posts() ) : ?>
 
-				<?php do_action( 'projects_before_showcase_loop' ); ?>
+				<?php do_action( 'projects_before_loop' ); ?>
 
 				<?php projects_project_loop_start(); ?>
 
@@ -460,7 +460,7 @@ if ( ! function_exists( 'projects_content' ) ) {
 
 				<?php projects_project_loop_end(); ?>
 
-				<?php do_action( 'projects_after_showcase_loop' ); ?>
+				<?php do_action( 'projects_after_loop' ); ?>
 
 			<?php else : ?>
 

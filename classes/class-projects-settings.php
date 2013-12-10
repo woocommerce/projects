@@ -65,8 +65,8 @@ class Projects_Settings {
 		<?php
 			$options = get_option( 'projects' );
 			$args = array(
-				'name'					=> 'projects[projects_showcase_page_id]',
-				'selected'				=> absint( $options['projects_showcase_page_id'] ),
+				'name'					=> 'projects[projects_page_id]',
+				'selected'				=> absint( $options['projects_page_id'] ),
 				'sort_column' 			=> 'menu_order',
 	            'sort_order'			=> 'ASC',
 	            'show_option_none' 		=> ' ',
@@ -143,7 +143,7 @@ class Projects_Settings {
 
 	public function projects_main_settings_validate( $input ) {
 
-		$input['projects_showcase_page_id']		= absint( $input['projects_showcase_page_id'] );
+		$input['projects_page_id']				= absint( $input['projects_page_id'] );
 
 		$input['project-archive']['width'] 		= absint( $input['project-archive']['width'] );
 		$input['project-archive']['height'] 	= absint( $input['project-archive']['height'] );

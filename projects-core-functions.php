@@ -15,7 +15,7 @@ if ( ! function_exists( 'projects_get_page_id' ) ) {
 	/**
 	 * WooThemes Projects page IDs
 	 *
-	 * retrieve page ids - used for showcase
+	 * retrieve page ids - used for projects
 	 *
 	 * returns -1 if no page is found
 	 *
@@ -25,7 +25,7 @@ if ( ! function_exists( 'projects_get_page_id' ) ) {
 	 */
 	function projects_get_page_id ( $page ) {
 		$options 	= get_option( 'projects' );
-		$page 		= apply_filters( 'projects_get_' . $page . '_page_id', $options[ 'projects_' . $page . '_page_id' ] );
+		$page 		= apply_filters( 'projects_get_' . $page . '_page_id', $options[ $page . '_page_id' ] );
 
 		return $page ? $page : -1;
 	} // End projects_get_page_id()
@@ -65,20 +65,20 @@ if ( ! function_exists( 'projects_get_image' ) ) {
  * @return bool
  */
 function is_projects () {
-	return ( is_showcase() || is_project_category() || is_project() ) ? true : false;
+	return ( is_projects_archive() || is_project_category() || is_project() ) ? true : false;
 } // End is_projects()
 
-if ( ! function_exists( 'is_showcase' ) ) {
+if ( ! function_exists( 'is_projects_archive' ) ) {
 
 	/**
-	 * is_showcase - Returns true when viewing the project type archive (showcase).
+	 * is_projects_archive - Returns true when viewing the project type archive.
 	 *
 	 * @access public
 	 * @return bool
 	 */
-	function is_showcase() {
-		return ( is_post_type_archive( 'project' ) || is_page( projects_get_page_id( 'showcase' ) ) ) ? true : false;
-	} // End is_showcase()
+	function is_projects_archive() {
+		return ( is_post_type_archive( 'project' ) || is_page( projects_get_page_id( 'projects' ) ) ) ? true : false;
+	} // End is_projects_archive()
 }
 
 if ( ! function_exists( 'is_project_taxonomy' ) ) {
@@ -138,7 +138,7 @@ if ( ! function_exists( 'is_ajax' ) ) {
 }
 
 /**
- * Get template part (for templates like the showcase-loop).
+ * Get template part (for templates like the projects-loop).
  *
  * @access public
  * @param mixed $slug

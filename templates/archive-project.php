@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-get_header( 'showcase' ); ?>
+get_header( 'projects' ); ?>
 
 	<?php
 		/**
@@ -34,10 +34,10 @@ get_header( 'showcase' ); ?>
 
 			<?php
 				/**
-				 * projects_before_showcase_loop hook
+				 * projects_before_loop hook
 				 *
 				 */
-				do_action( 'projects_before_showcase_loop' );
+				do_action( 'projects_before_loop' );
 			?>
 
 			<?php projects_project_loop_start(); ?>
@@ -52,11 +52,11 @@ get_header( 'showcase' ); ?>
 
 			<?php
 				/**
-				 * projects_after_showcase_loop hook
+				 * projects_after_loop hook
 				 *
 				 * @hooked projects_pagination - 10
 				 */
-				do_action( 'projects_after_showcase_loop' );
+				do_action( 'projects_after_loop' );
 			?>
 
 		<?php else : ?>
@@ -83,4 +83,4 @@ get_header( 'showcase' ); ?>
 		do_action( 'projects_sidebar' );
 	?>
 
-<?php get_footer( 'showcase' ); ?>
+<?php get_footer( 'projects' ); ?>

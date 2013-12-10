@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-get_header( 'showcase' ); ?>
+get_header( 'projects' ); ?>
 
 	<?php
 		/**
@@ -46,4 +46,4 @@ get_header( 'showcase' ); ?>
 		do_action( 'projects_sidebar' );
 	?>
 
-<?php get_footer( 'showcase' ); ?>
+<?php get_footer( 'projects' ); ?>

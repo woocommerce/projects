@@ -46,7 +46,7 @@ class Projects_Template_Loader {
 			$find[] 	= $file;
 			$find[] 	= $this->template_url . $file;
 
-		} elseif ( is_post_type_archive( 'project' ) || is_page( projects_get_page_id( 'showcase' ) ) ) {
+		} elseif ( is_post_type_archive( 'project' ) || is_page( projects_get_page_id( 'projects' ) ) ) {
 
 			$file 	= 'archive-project.php';
 			$find[] = $file;

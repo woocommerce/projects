@@ -286,20 +286,6 @@ if ( ! function_exists( 'projects_pagination' ) ) {
 	}
 }
 
-if ( ! function_exists( 'projects_template_categories' ) ) {
-
-	/**
-	 * Output the project categories.
-	 *
-	 * @access public
-	 * @subpackage	Project
-	 * @return void
-	 */
-	function projects_template_categories() {
-		projects_get_template( 'loop/categories.php' );
-	}
-}
-
 if ( ! function_exists( 'projects_template_short_description' ) ) {
 
 	/**

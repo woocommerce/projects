@@ -39,23 +39,12 @@ if ( 0 == $projects_loop['loop'] % $projects_loop['columns'] )
 
 		<?php
 			/**
-			 * projects_before_loop_item_title hook
+			 * projects_loop_item hook
 			 *
-			 * @hooked projects_show_project_loop_sale_flash - 10
 			 * @hooked projects_template_loop_project_thumbnail - 10
+			 * @hooked projects_template_loop_project_title - 20
 			 */
-			do_action( 'projects_before_loop_item_title' );
-		?>
-
-		<h3><?php the_title(); ?></h3>
-
-		<?php
-			/**
-			 * projects_after_loop_item_title hook
-			 *
-			 * @hooked projects_template_loop_price - 10
-			 */
-			do_action( 'projects_after_loop_item_title' );
+			do_action( 'projects_loop_item' );
 		?>
 
 	</a>

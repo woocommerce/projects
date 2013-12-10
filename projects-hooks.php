@@ -52,7 +52,8 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * @see projects_template_loop_project_thumbnail()
 	 * @see projects_template_short_description()
 	 */
-	add_action( 'projects_before_loop_item_title', 'projects_template_loop_project_thumbnail', 10 );
+	add_action( 'projects_loop_item', 'projects_template_loop_project_thumbnail', 10 );
+	add_action( 'projects_loop_item', 'projects_template_loop_project_title', 20 );
 	add_action( 'projects_after_loop_item', 'projects_template_short_description', 10 );
 
 	/**

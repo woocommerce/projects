@@ -233,6 +233,21 @@ if ( ! function_exists( 'projects_template_loop_project_thumbnail' ) ) {
 		echo '<figure class="project-thumbnail">' . projects_get_project_thumbnail() . '</figure>';
 	}
 }
+
+if ( ! function_exists( 'projects_template_loop_project_title' ) ) {
+
+	/**
+	 * Display the project title in the loop.
+	 *
+	 * @access public
+	 * @subpackage	Loop
+	 * @return void
+	 */
+	function projects_template_loop_project_title() {
+		echo '<h3>' . get_the_title() . '</h3>';
+	}
+}
+
 if ( ! function_exists( 'projects_reset_loop' ) ) {
 
 	/**

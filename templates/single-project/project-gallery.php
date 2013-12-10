@@ -23,7 +23,7 @@ global $post, $projects, $project;
 			<?php
 
 				$loop = 0;
-				$columns = apply_filters( 'projects_project_thumbnails_columns', 3 );
+				$columns = apply_filters( 'projects_project_gallery_columns', 3 );
 
 				foreach ( $attachment_ids as $attachment_id ) {
 

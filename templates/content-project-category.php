@@ -19,7 +19,7 @@ if ( empty( $projects_loop['loop'] ) )
 
 // Store column count for displaying the grid
 if ( empty( $projects_loop['columns'] ) )
-	$projects_loop['columns'] = apply_filters( 'loop_projects_columns', 2 );
+	$projects_loop['columns'] = apply_filters( 'projects_loop_columns', 2 );
 
 // Increase loop count
 $projects_loop['loop']++;

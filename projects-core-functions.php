@@ -226,7 +226,7 @@ function projects_locate_template( $template_name, $template_path = '', $default
 		$template = $default_path . $template_name;
 
 	// Return what we found
-	return apply_filters('projects_locate_template', $template, $template_name, $template_path);
+	return apply_filters( 'projects_locate_template', $template, $template_name, $template_path );
 } // End projects_locate_template()
 
 /**

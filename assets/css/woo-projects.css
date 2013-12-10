@@ -179,6 +179,10 @@
 .single-project .project .summary .client {
   margin-bottom: 1.618em;
 }
+.single-project .project .summary .project-meta ul,
+.single-project .project .summary .project-meta li {
+  list-style: none;
+}
 .single-project .single-featured {
   margin-bottom: 1.618em;
 }

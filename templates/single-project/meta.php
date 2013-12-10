@@ -47,7 +47,7 @@ global $post;
 		if ( $url ) {
 			echo '<div class="url">';
 			echo '<h3>' . __( 'Link', 'projects' ) . '</h3>';
-			echo '<span class="project-url"><a href="' . $url . '">' . __( 'Visit this project', 'projects' ) . '</a></span>';
+			echo '<span class="project-url"><a href="' . $url . '">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects' ) ) . '</a></span>';
 			echo '</div>';
 		}
 	?>

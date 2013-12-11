@@ -320,14 +320,15 @@ function projects_get_gallery_attachment_ids ( $post_id = 0 ) {
 function woo_projects_body_class( $classes ) {
 	$classes = (array) $classes;
 
-	$attachments = count( projects_get_gallery_attachment_ids() );
-
 	if ( is_projects() ) {
 		$classes[] = 'projects';
 		$classes[] = 'projects-page';
 	}
 
 	if ( is_project() ) {
+
+		$attachments = count( projects_get_gallery_attachment_ids() );
+
 		if ( $attachments > 0 ) {
 			$classes[] = 'has-gallery';
 		} else {

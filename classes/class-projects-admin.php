@@ -90,7 +90,7 @@ class Projects_Admin {
 	 */
 	public function register_custom_column_headings ( $defaults ) {
 		$new_columns = array(
-			'image' => __( 'Image', 'projects' )
+			'image' => __( 'Featured Image', 'projects' )
 		);
 
 		$last_item = '';

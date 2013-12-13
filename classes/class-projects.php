@@ -18,7 +18,6 @@ class Projects {
 	private $assets_url;
 	private $token;
 	private $post_type;
-	public $version;
 	private $file;
 	public $taxonomy_category;
 
@@ -26,6 +25,11 @@ class Projects {
 
 	public $admin;
 	public $frontend;
+
+	/**
+	 * @var string
+	 */
+	public $version = '1.0.0';
 
 	/**
 	 * Constructor function.
@@ -47,6 +51,9 @@ class Projects {
 
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
+
+		// Define constants
+		$this->define_constants();
 
 		// Run this on activation.
 		register_activation_hook( $this->file, array( $this, 'activation' ) );
@@ -76,6 +83,14 @@ class Projects {
 	public function register_rewrite_tags () {
 		add_rewrite_tag( '%project_category%','([^&]+)' );
 	} // End register_rewrite_tags()
+
+	/**
+	 * Define Projects Constants
+	 */
+	private function define_constants() {
+		define( 'PROJECTS_PLUGIN_FILE', __FILE__ );
+		define( 'PROJECTS_VERSION', $this->version );
+	}
 
 	/**
 	 * Register the post type.

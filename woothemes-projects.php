@@ -26,4 +26,3 @@ require_once( 'projects-hooks.php' );
 
 global $projects;
 $projects = new Projects( __FILE__ );
-$projects->version = '1.0.0';

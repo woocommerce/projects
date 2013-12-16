@@ -138,7 +138,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->projects_widget_cssclass . '_bottom' );
 
-		$cache[$args['widget_id']] = ob_get_flush();
+		$cache[ $widget_id ] = ob_get_flush();
 
 		wp_cache_set('widget_projects_items', $cache, 'widget');
 
@@ -212,4 +212,4 @@ class Woothemes_Widget_Projects extends WP_Widget {
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Projects" );' ), 1 );
+add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Projects" );' ), 1 );, 1 );

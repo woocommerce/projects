@@ -478,7 +478,7 @@ class Projects_Admin {
 
 	public function featured_image_label() {
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
-	    add_meta_box( 'postimagediv', __( 'Project Cover Image' ), 'post_thumbnail_meta_box', 'project', 'side' );
+	    add_meta_box( 'postimagediv', __( 'Project Cover Image', 'projects' ), 'post_thumbnail_meta_box', 'project', 'side' );
 	}
 
 	public function featured_image_set_link( $content ) {
@@ -510,7 +510,7 @@ class Projects_Admin {
 		return $strings;
 	}
 
-	static function get_current_post_type() {
+	public function get_current_post_type() {
         global $post, $typenow, $current_screen;
 
         if ( $post && $post->post_type )

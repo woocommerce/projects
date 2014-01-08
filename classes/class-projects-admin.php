@@ -476,11 +476,24 @@ class Projects_Admin {
 		}
 	} // End configuration_admin_notice()
 
+	/**
+	 * Replace the featured image meta box
+	 * Functionality is identical, this is purely to change the label.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function featured_image_label() {
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
 	    add_meta_box( 'postimagediv', __( 'Project Cover Image', 'projects' ), 'post_thumbnail_meta_box', 'project', 'side' );
 	}
 
+	/**
+	 * Tweak the 'Set featured image' string to say 'Set cover image'.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function featured_image_set_link( $content ) {
 		$post_type = $this->get_current_post_type();
 
@@ -491,6 +504,12 @@ class Projects_Admin {
 		return $content;
 	}
 
+	/**
+	 * Tweak the 'Remove featured image' string to say 'Remove cover image'.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function featured_image_remove_link( $content ) {
 		$post_type = $this->get_current_post_type();
 
@@ -501,6 +520,12 @@ class Projects_Admin {
 		return $content;
 	}
 
+	/**
+	 * Tweak the featured image strings in the media popup
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function featured_image_popup_set_link( $strings ) {
 		$post_type = $this->get_current_post_type();
 		if ( 'project' == $post_type ) {
@@ -510,6 +535,12 @@ class Projects_Admin {
 		return $strings;
 	}
 
+	/**
+	 * Determine what post type the current admin page is related to
+	 * @access public
+	 * @since  1.0.0
+	 * @return string
+	 */
 	public function get_current_post_type() {
         global $post, $typenow, $current_screen;
 

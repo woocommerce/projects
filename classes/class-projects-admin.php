@@ -43,6 +43,7 @@ class Projects_Admin {
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
 		add_action( 'admin_print_styles', array( $this, 'enqueue_admin_styles' ), 10 );
 		add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
+		add_action( 'admin_notices', array( $this, 'configuration_admin_notice' ) );
 
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
@@ -452,5 +453,24 @@ class Projects_Admin {
 		wp_register_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
 		wp_enqueue_style( 'projects-admin' );
 	} // End enqueue_admin_styles()
+
+	/**
+	 * Display an admin notice, if not on the settings screen and if projects page isn't set.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function configuration_admin_notice () {
+		if ( ( isset( $_GET['page'] ) && 'projects-settings-page' == $_GET['page'] ) ) return;
+
+		$projects_page = projects_get_page_id( 'projects' );
+
+		if ( -1 == $projects_page ) {
+			$url = add_query_arg( 'post_type', 'project', admin_url( 'edit.php' ) );
+			$url = add_query_arg( 'page', 'projects-settings-page', $url );
+			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'woocommerce-instagram' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
+		}
+	} // End configuration_admin_notice()
+
 } // End Class
 ?>

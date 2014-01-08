@@ -5,6 +5,8 @@
 
 @media only screen and ( max-width: 768px ) {
 
+
+
 	.projects, .projects-page {
 		ul.projects {
 			li.project {
@@ -16,6 +18,32 @@
 					float: right;
 					clear: none !important;
 				}
+			}
+		}
+	}
+
+	.single-project {
+		&.has-gallery {
+			.gallery,
+			.summary {
+				width: 100%;
+				float: none;
+				padding: 0;
+			}
+
+			.summary {
+				> div {
+					font-size: 1em;
+				}
+			}
+		}
+
+		&.no-gallery {
+			.project_title,
+			.single-project-description,
+			.project-meta {
+				width: 100% !important;
+				float: none;
 			}
 		}
 	}

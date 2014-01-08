@@ -44,6 +44,10 @@ class Projects_Admin {
 		add_action( 'admin_print_styles', array( $this, 'enqueue_admin_styles' ), 10 );
 		add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 		add_action( 'admin_notices', array( $this, 'configuration_admin_notice' ) );
+		add_action( 'do_meta_boxes', array( $this, 'featured_image_label' ) );
+		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_set_link' ) );
+		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_remove_link' ) );
+		add_filter( 'media_view_strings', array( $this, 'featured_image_popup_set_link' ) );
 
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
@@ -91,7 +95,7 @@ class Projects_Admin {
 	 */
 	public function register_custom_column_headings ( $defaults ) {
 		$new_columns = array(
-			'image' => __( 'Featured Image', 'projects' )
+			'image' => __( 'Cover Image', 'projects' )
 		);
 
 		$last_item = '';
@@ -468,9 +472,61 @@ class Projects_Admin {
 		if ( -1 == $projects_page ) {
 			$url = add_query_arg( 'post_type', 'project', admin_url( 'edit.php' ) );
 			$url = add_query_arg( 'page', 'projects-settings-page', $url );
-			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'woocommerce-instagram' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
+			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'projects' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
 		}
 	} // End configuration_admin_notice()
+
+	public function featured_image_label() {
+	    remove_meta_box( 'postimagediv', 'project', 'side' );
+	    add_meta_box( 'postimagediv', __( 'Project Cover Image' ), 'post_thumbnail_meta_box', 'project', 'side' );
+	}
+
+	public function featured_image_set_link( $content ) {
+		$post_type = $this->get_current_post_type();
+
+		if ( 'project' == $post_type ) {
+	    	$content = str_replace( __( 'Set featured image' ), __( 'Set cover image', 'projects' ), $content );
+		}
+
+		return $content;
+	}
+
+	public function featured_image_remove_link( $content ) {
+		$post_type = $this->get_current_post_type();
+
+	    if ( 'project' == $post_type ) {
+	    	$content = str_replace( __( 'Remove featured image' ), __( 'Remove cover image', 'projects' ), $content );
+		}
+
+		return $content;
+	}
+
+	public function featured_image_popup_set_link( $strings ) {
+		$post_type = $this->get_current_post_type();
+		if ( 'project' == $post_type ) {
+			$strings['setFeaturedImageTitle'] 	= __( 'Set Cover Image', 'projects' );
+			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects' );
+		}
+		return $strings;
+	}
+
+	static function get_current_post_type() {
+        global $post, $typenow, $current_screen;
+
+        if ( $post && $post->post_type )
+            return $post->post_type;
+
+        elseif ( $typenow )
+            return $typenow;
+
+        elseif ( $current_screen && $current_screen->post_type )
+            return $current_screen->post_type;
+
+        elseif ( isset( $_REQUEST['post_type'] ) )
+            return sanitize_key( $_REQUEST['post_type'] );
+
+        return null;
+    }
 
 } // End Class
 ?>

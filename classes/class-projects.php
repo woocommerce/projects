@@ -58,6 +58,9 @@ class Projects {
 		// Run this on activation.
 		register_activation_hook( $this->file, array( $this, 'activation' ) );
 
+		// Run this on deactivation.
+		register_deactivation_hook( $this->file, array( $this, 'deactivation' ) );
+
 		add_action( 'init', array( $this, 'register_rewrite_tags' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -288,7 +291,21 @@ class Projects {
 	 */
 	public function activation () {
 		$this->register_plugin_version();
+
+		// Flush rewrite rules
+		flush_rewrite_rules();
 	} // End activation()
+
+	/**
+	 * Run on deactivation.
+	 * @access public
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function deactivation () {
+		// Flush rewrite rules
+		flush_rewrite_rules();
+	} // End deactivation()
 
 	/**
 	 * Register the plugin's version.

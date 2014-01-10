@@ -25,10 +25,12 @@ global $post;
 		 * Display categories if they're set
 		 */
 		if ( $terms_as_text ) {
+			echo '<div class="categories">';
 			echo '<h3>' . __( 'Categories', 'projects' ) . '</h3>';
 			echo '<ul class="single-project-categories">';
 			echo $terms_as_text;
 			echo '</ul>';
+			echo '</div>';
 		}
 
 		/**

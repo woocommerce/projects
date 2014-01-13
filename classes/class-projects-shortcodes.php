@@ -60,7 +60,7 @@ class Projects_Shortcodes {
 			'columns' 				=> '2',
 			'orderby' 				=> 'date',
 			'order' 				=> 'desc',
-			'exclude_categories'	=> array(),
+			'exclude_categories'	=> null,
 		), $atts ) );
 
 		$args = array(

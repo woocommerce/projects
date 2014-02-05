@@ -77,7 +77,7 @@ if ( ! function_exists( 'is_projects_archive' ) ) {
 	 * @return bool
 	 */
 	function is_projects_archive() {
-		return ( is_post_type_archive( 'project' ) || is_page( projects_get_page_id( 'projects' ) ) ) ? true : false;
+		return ( is_post_type_archive( 'project' ) || is_project_taxonomy() || is_page( projects_get_page_id( 'projects' ) ) ) ? true : false;
 	} // End is_projects_archive()
 }
 

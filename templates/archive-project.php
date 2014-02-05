@@ -11,6 +11,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+global $projects_loop;
+
+// Store column count for displaying the grid
+if ( empty( $projects_loop['columns'] ) )
+	$projects_loop['columns'] = apply_filters( 'projects_loop_columns', 2 );
+
 get_header( 'projects' ); ?>
 
 	<?php
@@ -40,6 +46,8 @@ get_header( 'projects' ); ?>
 				do_action( 'projects_before_loop' );
 			?>
 
+			<div class="projects columns-<?php echo $projects_loop['columns']; ?>">
+
 			<?php projects_project_loop_start(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -49,6 +57,8 @@ get_header( 'projects' ); ?>
 				<?php endwhile; // end of the loop. ?>
 
 			<?php projects_project_loop_end(); ?>
+
+			</div><!-- .projects -->
 
 			<?php
 				/**

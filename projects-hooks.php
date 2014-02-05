@@ -66,8 +66,8 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 */
 	add_action( 'projects_before_single_project_summary', 'projects_template_single_title', 10 );
 	add_action( 'projects_before_single_project_summary', 'projects_template_single_short_description', 20 );
-	add_action( 'projects_before_single_project_summary', 'projects_template_single_feature', 20 );
-	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 30 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_feature', 30 );
+	add_action( 'projects_before_single_project_summary', 'projects_template_single_gallery', 40 );
 
 	/**
 	 * Project Summary Box

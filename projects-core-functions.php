@@ -334,6 +334,11 @@ function woo_projects_body_class( $classes ) {
 		} else {
 			$classes[] = 'no-gallery';
 		}
+
+		if ( !has_post_thumbnail() ) {
+			$classes[] = 'no-cover-image';
+		}
+
 	}
 
 	return array_unique( $classes );

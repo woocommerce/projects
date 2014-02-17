@@ -3,7 +3,7 @@ Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
 Tags: portfolio, projects, widget, shortcode, template-tag, services
 Requires at least: 3.8
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Once installed you can begin adding projects right away via the 'Projects' item 
 
 == Installation ==
 
-Installing "Projects" can be done either by searching for "Projects" via the "Plugins > Add New" screen in your WordPress dashboard, or by using the following steps:
+Installing "Projects" can be done either by searching for "Projects by WooThemes" via the "Plugins > Add New" screen in your WordPress dashboard, or by using the following steps:
 
 1. Download the plugin via WordPress.org.
 2. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
@@ -36,7 +36,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 1. The projects base page
 2. A single project page
-3. The projects management screen within the WordPress admin.
+3. The projects management screen within the WordPress dashboard.
 
 == Upgrade Notice ==
 
@@ -46,5 +46,5 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Changelog ==
 
 = 1.0.0 =
-* 2012-11-12
+* 2014-12-17
 * Initial release. Woo!

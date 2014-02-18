@@ -66,6 +66,14 @@ It's possible that your theme is scaling images to fit their container by settin
 
 If you run into layout issues on Projects pages then you will need to peruse one of two methods to make your theme compatible. You can read all about this in the [documentation](http://docs.woothemes.com/document/third-party-theme-compatibility/).
 
+= I want to change X =
+
+Projects uses template files to control the display of it's various components. These templates can be safely editied so that your customisations are not lost during updates as described in the [documentation](http://docs.woothemes.com/document/editing-projects-templates-safely/).
+
+= Is it possible to add cusstom fields to the Project details meta box? =
+
+Yes! You can follow this tutorial to [add custom fields to projects](http://docs.woothemes.com/document/add-a-project-meta-field/) and display them.
+
 = How do I contribute? =
 
 We encourage everyone to contribute their ideas, thoughts and code snippets. This can be done by forking the [repository over at GitHub](http://github.com/woothemes/projects/).

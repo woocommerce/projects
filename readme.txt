@@ -1,7 +1,7 @@
 === Projects by WooThemes ===
 Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
-Tags: portfolio, projects, widget, shortcode, template-tag, services
+Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art
 Requires at least: 3.8
 Tested up to: 3.8.1
 Stable tag: 1.0.0
@@ -12,11 +12,41 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 == Description ==
 
-"Projects" by WooThemes is a clean and easy-to-use project showcase management system for WordPress. Load in your recent projects, and display them on a specified page using our template system, or via a shortcode, widget or template tag.
+"Projects" by WooThemes is a clean and easy-to-use portfolio showcase management system for WordPress. Load in your recent projects, and display them on a specified page using our template system, or via a shortcode, widget or template tag.
+
+= Easy to use =
+
+Publish and categorise your projects using the familiar WordPress interface.
+
+= Detailed project information =
+
+Include full project details such as cover images, galleries, categories, client details and projects URLs.
+
+= Fully integrated with WordPress =
+
+Display your projects using native WordPress architecture (project archives & single pages).
+
+= Widgets & Shortcodes included =
+
+Use Widgets & Shortcodes for situational project display.
+
+= Mobile friendly =
+
+Projects includes a responsive layout to integrate with any theme.
+
+= Customisable =
+
+Get your hands dirty! Customise & extend Projects via a vast array of hooks, filters & templates.
+
+= Documentation =
+
+Extensive [documentation](http://docs.woothemes.com/documentation/plugins/projects/) to help you out if you get stuck.
 
 == Usage ==
 
-Once installed you can begin adding projects right away via the 'Projects' item in the main menu. The interface for adding projects is very similar to adding posts so you should feel right at home. But before you do that you should go ahead and create a page for your projects (via the Pages menu item) and specify that page as your projects base page in the projects settings.
+Once installed you can begin adding projects to your portfolio right away via the 'Projects' item in the main menu. But before you do that you should go ahead and create a page for your projects (via the Pages menu item) and specify that page as your projects base page in the projects settings. The interface for adding projects is very similar to adding posts so you should feel right at home.
+
+For more detailed usage instructions take a look at the [Projects Documentation](http://docs.woothemes.com/documentation/plugins/projects/).
 
 == Installation ==
 
@@ -27,6 +57,14 @@ Installing "Projects" can be done either by searching for "Projects by WooThemes
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
+
+= My project images are blurry / distorted, how do I fix that? =
+
+It's possible that your theme is scaling images to fit their container by setting `width: 100%;`. If this is the case, and your project thumbnails are too small they will become distored / blurred as they are scaled up. To fix this change the project thumbnail size options in the Projects settings then regenerate your thumbnails using the [Regenerate Thumbnails plugin](http://wordpress.org/plugins/regenerate-thumbnails/).
+
+= How do I integrate projects into my theme? =
+
+If you run into layout issues on Projects pages then you will need to peruse one of two methods to make your theme compatible. You can read all about this in the [documentation](http://docs.woothemes.com/document/third-party-theme-compatibility/).
 
 = How do I contribute? =
 

@@ -92,9 +92,9 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Changelog ==
 
 = 1.0.1 =
-* 2014-12-19
+* 2014-02-19
 * Fix - Replaces incorrect language files.
 
 = 1.0.0 =
-* 2014-12-17
+* 2014-02-17
 * Initial release. Woo!

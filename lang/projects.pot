@@ -1,0 +1,340 @@
+# Copyright (C) 2014 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/projects-by-woothemes\n"
+"POT-Creation-Date: 2014-02-19 14:42:28+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: classes/class-projects-admin.php:98
+msgid "Cover Image"
+msgstr ""
+
+#: classes/class-projects-admin.php:133
+msgid "Project updated. %sView project%s"
+msgstr ""
+
+#: classes/class-projects-admin.php:134
+msgid "Custom field updated."
+msgstr ""
+
+#: classes/class-projects-admin.php:135
+msgid "Custom field deleted."
+msgstr ""
+
+#: classes/class-projects-admin.php:136
+msgid "Project updated."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+
+#: classes/class-projects-admin.php:138
+msgid "Project restored to revision from %s"
+msgstr ""
+
+#: classes/class-projects-admin.php:139
+msgid "Project published. %sView Project%s"
+msgstr ""
+
+#: classes/class-projects-admin.php:140
+msgid "Project saved."
+msgstr ""
+
+#: classes/class-projects-admin.php:141
+msgid "Project submitted. %sPreview Project%s"
+msgstr ""
+
+#: classes/class-projects-admin.php:142
+msgid "Project scheduled for: %1$s. %2$sPreview Project%3$s"
+msgstr ""
+
+#. translators: Publish box date format, see http:php.net/date
+
+#: classes/class-projects-admin.php:144
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: classes/class-projects-admin.php:145
+msgid "Project draft updated. %sPreview Project%s"
+msgstr ""
+
+#: classes/class-projects-admin.php:160
+msgid "Project Details"
+msgstr ""
+
+#: classes/class-projects-admin.php:162
+msgid "Project Gallery"
+msgstr ""
+
+#: classes/class-projects-admin.php:231 classes/class-projects-admin.php:291
+msgid "Delete image"
+msgstr ""
+
+#: classes/class-projects-admin.php:242
+msgid "Add project gallery images"
+msgstr ""
+
+#: classes/class-projects-admin.php:268
+msgid "Add Images to Project Gallery"
+msgstr ""
+
+#: classes/class-projects-admin.php:270
+msgid "Add to gallery"
+msgstr ""
+
+#: classes/class-projects-admin.php:416 templates/single-project/meta.php:41
+msgid "Client"
+msgstr ""
+
+#: classes/class-projects-admin.php:417
+msgid "Enter the client name for this project."
+msgstr ""
+
+#: classes/class-projects-admin.php:424
+msgid "URL"
+msgstr ""
+
+#: classes/class-projects-admin.php:425
+msgid "Enter a URL that applies to this project."
+msgstr ""
+
+#: classes/class-projects-admin.php:444
+msgid "Enter the project title here"
+msgstr ""
+
+#: classes/class-projects-admin.php:475
+msgid "%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s."
+msgstr ""
+
+#: classes/class-projects-admin.php:488
+msgid "Project Cover Image"
+msgstr ""
+
+#: classes/class-projects-admin.php:501
+msgid "Set featured image"
+msgstr ""
+
+#: classes/class-projects-admin.php:501 classes/class-projects-admin.php:533
+msgid "Set cover image"
+msgstr ""
+
+#: classes/class-projects-admin.php:517
+msgid "Remove featured image"
+msgstr ""
+
+#: classes/class-projects-admin.php:517
+msgid "Remove cover image"
+msgstr ""
+
+#: classes/class-projects-admin.php:532
+msgid "Set Cover Image"
+msgstr ""
+
+#: classes/class-projects-settings.php:38
+msgid "Projects Settings"
+msgstr ""
+
+#: classes/class-projects-settings.php:47
+msgid "Save Changes"
+msgstr ""
+
+#: classes/class-projects-settings.php:64
+msgid "Setup core projects pages."
+msgstr ""
+
+#: classes/class-projects-settings.php:77
+msgid "Projects Page"
+msgstr ""
+
+#: classes/class-projects-settings.php:81
+msgid "This sets the base page of your projects. This is where your projects archive will be."
+msgstr ""
+
+#: classes/class-projects-settings.php:91
+msgid "These settings affect the actual dimensions of images in your projects – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to"
+msgstr ""
+
+#: classes/class-projects-settings.php:91
+msgid "regenerate your thumbnails"
+msgstr ""
+
+#: classes/class-projects-settings.php:118
+msgid "Archive Images"
+msgstr ""
+
+#: classes/class-projects-settings.php:121
+#: classes/class-projects-settings.php:129
+#: classes/class-projects-settings.php:137
+msgid "Width:"
+msgstr ""
+
+#: classes/class-projects-settings.php:121
+#: classes/class-projects-settings.php:129
+#: classes/class-projects-settings.php:137
+msgid "Height:"
+msgstr ""
+
+#: classes/class-projects-settings.php:126
+msgid "Single Images"
+msgstr ""
+
+#: classes/class-projects-settings.php:134
+msgid "Thumbnails"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:71
+msgid "Category"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:72 templates/single-project/meta.php:29
+msgid "Categories"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:95
+msgctxt "taxonomy general name"
+msgid "%s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:96
+msgctxt "taxonomy singular name"
+msgid "%s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:97
+msgid "Search %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:98
+msgid "All %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:99
+msgid "Parent %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:100
+msgid "Parent %s:"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:101 classes/class-projects.php:110
+msgid "Edit %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:102
+msgid "Update %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:103 classes/class-projects.php:109
+msgid "Add New %s"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:104
+msgid "New %s Name"
+msgstr ""
+
+#: classes/class-projects-taxonomy.php:105
+msgid "%s"
+msgstr ""
+
+#: classes/class-projects.php:106
+msgctxt "post type general name"
+msgid "Projects"
+msgstr ""
+
+#: classes/class-projects.php:107
+msgctxt "post type singular name"
+msgid "Project"
+msgstr ""
+
+#: classes/class-projects.php:109 classes/class-projects.php:110
+#: classes/class-projects.php:111 classes/class-projects.php:113
+msgid "Project"
+msgstr ""
+
+#: classes/class-projects.php:111
+msgid "New %s"
+msgstr ""
+
+#: classes/class-projects.php:112 classes/class-projects.php:114
+#: classes/class-projects.php:115 classes/class-projects.php:116
+#: classes/class-projects.php:118
+msgid "Projects"
+msgstr ""
+
+#: classes/class-projects.php:113
+msgid "View %s"
+msgstr ""
+
+#: classes/class-projects.php:114
+msgid "Search %a"
+msgstr ""
+
+#: classes/class-projects.php:115
+msgid "No %s Found"
+msgstr ""
+
+#: classes/class-projects.php:116
+msgid "No %s Found In Trash"
+msgstr ""
+
+#: classes/class-widget-project-categories.php:42
+#: classes/class-widget-project-categories.php:44
+#: classes/class-widget-project-categories.php:150
+msgid "Project Categories"
+msgstr ""
+
+#: classes/class-widget-project-categories.php:159
+#: classes/class-widget-projects.php:192
+msgid "Title (optional):"
+msgstr ""
+
+#: classes/class-widget-project-categories.php:166
+msgid "Show Count:"
+msgstr ""
+
+#: classes/class-widget-project-categories.php:172
+msgid "Show Hierarchy:"
+msgstr ""
+
+#: classes/class-widget-projects.php:41
+msgid "Recent projects listed on your site."
+msgstr ""
+
+#: classes/class-widget-projects.php:43 classes/class-widget-projects.php:184
+msgid "Recent Projects"
+msgstr ""
+
+#: classes/class-widget-projects.php:197
+msgid "Limit:"
+msgstr ""
+
+#: projects-core-functions.php:254
+msgctxt "slug"
+msgid "uncategorized"
+msgstr ""
+
+#: projects-template.php:129
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr ""
+
+#: projects-template.php:132
+msgid "&nbsp;&ndash; Page %s"
+msgstr ""
+
+#: templates/loop/no-projects-found.php:14
+msgid "No projects found which match your selection."
+msgstr ""
+
+#: templates/single-project/meta.php:51
+msgid "Link"
+msgstr ""
+
+#: templates/single-project/meta.php:52
+msgid "Visit project"
+msgstr ""

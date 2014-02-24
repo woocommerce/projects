@@ -16,7 +16,7 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 = Easy to use =
 
-Publish and categorise your projects using the familiar WordPress interface.
+Publish and categorise your portfolio of projects using the familiar WordPress interface.
 
 = Detailed project information =
 
@@ -24,7 +24,7 @@ Include full project details such as cover images, galleries, categories, client
 
 = Fully integrated with WordPress =
 
-Display your projects using native WordPress architecture (project archives & single pages).
+Display your portfolio of projects using native WordPress architecture (project archives & single pages).
 
 = Widgets & Shortcodes included =
 
@@ -91,6 +91,11 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Changelog ==
 
+= 1.0.1 =
+* 2014-02-24
+* Localization - Replaces incorrect language files.
+* Tweak - Localized some strings (props Vaclad)
+
 = 1.0.0 =
-* 2014-12-17
+* 2014-02-17
 * Initial release. Woo!

@@ -28,7 +28,7 @@ class Projects_Settings {
 	} // End __construct()
 
 	public function projects_add_settings_page() {
-		add_submenu_page( 'edit.php?post_type=project', 'Settings', 'Settings', 'publish_posts', 'projects-settings-page', array( $this, 'projects_settings_page' ) );
+		add_submenu_page( 'edit.php?post_type=project', __( 'Settings', 'projects' ), __( 'Settings', 'projects' ), 'publish_posts', 'projects-settings-page', array( $this, 'projects_settings_page' ) );
 	}
 
 	public function projects_settings_page() {
@@ -55,8 +55,8 @@ class Projects_Settings {
 
 	public function projects_options_init(){
 		register_setting( 'projects_main_settings', 'projects', array( $this, 'projects_main_settings_validate' ) );
-		add_settings_section( 'projects_page_settings_description', 'Pages', array( $this, 'projects_page_settings' ), 'projects' );
-		add_settings_section( 'projects_image_settings_description', 'Images', array( $this, 'projects_images_settings' ), 'projects' );
+		add_settings_section( 'projects_page_settings_description', __( 'Pages', 'projects' ), array( $this, 'projects_page_settings' ), 'projects' );
+		add_settings_section( 'projects_image_settings_description', __( 'Images', 'projects' ), array( $this, 'projects_images_settings' ), 'projects' );
 	}
 
 	public function projects_page_settings() {

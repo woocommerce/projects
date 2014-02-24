@@ -16,7 +16,7 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 = Easy to use =
 
-Publish and categorise your projects using the familiar WordPress interface.
+Publish and categorise your portfolio of projects using the familiar WordPress interface.
 
 = Detailed project information =
 
@@ -24,7 +24,7 @@ Include full project details such as cover images, galleries, categories, client
 
 = Fully integrated with WordPress =
 
-Display your projects using native WordPress architecture (project archives & single pages).
+Display your portfolio of projects using native WordPress architecture (project archives & single pages).
 
 = Widgets & Shortcodes included =
 

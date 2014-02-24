@@ -93,7 +93,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 = 1.0.1 =
 * 2014-02-24
-* Fix - Replaces incorrect language files.
+* Localization - Replaces incorrect language files.
 * Tweak - Localized some strings (props Vaclad)
 
 = 1.0.0 =

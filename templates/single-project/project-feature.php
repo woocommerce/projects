@@ -28,7 +28,11 @@ global $post;
 				$gallery = '';
 			}
 
-			echo $image;
+			if ( apply_filters( 'projects_gallery_link_images', true ) ) {
+				echo '<a href="' . $image_link . '" title="' . $image_title . '">' . $image . '</a>';
+			} else {
+				echo $image;
+			}
 
 		}
 

@@ -94,6 +94,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 = 1.1.0
 * 2014-02-25
 * New - dummy_data.xml containing dummy projects content.
+* Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.
 
 = 1.0.1 =
 * 2014-02-24

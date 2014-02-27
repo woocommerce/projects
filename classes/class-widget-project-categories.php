@@ -101,10 +101,14 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 		        	  'pad_counts' 		=> 0,
 			          'hierarchical' 	=> $instance['hierarchical'],
 		        	  'taxonomy' 		=> $project_tax,
-		        	  'title_li' 		=> ''
+		        	  'title_li' 		=> '',
 		        	);
 
+			     echo '<ul class="projects_categories_list_widget">';
+
 			     wp_list_categories( $args );
+
+			     echo '</ul>';
 		     }
 		}
 

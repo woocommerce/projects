@@ -74,7 +74,7 @@ class Projects_Admin {
 			case 'image':
 				$value = '';
 
-				$value = projects_get_image( $id, 40 );
+				$value = projects_get_image( $id, 120 );
 
 				echo $value;
 			break;
@@ -94,9 +94,10 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function register_custom_column_headings ( $defaults ) {
-		$new_columns = array(
-			'image' => __( 'Cover Image', 'projects' )
-		);
+
+		$new_columns          = array();
+		$new_columns['cb']    = $defaults['cb'];
+		$new_columns['image'] = __( 'Cover Image', 'projects' );
 
 		$last_item = '';
 
@@ -107,7 +108,7 @@ class Projects_Admin {
 
 			array_pop( $defaults );
 		}
-		$defaults = array_merge( $defaults, $new_columns );
+		$defaults = array_merge( $new_columns, $defaults );
 
 		if ( $last_item != '' ) {
 			foreach ( $last_item as $k => $v ) {

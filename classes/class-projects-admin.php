@@ -157,14 +157,40 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_setup () {
+		// Add short description meta box (replaces default excerpt)
+		add_meta_box( 'postexcerpt', __( 'Project Short Description', 'woocommerce' ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
+
 		// Project Details Meta Box Load
 		add_meta_box( 'project-data', __( 'Project Details', 'projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+
 		// Project Images Meta Bog Load
 		add_meta_box( 'project-images', __( 'Project Gallery', 'projects' ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
 	} // End meta_box_setup()
 
+
 	/**
-	 * The contents of our meta box.
+	 * The project short description meta box.
+	 *
+	 * @access public
+	 * @since  1.1.0
+	 * @return void
+	 */
+	public function meta_box_short_description( $post ) {
+		$settings = array(
+			'textarea_name'	=> 'excerpt',
+			'quicktags' 	=> array( 'buttons' => 'em,strong,link' ),
+			'tinymce' 		=> array(
+								'theme_advanced_buttons1' => 'bold,italic,strikethrough,separator,bullist,numlist,separator,blockquote,separator,justifyleft,justifycenter,justifyright,separator,link,unlink,separator,undo,redo,separator',
+								'theme_advanced_buttons2' => '',
+								),
+			'editor_css'	=> '<style>#wp-excerpt-editor-container .wp-editor-area{height:175px; width:100%;}</style>'
+		);
+
+		wp_editor( htmlspecialchars_decode( $post->post_excerpt ), 'excerpt', apply_filters( 'projects_product_short_description_editor_settings', $settings ) );
+	}
+
+	/**
+	 * The contents of the Project info meta box.
 	 *
 	 * @access public
 	 * @since  1.1.0
@@ -415,7 +441,7 @@ class Projects_Admin {
 
 		$fields['client'] = array(
 		    'name' 			=> __( 'Client', 'projects' ),
-		    'description' 	=> __( 'Enter the client name for this project.', 'projects' ),
+		    'description' 	=> __( 'Enter the client name. (Optional)', 'projects' ),
 		    'type' 			=> 'text',
 		    'default' 		=> '',
 		    'section' 		=> 'info'
@@ -423,7 +449,7 @@ class Projects_Admin {
 
 		$fields['url'] = array(
 		    'name' 			=> __( 'URL', 'projects' ),
-		    'description' 	=> __( 'Enter a URL that applies to this project.', 'projects' ),
+		    'description' 	=> __( 'Enter the project URL. (Optional)', 'projects' ),
 		    'type' 			=> 'url',
 		    'default' 		=> '',
 		    'section' 		=> 'info'

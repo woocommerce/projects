@@ -61,7 +61,7 @@ class Projects_Settings {
 
 	public function projects_page_settings() {
 		?>
-		<p><?php _e( 'Setup core projects pages.', 'projects' ); ?></p>
+		<p><?php _e( 'Configure projects pages.', 'projects' ); ?></p>
 		<?php
 			$options = get_option( 'projects' );
 			$args = array(
@@ -78,7 +78,7 @@ class Projects_Settings {
 				<td>
 					<?php wp_dropdown_pages( $args ); ?>
 					<p class="description">
-						<?php _e( 'This sets the base page of your projects. This is where your projects archive will be.', 'projects' ); ?>
+						<?php _e( 'The base page of your projects. This is your projects archive.', 'projects' ); ?>
 					</p>
 				</td>
 			</tr>
@@ -88,7 +88,7 @@ class Projects_Settings {
 
 	public function projects_images_settings() {
 		?>
-		<p><?php _e ( 'These settings affect the actual dimensions of images in your projects – the display on the front-end will still be affected by CSS styles. After changing these settings you may need to' , 'projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'projects' ); ?></a>.</p>
+		<p><?php _e ( 'These settings control the dimensions of thumbnails in your projects. After updating these settings you may need to' , 'projects' ); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/"><?php _e( 'regenerate your thumbnails', 'projects' ); ?></a>.</p>
 		<?php
 
 			$options = get_option( 'projects' );

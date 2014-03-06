@@ -96,6 +96,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * New - dummy_data.xml containing dummy projects content.
 * New - Project excerpt replaced with new short description meta box with tinymce support.
 * Fix - Project category widget list items are now wrapped in a ul.
+* Tweak - Shortcodes in project descriptions now work as expected.
 * Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.
 * Tweak - Several UI tweaks and improvements.
 

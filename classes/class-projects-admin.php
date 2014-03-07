@@ -52,8 +52,81 @@ class Projects_Admin {
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
 			add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+			add_action( 'restrict_manage_posts', array( $this, 'projects_restrict_manage_posts' ) );
+			add_filter( 'parse_query', array( $this, 'projects_post_type_request' ) );
 		}
 	} // End __construct()
+
+	/**
+	 * Filter the request to just give posts for the given taxonomy, if applicable.
+	 *
+	 * @access public
+	 * @param array $post_types - post types to add taxonomy filtering to
+	 * @uses wp_dropdown_categories()
+	 * @since  1.1.0
+	 * @return void
+	 */
+	function projects_restrict_manage_posts() {
+	    global $typenow;
+
+	    $post_types = array( 'project' );
+
+	    if ( in_array( $typenow, $post_types ) ) {
+	    	$filters = get_object_taxonomies( $typenow );
+
+	        foreach ( $filters as $tax_slug ) {
+
+	        	$tax_obj = get_taxonomy( $tax_slug );
+
+	        	if ( isset( $_GET[$tax_slug] ) ) {
+	        		$selected = esc_attr( $_GET[$tax_slug] );
+		        } else {
+		        	$selected = null;
+		        }
+
+	            wp_dropdown_categories( array(
+	                'show_option_all' 	=> __( 'Show All ' . $tax_obj->label, 'projects' ),
+	                'taxonomy' 	  		=> $tax_slug,
+	                'name' 		  		=> $tax_obj->name,
+	                'orderby' 	  		=> 'name',
+	                'selected' 	  		=> $selected,
+	                'hierarchical' 	  	=> $tax_obj->hierarchical,
+	                'show_count' 	  	=> true,
+	                'hide_empty' 	  	=> true,
+	            ) );
+	        }
+	    }
+	}
+
+	/**
+	 * Adjust the query string to use taxonomy slug instead of ID.
+	 *
+	 * @access public
+	 * @param array $filters - all taxonomies for the current post type
+	 * @uses get_object_taxonomies()
+	 * @uses  get_term_by()
+	 * @since  1.1.0
+	 * @return void
+	 */
+	function projects_post_type_request( $query ) {
+	  	global $pagenow, $typenow;
+
+	    $filters = get_object_taxonomies( $typenow );
+
+	    foreach ( $filters as $tax_slug ) {
+			$var = &$query->query_vars[$tax_slug];
+
+			if ( isset( $var ) ) {
+				$term = get_term_by( 'id', $var, $tax_slug );
+
+				if ( false != $term ) {
+					$var = $term->slug;
+				}
+			}
+	    }
+
+	    return $query;
+	}
 
 	/**
 	 * Add custom columns for the "manage" screen of this post type.

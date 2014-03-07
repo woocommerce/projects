@@ -95,6 +95,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * 2014-02-25
 * New - dummy_data.xml containing dummy projects content.
 * New - Project excerpt replaced with new short description meta box with tinymce support.
+* New - Projects can now be filtered by category on the project management screen.
 * Fix - Project category widget list items are now wrapped in a ul.
 * Tweak - Shortcodes in project descriptions now work as expected.
 * Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.

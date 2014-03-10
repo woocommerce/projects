@@ -141,7 +141,10 @@ class Projects {
 			'menu_position' 		=> 5,
 			'menu_icon' 			=> ''
 		);
-		register_post_type( $this->post_type, $args );
+
+		$args = apply_filters( 'projects_register_post_type', $args );
+	
+		register_post_type( $this->post_type, (array) $args );
 	} // End register_post_type()
 
 	/**

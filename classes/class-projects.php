@@ -19,6 +19,8 @@ class Projects {
 	private $token;
 	private $post_type;
 	private $file;
+	public $singular_name;
+	public $plural_name;
 	public $taxonomy_category;
 
 	public $template_url;
@@ -61,6 +63,7 @@ class Projects {
 		// Run this on deactivation.
 		register_deactivation_hook( $this->file, array( $this, 'deactivation' ) );
 
+		add_action( 'init', array( $this, 'admin_names' ) );
 		add_action( 'init', array( $this, 'register_rewrite_tags' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -96,6 +99,18 @@ class Projects {
 	}
 
 	/**
+	 * Change the UI names in the admin
+	 *
+	 * @access public
+	 * @since  1.1
+	 * @return void
+	 */
+	public function admin_names () {
+		$this->singular_name = apply_filters( 'projects_admin_singular_name', _x( 'Project', 'post type singular name', 'projects' ) );
+		$this->plural_name = apply_filters( 'projects_admin_plural_name', _x( 'Projects', 'post type general name', 'projects' ) );
+	}
+
+	/**
 	 * Register the post type.
 	 *
 	 * @access public
@@ -103,19 +118,19 @@ class Projects {
 	 */
 	public function register_post_type () {
 		$labels = array(
-			'name' 					=> _x( 'Projects', 'post type general name', 'projects' ),
-			'singular_name' 		=> _x( 'Project', 'post type singular name', 'projects' ),
+			'name' 					=> $this->plural_name,
+			'singular_name' 		=> $this->singular_name,
 			'add_new' 				=> _x( 'Add New', $this->post_type, 'projects' ),
-			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'new_item' 				=> sprintf( __( 'New %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects' ), __( 'Projects', 'projects' ) ),
-			'view_item' 			=> sprintf( __( 'View %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'search_items' 			=> sprintf( __( 'Search %a', 'projects' ), __( 'Projects', 'projects' ) ),
-			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects' ), __( 'Projects', 'projects' ) ),
-			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects' ), __( 'Projects', 'projects' ) ),
+			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects' ), $this->singular_name ),
+			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects' ), $this->singular_name ),
+			'new_item' 				=> sprintf( __( 'New %s', 'projects' ), $this->singular_name ),
+			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects' ), $this->plural_name ),
+			'view_item' 			=> sprintf( __( 'View %s', 'projects' ), $this->singular_name ),
+			'search_items' 			=> sprintf( __( 'Search %a', 'projects' ), $this->plural_name ),
+			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects' ), $this->plural_name ),
+			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects' ), $this->plural_name ),
 			'parent_item_colon' 	=> '',
-			'menu_name' 			=> __( 'Projects', 'projects' )
+			'menu_name' 			=> $this->plural_name
 
 		);
 		$args = array(
@@ -126,7 +141,7 @@ class Projects {
 			'show_in_menu' 			=> true,
 			'query_var' 			=> true,
 			'rewrite' 				=> array(
-										'slug' 			=> 'projects/%project_category%',
+										'slug' 			=> trailingslashit ( strtolower( $this->singular_name ) ) . '%project_category%',
 										'with_front' 	=> false
 										),
 			'capability_type' 		=> 'post',

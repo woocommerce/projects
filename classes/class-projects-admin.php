@@ -214,8 +214,8 @@ class Projects_Admin {
 	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from 2$%s', 'projects' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 	    6 	=> sprintf( __( '$1%s published. $2%sView $3%s$4%s', 'projects' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    7 	=> sprintf( __( '%s saved.' ), $projects->singular_name ),
-	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $project->singular_name ), '</a>' ),
-	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects' ), $projects->singular_name, 
+	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects' ), $projects->singular_name,
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    10 	=> sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
@@ -236,10 +236,10 @@ class Projects_Admin {
 
 		// Add short description meta box (replaces default excerpt)
 		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
-		
+
 		// Project Details Meta Box Load
 		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects' ), array( $this, 'meta_box_content' ), $projects->singular_name ), $this->post_type, 'normal', 'high' );
-		
+
 		// Project Images Meta Bog Load
 		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
 

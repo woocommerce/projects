@@ -20,6 +20,8 @@ class Projects_Admin {
 	private $token;
 	private $post_type;
 	private $file;
+	private $singular_name;
+	private $plural_name;
 
 	/**
 	 * Constructor function.
@@ -200,23 +202,23 @@ class Projects_Admin {
 	 * @return array           Modified array.
 	 */
 	public function updated_messages ( $messages ) {
-	  global $post, $post_ID;
+	  global $post, $post_ID, $projects;
 
 	  $messages[$this->post_type] = array(
 	    0 	=> '', // Unused. Messages start at index 1.
-	    1 	=> sprintf( __( 'Project updated. %sView project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
+	    1 	=> sprintf( __( '%1$s updated. %2$sView %3$s%4$s', 'projects' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    2 	=> __( 'Custom field updated.', 'projects' ),
 	    3 	=> __( 'Custom field deleted.', 'projects' ),
-	    4 	=> __( 'Project updated.', 'projects' ),
+	    4 	=> sprintf( __( '%s updated.', 'projects' ), $projects->singular_name ),
 	    /* translators: %s: date and time of the revision */
-	    5 	=> isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'projects' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 	=> sprintf( __( 'Project published. %sView Project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    7 	=> __( 'Project saved.' ),
-	    8 	=> sprintf( __( 'Project submitted. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 	=> sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'projects' ),
+	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from 2$%s', 'projects' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 	=> sprintf( __( '$1%s published. $2%sView $3%s$4%s', 'projects' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    7 	=> sprintf( __( '%s saved.' ), $projects->singular_name ),
+	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $project->singular_name ), '</a>' ),
+	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects' ), $projects->singular_name, 
 	      // translators: Publish box date format, see http://php.net/date
-	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 	=> sprintf( __( 'Project draft updated. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    10 	=> sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	  );
 
 	  return $messages;
@@ -230,14 +232,17 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_setup () {
+		global $projects;
+
 		// Add short description meta box (replaces default excerpt)
-		add_meta_box( 'postexcerpt', __( 'Project Short Description', 'woocommerce' ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
-
+		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
+		
 		// Project Details Meta Box Load
-		add_meta_box( 'project-data', __( 'Project Details', 'projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
-
+		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects' ), array( $this, 'meta_box_content' ), $projects->singular_name ), $this->post_type, 'normal', 'high' );
+		
 		// Project Images Meta Bog Load
-		add_meta_box( 'project-images', __( 'Project Gallery', 'projects' ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+
 	} // End meta_box_setup()
 
 
@@ -307,7 +312,7 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_content_project_images () {
-		global $post;
+		global $post, $projects;
 		?>
 		<div id="project_images_container">
 			<ul class="project_images">
@@ -339,7 +344,7 @@ class Projects_Admin {
 
 		</div>
 		<p class="add_project_images hide-if-no-js">
-			<a href="#"><?php _e( 'Add project gallery images', 'projects' ); ?></a>
+			<a href="#"><?php printf( __( 'Add %s gallery images', 'projects' ), strtolower( $projects->singular_name ) ); ?></a>
 		</p>
 		<script type="text/javascript">
 			jQuery(document).ready(function($){
@@ -540,8 +545,9 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function enter_title_here ( $title ) {
+		global $projects;
 		if ( get_post_type() == $this->post_type ) {
-			$title = __( 'Enter the project title here', 'projects' );
+			$title = sprintf( __( 'Enter the %s title here', 'projects' ), strtolower( $projects->singular_name ) );
 		}
 		return $title;
 	} // End enter_title_here()
@@ -584,8 +590,9 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function featured_image_label() {
+		global $projects;
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
-	    add_meta_box( 'postimagediv', __( 'Project Cover Image', 'projects' ), 'post_thumbnail_meta_box', 'project', 'side' );
+	    add_meta_box( 'postimagediv', sprintf( __( '%s Cover Image', 'projects' ), $projects->singular_name ), 'post_thumbnail_meta_box', 'project', 'side' );
 	}
 
 	/**

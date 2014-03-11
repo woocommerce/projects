@@ -63,7 +63,7 @@ class Projects {
 		// Run this on deactivation.
 		register_deactivation_hook( $this->file, array( $this, 'deactivation' ) );
 
-		add_action( 'init', array( $this, 'admin_names' ) );
+		add_action( 'init', array( $this, 'post_type_names' ) );
 		add_action( 'init', array( $this, 'register_rewrite_tags' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -105,9 +105,9 @@ class Projects {
 	 * @since  1.1
 	 * @return void
 	 */
-	public function admin_names () {
-		$this->singular_name = apply_filters( 'projects_admin_singular_name', _x( 'Project', 'post type singular name', 'projects' ) );
-		$this->plural_name = apply_filters( 'projects_admin_plural_name', _x( 'Projects', 'post type general name', 'projects' ) );
+	public function post_type_names () {
+		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects' ) );
+		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'Projects', 'post type general name', 'projects' ) );
 	}
 
 	/**
@@ -158,7 +158,7 @@ class Projects {
 		);
 
 		$args = apply_filters( 'projects_register_post_type', $args );
-	
+
 		register_post_type( $this->post_type, (array) $args );
 	} // End register_post_type()
 

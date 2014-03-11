@@ -100,6 +100,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Tweak - Shortcodes in project descriptions now work as expected.
 * Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.
 * Tweak - Projects Post Type / Taxonomy args are now filterable. (Props @helgatheviking).
+* Tweak - Projects post type single/plural names are now filterable. (Props @helgatheviking).
 * Tweak - Several UI tweaks and improvements.
 
 = 1.0.1 =

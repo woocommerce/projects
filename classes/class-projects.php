@@ -44,7 +44,7 @@ class Projects {
 		$this->dir 			= dirname( $file );
 		$this->file 		= $file;
 		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url 	= esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->assets_url 	= esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token 		= 'projects';
 		$this->post_type 	= 'project';
 

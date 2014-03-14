@@ -405,6 +405,8 @@ class Projects {
 	 */
 	public function testimonials_init() {
 
+		if ( !class_exists( 'Woothemes_Testimonials' ) ) break;
+
 		// Add custom fields
 		add_filter( 'projects_custom_fields', array( $this, 'testimonials_custom_fields' ) );
 

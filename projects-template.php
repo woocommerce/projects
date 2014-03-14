@@ -472,3 +472,30 @@ if ( ! function_exists( 'projects_content' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'projects_output_testimonial' ) ) {
+
+	/**
+	 * Output Projects Testimonial.
+	 *
+	 * This function is only used if the Testimonials plugin is enabled.
+	 * It can be used to output a project's testimonial.
+	 *
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function projects_output_testimonial() {
+		if ( class_exists( 'Woothemes_Testimonials' ) && is_singular( 'project' ) ) {
+			global $post;
+			$testimonial_id = esc_attr( get_post_meta( $post->ID, '_testimonials_id', true ) );
+			if ( isset( $testimonial_id ) && '' != $testimonial_id && '0' != $testimonial_id ) {
+				$args = array(
+					'id' => $testimonial_id
+				);
+				woothemes_testimonials( $args );
+			}
+
+		}
+	}
+}

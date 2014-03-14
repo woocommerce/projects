@@ -238,7 +238,7 @@ class Projects_Admin {
 		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
 
 		// Project Details Meta Box Load
-		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects' ), array( $this, 'meta_box_content' ), $projects->singular_name ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 
 		// Project Images Meta Bog Load
 		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
@@ -268,15 +268,15 @@ class Projects_Admin {
 	}
 
 	/**
-	 * The contents of the Project info meta box.
+	 * The contents of our meta box.
 	 *
 	 * @access public
-	 * @since  1.1.0
+	 * @since  1.0.0
 	 * @return void
 	 */
 	public function meta_box_content () {
 		global $post_id;
-		$fields 	= get_post_custom( $post_id );
+		$fields = get_post_custom( $post_id );
 		$field_data = $this->get_custom_fields_settings();
 
 		$html = '';
@@ -293,9 +293,20 @@ class Projects_Admin {
 					$data = $fields['_' . $k][0];
 				}
 
-				$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td><input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />' . "\n";
-				$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
-				$html .= '</td><tr/>' . "\n";
+				switch ( $v['type'] ) {
+					case 'hidden':
+						$field = '<input name="' . esc_attr( $k ) . '" type="hidden" id="' . esc_attr( $k ) . '" value="' . esc_attr( $data ) . '" />';
+						$html .= '<tr valign="top">' . $field . "\n";
+						$html .= '<tr/>' . "\n";
+						break;
+					default:
+						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />';
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+				}
+
 			}
 
 			$html .= '</tbody>' . "\n";

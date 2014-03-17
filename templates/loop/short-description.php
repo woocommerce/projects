@@ -13,5 +13,5 @@ global $post;
 
 ?>
 <div itemprop="description" class="short-description">
-	<?php echo apply_filters( 'post_excerpt', wpautop( $post->post_excerpt ) ) ?>
+	<?php echo apply_filters( 'post_excerpt', wpautop( get_the_excerpt() ) ) ?>
 </div>

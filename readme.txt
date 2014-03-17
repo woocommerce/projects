@@ -78,6 +78,10 @@ Yes! You can follow this tutorial to [add custom fields to projects](http://docs
 
 We encourage everyone to contribute their ideas, thoughts and code snippets. This can be done by forking the [repository over at GitHub](http://github.com/woothemes/projects/).
 
+= Can I display a tesitmonial on a project page? =
+
+You sure can! Read about how in the [documentation](http://docs.woothemes.com/document/adding-testimonials-to-projects/).
+
 == Screenshots ==
 
 1. The projects base page
@@ -93,6 +97,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 = 1.1.0
 * 2014-03-10
+* New - Integration with Testimonials plugin.
 * New - dummy_data.xml containing dummy projects content.
 * New - Project excerpt replaced with new short description meta box with tinymce support.
 * New - Projects can now be filtered by category on the project management screen.

@@ -170,3 +170,28 @@
   opacity: 1;
   filter: alpha(opacity=@opacity * 100);
 }
+.post-type-project .ui-autocomplete {
+  font-family: inherit;
+  font-size: 1em;
+  background: #fafafa;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+}
+.post-type-project .ui-autocomplete li a {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: 0;
+  background: none;
+}
+.post-type-project .ui-autocomplete li a:hover {
+  border: 0;
+  background: #f6f6f6;
+}
+.post-type-project .ui-autocomplete li:last-child a {
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}

@@ -405,7 +405,7 @@ class Projects {
 	 */
 	public function testimonials_init() {
 
-		if ( !class_exists( 'Woothemes_Testimonials' ) ) break;
+		if ( ! class_exists( 'Woothemes_Testimonials' ) ) break;
 
 		// Add custom fields
 		add_filter( 'projects_custom_fields', array( $this, 'testimonials_custom_fields' ) );
@@ -418,7 +418,7 @@ class Projects {
 	} // End testimonials_init()
 
 	public function testimonials_admin_scripts () {
-		wp_enqueue_script('jquery-ui-autocomplete', null, array('jquery'), null, false);
+		wp_enqueue_script( 'jquery-ui-autocomplete', null, array( 'jquery' ), null, false);
 	} // End projects_testimonials_admin_scripts()
 
 	/**
@@ -471,7 +471,7 @@ class Projects {
 
 		global $pagenow, $post_type;
 
-		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && isset( $post_type ) && esc_attr( $post_type ) == 'project' ) {
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && isset( $post_type ) && esc_attr( $post_type ) == $this->post_type ) {
 
 			$ajax_nonce = wp_create_nonce( 'projects_ajax_get_testimonials' );
 
@@ -501,8 +501,8 @@ class Projects {
 						},
 						select: function ( event, ui ) {
 							event.preventDefault();
-							jQuery("#testimonials_search").val( ui.item.label );
-							jQuery("#testimonials_id").val( ui.item.value );
+							jQuery( "#testimonials_search" ).val( ui.item.label );
+							jQuery( "#testimonials_id" ).val( ui.item.value );
 						}
 					});
 				});
@@ -515,10 +515,10 @@ class Projects {
 
 		$fields['testimonials_search'] = array(
 			'name' 			=> __( 'Testimonial', 'projects' ),
-			'description' 	=> __( 'Select a Testimonial to add to this Project.', 'projects' ),
+			'description' 	=> __( 'Select a Testimonial to link to this Project.', 'projects' ),
 			'type' 			=> 'text',
 			'default' 		=> '',
-			'section' 		=> 'info'
+			'section' 		=> 'info',
 		);
 
 		$fields['testimonials_id'] = array(
@@ -526,7 +526,7 @@ class Projects {
 			'description' 	=> __( 'Holds the id of the selected testimonial.', 'projects' ),
 			'type' 			=> 'hidden',
 			'default' 		=> 0,
-			'section' 		=> 'info'
+			'section' 		=> 'info',
 		);
 
 		return $fields;

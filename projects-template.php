@@ -491,9 +491,12 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 			$testimonial_id = esc_attr( get_post_meta( $post->ID, '_testimonials_id', true ) );
 			if ( isset( $testimonial_id ) && '' != $testimonial_id && '0' != $testimonial_id ) {
 				$args = array(
-					'id' => $testimonial_id
+					'id' 		=> $testimonial_id,
+					'per_row' 	=> 1,
 				);
-				woothemes_testimonials( $args );
+				echo '<div class="project-testimonial">';
+					woothemes_testimonials( $args );
+				echo '</div>';
 			}
 
 		}

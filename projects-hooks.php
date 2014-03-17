@@ -82,7 +82,9 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * After Single Project
 	 *
 	 * @see projects_single_pagination()
+	 * @see projects_output_testimonial()
 	 */
+	add_action( 'projects_after_single_project', 'projects_output_testimonial', 1 );
 	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
 
 	/**

@@ -110,8 +110,8 @@ class Projects {
 	 * @return void
 	 */
 	public function post_type_names () {
-		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects' ) );
-		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'Projects', 'post type general name', 'projects' ) );
+		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects-by-woothemes' ) );
+		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'projects-by-woothemes', 'post type general name', 'projects-by-woothemes' ) );
 	}
 
 	/**
@@ -124,15 +124,15 @@ class Projects {
 		$labels = array(
 			'name' 					=> $this->plural_name,
 			'singular_name' 		=> $this->singular_name,
-			'add_new' 				=> _x( 'Add New', $this->post_type, 'projects' ),
-			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects' ), $this->singular_name ),
-			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects' ), $this->singular_name ),
-			'new_item' 				=> sprintf( __( 'New %s', 'projects' ), $this->singular_name ),
-			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects' ), $this->plural_name ),
-			'view_item' 			=> sprintf( __( 'View %s', 'projects' ), $this->singular_name ),
-			'search_items' 			=> sprintf( __( 'Search %a', 'projects' ), $this->plural_name ),
-			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects' ), $this->plural_name ),
-			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects' ), $this->plural_name ),
+			'add_new' 				=> _x( 'Add New', $this->post_type, 'projects-by-woothemes' ),
+			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'new_item' 				=> sprintf( __( 'New %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects-by-woothemes' ), $this->plural_name ),
+			'view_item' 			=> sprintf( __( 'View %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'search_items' 			=> sprintf( __( 'Search %a', 'projects-by-woothemes' ), $this->plural_name ),
+			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects-by-woothemes' ), $this->plural_name ),
+			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects-by-woothemes' ), $this->plural_name ),
 			'parent_item_colon' 	=> '',
 			'menu_name' 			=> $this->plural_name
 
@@ -288,7 +288,7 @@ class Projects {
 	 * @return void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'projects', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'projects-by-woothemes', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation()
 
 	/**
@@ -297,7 +297,7 @@ class Projects {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'projects';
+	    $domain = 'projects-by-woothemes';
 	    // The "plugin_locale" filter is also used in load_plugin_textdomain()
 	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
@@ -388,8 +388,8 @@ class Projects {
 			return apply_filters( 'projects_get_image_size_' . $image_size, '' );
 
 		// Get image size from options
-		$options = get_option( 'projects', array() );
-		$size = $options[ $image_size ];
+		$options 	= get_option( 'projects', array() );
+		$size 		= $options[ $image_size ];
 
 		$size['width'] 	= isset( $size['width'] ) ? $size['width'] : '300';
 		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
@@ -517,16 +517,16 @@ class Projects {
 	public function testimonials_custom_fields( $fields ) {
 
 		$fields['testimonials_search'] = array(
-			'name' 			=> __( 'Testimonial', 'projects' ),
-			'description' 	=> __( 'Select a Testimonial to link to this Project.', 'projects' ),
+			'name' 			=> __( 'Testimonial', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Select a Testimonial to link to this Project.', 'projects-by-woothemes' ),
 			'type' 			=> 'text',
 			'default' 		=> '',
 			'section' 		=> 'info',
 		);
 
 		$fields['testimonials_id'] = array(
-			'name' 			=> __( 'Testimonial ID', 'projects' ),
-			'description' 	=> __( 'Holds the id of the selected testimonial.', 'projects' ),
+			'name' 			=> __( 'Testimonial ID', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Holds the id of the selected testimonial.', 'projects-by-woothemes' ),
 			'type' 			=> 'hidden',
 			'default' 		=> 0,
 			'section' 		=> 'info',

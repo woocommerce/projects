@@ -87,7 +87,7 @@ class Projects_Admin {
 		        }
 
 	            wp_dropdown_categories( array(
-	                'show_option_all' 	=> __( 'Show All ' . $tax_obj->label, 'projects' ),
+	                'show_option_all' 	=> __( 'Show All ' . $tax_obj->label, 'projects-by-woothemes' ),
 	                'taxonomy' 	  		=> $tax_slug,
 	                'name' 		  		=> $tax_obj->name,
 	                'orderby' 	  		=> 'name',
@@ -172,7 +172,7 @@ class Projects_Admin {
 
 		$new_columns          = array();
 		$new_columns['cb']    = $defaults['cb'];
-		$new_columns['image'] = __( 'Cover Image', 'projects' );
+		$new_columns['image'] = __( 'Cover Image', 'projects-by-woothemes' );
 
 		$last_item = '';
 
@@ -206,19 +206,19 @@ class Projects_Admin {
 
 	  $messages[$this->post_type] = array(
 	    0 	=> '', // Unused. Messages start at index 1.
-	    1 	=> sprintf( __( '%1$s updated. %2$sView %3$s%4$s', 'projects' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    2 	=> __( 'Custom field updated.', 'projects' ),
-	    3 	=> __( 'Custom field deleted.', 'projects' ),
-	    4 	=> sprintf( __( '%s updated.', 'projects' ), $projects->singular_name ),
+	    1 	=> sprintf( __( '%1$s updated. %2$sView %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    2 	=> __( 'Custom field updated.', 'projects-by-woothemes' ),
+	    3 	=> __( 'Custom field deleted.', 'projects-by-woothemes' ),
+	    4 	=> sprintf( __( '%s updated.', 'projects-by-woothemes' ), $projects->singular_name ),
 	    /* translators: %s: date and time of the revision */
-	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from 2$%s', 'projects' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 	=> sprintf( __( '$1%s published. $2%sView $3%s$4%s', 'projects' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from 2$%s', 'projects-by-woothemes' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 	=> sprintf( __( '$1%s published. $2%sView $3%s$4%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    7 	=> sprintf( __( '%s saved.' ), $projects->singular_name ),
-	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects' ), $projects->singular_name,
+	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects-by-woothemes' ), $projects->singular_name,
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    10 	=> sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s', 'projects' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    10 	=> sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	  );
 
 	  return $messages;
@@ -235,13 +235,13 @@ class Projects_Admin {
 		global $projects;
 
 		// Add short description meta box (replaces default excerpt)
-		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
+		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
 
 		// Project Details Meta Box Load
-		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 
 		// Project Images Meta Bog Load
-		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
 
 	} // End meta_box_setup()
 
@@ -344,7 +344,7 @@ class Projects_Admin {
 							echo '<li class="image" data-attachment_id="' . $attachment_id . '">
 								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
 								<ul class="actions">
-									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects' ) . '">&times;</a></li>
+									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects-by-woothemes' ) . '">&times;</a></li>
 								</ul>
 							</li>';
 						}
@@ -355,7 +355,7 @@ class Projects_Admin {
 
 		</div>
 		<p class="add_project_images hide-if-no-js">
-			<a href="#"><?php printf( __( 'Add %s gallery images', 'projects' ), strtolower( $projects->singular_name ) ); ?></a>
+			<a href="#"><?php printf( __( 'Add %s gallery images', 'projects-by-woothemes' ), strtolower( $projects->singular_name ) ); ?></a>
 		</p>
 		<script type="text/javascript">
 			jQuery(document).ready(function($){
@@ -381,9 +381,9 @@ class Projects_Admin {
 					// Create the media frame.
 					project_gallery_frame = wp.media.frames.downloadable_file = wp.media({
 						// Set the title of the modal.
-						title: '<?php _e( 'Add Images to Project Gallery', 'projects' ); ?>',
+						title: '<?php _e( 'Add Images to Project Gallery', 'projects-by-woothemes' ); ?>',
 						button: {
-							text: '<?php _e( 'Add to gallery', 'projects' ); ?>',
+							text: '<?php _e( 'Add to gallery', 'projects-by-woothemes' ); ?>',
 						},
 						multiple: true
 					});
@@ -404,7 +404,7 @@ class Projects_Admin {
 									<li class="image" data-attachment_id="' + attachment.id + '">\
 										<img src="' + attachment.url + '" />\
 										<ul class="actions">\
-											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'projects' ); ?>">&times;</a></li>\
+											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'projects-by-woothemes' ); ?>">&times;</a></li>\
 										</ul>\
 									</li>');
 							}
@@ -529,16 +529,16 @@ class Projects_Admin {
 		$fields = array();
 
 		$fields['client'] = array(
-		    'name' 			=> __( 'Client', 'projects' ),
-		    'description' 	=> __( 'Enter the client name. (Optional)', 'projects' ),
+		    'name' 			=> __( 'Client', 'projects-by-woothemes' ),
+		    'description' 	=> __( 'Enter the client name. (Optional)', 'projects-by-woothemes' ),
 		    'type' 			=> 'text',
 		    'default' 		=> '',
 		    'section' 		=> 'info'
 		);
 
 		$fields['url'] = array(
-		    'name' 			=> __( 'URL', 'projects' ),
-		    'description' 	=> __( 'Enter the project URL. (Optional)', 'projects' ),
+		    'name' 			=> __( 'URL', 'projects-by-woothemes' ),
+		    'description' 	=> __( 'Enter the project URL. (Optional)', 'projects-by-woothemes' ),
 		    'type' 			=> 'url',
 		    'default' 		=> '',
 		    'section' 		=> 'info'
@@ -558,7 +558,7 @@ class Projects_Admin {
 	public function enter_title_here ( $title ) {
 		global $projects;
 		if ( get_post_type() == $this->post_type ) {
-			$title = sprintf( __( 'Enter the %s title here', 'projects' ), strtolower( $projects->singular_name ) );
+			$title = sprintf( __( 'Enter the %s title here', 'projects-by-woothemes' ), strtolower( $projects->singular_name ) );
 		}
 		return $title;
 	} // End enter_title_here()
@@ -589,7 +589,7 @@ class Projects_Admin {
 		if ( -1 == $projects_page ) {
 			$url = add_query_arg( 'post_type', 'project', admin_url( 'edit.php' ) );
 			$url = add_query_arg( 'page', 'projects-settings-page', $url );
-			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'projects' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
+			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'projects-by-woothemes' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
 		}
 	} // End configuration_admin_notice()
 
@@ -603,7 +603,7 @@ class Projects_Admin {
 	public function featured_image_label() {
 		global $projects;
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
-	    add_meta_box( 'postimagediv', sprintf( __( '%s Cover Image', 'projects' ), $projects->singular_name ), 'post_thumbnail_meta_box', 'project', 'side' );
+	    add_meta_box( 'postimagediv', sprintf( __( '%s Cover Image', 'projects-by-woothemes' ), $projects->singular_name ), 'post_thumbnail_meta_box', 'project', 'side' );
 	}
 
 	/**
@@ -616,7 +616,7 @@ class Projects_Admin {
 		$post_type = $this->get_current_post_type();
 
 		if ( 'project' == $post_type ) {
-	    	$content = str_replace( __( 'Set featured image' ), __( 'Set cover image', 'projects' ), $content );
+	    	$content = str_replace( __( 'Set featured image' ), __( 'Set cover image', 'projects-by-woothemes' ), $content );
 		}
 
 		return $content;
@@ -632,7 +632,7 @@ class Projects_Admin {
 		$post_type = $this->get_current_post_type();
 
 	    if ( 'project' == $post_type ) {
-	    	$content = str_replace( __( 'Remove featured image' ), __( 'Remove cover image', 'projects' ), $content );
+	    	$content = str_replace( __( 'Remove featured image' ), __( 'Remove cover image', 'projects-by-woothemes' ), $content );
 		}
 
 		return $content;
@@ -647,8 +647,8 @@ class Projects_Admin {
 	public function featured_image_popup_set_link( $strings ) {
 		$post_type = $this->get_current_post_type();
 		if ( 'project' == $post_type ) {
-			$strings['setFeaturedImageTitle'] 	= __( 'Set Cover Image', 'projects' );
-			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects' );
+			$strings['setFeaturedImageTitle'] 	= __( 'Set Cover Image', 'projects-by-woothemes' );
+			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects-by-woothemes' );
 		}
 		return $strings;
 	}
@@ -678,4 +678,3 @@ class Projects_Admin {
     }
 
 } // End Class
-?>

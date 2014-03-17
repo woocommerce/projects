@@ -126,10 +126,10 @@ if ( ! function_exists( 'projects_page_title' ) ) {
 	function projects_page_title() {
 
 		if ( is_search() ) {
-			$page_title = sprintf( __( 'Search Results: &ldquo;%s&rdquo;', 'projects' ), get_search_query() );
+			$page_title = sprintf( __( 'Search Results: &ldquo;%s&rdquo;', 'projects-by-woothemes' ), get_search_query() );
 
 			if ( get_query_var( 'paged' ) )
-				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'projects' ), get_query_var( 'paged' ) );
+				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'projects-by-woothemes' ), get_query_var( 'paged' ) );
 
 		} elseif ( is_tax() ) {
 

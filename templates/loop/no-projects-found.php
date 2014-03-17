@@ -11,4 +11,4 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
-<p class="projects-info"><?php _e( 'No projects found which match your selection.', 'projects' ); ?></p>
+<p class="projects-info"><?php _e( 'No projects found which match your selection.', 'projects-by-woothemes' ); ?></p>

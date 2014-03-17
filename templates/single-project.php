@@ -46,4 +46,4 @@ get_header( 'projects' ); ?>
 		do_action( 'projects_sidebar' );
 	?>
 
-<?php get_footer( 'projects' ); ?>
+<?php get_footer( 'projects' );

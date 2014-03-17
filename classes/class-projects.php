@@ -79,7 +79,8 @@ class Projects {
 			$this->frontend = new Projects_Frontend( $file );
 		}
 
-		add_action( 'init', array( $this, 'testimonials_init' ) );
+		// Testimonials Integration
+		add_action( 'init', array( $this, 'projects_testimonials_init' ) );
 
 	} // End __construct()
 
@@ -403,19 +404,21 @@ class Projects {
 	 * @since  1.1.0
 	 * @return  void
 	 */
-	public function testimonials_init() {
+	public function projects_testimonials_init() {
 
-		if ( ! class_exists( 'Woothemes_Testimonials' ) ) break;
+		if ( class_exists( 'Woothemes_Testimonials' ) ) {
 
-		// Add custom fields
-		add_filter( 'projects_custom_fields', array( $this, 'testimonials_custom_fields' ) );
+			// Add custom fields
+			add_filter( 'projects_custom_fields', array( $this, 'testimonials_custom_fields' ) );
 
-		// Enqueue admin JavaScript
-		add_action( 'admin_enqueue_scripts', array( $this, 'testimonials_admin_scripts' ) );
-		add_action( 'wp_ajax_get_testimonials', array( $this, 'get_testimonials_callback' ) );
-		add_action( 'admin_footer', array( $this, 'testimonials_javascript' ) );
+			// Enqueue admin JavaScript
+			add_action( 'admin_enqueue_scripts', array( $this, 'testimonials_admin_scripts' ) );
+			add_action( 'wp_ajax_get_testimonials', array( $this, 'get_testimonials_callback' ) );
+			add_action( 'admin_footer', array( $this, 'testimonials_javascript' ) );
 
-	} // End testimonials_init()
+		}
+
+	} // End projects_testimonials_init()
 
 	public function testimonials_admin_scripts () {
 		wp_enqueue_script( 'jquery-ui-autocomplete', null, array( 'jquery' ), null, false);

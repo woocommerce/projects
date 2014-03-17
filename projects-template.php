@@ -490,10 +490,10 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 			global $post;
 			$testimonial_id = esc_attr( get_post_meta( $post->ID, '_testimonials_id', true ) );
 			if ( isset( $testimonial_id ) && '' != $testimonial_id && '0' != $testimonial_id ) {
-				$args = array(
+				$args = apply_filters( 'projects_testimonials_args', array(
 					'id' 		=> $testimonial_id,
 					'per_row' 	=> 1,
-				);
+				) );
 				echo '<div class="project-testimonial">';
 					woothemes_testimonials( $args );
 				echo '</div>';

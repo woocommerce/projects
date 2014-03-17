@@ -481,9 +481,9 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 	 * This function is only used if the Testimonials plugin is enabled.
 	 * It can be used to output a project's testimonial.
 	 *
-	 *
 	 * @access public
 	 * @return void
+	 * @since  1.1.0
 	 */
 	function projects_output_testimonial() {
 		if ( class_exists( 'Woothemes_Testimonials' ) && is_singular( 'project' ) ) {

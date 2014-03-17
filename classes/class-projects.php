@@ -111,7 +111,7 @@ class Projects {
 	 */
 	public function post_type_names () {
 		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects-by-woothemes' ) );
-		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'projects-by-woothemes', 'post type general name', 'projects-by-woothemes' ) );
+		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'Projects', 'post type general name', 'projects-by-woothemes' ) );
 	}
 
 	/**
@@ -131,7 +131,7 @@ class Projects {
 			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects-by-woothemes' ), $this->plural_name ),
 			'view_item' 			=> sprintf( __( 'View %s', 'projects-by-woothemes' ), $this->singular_name ),
 			'search_items' 			=> sprintf( __( 'Search %a', 'projects-by-woothemes' ), $this->plural_name ),
-			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects-by-woothemes' ), $this->plural_name ),
+			'not_found' 			=> sprintf( __( 'No %s Found', 'projects-by-woothemes' ), $this->plural_name ),
 			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects-by-woothemes' ), $this->plural_name ),
 			'parent_item_colon' 	=> '',
 			'menu_name' 			=> $this->plural_name

@@ -206,19 +206,19 @@ class Projects_Admin {
 
 	  $messages[$this->post_type] = array(
 	    0 	=> '', // Unused. Messages start at index 1.
-	    1 	=> sprintf( __( '%1$s updated. %2$sView %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    1 	=> sprintf( __( '%s updated. View %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    2 	=> __( 'Custom field updated.', 'projects-by-woothemes' ),
 	    3 	=> __( 'Custom field deleted.', 'projects-by-woothemes' ),
 	    4 	=> sprintf( __( '%s updated.', 'projects-by-woothemes' ), $projects->singular_name ),
 	    /* translators: %s: date and time of the revision */
-	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from 2$%s', 'projects-by-woothemes' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 	=> sprintf( __( '$1%s published. $2%sView $3%s$4%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%s restored to revision from %s', 'projects-by-woothemes' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 	=> sprintf( __( '%s published. View %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	    7 	=> sprintf( __( '%s saved.' ), $projects->singular_name ),
-	    8 	=> sprintf( __( '%1$s submitted. %2$sPreview %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    9 	=> sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s', 'projects-by-woothemes' ), $projects->singular_name,
+	    8 	=> sprintf( __( '%s submitted. Preview %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    9 	=> sprintf( __( '%s scheduled for: %s. Preview %s', 'projects-by-woothemes' ), $projects->singular_name,
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    10 	=> sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    10 	=> sprintf( __( '%s draft updated. Preview %s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	  );
 
 	  return $messages;
@@ -480,7 +480,8 @@ class Projects_Admin {
 		global $post, $messages;
 
 		// Verify
-		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
+		$_POST['woo_' . $this->token . '_nonce'] = null;
+		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_nonce'], plugin_basename( $this->dir ) ) ) {
 			return $post_id;
 		}
 

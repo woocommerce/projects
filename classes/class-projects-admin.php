@@ -218,7 +218,7 @@ class Projects_Admin {
 	    9 	=> sprintf( __( '%s scheduled for: %s. Preview %s', 'projects-by-woothemes' ), $projects->singular_name,
 	      // translators: Publish box date format, see http://php.net/date
 	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
-	    10 	=> sprintf( __( '%s draft updated. Preview %s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    10 	=> sprintf( __( '%s draft updated. Preview %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	  );
 
 	  return $messages;

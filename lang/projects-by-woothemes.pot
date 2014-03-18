@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/projects-by-woothemes\n"
-"POT-Creation-Date: 2014-03-17 16:14:31+00:00\n"
+"POT-Creation-Date: 2014-03-18 11:54:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgid "Cover Image"
 msgstr ""
 
 #: classes/class-projects-admin.php:209
-msgid "%1$s updated. %2$sView %3$s%4$s"
+msgid "%s updated. View %s%s%s"
 msgstr ""
 
 #: classes/class-projects-admin.php:210
@@ -35,11 +35,11 @@ msgstr ""
 #. translators: %s: date and time of the revision
 
 #: classes/class-projects-admin.php:214
-msgid "%1$s restored to revision from 2$%s"
+msgid "%s restored to revision from %s"
 msgstr ""
 
 #: classes/class-projects-admin.php:215
-msgid "$1%s published. $2%sView $3%s$4%s"
+msgid "%s published. View %s%s%s"
 msgstr ""
 
 #: classes/class-projects-admin.php:216
@@ -47,11 +47,11 @@ msgid "%s saved."
 msgstr ""
 
 #: classes/class-projects-admin.php:217
-msgid "%1$s submitted. %2$sPreview %3$s%4$s"
+msgid "%s submitted. Preview %s%s%s"
 msgstr ""
 
 #: classes/class-projects-admin.php:218
-msgid "%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s"
+msgid "%s scheduled for: %s. Preview %s"
 msgstr ""
 
 #. translators: Publish box date format, see http:php.net/date
@@ -61,7 +61,7 @@ msgid "M j, Y @ G:i"
 msgstr ""
 
 #: classes/class-projects-admin.php:221
-msgid "%1$s draft updated. %2$sPreview %3$s%4$s"
+msgid "%s draft updated. Preview %s%s%s"
 msgstr ""
 
 #: classes/class-projects-admin.php:238
@@ -265,7 +265,7 @@ msgstr ""
 
 #: classes/class-projects.php:114
 msgctxt "post type general name"
-msgid "projects-by-woothemes"
+msgid "Projects"
 msgstr ""
 
 #: classes/class-projects.php:130
@@ -288,19 +288,19 @@ msgstr ""
 msgid "No %s Found In Trash"
 msgstr ""
 
-#: classes/class-projects.php:520
+#: classes/class-projects.php:526
 msgid "Testimonial"
 msgstr ""
 
-#: classes/class-projects.php:521
-msgid "Select a Testimonial to link to this Project."
+#: classes/class-projects.php:527
+msgid "Search for Testimonial to link to this Project. (Optional)"
 msgstr ""
 
-#: classes/class-projects.php:528
+#: classes/class-projects.php:534
 msgid "Testimonial ID"
 msgstr ""
 
-#: classes/class-projects.php:529
+#: classes/class-projects.php:535
 msgid "Holds the id of the selected testimonial."
 msgstr ""
 

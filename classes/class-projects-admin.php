@@ -480,7 +480,7 @@ class Projects_Admin {
 		global $post, $messages;
 
 		// Verify
-		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_nonce'], plugin_basename( $this->dir ) ) ) {
+		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
 			return $post_id;
 		}
 

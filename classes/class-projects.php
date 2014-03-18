@@ -506,6 +506,12 @@ class Projects {
 							event.preventDefault();
 							jQuery( "#testimonials_search" ).val( ui.item.label );
 							jQuery( "#testimonials_id" ).val( ui.item.value );
+						},
+						change: function ( event, ui ) {
+							event.preventDefault();
+							if ( 0 == jQuery( "#testimonials_search" ).val().length ) {
+								jQuery( "#testimonials_id" ).val( '' );
+							}
 						}
 					});
 				});

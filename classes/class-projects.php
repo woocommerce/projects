@@ -506,6 +506,12 @@ class Projects {
 							event.preventDefault();
 							jQuery( "#testimonials_search" ).val( ui.item.label );
 							jQuery( "#testimonials_id" ).val( ui.item.value );
+						},
+						change: function ( event, ui ) {
+							event.preventDefault();
+							if ( 0 == jQuery( "#testimonials_search" ).val().length ) {
+								jQuery( "#testimonials_id" ).val( '' );
+							}
 						}
 					});
 				});
@@ -518,7 +524,7 @@ class Projects {
 
 		$fields['testimonials_search'] = array(
 			'name' 			=> __( 'Testimonial', 'projects-by-woothemes' ),
-			'description' 	=> __( 'Select a Testimonial to link to this Project.', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Search for Testimonial to link to this Project. (Optional)', 'projects-by-woothemes' ),
 			'type' 			=> 'text',
 			'default' 		=> '',
 			'section' 		=> 'info',

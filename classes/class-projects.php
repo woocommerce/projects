@@ -524,7 +524,7 @@ class Projects {
 
 		$fields['testimonials_search'] = array(
 			'name' 			=> __( 'Testimonial', 'projects-by-woothemes' ),
-			'description' 	=> __( 'Select a Testimonial to link to this Project.', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Search for Testimonial to link to this Project. (Optional)', 'projects-by-woothemes' ),
 			'type' 			=> 'text',
 			'default' 		=> '',
 			'section' 		=> 'info',

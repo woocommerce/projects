@@ -35,16 +35,17 @@
 				margin: 0;
 				padding: 0;
 				.clearfix;
-				li.image, li.add, li.projects-metabox-sortable-placeholder {
+
+				li.image,
+				li.add,
+				li.projects-metabox-sortable-placeholder {
 					width: 80px;
 					float: left;
 					cursor: move;
 					margin: 9px 9px 0 0;
 					background: #f7f7f7;
-					.border_radius(2px);
 					position: relative;
-					background: #fff;
-					.border_radius(2px);
+					background: #000;
 					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 					-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 					box-sizing: border-box;         /* Opera/IE 8+ */
@@ -53,7 +54,6 @@
 						height: auto;
 						display: block;
 						.transition;
-						.border_radius(2px);
 					}
 					&:hover {
 						img {
@@ -62,13 +62,12 @@
 					}
 				}
 				li.projects-metabox-sortable-placeholder {
-					border: 4px dashed #dddddd;
-					background: #f7f7f7;
+					background: #f1f1f1;
 				}
 				ul.actions {
 					position: absolute;
-					top:4px;
-					right: 4px;
+					top:0;
+					right: 0;
 					.transition;
 					.opacity(0);
 					li {
@@ -88,14 +87,13 @@
 							font-weight: 300;
 							line-height: 20px;
 							text-align: center;
-							.border_radius(2px);
 							text-decoration: none;
 							.transition;
 							&.delete {
-								background: @error;
+								background: #000;
 								&:hover {
-									background: #fff;
-									color: @error;
+									background: @error;
+									color: #fff;
 								}
 							}
 						}

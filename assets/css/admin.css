@@ -77,12 +77,7 @@
   margin: 9px 9px 0 0;
   background: #f7f7f7;
   position: relative;
-  background: #fff;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+  background: #000;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -101,11 +96,6 @@
   -ms-transition: all ease-in-out 0.2s;
   -o-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
 }
 #project-images .inside #project_images_container ul li.image:hover img,
 #project-images .inside #project_images_container ul li.add:hover img,
@@ -114,13 +104,12 @@
   filter: alpha(opacity=@opacity * 100);
 }
 #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder {
-  border: 4px dashed #dddddd;
-  background: #f7f7f7;
+  background: #f1f1f1;
 }
 #project-images .inside #project_images_container ul ul.actions {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 0;
+  right: 0;
   -webkit-transition: all ease-in-out 0.2s;
   -moz-transition: all ease-in-out 0.2s;
   -ms-transition: all ease-in-out 0.2s;
@@ -147,11 +136,6 @@
   font-weight: 300;
   line-height: 20px;
   text-align: center;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
   text-decoration: none;
   -webkit-transition: all ease-in-out 0.2s;
   -moz-transition: all ease-in-out 0.2s;
@@ -160,11 +144,11 @@
   transition: all ease-in-out 0.2s;
 }
 #project-images .inside #project_images_container ul ul.actions li a.delete {
-  background: #f63121;
+  background: #000;
 }
 #project-images .inside #project_images_container ul ul.actions li a.delete:hover {
-  background: #fff;
-  color: #f63121;
+  background: #f63121;
+  color: #fff;
 }
 #project-images .inside #project_images_container ul li:hover ul.actions {
   opacity: 1;

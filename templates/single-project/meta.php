@@ -26,7 +26,7 @@ global $post;
 		 */
 		if ( $terms_as_text ) {
 			echo '<div class="categories">';
-			echo '<h3>' . __( 'Categories', 'projects' ) . '</h3>';
+			echo '<h3>' . __( 'Categories', 'projects-by-woothemes' ) . '</h3>';
 			echo '<ul class="single-project-categories">';
 			echo $terms_as_text;
 			echo '</ul>';
@@ -38,7 +38,7 @@ global $post;
 		 */
 		if ( $client ) {
 			echo '<div class="client">';
-			echo '<h3>' . __( 'Client', 'projects' ) . '</h3>';
+			echo '<h3>' . __( 'Client', 'projects-by-woothemes' ) . '</h3>';
 			echo '<span class="client-name">' . $client . '</span>';
 			echo '</div>';
 		}
@@ -48,8 +48,8 @@ global $post;
 		 */
 		if ( $url ) {
 			echo '<div class="url">';
-			echo '<h3>' . __( 'Link', 'projects' ) . '</h3>';
-			echo '<span class="project-url"><a href="' . $url . '">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects' ) ) . '</a></span>';
+			echo '<h3>' . __( 'Link', 'projects-by-woothemes' ) . '</h3>';
+			echo '<span class="project-url"><a href="' . $url . '">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects-by-woothemes' ) ) . '</a></span>';
 			echo '</div>';
 		}
 	?>

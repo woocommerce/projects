@@ -6,6 +6,21 @@
 	content: "\f322";
 }
 
+// Projects screen
+.post-type-project.edit-php {
+	table.wp-list-table {
+		.column-image {
+			width: 120px;
+			text-align: center;;
+
+			img {
+				width: 60px;
+				height: auto;
+			}
+		}
+	}
+}
+
 // Project Gallery
 #project-images {
 	.inside {
@@ -20,16 +35,17 @@
 				margin: 0;
 				padding: 0;
 				.clearfix;
-				li.image, li.add, li.projects-metabox-sortable-placeholder {
+
+				li.image,
+				li.add,
+				li.projects-metabox-sortable-placeholder {
 					width: 80px;
 					float: left;
 					cursor: move;
 					margin: 9px 9px 0 0;
 					background: #f7f7f7;
-					.border_radius(2px);
 					position: relative;
-					background: #fff;
-					.border_radius(2px);
+					background: #000;
 					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 					-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 					box-sizing: border-box;         /* Opera/IE 8+ */
@@ -38,7 +54,6 @@
 						height: auto;
 						display: block;
 						.transition;
-						.border_radius(2px);
 					}
 					&:hover {
 						img {
@@ -47,13 +62,12 @@
 					}
 				}
 				li.projects-metabox-sortable-placeholder {
-					border: 4px dashed #dddddd;
-					background: #f7f7f7;
+					background: #f1f1f1;
 				}
 				ul.actions {
 					position: absolute;
-					top:4px;
-					right: 4px;
+					top:0;
+					right: 0;
 					.transition;
 					.opacity(0);
 					li {
@@ -73,14 +87,13 @@
 							font-weight: 300;
 							line-height: 20px;
 							text-align: center;
-							.border_radius(2px);
 							text-decoration: none;
 							.transition;
 							&.delete {
-								background: @error;
+								background: #000;
 								&:hover {
-									background: #fff;
-									color: @error;
+									background: @error;
+									color: #fff;
 								}
 							}
 						}
@@ -90,6 +103,46 @@
 					.opacity(1);
 				}
 			}
+		}
+	}
+}
+
+// Autocomplete
+.post-type-project {
+	.ui-autocomplete {
+		font-family: inherit;
+		font-size: 1em;
+		background: #fafafa;
+		-webkit-box-shadow:	0 1px 2px 0 rgba(0,0,0,0.1);
+		box-shadow:			0 1px 2px 0 rgba(0,0,0,0.1);
+		-webkit-border-radius:	0 0 4px 4px;
+		border-radius:			0 0 4px 4px;
+		-webkit-transform:	translateY(-1px);
+		transform:			translateY(-1px);
+		li {
+			a {
+				-webkit-border-radius:	0;
+				border-radius:			0;
+				border: 0;
+				background: none;
+				&:hover {
+					border: 0;
+					background: #f6f6f6;
+				}
+			}
+			&:last-child {
+				a {
+					-webkit-border-radius:	0 0 4px 4px;
+					border-radius:			0 0 4px 4px;
+				}
+			}
+		}
+	}
+
+	.projects-radio {
+		label {
+			display: block;
+			line-height: 1.5;
 		}
 	}
 }

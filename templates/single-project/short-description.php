@@ -14,5 +14,5 @@ global $post;
 if ( ! $post->post_excerpt ) return;
 ?>
 <div class="single-project-short-description" itemprop="description">
-	<?php echo apply_filters( 'projects_short_description', wpautop( $post->post_excerpt ) ) ?>
+	<?php echo apply_filters( 'post_excerpt', wpautop( $post->post_excerpt ) ) ?>
 </div>

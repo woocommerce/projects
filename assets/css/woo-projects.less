@@ -219,6 +219,42 @@
 			}
 		}
 	}
+
+	.project-testimonial {
+		blockquote {
+			padding: 1.618em;
+			border: 1px solid rgba(0,0,0,0.1);
+			position: relative;
+			margin: 0;
+			margin-bottom: 1.387em;
+
+			&:after {
+				content: "";
+				display: block;
+				border: 10px solid rgba(0,0,0,0.1);
+				border-color: rgba(0,0,0,0.1) transparent transparent transparent;
+				position: absolute;
+				bottom: -21px;
+				left: 1em;
+			}
+		}
+
+		.quote {
+			.clearfix();
+
+			.avatar-link {
+				float: left;
+				display: block;
+				margin: 0 1em 1em 0;
+			}
+
+			cite {
+				span {
+					display: block;
+				}
+			}
+		}
+	}
 }
 
 /**
@@ -248,7 +284,6 @@
 .widget_projects_categories {
 	ul.children {
 		margin-left: 2.618em;
-		list-style-type: disc;
 	}
 }
 

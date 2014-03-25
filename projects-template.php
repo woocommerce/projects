@@ -126,10 +126,10 @@ if ( ! function_exists( 'projects_page_title' ) ) {
 	function projects_page_title() {
 
 		if ( is_search() ) {
-			$page_title = sprintf( __( 'Search Results: &ldquo;%s&rdquo;', 'projects' ), get_search_query() );
+			$page_title = sprintf( __( 'Search Results: &ldquo;%s&rdquo;', 'projects-by-woothemes' ), get_search_query() );
 
 			if ( get_query_var( 'paged' ) )
-				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'projects' ), get_query_var( 'paged' ) );
+				$page_title .= sprintf( __( '&nbsp;&ndash; Page %s', 'projects-by-woothemes' ), get_query_var( 'paged' ) );
 
 		} elseif ( is_tax() ) {
 
@@ -468,6 +468,36 @@ if ( ! function_exists( 'projects_content' ) ) {
 				<?php projects_get_template( 'loop/no-products-found.php' ); ?>
 
 			<?php endif;
+
+		}
+	}
+}
+
+if ( ! function_exists( 'projects_output_testimonial' ) ) {
+
+	/**
+	 * Output Projects Testimonial.
+	 *
+	 * This function is only used if the Testimonials plugin is enabled.
+	 * It can be used to output a project's testimonial.
+	 *
+	 * @access public
+	 * @return void
+	 * @since  1.1.0
+	 */
+	function projects_output_testimonial() {
+		if ( class_exists( 'Woothemes_Testimonials' ) && is_singular( 'project' ) ) {
+			global $post;
+			$testimonial_id = esc_attr( get_post_meta( $post->ID, '_testimonials_id', true ) );
+			if ( isset( $testimonial_id ) && '' != $testimonial_id && '0' != $testimonial_id ) {
+				$args = apply_filters( 'projects_testimonials_args', array(
+					'id' 		=> $testimonial_id,
+					'per_row' 	=> 1,
+				) );
+				echo '<div class="project-testimonial">';
+					woothemes_testimonials( $args );
+				echo '</div>';
+			}
 
 		}
 	}

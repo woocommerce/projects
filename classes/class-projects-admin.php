@@ -20,6 +20,8 @@ class Projects_Admin {
 	private $token;
 	private $post_type;
 	private $file;
+	private $singular_name;
+	private $plural_name;
 
 	/**
 	 * Constructor function.
@@ -32,7 +34,7 @@ class Projects_Admin {
 		$this->dir 			= dirname( $file );
 		$this->file 		= $file;
 		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url 	= esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->assets_url 	= esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token 		= 'projects';
 		$this->post_type 	= 'project';
 
@@ -52,8 +54,81 @@ class Projects_Admin {
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
 			add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+			add_action( 'restrict_manage_posts', array( $this, 'projects_restrict_manage_posts' ) );
+			add_filter( 'parse_query', array( $this, 'projects_post_type_request' ) );
 		}
 	} // End __construct()
+
+	/**
+	 * Filter the request to just give posts for the given taxonomy, if applicable.
+	 *
+	 * @access public
+	 * @param array $post_types - post types to add taxonomy filtering to
+	 * @uses wp_dropdown_categories()
+	 * @since  1.1.0
+	 * @return void
+	 */
+	function projects_restrict_manage_posts() {
+	    global $typenow;
+
+	    $post_types = array( 'project' );
+
+	    if ( in_array( $typenow, $post_types ) ) {
+	    	$filters = get_object_taxonomies( $typenow );
+
+	        foreach ( $filters as $tax_slug ) {
+
+	        	$tax_obj = get_taxonomy( $tax_slug );
+
+	        	if ( isset( $_GET[$tax_slug] ) ) {
+	        		$selected = esc_attr( $_GET[$tax_slug] );
+		        } else {
+		        	$selected = null;
+		        }
+
+	            wp_dropdown_categories( array(
+	                'show_option_all' 	=> __( 'Show All ' . $tax_obj->label, 'projects-by-woothemes' ),
+	                'taxonomy' 	  		=> $tax_slug,
+	                'name' 		  		=> $tax_obj->name,
+	                'orderby' 	  		=> 'name',
+	                'selected' 	  		=> $selected,
+	                'hierarchical' 	  	=> $tax_obj->hierarchical,
+	                'show_count' 	  	=> true,
+	                'hide_empty' 	  	=> true,
+	            ) );
+	        }
+	    }
+	}
+
+	/**
+	 * Adjust the query string to use taxonomy slug instead of ID.
+	 *
+	 * @access public
+	 * @param array $filters - all taxonomies for the current post type
+	 * @uses get_object_taxonomies()
+	 * @uses  get_term_by()
+	 * @since  1.1.0
+	 * @return void
+	 */
+	function projects_post_type_request( $query ) {
+	  	global $pagenow, $typenow;
+
+	    $filters = get_object_taxonomies( $typenow );
+
+	    foreach ( $filters as $tax_slug ) {
+			$var = &$query->query_vars[$tax_slug];
+
+			if ( isset( $var ) ) {
+				$term = get_term_by( 'id', $var, $tax_slug );
+
+				if ( false != $term ) {
+					$var = $term->slug;
+				}
+			}
+	    }
+
+	    return $query;
+	}
 
 	/**
 	 * Add custom columns for the "manage" screen of this post type.
@@ -74,7 +149,7 @@ class Projects_Admin {
 			case 'image':
 				$value = '';
 
-				$value = projects_get_image( $id, 40 );
+				$value = projects_get_image( $id, 120 );
 
 				echo $value;
 			break;
@@ -94,9 +169,10 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function register_custom_column_headings ( $defaults ) {
-		$new_columns = array(
-			'image' => __( 'Cover Image', 'projects' )
-		);
+
+		$new_columns          = array();
+		$new_columns['cb']    = $defaults['cb'];
+		$new_columns['image'] = __( 'Cover Image', 'projects-by-woothemes' );
 
 		$last_item = '';
 
@@ -107,7 +183,7 @@ class Projects_Admin {
 
 			array_pop( $defaults );
 		}
-		$defaults = array_merge( $defaults, $new_columns );
+		$defaults = array_merge( $new_columns, $defaults );
 
 		if ( $last_item != '' ) {
 			foreach ( $last_item as $k => $v ) {
@@ -126,23 +202,23 @@ class Projects_Admin {
 	 * @return array           Modified array.
 	 */
 	public function updated_messages ( $messages ) {
-	  global $post, $post_ID;
+	  global $post, $post_ID, $projects;
 
 	  $messages[$this->post_type] = array(
 	    0 	=> '', // Unused. Messages start at index 1.
-	    1 	=> sprintf( __( 'Project updated. %sView project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    2 	=> __( 'Custom field updated.', 'projects' ),
-	    3 	=> __( 'Custom field deleted.', 'projects' ),
-	    4 	=> __( 'Project updated.', 'projects' ),
+	    1 	=> sprintf( __( '%s updated. View %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    2 	=> __( 'Custom field updated.', 'projects-by-woothemes' ),
+	    3 	=> __( 'Custom field deleted.', 'projects-by-woothemes' ),
+	    4 	=> sprintf( __( '%s updated.', 'projects-by-woothemes' ), $projects->singular_name ),
 	    /* translators: %s: date and time of the revision */
-	    5 	=> isset($_GET['revision']) ? sprintf( __( 'Project restored to revision from %s', 'projects' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	    6 	=> sprintf( __( 'Project published. %sView Project%s', 'projects' ), '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', '</a>' ),
-	    7 	=> __( 'Project saved.' ),
-	    8 	=> sprintf( __( 'Project submitted. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
-	    9 	=> sprintf( __( 'Project scheduled for: %1$s. %2$sPreview Project%3$s', 'projects' ),
+	    5 	=> isset( $_GET['revision'] ) ? sprintf( __( '%s restored to revision from %s', 'projects-by-woothemes' ), $projects->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	    6 	=> sprintf( __( '%s published. View %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    7 	=> sprintf( __( '%s saved.' ), $projects->singular_name ),
+	    8 	=> sprintf( __( '%s submitted. Preview %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    9 	=> sprintf( __( '%s scheduled for: %s. Preview %s', 'projects-by-woothemes' ), $projects->singular_name,
 	      // translators: Publish box date format, see http://php.net/date
-	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', '</a>' ),
-	    10 	=> sprintf( __( 'Project draft updated. %sPreview Project%s', 'projects' ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', '</a>' ),
+	      '<strong>' . date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink($post_ID) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
+	    10 	=> sprintf( __( '%s draft updated. Preview %s%s%s', 'projects-by-woothemes' ), $projects->singular_name, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', strtolower( $projects->singular_name ), '</a>' ),
 	  );
 
 	  return $messages;
@@ -156,27 +232,56 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_setup () {
+		global $projects;
+
+		// Add short description meta box (replaces default excerpt)
+		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), $this->post_type, 'normal' );
+
 		// Project Details Meta Box Load
-		add_meta_box( 'project-data', __( 'Project Details', 'projects' ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
+
 		// Project Images Meta Bog Load
-		add_meta_box( 'project-images', __( 'Project Gallery', 'projects' ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), $this->post_type, 'side' );
+
 	} // End meta_box_setup()
 
+
 	/**
-	 * The contents of our meta box.
+	 * The project short description meta box.
 	 *
 	 * @access public
 	 * @since  1.1.0
 	 * @return void
 	 */
+	public function meta_box_short_description( $post ) {
+		$settings = array(
+			'textarea_name'	=> 'excerpt',
+			'quicktags' 	=> array( 'buttons' => 'em,strong,link' ),
+			'tinymce' 		=> array(
+								'theme_advanced_buttons1' => 'bold,italic,strikethrough,separator,bullist,numlist,separator,blockquote,separator,justifyleft,justifycenter,justifyright,separator,link,unlink,separator,undo,redo,separator',
+								'theme_advanced_buttons2' => '',
+								),
+			'editor_css'	=> '<style>#wp-excerpt-editor-container .wp-editor-area{height:175px; width:100%;}</style>'
+		);
+
+		wp_editor( htmlspecialchars_decode( $post->post_excerpt ), 'excerpt', apply_filters( 'projects_product_short_description_editor_settings', $settings ) );
+	}
+
+	/**
+	 * The contents of our meta box.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function meta_box_content () {
 		global $post_id;
-		$fields 	= get_post_custom( $post_id );
+		$fields = get_post_custom( $post_id );
 		$field_data = $this->get_custom_fields_settings();
 
 		$html = '';
 
-		$html .= '<input type="hidden" name="woo_' . $this->token . '_noonce" id="woo_' . $this->token . '_noonce" value="' . wp_create_nonce( plugin_basename( $this->dir ) ) . '" />';
+		$html .= '<input type="hidden" name="woo_' . $this->token . '_nonce" id="woo_' . $this->token . '_nonce" value="' . wp_create_nonce( plugin_basename( $this->dir ) ) . '" />';
 
 		if ( 0 < count( $field_data ) ) {
 			$html .= '<table class="form-table">' . "\n";
@@ -188,9 +293,58 @@ class Projects_Admin {
 					$data = $fields['_' . $k][0];
 				}
 
-				$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td><input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />' . "\n";
-				$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
-				$html .= '</td><tr/>' . "\n";
+				switch ( $v['type'] ) {
+					case 'hidden':
+						$field = '<input name="' . esc_attr( $k ) . '" type="hidden" id="' . esc_attr( $k ) . '" value="' . esc_attr( $data ) . '" />';
+						$html .= '<tr valign="top">' . $field . "\n";
+						$html .= '<tr/>' . "\n";
+						break;
+					case 'text':
+					case 'url':
+						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />';
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'radio':
+						$field = '';
+
+						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
+							foreach ( $v['options'] as $val => $option ){
+								$field .= '<label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="radio" name="' . esc_attr( $k ) . '" value="' . esc_attr( $val ) . '" ' . checked( $val, $data, false ) . ' / >'. $option . '</label>' . "\n";
+							}
+						}
+
+						$html .= '<tr valign="top" class="projects-radio"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'select':
+						$field = '<select name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" >'. "\n";
+
+						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
+							foreach ( $v['options'] as $val => $option ){
+								$field .= '<option value="' . esc_attr( $val ) . '" ' . selected( $val, $data, false ) . '>'. $option .'</option>' . "\n";
+							}
+						}
+
+						$field .= '</select>'. "\n";
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					default:
+						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
+
+						if ( $field ) {
+							$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+							$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+							$html .= '</td><tr/>' . "\n";
+						}
+
+						break;
+				}
+
 			}
 
 			$html .= '</tbody>' . "\n";
@@ -207,7 +361,7 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function meta_box_content_project_images () {
-		global $post;
+		global $post, $projects;
 		?>
 		<div id="project_images_container">
 			<ul class="project_images">
@@ -228,7 +382,7 @@ class Projects_Admin {
 							echo '<li class="image" data-attachment_id="' . $attachment_id . '">
 								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
 								<ul class="actions">
-									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects' ) . '">&times;</a></li>
+									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects-by-woothemes' ) . '">&times;</a></li>
 								</ul>
 							</li>';
 						}
@@ -239,7 +393,7 @@ class Projects_Admin {
 
 		</div>
 		<p class="add_project_images hide-if-no-js">
-			<a href="#"><?php _e( 'Add project gallery images', 'projects' ); ?></a>
+			<a href="#"><?php printf( __( 'Add %s gallery images', 'projects-by-woothemes' ), strtolower( $projects->singular_name ) ); ?></a>
 		</p>
 		<script type="text/javascript">
 			jQuery(document).ready(function($){
@@ -265,9 +419,9 @@ class Projects_Admin {
 					// Create the media frame.
 					project_gallery_frame = wp.media.frames.downloadable_file = wp.media({
 						// Set the title of the modal.
-						title: '<?php _e( 'Add Images to Project Gallery', 'projects' ); ?>',
+						title: '<?php _e( 'Add Images to Project Gallery', 'projects-by-woothemes' ); ?>',
 						button: {
-							text: '<?php _e( 'Add to gallery', 'projects' ); ?>',
+							text: '<?php _e( 'Add to gallery', 'projects-by-woothemes' ); ?>',
 						},
 						multiple: true
 					});
@@ -288,7 +442,7 @@ class Projects_Admin {
 									<li class="image" data-attachment_id="' + attachment.id + '">\
 										<img src="' + attachment.url + '" />\
 										<ul class="actions">\
-											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'projects' ); ?>">&times;</a></li>\
+											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'projects-by-woothemes' ); ?>">&times;</a></li>\
 										</ul>\
 									</li>');
 							}
@@ -364,7 +518,7 @@ class Projects_Admin {
 		global $post, $messages;
 
 		// Verify
-		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_noonce'], plugin_basename( $this->dir ) ) ) {
+		if ( ( get_post_type() != $this->post_type ) || ! wp_verify_nonce( $_POST['woo_' . $this->token . '_nonce'], plugin_basename( $this->dir ) ) ) {
 			return $post_id;
 		}
 
@@ -413,16 +567,16 @@ class Projects_Admin {
 		$fields = array();
 
 		$fields['client'] = array(
-		    'name' 			=> __( 'Client', 'projects' ),
-		    'description' 	=> __( 'Enter the client name for this project.', 'projects' ),
+		    'name' 			=> __( 'Client', 'projects-by-woothemes' ),
+		    'description' 	=> __( 'Enter the client name. (Optional)', 'projects-by-woothemes' ),
 		    'type' 			=> 'text',
 		    'default' 		=> '',
 		    'section' 		=> 'info'
 		);
 
 		$fields['url'] = array(
-		    'name' 			=> __( 'URL', 'projects' ),
-		    'description' 	=> __( 'Enter a URL that applies to this project.', 'projects' ),
+		    'name' 			=> __( 'URL', 'projects-by-woothemes' ),
+		    'description' 	=> __( 'Enter the project URL. (Optional)', 'projects-by-woothemes' ),
 		    'type' 			=> 'url',
 		    'default' 		=> '',
 		    'section' 		=> 'info'
@@ -440,8 +594,9 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function enter_title_here ( $title ) {
+		global $projects;
 		if ( get_post_type() == $this->post_type ) {
-			$title = __( 'Enter the project title here', 'projects' );
+			$title = sprintf( __( 'Enter the %s title here', 'projects-by-woothemes' ), strtolower( $projects->singular_name ) );
 		}
 		return $title;
 	} // End enter_title_here()
@@ -472,7 +627,7 @@ class Projects_Admin {
 		if ( -1 == $projects_page ) {
 			$url = add_query_arg( 'post_type', 'project', admin_url( 'edit.php' ) );
 			$url = add_query_arg( 'page', 'projects-settings-page', $url );
-			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'projects' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
+			echo '<div class="updated fade"><p>' . sprintf( __( '%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s.', 'projects-by-woothemes' ), '<strong>', '</strong>', '<a href="' . esc_url( $url ) . '">', '</a>' ) . '</p></div>' . "\n";
 		}
 	} // End configuration_admin_notice()
 
@@ -484,8 +639,9 @@ class Projects_Admin {
 	 * @return void
 	 */
 	public function featured_image_label() {
+		global $projects;
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
-	    add_meta_box( 'postimagediv', __( 'Project Cover Image', 'projects' ), 'post_thumbnail_meta_box', 'project', 'side' );
+	    add_meta_box( 'postimagediv', sprintf( __( '%s Cover Image', 'projects-by-woothemes' ), $projects->singular_name ), 'post_thumbnail_meta_box', 'project', 'side' );
 	}
 
 	/**
@@ -498,7 +654,7 @@ class Projects_Admin {
 		$post_type = $this->get_current_post_type();
 
 		if ( 'project' == $post_type ) {
-	    	$content = str_replace( __( 'Set featured image' ), __( 'Set cover image', 'projects' ), $content );
+	    	$content = str_replace( __( 'Set featured image' ), __( 'Set cover image', 'projects-by-woothemes' ), $content );
 		}
 
 		return $content;
@@ -514,7 +670,7 @@ class Projects_Admin {
 		$post_type = $this->get_current_post_type();
 
 	    if ( 'project' == $post_type ) {
-	    	$content = str_replace( __( 'Remove featured image' ), __( 'Remove cover image', 'projects' ), $content );
+	    	$content = str_replace( __( 'Remove featured image' ), __( 'Remove cover image', 'projects-by-woothemes' ), $content );
 		}
 
 		return $content;
@@ -529,8 +685,8 @@ class Projects_Admin {
 	public function featured_image_popup_set_link( $strings ) {
 		$post_type = $this->get_current_post_type();
 		if ( 'project' == $post_type ) {
-			$strings['setFeaturedImageTitle'] 	= __( 'Set Cover Image', 'projects' );
-			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects' );
+			$strings['setFeaturedImageTitle'] 	= __( 'Set Cover Image', 'projects-by-woothemes' );
+			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects-by-woothemes' );
 		}
 		return $strings;
 	}
@@ -560,4 +716,3 @@ class Projects_Admin {
     }
 
 } // End Class
-?>

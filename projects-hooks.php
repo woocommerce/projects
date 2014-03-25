@@ -82,7 +82,9 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 * After Single Project
 	 *
 	 * @see projects_single_pagination()
+	 * @see projects_output_testimonial()
 	 */
+	add_action( 'projects_after_single_project', 'projects_output_testimonial', 1 );
 	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
 
 	/**
@@ -92,16 +94,3 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 */
 	add_action( 'projects_after_loop', 'projects_pagination', 10 );
 }
-
-/** Store Event Hooks *****************************************************/
-
-/**
- * Filters
- */
-add_filter( 'projects_short_description', 'wptexturize'        );
-add_filter( 'projects_short_description', 'convert_smilies'    );
-add_filter( 'projects_short_description', 'convert_chars'      );
-add_filter( 'projects_short_description', 'wpautop'            );
-add_filter( 'projects_short_description', 'shortcode_unautop'  );
-add_filter( 'projects_short_description', 'prepend_attachment' );
-add_filter( 'projects_short_description', 'do_shortcode', 11 ); // AFTER wpautop()

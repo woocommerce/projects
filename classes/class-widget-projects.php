@@ -38,9 +38,9 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->projects_widget_cssclass 	= 'widget_projects_items';
-		$this->projects_widget_description = __( 'Recent projects listed on your site.', 'projects' );
+		$this->projects_widget_description = __( 'Recent projects listed on your site.', 'projects-by-woothemes' );
 		$this->projects_widget_idbase 		= 'projects';
-		$this->projects_widget_title 		= __( 'Recent Projects', 'projects' );
+		$this->projects_widget_title 		= __( 'Recent Projects', 'projects-by-woothemes' );
 
 		// Cache
 		add_action( 'save_post', array($this, 'flush_widget_cache') );
@@ -71,7 +71,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		$cache = wp_cache_get('widget_projects_items', 'widget');
+		$cache = wp_cache_get( 'widget_projects_items', 'widget' );
 
 		if ( !is_array($cache) )
 			$cache = array();
@@ -181,7 +181,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' 		=> __( 'Recent Projects', 'projects' ),
+			'title' 		=> __( 'Recent Projects', 'projects-by-woothemes' ),
 			'limit' 		=> 5,
 		);
 
@@ -189,12 +189,12 @@ class Woothemes_Widget_Projects extends WP_Widget {
 ?>
 		<!-- Widget Title: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'projects' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'projects-by-woothemes' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
 		<!-- Widget Limit: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'projects' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:', 'projects-by-woothemes' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>"  value="<?php echo $instance['limit']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" />
 		</p>
 <?php

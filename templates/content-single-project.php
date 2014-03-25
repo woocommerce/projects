@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	<?php
 		/**
-		 * projects_show_project_images hook
+		 * projects_before_single_project_summary hook
 		 * @hooked projects_template_single_title - 10
 		 * @hooked projects_template_single_short_description - 20
 	 	 * @hooked projects_template_single_feature - 30

@@ -14,5 +14,5 @@ global $post;
 if ( ! $post->post_content ) return;
 ?>
 <div class="single-project-description" itemprop="description">
-	<?php echo apply_filters( 'projects_description', wpautop( $post->post_content ) ) ?>
+	<?php echo apply_filters( 'projects_description', the_content() ); ?>
 </div>

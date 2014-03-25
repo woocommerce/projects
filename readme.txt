@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art
 Requires at least: 3.8
 Tested up to: 3.8.1
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,10 @@ Projects includes a responsive layout to integrate with any theme.
 = Customisable =
 
 Get your hands dirty! Customise & extend Projects via a vast array of hooks, filters & templates.
+
+= Testimonials =
+
+Integrated with our [testimonials plugin](http://wordpress.org/plugins/testimonials-by-woothemes/) allowing you to assign a client testimonial to a project and display it on the single project page.
 
 = Documentation =
 
@@ -78,6 +82,10 @@ Yes! You can follow this tutorial to [add custom fields to projects](http://docs
 
 We encourage everyone to contribute their ideas, thoughts and code snippets. This can be done by forking the [repository over at GitHub](http://github.com/woothemes/projects/).
 
+= Can I display a tesitmonial on a project page? =
+
+You sure can! Read about how in the [documentation](http://docs.woothemes.com/document/adding-testimonials-to-projects/).
+
 == Screenshots ==
 
 1. The projects base page
@@ -90,6 +98,20 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.1.0 =
+* 2014-03-25
+* New - Integration with Testimonials plugin.
+* New - dummy_data.xml containing dummy projects content.
+* New - Project excerpt replaced with new short description meta box with tinymce support.
+* New - Projects can now be filtered by category on the project management screen.
+* Fix - Project category widget list items are now wrapped in a ul.
+* Tweak - Shortcodes in project descriptions now work as expected. Shortcodes in excerpts will need to be enabled.
+* Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.
+* Tweak - Projects Post Type / Taxonomy args are now filterable. (Props @helgatheviking).
+* Tweak - Projects post type single/plural names are now filterable. (Props @helgatheviking).
+* Tweak - Several UI tweaks and improvements.
+* Tweak - It's now possible to add select and radio custom fields using the projects_custom_fields filter (Props @helgatheviking).
 
 = 1.0.1 =
 * 2014-02-24

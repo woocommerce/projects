@@ -251,7 +251,7 @@ function projects_project_post_type_link( $permalink, $post ) {
 
     if ( empty( $terms ) ) {
     	// If no terms are assigned to this post, use a string instead (can't leave the placeholder there)
-        $project_cat = _x( 'uncategorized', 'slug', 'projects' );
+        $project_cat = _x( 'uncategorized', 'slug', 'projects-by-woothemes' );
     } else {
     	// Replace the placeholder rewrite tag with the first term's slug
         $first_term = array_shift( $terms );

@@ -19,6 +19,8 @@ class Projects {
 	private $token;
 	private $post_type;
 	private $file;
+	public $singular_name;
+	public $plural_name;
 	public $taxonomy_category;
 
 	public $template_url;
@@ -29,7 +31,7 @@ class Projects {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.1.0';
 
 	/**
 	 * Constructor function.
@@ -42,7 +44,7 @@ class Projects {
 		$this->dir 			= dirname( $file );
 		$this->file 		= $file;
 		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url 	= esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->assets_url 	= esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token 		= 'projects';
 		$this->post_type 	= 'project';
 
@@ -61,6 +63,7 @@ class Projects {
 		// Run this on deactivation.
 		register_deactivation_hook( $this->file, array( $this, 'deactivation' ) );
 
+		add_action( 'init', array( $this, 'post_type_names' ) );
 		add_action( 'init', array( $this, 'register_rewrite_tags' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -75,6 +78,10 @@ class Projects {
 			require_once( 'class-projects-frontend.php' );
 			$this->frontend = new Projects_Frontend( $file );
 		}
+
+		// Testimonials Integration
+		add_action( 'init', array( $this, 'projects_testimonials_init' ) );
+
 	} // End __construct()
 
 	/**
@@ -96,6 +103,18 @@ class Projects {
 	}
 
 	/**
+	 * Change the UI names in the admin
+	 *
+	 * @access public
+	 * @since  1.1.0
+	 * @return void
+	 */
+	public function post_type_names () {
+		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects-by-woothemes' ) );
+		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'Projects', 'post type general name', 'projects-by-woothemes' ) );
+	}
+
+	/**
 	 * Register the post type.
 	 *
 	 * @access public
@@ -103,19 +122,19 @@ class Projects {
 	 */
 	public function register_post_type () {
 		$labels = array(
-			'name' 					=> _x( 'Projects', 'post type general name', 'projects' ),
-			'singular_name' 		=> _x( 'Project', 'post type singular name', 'projects' ),
-			'add_new' 				=> _x( 'Add New', $this->post_type, 'projects' ),
-			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'new_item' 				=> sprintf( __( 'New %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects' ), __( 'Projects', 'projects' ) ),
-			'view_item' 			=> sprintf( __( 'View %s', 'projects' ), __( 'Project', 'projects' ) ),
-			'search_items' 			=> sprintf( __( 'Search %a', 'projects' ), __( 'Projects', 'projects' ) ),
-			'not_found' 			=>  sprintf( __( 'No %s Found', 'projects' ), __( 'Projects', 'projects' ) ),
-			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects' ), __( 'Projects', 'projects' ) ),
+			'name' 					=> $this->plural_name,
+			'singular_name' 		=> $this->singular_name,
+			'add_new' 				=> _x( 'Add New', $this->post_type, 'projects-by-woothemes' ),
+			'add_new_item' 			=> sprintf( __( 'Add New %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'edit_item' 			=> sprintf( __( 'Edit %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'new_item' 				=> sprintf( __( 'New %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'all_items' 			=> sprintf( _x( 'All %s', $this->post_type, 'projects-by-woothemes' ), $this->plural_name ),
+			'view_item' 			=> sprintf( __( 'View %s', 'projects-by-woothemes' ), $this->singular_name ),
+			'search_items' 			=> sprintf( __( 'Search %a', 'projects-by-woothemes' ), $this->plural_name ),
+			'not_found' 			=> sprintf( __( 'No %s Found', 'projects-by-woothemes' ), $this->plural_name ),
+			'not_found_in_trash' 	=> sprintf( __( 'No %s Found In Trash', 'projects-by-woothemes' ), $this->plural_name ),
 			'parent_item_colon' 	=> '',
-			'menu_name' 			=> __( 'Projects', 'projects' )
+			'menu_name' 			=> $this->plural_name
 
 		);
 		$args = array(
@@ -126,7 +145,7 @@ class Projects {
 			'show_in_menu' 			=> true,
 			'query_var' 			=> true,
 			'rewrite' 				=> array(
-										'slug' 			=> 'projects/%project_category%',
+										'slug' 			=> trailingslashit ( strtolower( $this->singular_name ) ) . '%project_category%',
 										'with_front' 	=> false
 										),
 			'capability_type' 		=> 'post',
@@ -141,7 +160,10 @@ class Projects {
 			'menu_position' 		=> 5,
 			'menu_icon' 			=> ''
 		);
-		register_post_type( $this->post_type, $args );
+
+		$args = apply_filters( 'projects_register_post_type', $args );
+
+		register_post_type( $this->post_type, (array) $args );
 	} // End register_post_type()
 
 	/**
@@ -266,7 +288,7 @@ class Projects {
 	 * @return void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'projects', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'projects-by-woothemes', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation()
 
 	/**
@@ -275,7 +297,7 @@ class Projects {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'projects';
+	    $domain = 'projects-by-woothemes';
 	    // The "plugin_locale" filter is also used in load_plugin_textdomain()
 	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
@@ -366,8 +388,8 @@ class Projects {
 			return apply_filters( 'projects_get_image_size_' . $image_size, '' );
 
 		// Get image size from options
-		$options = get_option( 'projects', array() );
-		$size = $options[ $image_size ];
+		$options 	= get_option( 'projects', array() );
+		$size 		= $options[ $image_size ];
 
 		$size['width'] 	= isset( $size['width'] ) ? $size['width'] : '300';
 		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
@@ -375,4 +397,149 @@ class Projects {
 
 		return apply_filters( 'projects_get_image_size_' . $image_size, $size );
 	} // End get_image_size()
+
+
+	/**
+	 * Init function for the Testimonials plugin integration.
+	 * @since  1.1.0
+	 * @return  void
+	 */
+	public function projects_testimonials_init() {
+
+		if ( class_exists( 'Woothemes_Testimonials' ) ) {
+
+			// Add custom fields
+			add_filter( 'projects_custom_fields', array( $this, 'testimonials_custom_fields' ) );
+
+			// Enqueue admin JavaScript
+			add_action( 'admin_enqueue_scripts', array( $this, 'testimonials_admin_scripts' ) );
+			add_action( 'wp_ajax_get_testimonials', array( $this, 'get_testimonials_callback' ) );
+			add_action( 'admin_footer', array( $this, 'testimonials_javascript' ) );
+
+		}
+
+	} // End projects_testimonials_init()
+
+	public function testimonials_admin_scripts () {
+		wp_enqueue_script( 'jquery-ui-autocomplete', null, array( 'jquery' ), null, false);
+	} // End projects_testimonials_admin_scripts()
+
+	/**
+	 * Ajax callback to search for testimonials.
+	 * @param  string $query Search Query.
+	 * @since  1.1.0
+	 * @return json       	Search Results.
+	 */
+	public function get_testimonials_callback() {
+
+		check_ajax_referer( 'projects_ajax_get_testimonials', 'security' );
+
+		$term = urldecode( stripslashes( strip_tags( $_GET['term'] ) ) );
+
+		if ( !empty( $term ) ) {
+
+			header( 'Content-Type: application/json; charset=utf-8' );
+
+			$query_args = array(
+				'post_type' 		=> 'testimonial',
+				'orderby' 			=> 'title',
+				's' 				=> $term,
+				'suppress_filters' 	=> false
+			);
+
+			$testimonials = get_posts( $query_args );
+
+			$found_testimonials = array();
+
+			if ( $testimonials ) {
+				foreach ( $testimonials as $testimonial ) {
+					$found_testimonials[] = array( 'id' => $testimonial->ID, 'title' => $testimonial->post_title );
+				}
+			}
+
+			echo json_encode( $found_testimonials );
+
+		}
+
+		die();
+
+	} // End get_testimonials_callback()
+
+	/**
+	 * Output Testimonials admin javascript
+	 * @since  1.1.0
+	 * @return  void
+	 */
+	public function testimonials_javascript() {
+
+		global $pagenow, $post_type;
+
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && isset( $post_type ) && esc_attr( $post_type ) == $this->post_type ) {
+
+			$ajax_nonce = wp_create_nonce( 'projects_ajax_get_testimonials' );
+
+	?>
+			<script type="text/javascript" >
+				jQuery(function() {
+					jQuery( "#testimonials_search" ).autocomplete({
+						minLength: 2,
+						source: function ( request, response ) {
+							jQuery.ajax({
+								url: ajaxurl,
+								dataType: 'json',
+								data: {
+									action: 'get_testimonials',
+									security: '<?php echo $ajax_nonce; ?>',
+									term: request.term
+								},
+								success: function( data ) {
+									response( jQuery.map( data, function( item ) {
+										return {
+											label: item.title,
+											value: item.id
+										}
+									}));
+								}
+							});
+						},
+						select: function ( event, ui ) {
+							event.preventDefault();
+							jQuery( "#testimonials_search" ).val( ui.item.label );
+							jQuery( "#testimonials_id" ).val( ui.item.value );
+						},
+						change: function ( event, ui ) {
+							event.preventDefault();
+							if ( 0 == jQuery( "#testimonials_search" ).val().length ) {
+								jQuery( "#testimonials_id" ).val( '' );
+							}
+						}
+					});
+				});
+			</script>
+	<?php
+		}
+	} // End testimonials_javascript()
+
+	public function testimonials_custom_fields( $fields ) {
+
+		$fields['testimonials_search'] = array(
+			'name' 			=> __( 'Testimonial', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Search for Testimonial to link to this Project. (Optional)', 'projects-by-woothemes' ),
+			'type' 			=> 'text',
+			'default' 		=> '',
+			'section' 		=> 'info',
+		);
+
+		$fields['testimonials_id'] = array(
+			'name' 			=> __( 'Testimonial ID', 'projects-by-woothemes' ),
+			'description' 	=> __( 'Holds the id of the selected testimonial.', 'projects-by-woothemes' ),
+			'type' 			=> 'hidden',
+			'default' 		=> 0,
+			'section' 		=> 'info',
+		);
+
+		return $fields;
+
+	} // End testimonials_custom_fields()
+
 } // End Class

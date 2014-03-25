@@ -44,7 +44,11 @@ global $post, $projects, $project;
 					$image_class = esc_attr( implode( ' ', $classes ) );
 					$image_title = esc_attr( get_the_title( $attachment_id ) );
 
-					echo $image;
+					if ( apply_filters( 'projects_gallery_link_images', true ) ) {
+						echo '<a href="' . $image_link . '" title="' . $image_title . '">' . $image . '</a>';
+					} else {
+						echo $image;
+					}
 
 					$loop++;
 

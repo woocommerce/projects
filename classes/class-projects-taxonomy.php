@@ -68,8 +68,8 @@ class Projects_Taxonomy {
 		$this->singular 	= esc_html( $singular );
 		$this->plural 		= esc_html( $plural );
 
-		if ( '' == $this->singular ) $this->singular = __( 'Category', 'projects' );
-		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'projects' );
+		if ( '' == $this->singular ) $this->singular = __( 'Category', 'projects-by-woothemes' );
+		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'projects-by-woothemes' );
 
 		$this->args = wp_parse_args( $args, $this->_get_default_args() );
 	} // End __construct()
@@ -92,17 +92,17 @@ class Projects_Taxonomy {
 	 */
 	private function _get_default_labels () {
 		return array(
-			    'name'                => sprintf( _x( '%s', 'taxonomy general name', 'projects' ), $this->plural ),
-			    'singular_name'       => sprintf( _x( '%s', 'taxonomy singular name', 'projects' ), $this->singular ),
-			    'search_items'        => sprintf( __( 'Search %s', 'projects' ), $this->plural ),
-			    'all_items'           => sprintf( __( 'All %s', 'projects' ), $this->plural ),
-			    'parent_item'         => sprintf( __( 'Parent %s', 'projects' ), $this->singular ),
-			    'parent_item_colon'   => sprintf( __( 'Parent %s:', 'projects' ), $this->singular ),
-			    'edit_item'           => sprintf( __( 'Edit %s', 'projects' ), $this->singular ),
-			    'update_item'         => sprintf( __( 'Update %s', 'projects' ), $this->singular ),
-			    'add_new_item'        => sprintf( __( 'Add New %s', 'projects' ), $this->singular ),
-			    'new_item_name'       => sprintf( __( 'New %s Name', 'projects' ), $this->singular ),
-			    'menu_name'           => sprintf( __( '%s', 'projects' ), $this->plural )
+			    'name'                => sprintf( _x( '%s', 'taxonomy general name', 'projects-by-woothemes' ), $this->plural ),
+			    'singular_name'       => sprintf( _x( '%s', 'taxonomy singular name', 'projects-by-woothemes' ), $this->singular ),
+			    'search_items'        => sprintf( __( 'Search %s', 'projects-by-woothemes' ), $this->plural ),
+			    'all_items'           => sprintf( __( 'All %s', 'projects-by-woothemes' ), $this->plural ),
+			    'parent_item'         => sprintf( __( 'Parent %s', 'projects-by-woothemes' ), $this->singular ),
+			    'parent_item_colon'   => sprintf( __( 'Parent %s:', 'projects-by-woothemes' ), $this->singular ),
+			    'edit_item'           => sprintf( __( 'Edit %s', 'projects-by-woothemes' ), $this->singular ),
+			    'update_item'         => sprintf( __( 'Update %s', 'projects-by-woothemes' ), $this->singular ),
+			    'add_new_item'        => sprintf( __( 'Add New %s', 'projects-by-woothemes' ), $this->singular ),
+			    'new_item_name'       => sprintf( __( 'New %s Name', 'projects-by-woothemes' ), $this->singular ),
+			    'menu_name'           => sprintf( __( '%s', 'projects-by-woothemes' ), $this->plural )
 			  );
 	} // End _get_default_labels()
 
@@ -113,7 +113,7 @@ class Projects_Taxonomy {
 	 * @return  void
 	 */
 	public function register () {
-		register_taxonomy( esc_attr( $this->token ), esc_attr( $this->post_type ), (array)$this->args );
+		$args = apply_filters( 'projects_register_taxonomy', $this->args );
+		register_taxonomy( esc_attr( $this->token ), esc_attr( $this->post_type ), (array) $args );
 	} // End register()
 } // End Class
-?>

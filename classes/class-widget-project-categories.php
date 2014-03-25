@@ -39,9 +39,9 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->projects_widget_cssclass 	= 'widget_projects_categories';
-		$this->projects_widget_description 	= __( 'Project Categories', 'projects' );
+		$this->projects_widget_description 	= __( 'Project Categories', 'projects-by-woothemes' );
 		$this->projects_widget_idbase 		= 'woothemes-project-categories';
-		$this->projects_widget_title 		= __( 'Project Categories', 'projects' );
+		$this->projects_widget_title 		= __( 'Project Categories', 'projects-by-woothemes' );
 
 		/* Widget settings. */
 		$widget_ops = array(
@@ -101,10 +101,14 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 		        	  'pad_counts' 		=> 0,
 			          'hierarchical' 	=> $instance['hierarchical'],
 		        	  'taxonomy' 		=> $project_tax,
-		        	  'title_li' 		=> ''
+		        	  'title_li' 		=> '',
 		        	);
 
+			     echo '<ul class="projects_categories_list_widget">';
+
 			     wp_list_categories( $args );
+
+			     echo '</ul>';
 		     }
 		}
 
@@ -147,7 +151,7 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' 		=> __( 'Project Categories', 'projects' ),
+			'title' 		=> __( 'Project Categories', 'projects-by-woothemes' ),
 			'count'			=> 1,
 			'hierarchical'	=> 1,
 		);
@@ -156,20 +160,20 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 ?>
 		<!-- Widget Title: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'projects' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'projects-by-woothemes' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
 
 		<!-- Widget Show Count: Checkbox Input -->
 		<p>
 			<input id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['count'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Show Count:', 'projects' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Show Count:', 'projects-by-woothemes' ); ?></label>
 		</p>
 
 		<!-- Widget Hierarchical: Checkbox Input -->
 		<p>
 			<input id="<?php echo $this->get_field_id( 'hierarchical' ); ?>" name="<?php echo $this->get_field_name( 'hierarchical' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['hierarchical'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'hierarchical' ); ?>"><?php _e( 'Show Hierarchy:', 'projects' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'hierarchical' ); ?>"><?php _e( 'Show Hierarchy:', 'projects-by-woothemes' ); ?></label>
 		</p>
 <?php
 	} // End form()

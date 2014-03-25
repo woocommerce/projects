@@ -332,7 +332,7 @@ class Projects_Admin {
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
-
+						break;
 					default:
 						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
 

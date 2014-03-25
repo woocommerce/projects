@@ -299,11 +299,20 @@ class Projects_Admin {
 						$html .= '<tr valign="top">' . $field . "\n";
 						$html .= '<tr/>' . "\n";
 						break;
-					default:
+					case 'text':
+					case 'url':
 						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />';
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
+						break;
+					default:
+						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
+						if( $field ) {
+							$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+							$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+							$html .= '</td><tr/>' . "\n";
+						}
 						break;
 				}
 

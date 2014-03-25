@@ -71,7 +71,7 @@ class Projects_Admin {
 	function projects_restrict_manage_posts() {
 	    global $typenow;
 
-	    $post_types = array( $this->post_type );
+	    $post_types = array( 'project' );
 
 	    if ( in_array( $typenow, $post_types ) ) {
 	    	$filters = get_object_taxonomies( $typenow );
@@ -93,7 +93,7 @@ class Projects_Admin {
 	                'orderby' 	  		=> 'name',
 	                'selected' 	  		=> $selected,
 	                'hierarchical' 	  	=> $tax_obj->hierarchical,
-	                'show_count' 	  	=> false, // until wp allows the count to include posts of statuses other than published
+	                'show_count' 	  	=> true,
 	                'hide_empty' 	  	=> true,
 	            ) );
 	        }
@@ -309,37 +309,39 @@ class Projects_Admin {
 					case 'radio':
 						$field = '';
 
-						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
+						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
 							foreach ( $v['options'] as $val => $option ){
 								$field .= '<label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="radio" name="' . esc_attr( $k ) . '" value="' . esc_attr( $val ) . '" ' . checked( $val, $data, false ) . ' / >'. $option . '</label>' . "\n";
 							}
 						}
 
-						$html .= '<tr valign="top"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<tr valign="top" class="projects-radio"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
 					case 'select':
 						$field = '<select name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" >'. "\n";
 
-						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
+						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
 							foreach ( $v['options'] as $val => $option ){
 								$field .= '<option value="' . esc_attr( $val ) . '" ' . selected( $val, $data, false ) . '>'. $option .'</option>' . "\n";
 							}
 						}
-						$field .= '</select>'. "\n";
 
+						$field .= '</select>'. "\n";
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
-						$html .= '</td><tr/>' . "\n";		
+						$html .= '</td><tr/>' . "\n";
 
 					default:
 						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
-						if( $field ) {
+
+						if ( $field ) {
 							$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 							$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 							$html .= '</td><tr/>' . "\n";
 						}
+
 						break;
 				}
 

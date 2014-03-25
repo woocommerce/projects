@@ -179,3 +179,7 @@
   -webkit-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
+.post-type-project .projects-radio label {
+  display: block;
+  line-height: 1.5;
+}

@@ -235,13 +235,13 @@ class Projects_Admin {
 		global $projects;
 
 		// Add short description meta box (replaces default excerpt)
-		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
+		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), $this->post_type, 'normal' );
 
 		// Project Details Meta Box Load
 		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 
 		// Project Images Meta Bog Load
-		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), $this->post_type, 'side' );
 
 	} // End meta_box_setup()
 
@@ -299,11 +299,47 @@ class Projects_Admin {
 						$html .= '<tr valign="top">' . $field . "\n";
 						$html .= '<tr/>' . "\n";
 						break;
-					default:
+					case 'text':
+					case 'url':
 						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />';
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'radio':
+						$field = '';
+
+						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
+							foreach ( $v['options'] as $val => $option ){
+								$field .= '<label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="radio" name="' . esc_attr( $k ) . '" value="' . esc_attr( $val ) . '" ' . checked( $val, $data, false ) . ' / >'. $option . '</label>' . "\n";
+							}
+						}
+
+						$html .= '<tr valign="top"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'select':
+						$field = '<select name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" >'. "\n";
+
+						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
+							foreach ( $v['options'] as $val => $option ){
+								$field .= '<option value="' . esc_attr( $val ) . '" ' . selected( $val, $data, false ) . '>'. $option .'</option>' . "\n";
+							}
+						}
+						$field .= '</select>'. "\n";
+
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";		
+
+					default:
+						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
+						if( $field ) {
+							$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+							$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+							$html .= '</td><tr/>' . "\n";
+						}
 						break;
 				}
 

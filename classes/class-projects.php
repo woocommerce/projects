@@ -31,7 +31,7 @@ class Projects {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.1.0';
 
 	/**
 	 * Constructor function.
@@ -106,7 +106,7 @@ class Projects {
 	 * Change the UI names in the admin
 	 *
 	 * @access public
-	 * @since  1.1
+	 * @since  1.1.0
 	 * @return void
 	 */
 	public function post_type_names () {

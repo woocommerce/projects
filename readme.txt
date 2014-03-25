@@ -38,6 +38,10 @@ Projects includes a responsive layout to integrate with any theme.
 
 Get your hands dirty! Customise & extend Projects via a vast array of hooks, filters & templates.
 
+= Testimonials =
+
+Integrated with our [testimonials plugin](http://wordpress.org/plugins/testimonials-by-woothemes/) allowing you to assign a client testimonial to a project and display it on the single project page.
+
 = Documentation =
 
 Extensive [documentation](http://docs.woothemes.com/documentation/plugins/projects/) to help you out if you get stuck.
@@ -95,18 +99,19 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Changelog ==
 
-= 1.1.0
-* 2014-03-10
+= 1.1.0 =
+* 2014-03-25
 * New - Integration with Testimonials plugin.
 * New - dummy_data.xml containing dummy projects content.
 * New - Project excerpt replaced with new short description meta box with tinymce support.
 * New - Projects can now be filtered by category on the project management screen.
 * Fix - Project category widget list items are now wrapped in a ul.
-* Tweak - Shortcodes in project descriptions now work as expected.
+* Tweak - Shortcodes in project descriptions now work as expected. Shortcodes in excerpts will need to be enabled.
 * Tweak - Gallery images link to full size versions. Disable with projects_gallery_link_images filter.
 * Tweak - Projects Post Type / Taxonomy args are now filterable. (Props @helgatheviking).
 * Tweak - Projects post type single/plural names are now filterable. (Props @helgatheviking).
 * Tweak - Several UI tweaks and improvements.
+* Tweak - It's now possible to add select and radio custom fields using the projects_custom_fields filter (Props @helgatheviking).
 
 = 1.0.1 =
 * 2014-02-24

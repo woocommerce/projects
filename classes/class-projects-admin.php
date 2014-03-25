@@ -71,7 +71,7 @@ class Projects_Admin {
 	function projects_restrict_manage_posts() {
 	    global $typenow;
 
-	    $post_types = array( 'project' );
+	    $post_types = array( $this->post_type );
 
 	    if ( in_array( $typenow, $post_types ) ) {
 	    	$filters = get_object_taxonomies( $typenow );
@@ -93,7 +93,7 @@ class Projects_Admin {
 	                'orderby' 	  		=> 'name',
 	                'selected' 	  		=> $selected,
 	                'hierarchical' 	  	=> $tax_obj->hierarchical,
-	                'show_count' 	  	=> true,
+	                'show_count' 	  	=> false, // until wp allows the count to include posts of statuses other than published
 	                'hide_empty' 	  	=> true,
 	            ) );
 	        }

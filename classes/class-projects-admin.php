@@ -235,13 +235,13 @@ class Projects_Admin {
 		global $projects;
 
 		// Add short description meta box (replaces default excerpt)
-		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), 'project', 'normal' );
+		add_meta_box( 'postexcerpt', sprintf( __( '%s Short Description', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_short_description' ), $this->post_type, 'normal' );
 
 		// Project Details Meta Box Load
 		add_meta_box( 'project-data', sprintf( __( '%s Details', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content' ), $this->post_type, 'normal', 'high' );
 
 		// Project Images Meta Bog Load
-		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), 'project', 'side' );
+		add_meta_box( 'project-images', sprintf( __( '%s Gallery', 'projects-by-woothemes' ), $projects->singular_name ), array( $this, 'meta_box_content_project_images' ), $this->post_type, 'side' );
 
 	} // End meta_box_setup()
 

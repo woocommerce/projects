@@ -342,6 +342,12 @@ class Projects_Admin {
 						$html .= '</td><tr/>' . "\n";
 						break;
 					case 'checkbox':
+						$field = '<input id="' . esc_attr( $v['name'] ) . '" type="checkbox" name="' . esc_attr( $k ) . '" value="1" ' . checked( 'yes', $data, false ) . ' / >' . "\n";
+						if( isset( $v['description'] ) ) $field .= '<span class="description">' . $v['description'] . '</span>' . "\n";
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $v['name'] ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'multicheck':
 						$field = '';
 						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
 							foreach ( $v['options'] as $val => $option ){
@@ -466,6 +472,9 @@ class Projects_Admin {
 					${$f} = wp_kses_post(trim($_POST[$f]));
 					break;
 				case 'checkbox':
+					${$f} = isset( $_POST[$f] ) ? 'yes' : 'no';
+					break;
+				case 'multicheck':
 					// ensure checkbox is array and whitelist accepted values against options
 					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) ? (array) array_intersect( (array) $_POST[$f], array_flip( $field_data[$f]['options'] ) ) : '';
 					break;

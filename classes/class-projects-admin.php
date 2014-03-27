@@ -460,7 +460,7 @@ class Projects_Admin {
 			
 			switch ( $field_data[$f]['type'] ) {
 				case 'url':
-					${$f} = esc_url( ${$f} );
+					${$f} = esc_url( $_POST[$f] );
 					break;
 				case 'textarea':
 					${$f} = wp_kses_post(trim($_POST[$f]));

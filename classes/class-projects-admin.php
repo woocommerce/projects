@@ -479,13 +479,8 @@ class Projects_Admin {
 					break;
 			}
 
-			if ( get_post_meta( $post_id, '_' . $f ) == '' ) {
-				add_post_meta( $post_id, '_' . $f, ${$f}, true );
-			} elseif( ${$f} != get_post_meta( $post_id, '_' . $f, true ) ) {
-				update_post_meta( $post_id, '_' . $f, ${$f} );
-			} elseif ( ${$f} == '' ) {
-				delete_post_meta( $post_id, '_' . $f, get_post_meta( $post_id, '_' . $f, true ) );
-			}
+			// save it
+			update_post_meta( $post_id, '_' . $f, ${$f} );
 		}
 
 		// Save the project gallery image IDs.

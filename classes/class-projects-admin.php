@@ -288,7 +288,7 @@ class Projects_Admin {
 			$html .= '<tbody>' . "\n";
 
 			foreach ( $field_data as $k => $v ) {
-				$data = $v['default'];
+				$data = isset( $v['default'] ) ? $v['default'] : '';
 				if ( isset( $fields['_' . $k] ) && isset( $fields['_' . $k][0] ) ) {
 					$data = maybe_unserialize( $fields['_' . $k][0] );
 				}
@@ -475,7 +475,7 @@ class Projects_Admin {
 					${$f} = is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
 					break;
 				default :
-					${$f} = strip_tags(trim($_POST[$f]));
+					${$f} = strip_tags( trim( $_POST[$f] ) );
 					break;
 			}
 

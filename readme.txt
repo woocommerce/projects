@@ -102,6 +102,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 = 1.1.1 =
 * 2014-03-27
 * Tweak - Added css for multi column layouts when using the shortcode to display projects.
+* Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).
 
 = 1.1.0 =
 * 2014-03-25

@@ -343,7 +343,7 @@ class Projects_Admin {
 						break;
 					case 'checkbox':
 						$field = '<input id="' . esc_attr( $v['name'] ) . '" type="checkbox" name="' . esc_attr( $k ) . '" value="1" ' . checked( 'yes', $data, false ) . ' / >' . "\n";
-						if( isset( $v['description'] ) ) $field .= '<span class="description">' . $v['description'] . '</span>' . "\n";
+						if( isset( $v['description'] ) ) $field .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $v['name'] ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
@@ -463,7 +463,7 @@ class Projects_Admin {
 		$fields 		= array_keys( $field_data );
 
 		foreach ( $fields as $f ) {
-			
+
 			switch ( $field_data[$f]['type'] ) {
 				case 'url':
 					${$f} = esc_url( $_POST[$f] );

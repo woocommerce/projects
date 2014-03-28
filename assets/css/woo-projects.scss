@@ -1,5 +1,5 @@
 // Imports
-@import url(mixins.less);
+@import 'mixins';
 
 /**
  * Layout Styles
@@ -47,7 +47,7 @@
 				-webkit-box-shadow: none;
 				-moz-box-shadow: none;
 				box-shadow: none;
-				.border_radius(0);
+				@include border_radius(0);
 				padding: 0;
 				border: 0;
 				margin: 0 auto;
@@ -67,7 +67,7 @@
 	ul.project-categories {
 		margin-left: 0 !important;
 		padding: 0 !important;
-		.clearfix;
+		@include clearfix;
 		list-style: none;
 
 		li {
@@ -106,7 +106,7 @@
 	&.columns-4,
 	&.columns-5,
 	&.columns-6 {
-		.clearfix;
+		@include clearfix;
 
 		ul.projects li.project {
 			float: left;
@@ -167,7 +167,7 @@
 
 .single-project {
 	.project {
-		.clearfix;
+		@include clearfix;
 		margin-bottom: 1.618em;
 
 		.single-project-short-description {
@@ -177,19 +177,19 @@
 		.summary {
 			.single-project-categories {
 				li:before {
-					.iconbefore( "\f318" );
+					@include iconbefore( "\f318" );
 				}
 			}
 
 			.client-name {
 				&:before {
-					.iconbefore( "\f338" );
+					@include iconbefore( "\f338" );
 				}
 			}
 
 			.project-url {
 				&:before {
-					.iconbefore( "\f319" );
+					@include iconbefore( "\f319" );
 				}
 			}
 
@@ -221,7 +221,7 @@
 			}
 
 			img {
-				.border_radius(0);
+				@include border_radius(0);
 				max-width: 100%;
 				height: auto;
 				-webkit-box-shadow: none;
@@ -234,7 +234,7 @@
 			width: 38%;
 			float: right;
 			padding: 0 0 0 2.618em;
-			.borderbox;
+			@include borderbox;
 			> div {
 				font-size: .857em;
 			}
@@ -243,7 +243,7 @@
 
 	&.no-gallery {
 		.summary {
-			.clearfix;
+			@include clearfix;
 
 			.project_title,
 			.single-project-description {
@@ -259,7 +259,7 @@
 	}
 
 	.projects-single-pagination {
-		.clearfix;
+		@include clearfix;
 
 		.previous,
 		.next {
@@ -272,7 +272,7 @@
 			float: right;
 
 			a:after {
-				.iconafter( "\f344" );
+				@include iconafter( "\f344" );
 			}
 		}
 
@@ -280,7 +280,7 @@
 			float: left;
 
 			a:before {
-				.iconbefore( "\f340" );
+				@include iconbefore( "\f340" );
 			}
 		}
 	}
@@ -305,7 +305,7 @@
 		}
 
 		.quote {
-			.clearfix();
+			@include clearfix();
 
 			.avatar-link {
 				float: left;
@@ -331,7 +331,7 @@
 
 		a {
 			display: block;
-			.clearfix;
+			@include clearfix;
 		}
 
 		img {

@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art
 Requires at least: 3.8
 Tested up to: 3.8.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,8 +99,9 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Changelog ==
 
-= 1.1.1 =
+= 1.2.0 =
 * 2014-03-27
+* New - Replaced .less files with .scss
 * Tweak - Added css for multi column layouts when using the shortcode to display projects.
 * Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).
 

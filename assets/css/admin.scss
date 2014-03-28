@@ -1,5 +1,5 @@
 // Imports
-@import url(mixins.less);
+@import 'mixins';
 
 // Icons
 #adminmenu #menu-posts-project .menu-icon-project div.wp-menu-image:before {
@@ -34,7 +34,7 @@
 			ul {
 				margin: 0;
 				padding: 0;
-				.clearfix;
+				@include clearfix;
 
 				li.image,
 				li.add,
@@ -53,11 +53,11 @@
 						width: 100%;
 						height: auto;
 						display: block;
-						.transition;
+						@include transition;
 					}
 					&:hover {
 						img {
-							.opacity(0.75);
+							@include opacity(0.75);
 						}
 					}
 				}
@@ -68,8 +68,8 @@
 					position: absolute;
 					top:0;
 					right: 0;
-					.transition;
-					.opacity(0);
+					@include transition;
+					@include opacity(0);
 					li {
 						-webkit-border-radius: 100%;
 						border-radius: 100%;
@@ -88,11 +88,11 @@
 							line-height: 20px;
 							text-align: center;
 							text-decoration: none;
-							.transition;
+							@include transition;
 							&.delete {
 								background: #000;
 								&:hover {
-									background: @error;
+									background: $error;
 									color: #fff;
 								}
 							}
@@ -100,7 +100,7 @@
 					}
 				}
 				li:hover ul.actions {
-					.opacity(1);
+					@include opacity(1);
 				}
 			}
 		}

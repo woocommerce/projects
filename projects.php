@@ -19,6 +19,7 @@ require_once( 'classes/class-projects-shortcodes.php' );
 require_once( 'classes/class-projects-settings.php' );
 require_once( 'classes/class-widget-projects.php' );
 require_once( 'classes/class-widget-project-categories.php' );
+require_once( 'classes/class-projects-integrations.php' );
 
 require_once( 'projects-template.php' );
 require_once( 'projects-core-functions.php' );

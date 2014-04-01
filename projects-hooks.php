@@ -61,7 +61,7 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 *
 	 * @see  projects_woocommerce_messages()
 	 */
-	add_action( 'projects_before_single_project', 'projects_woocommerce_messages' )
+	add_action( 'projects_before_single_project', 'projects_woocommerce_messages' );
 
 	/**
 	 * Before Single Projects Summary Div

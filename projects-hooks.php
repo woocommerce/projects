@@ -88,6 +88,13 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
 
 	/**
+	 * After Meta
+	 *
+	 * @see projects_output_product()
+	 */
+	add_action( 'projects_after_meta', 'projects_output_product', 10 );
+
+	/**
 	 * Pagination after projects loops
 	 *
 	 * @see projects_pagination()

@@ -502,3 +502,30 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'projects_output_product' ) ) {
+
+	/**
+	 * Output Projects Product.
+	 *
+	 * This function is only used if WooCommerce is enabled.
+	 * It can be used to output a 'buy now' button for a product associated with a project.
+	 *
+	 * @access public
+	 * @return void
+	 * @since  1.2.0
+	 */
+	function projects_output_product() {
+		if ( class_exists( 'WooCommerce' ) && is_singular( 'project' ) ) {
+			global $post;
+			$product_id = esc_attr( get_post_meta( $post->ID, '_products_id', true ) );
+			if ( isset( $product_id ) && '' != $product_id && '0' != $product_id ) {
+				echo '<div class="purchase">';
+				echo '<h3>' . apply_filters( 'projects_meta_woocommerce_title', __( 'Purchase', 'projects-by-woothemes' ) ) . '</h3>';
+				echo do_shortcode( '[add_to_cart id="' . $product_id . '" style=""]' );
+				echo '</div>';
+			}
+
+		}
+	}
+}

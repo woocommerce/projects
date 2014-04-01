@@ -14,6 +14,10 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 "Projects" by WooThemes is a clean and easy-to-use portfolio showcase management system for WordPress. Load in your recent projects, and display them on a specified page using our template system, or via a shortcode, widget or template tag.
 
+Projects integrates with our [testimonials plugin](http://wordpress.org/plugins/testimonials-by-woothemes/) allowing you to associate a testimonial with a project and display it on the single project page.
+
+You can even assign a project to a product you've created in [WooCommerce](http://wordpress.org/plugins/woocommerce/) and let customers add it to their cart from the project page.
+
 = Easy to use =
 
 Publish and categorise your portfolio of projects using the familiar WordPress interface.
@@ -101,7 +105,9 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 = 1.2.0 =
 * 2014-03-27
-* New - Replaced .less files with .scss
+* New - Replaced .less files with .scss.
+* New - Integrated with WooCommerce.
+* New - Added config.codekit.
 * Tweak - Added css for multi column layouts when using the shortcode to display projects.
 * Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).
 

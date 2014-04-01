@@ -1,6 +1,3 @@
-#adminmenu #menu-posts-project .menu-icon-project div.wp-menu-image:before {
-  content: "\f322"; }
-
 .post-type-project.edit-php table.wp-list-table .column-image {
   width: 120px;
   text-align: center; }

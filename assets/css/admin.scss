@@ -1,11 +1,6 @@
 // Imports
 @import 'mixins';
 
-// Icons
-#adminmenu #menu-posts-project .menu-icon-project div.wp-menu-image:before {
-	content: "\f322";
-}
-
 // Projects screen
 .post-type-project.edit-php {
 	table.wp-list-table {

@@ -155,7 +155,7 @@ class Projects {
 										'excerpt'
 										),
 			'menu_position' 		=> 5,
-			'menu_icon' 			=> ''
+			'menu_icon' 			=> 'dashicons-portfolio'
 		);
 
 		$args = apply_filters( 'projects_register_post_type', $args );

@@ -466,10 +466,10 @@ class Projects_Admin {
 
 			switch ( $field_data[$f]['type'] ) {
 				case 'url':
-					${$f} = esc_url( $_POST[$f] );
+					${$f} = isset( $_POST[$f] ) ? esc_url( $_POST[$f] ) : '';
 					break;
 				case 'textarea':
-					${$f} = wp_kses_post(trim($_POST[$f]));
+					${$f} = isset( $_POST[$f] ) ? wp_kses_post( trim( $_POST[$f] ) ) : '';
 					break;
 				case 'checkbox':
 					${$f} = isset( $_POST[$f] ) ? 'yes' : 'no';
@@ -481,15 +481,16 @@ class Projects_Admin {
 				case 'radio':
 				case 'select':
 					// whitelist accepted value against options
-					${$f} = is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
+					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
 					break;
 				default :
-					${$f} = strip_tags( trim( $_POST[$f] ) );
+					${$f} = isset( $_POST[$f] ) ? strip_tags( trim( $_POST[$f] ) ) : '';
 					break;
 			}
 
 			// save it
 			update_post_meta( $post_id, '_' . $f, ${$f} );
+
 		}
 
 		// Save the project gallery image IDs.

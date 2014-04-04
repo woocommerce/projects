@@ -146,7 +146,7 @@ class Projects {
 										'with_front' 	=> false
 										),
 			'capability_type' 		=> 'post',
-			'has_archive' 			=> 'projects',
+			'has_archive'			=> 	( $projects_page_id = projects_get_page_id( 'projects' ) ) && get_page( $projects_page_id ) ? get_page_uri( $projects_page_id ) : 'projects',
 			'hierarchical' 			=> false,
 			'supports' 				=> array(
 										'title',

@@ -109,6 +109,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * New - Integrated with WooCommerce.
 * New - Added config.codekit.
 * New - Project images can now be cropped. (Props @helgatheviking).
+* New - Project archive slug is now retreived from base page slug.
 * Tweak - Added css for multi column layouts when using the shortcode to display projects.
 * Tweak - Project categories can now be added to navigation menus.
 * Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).

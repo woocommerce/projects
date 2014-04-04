@@ -96,15 +96,18 @@ class Projects_Settings {
 			$defaults = apply_filters( 'projects_default_image_size', array(
 				'project-archive' 	=> array(
 											'width' 	=> 300,
-											'height'	=> 300
+											'height'	=> 300,
+											'crop'		=> 'no'
 										),
 				'project-single' 	=> array(
 											'width' 	=> 1024,
-											'height'	=> 1024
+											'height'	=> 1024,
+											'crop'		=> 'no'
 										),
 				'project-thumbnail' => array(
 											'width' 	=> 100,
-											'height'	=> 100
+											'height'	=> 100,
+											'crop'		=> 'yes'
 										)
 			) );
 
@@ -118,7 +121,8 @@ class Projects_Settings {
 					<?php _e( 'Archive Images', 'projects-by-woothemes' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][width]" value="<?php echo $options['project-archive']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][height]" value="<?php echo $options['project-archive']['height']; ?>" />
+					<?php $crop = isset( $options['project-archive']['crop'] ) ? $options['project-archive']['crop'] : 'no'; ?>
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][width]" value="<?php echo $options['project-archive']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][height]" value="<?php echo $options['project-archive']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-archive][crop]" value="1" <?php checked( $crop, 'yes' );?> /> 
 				</td>
 			</tr>
 			<tr valign="top">
@@ -126,7 +130,8 @@ class Projects_Settings {
 					<?php _e( 'Single Images', 'projects-by-woothemes' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][width]" value="<?php echo $options['project-single']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][height]" value="<?php echo $options['project-single']['height']; ?>" />
+					<?php $crop = isset( $options['project-single']['crop'] ) ? $options['project-single']['crop'] : 'no'; ?>
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][width]" value="<?php echo $options['project-single']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][height]" value="<?php echo $options['project-single']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-single][crop]" value="1" <?php checked( $crop, 'yes' );?> /> 
 				</td>
 			</tr>
 			<tr valign="top">
@@ -134,7 +139,8 @@ class Projects_Settings {
 					<?php _e( 'Thumbnails', 'projects-by-woothemes' ); ?>
 				</th>
 				<td>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][width]" value="<?php echo $options['project-thumbnail']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][height]" value="<?php echo $options['project-thumbnail']['height']; ?>" />
+					<?php $crop = isset( $options['project-thumbnail']['crop'] ) ? $options['project-thumbnail']['crop'] : 'no'; ?>
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][width]" value="<?php echo $options['project-thumbnail']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][height]" value="<?php echo $options['project-thumbnail']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-thumbnail][crop]" value="1" <?php checked( $crop, 'yes' );?> /> 
 				</td>
 			</tr>
 		</table>
@@ -147,12 +153,15 @@ class Projects_Settings {
 
 		$input['project-archive']['width'] 		= absint( $input['project-archive']['width'] );
 		$input['project-archive']['height'] 	= absint( $input['project-archive']['height'] );
+		$input['project-archive']['crop'] 		= isset( $input['project-archive']['crop'] ) ? 'yes': 'no';
 
 		$input['project-single']['width'] 		= absint( $input['project-single']['width'] );
 		$input['project-single']['height'] 		= absint( $input['project-single']['height'] );
+		$input['project-single']['crop'] 		= isset( $input['project-single']['crop'] ) ? 'yes': 'no';
 
 		$input['project-thumbnail']['width'] 	= absint( $input['project-thumbnail']['width'] );
 		$input['project-thumbnail']['height'] 	= absint( $input['project-thumbnail']['height'] );
+		$input['project-thumbnail']['crop'] 	= isset( $input['project-thumbnail']['crop'] ) ? 'yes': 'no';
 
 		return $input;
 	}

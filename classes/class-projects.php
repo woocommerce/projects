@@ -187,15 +187,18 @@ class Projects {
 			$defaults = apply_filters( 'projects_default_image_size', array(
 				'project-archive' 	=> array(
 											'width' 	=> 300,
-											'height'	=> 300
+											'height'	=> 300,
+											'crop'		=> 'no'
 										),
 				'project-single' 	=> array(
 											'width' 	=> 1024,
-											'height'	=> 1024
+											'height'	=> 1024,
+											'crop'		=> 'no'
 										),
 				'project-thumbnail' => array(
 											'width' 	=> 100,
-											'height'	=> 100
+											'height'	=> 100,
+											'crop'		=> 'yes'
 										)
 			) );
 
@@ -204,7 +207,8 @@ class Projects {
 
 			// Register each image size
 			foreach ( $options as $image_size => $size ) {
-				add_image_size( $image_size, $size['width'], $size['height'] );
+				$crop = isset( $size['crop'] ) & 'yes' == $size['crop'] ? true : false;
+				add_image_size( $image_size, $size['width'], $size['height'], $crop );
 			}
 
 		}

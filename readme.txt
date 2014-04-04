@@ -114,6 +114,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * Tweak - Project categories can now be added to navigation menus.
 * Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).
 * Tweak - Menu icon added in register_post_type() and now filterable. (Props @helgatheviking).
+* Tweak - Added an edit media link to the project gallery meta box.
 
 = 1.1.0 =
 * 2014-03-25

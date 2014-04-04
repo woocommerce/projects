@@ -67,10 +67,7 @@
         opacity: 0;
         filter: alpha(opacity=0); }
         #project-images .inside #project_images_container ul ul.actions li {
-          -webkit-border-radius: 100%;
-          border-radius: 100%;
-          float: right;
-          margin: 0 0 0 2px; }
+          float: right; }
           #project-images .inside #project_images_container ul ul.actions li a {
             width: 20px;
             margin: 0;
@@ -89,11 +86,30 @@
             -ms-transition: all ease-in-out 0.2s;
             -o-transition: all ease-in-out 0.2s;
             transition: all ease-in-out 0.2s; }
-            #project-images .inside #project_images_container ul ul.actions li a.delete {
+            #project-images .inside #project_images_container ul ul.actions li a.edit, #project-images .inside #project_images_container ul ul.actions li a.delete {
+              text-indent: -999px;
+              position: relative;
               background: #000; }
+              #project-images .inside #project_images_container ul ul.actions li a.edit:before, #project-images .inside #project_images_container ul ul.actions li a.delete:before {
+                content: "\f464";
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                font-family: 'Dashicons';
+                color: #fff;
+                text-indent: 0;
+                font-weight: normal; }
+              #project-images .inside #project_images_container ul ul.actions li a.edit:hover, #project-images .inside #project_images_container ul ul.actions li a.delete:hover {
+                background: #444; }
+            #project-images .inside #project_images_container ul ul.actions li a.delete {
+              background-color: #f63121; }
+              #project-images .inside #project_images_container ul ul.actions li a.delete:before {
+                content: "\f335"; }
               #project-images .inside #project_images_container ul ul.actions li a.delete:hover {
-                background: #f63121;
-                color: #fff; }
+                background: #d40f00; }
       #project-images .inside #project_images_container ul li:hover ul.actions {
         opacity: 1;
         filter: alpha(opacity=100); }

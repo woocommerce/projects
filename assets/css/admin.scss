@@ -66,10 +66,8 @@
 					@include transition;
 					@include opacity(0);
 					li {
-						-webkit-border-radius: 100%;
-						border-radius: 100%;
 						float: right;
-						margin: 0 0 0 2px;
+						//margin: 0 0 0 1px;
 						a {
 							width: 20px;
 							margin: 0;
@@ -84,11 +82,38 @@
 							text-align: center;
 							text-decoration: none;
 							@include transition;
+							&.edit,
 							&.delete {
+								text-indent: -999px;
+								position: relative;
 								background: #000;
-								&:hover {
-									background: $error;
+
+								&:before {
+									content: "\f464";
+									display: block;
+									position: absolute;
+									top: 0;
+									right: 0;
+									bottom: 0;
+									left: 0;
+									font-family: 'Dashicons';
 									color: #fff;
+									text-indent: 0;
+									font-weight: normal;
+								}
+
+								&:hover {
+									background: #444;
+								}
+							}
+
+							&.delete {
+								background-color: $error;
+								&:before {
+									content: "\f335";
+								}
+								&:hover {
+									background: $error - #222;
 								}
 							}
 						}

@@ -418,6 +418,7 @@ class Projects_Admin {
 								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
 								<ul class="actions">
 									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects-by-woothemes' ) . '">&times;</a></li>
+									<li><a href="' . get_edit_post_link( $attachment_id ) . '" class="edit">' . __( 'Edit image', 'projects-by-woothemes' ) . '</a></li>
 								</ul>
 							</li>';
 						}

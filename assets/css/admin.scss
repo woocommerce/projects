@@ -48,7 +48,7 @@
 						width: 100%;
 						height: auto;
 						display: block;
-						@include transition;
+						@include animation(all ease .2s);
 					}
 					&:hover {
 						img {
@@ -63,7 +63,7 @@
 					position: absolute;
 					top:0;
 					right: 0;
-					@include transition;
+					@include animation(all ease .2s);
 					@include opacity(0);
 					li {
 						float: right;
@@ -81,7 +81,7 @@
 							line-height: 20px;
 							text-align: center;
 							text-decoration: none;
-							@include transition;
+							@include animation(all ease .2s);
 							&.edit,
 							&.delete {
 								text-indent: -999px;

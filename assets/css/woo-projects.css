@@ -39,8 +39,10 @@
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
-      -webkit-border-radius: 0;
-      border-radius: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
       padding: 0;
       border: 0;
       margin: 0 auto;
@@ -58,10 +60,8 @@
   list-style: none; }
   .projects ul.project-categories:after,
   .projects-page ul.project-categories:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
+    content: "";
+    display: table;
     clear: both; }
   .projects ul.project-categories li,
   .projects-page ul.project-categories li {
@@ -86,10 +86,8 @@
     margin: 0 .236em; }
 
 .projects.columns-2:after, .projects.columns-3:after, .projects.columns-4:after, .projects.columns-5:after, .projects.columns-6:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
+  content: "";
+  display: table;
   clear: both; }
 .projects.columns-2 ul.projects li.project, .projects.columns-3 ul.projects li.project, .projects.columns-4 ul.projects li.project, .projects.columns-5 ul.projects li.project, .projects.columns-6 ul.projects li.project {
   float: left;
@@ -118,10 +116,8 @@
 .single-project .project {
   margin-bottom: 1.618em; }
   .single-project .project:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
+    content: "";
+    display: table;
     clear: both; }
   .single-project .project .single-project-short-description {
     margin-bottom: 1.618em; }
@@ -157,8 +153,10 @@
   .single-project.has-gallery .gallery a {
     display: block; }
   .single-project.has-gallery .gallery img {
-    -webkit-border-radius: 0;
-    border-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     max-width: 100%;
     height: auto;
     -webkit-box-shadow: none;
@@ -170,18 +168,13 @@
   float: right;
   padding: 0 0 0 2.618em;
   -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */ }
+  box-sizing: border-box; }
   .single-project.has-gallery .summary > div {
     font-size: .857em; }
 .single-project.no-gallery .summary:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
+  content: "";
+  display: table;
   clear: both; }
 .single-project.no-gallery .summary .project_title,
 .single-project.no-gallery .summary .single-project-description {
@@ -191,10 +184,8 @@
   width: 34%;
   float: right; }
 .single-project .projects-single-pagination:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
+  content: "";
+  display: table;
   clear: both; }
 .single-project .projects-single-pagination .previous a,
 .single-project .projects-single-pagination .next a {
@@ -228,10 +219,8 @@
     bottom: -21px;
     left: 1em; }
 .single-project .project-testimonial .quote:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
+  content: "";
+  display: table;
   clear: both; }
 .single-project .project-testimonial .quote .avatar-link {
   float: left;
@@ -248,10 +237,8 @@
   .projects_list_widget li a {
     display: block; }
     .projects_list_widget li a:after {
-      content: "\0020";
-      display: block;
-      height: 0;
-      overflow: hidden;
+      content: "";
+      display: table;
       clear: both; }
   .projects_list_widget li img {
     float: right;

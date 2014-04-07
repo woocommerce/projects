@@ -16,10 +16,8 @@
       margin: 0;
       padding: 0; }
       #project-images .inside #project_images_container ul:after {
-        content: "\0020";
-        display: block;
-        height: 0;
-        overflow: hidden;
+        content: "";
+        display: table;
         clear: both; }
       #project-images .inside #project_images_container ul li.image,
       #project-images .inside #project_images_container ul li.add,
@@ -43,11 +41,9 @@
           width: 100%;
           height: auto;
           display: block;
-          -webkit-transition: all ease-in-out 0.2s;
-          -moz-transition: all ease-in-out 0.2s;
-          -ms-transition: all ease-in-out 0.2s;
-          -o-transition: all ease-in-out 0.2s;
-          transition: all ease-in-out 0.2s; }
+          -webkit-animation: all ease 0.2s;
+          -moz-animation: all ease 0.2s;
+          animation: all ease 0.2s; }
         #project-images .inside #project_images_container ul li.image:hover img,
         #project-images .inside #project_images_container ul li.add:hover img,
         #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder:hover img {
@@ -59,11 +55,9 @@
         position: absolute;
         top: 0;
         right: 0;
-        -webkit-transition: all ease-in-out 0.2s;
-        -moz-transition: all ease-in-out 0.2s;
-        -ms-transition: all ease-in-out 0.2s;
-        -o-transition: all ease-in-out 0.2s;
-        transition: all ease-in-out 0.2s;
+        -webkit-animation: all ease 0.2s;
+        -moz-animation: all ease 0.2s;
+        animation: all ease 0.2s;
         opacity: 0;
         filter: alpha(opacity=0); }
         #project-images .inside #project_images_container ul ul.actions li {
@@ -81,11 +75,9 @@
             line-height: 20px;
             text-align: center;
             text-decoration: none;
-            -webkit-transition: all ease-in-out 0.2s;
-            -moz-transition: all ease-in-out 0.2s;
-            -ms-transition: all ease-in-out 0.2s;
-            -o-transition: all ease-in-out 0.2s;
-            transition: all ease-in-out 0.2s; }
+            -webkit-animation: all ease 0.2s;
+            -moz-animation: all ease 0.2s;
+            animation: all ease 0.2s; }
             #project-images .inside #project_images_container ul ul.actions li a.edit, #project-images .inside #project_images_container ul ul.actions li a.delete {
               text-indent: -999px;
               position: relative;

@@ -47,7 +47,8 @@
 				-webkit-box-shadow: none;
 				-moz-box-shadow: none;
 				box-shadow: none;
-				@include border_radius(0);
+				@include border-top-radius(0);
+				@include border-bottom-radius(0);
 				padding: 0;
 				border: 0;
 				margin: 0 auto;
@@ -227,7 +228,8 @@
 			}
 
 			img {
-				@include border_radius(0);
+				@include border-top-radius(0);
+				@include border-bottom-radius(0);
 				max-width: 100%;
 				height: auto;
 				-webkit-box-shadow: none;
@@ -240,7 +242,7 @@
 			width: 38%;
 			float: right;
 			padding: 0 0 0 2.618em;
-			@include borderbox;
+			@include box-sizing(border-box);
 			> div {
 				font-size: .857em;
 			}

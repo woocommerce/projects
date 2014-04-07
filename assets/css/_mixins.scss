@@ -1,3 +1,5 @@
+@import "bourbon";
+
 // Vars
 $error:             #f63121;
 
@@ -39,55 +41,6 @@ $error:             #f63121;
 }
 
 // Mixins
-@mixin clearfix()
-{
-	&:after {
-		content: "\0020";
-		display: block;
-		height: 0;
-		overflow: hidden;
-		clear: both;
-	}
-}
-
-@mixin border_radius($radius:10px)
-{
-    -webkit-border-radius:$radius;
-    border-radius:$radius;
-}
-
-@mixin border_radius_right($radius:10px)
-{
-    -webkit-border-top-right-radius: $radius;
-    -webkit-border-bottom-right-radius: $radius;
-    border-top-right-radius: $radius;
-    border-bottom-right-radius: $radius;
-}
-
-@mixin border_radius_left($radius:10px)
-{
-    -webkit-border-top-left-radius: $radius;
-    -webkit-border-bottom-left-radius: $radius;
-    border-top-left-radius: $radius;
-    border-bottom-left-radius: $radius;
-}
-
-@mixin border_radius_bottom($radius:10px)
-{
-    -webkit-border-bottom-left-radius: $radius;
-    -webkit-border-bottom-right-radius: $radius;
-    border-bottom-left-radius: $radius;
-    border-bottom-right-radius: $radius;
-}
-
-@mixin border_radius_top($radius:10px)
-{
-    -webkit-border-top-left-radius: $radius;
-    -webkit-border-top-right-radius: $radius;
-    border-top-left-radius: $radius;
-    border-top-right-radius: $radius;
-}
-
 @mixin border_radius_reset()
 {
 	-webkit-border-radius: none;
@@ -95,43 +48,8 @@ $error:             #f63121;
 		    border-radius: none;
 }
 
-@mixin transition($selector:all, $animation:ease-in-out, $duration:.2s)
-{
-    -webkit-transition:$selector $animation $duration;
-    -moz-transition:$selector $animation $duration;
-    -ms-transition:$selector $animation $duration;
-    -o-transition:$selector $animation $duration;
-    transition:$selector $animation $duration;
-}
-
 @mixin opacity($opacity:0.75)
 {
     opacity: $opacity;
     filter: alpha(opacity=$opacity * 100);
-}
-
-@mixin rotate($degree:1deg)
-{
-	-webkit-transform: rotate($degree);    /* Saf3.1+, Chrome */
-	-moz-transform: rotate($degree);       /* FF3.5+ */
-	-ms-transform: rotate($degree);        /* IE9 */
-	-o-transform: rotate($degree);         /* Opera 10.5 */
-	transform: rotate($degree);
-	zoom: 1;
-}
-
-@mixin scale($ratio:1.5)
-{
-  -webkit-transform:scale($ratio);
-  -moz-transform:scale($ratio);
-  -ms-transform:scale($ratio);
-  -o-transform:scale($ratio);
-  transform:scale($ratio);
-}
-
-@mixin borderbox()
-{
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
 }

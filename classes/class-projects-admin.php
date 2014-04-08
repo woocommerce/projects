@@ -50,10 +50,10 @@ class Projects_Admin {
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_set_link' ) );
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_remove_link' ) );
 		add_filter( 'media_view_strings', array( $this, 'featured_image_popup_set_link' ) );
+		add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+		add_action( 'manage_' . $this->post_type .'_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
-			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-			add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			add_action( 'restrict_manage_posts', array( $this, 'projects_restrict_manage_posts' ) );
 			add_filter( 'parse_query', array( $this, 'projects_post_type_request' ) );
 		}

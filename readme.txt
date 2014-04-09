@@ -100,6 +100,10 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Upgrade Notice ==
 
+= 1.2.0 =
+
+* The project archive slug now mirrors your projects base page slug isntead of being fixed as 'projects'.  If you're using a base page with a slug other than 'projects' you may want to check any static links to your projects page. For example if your base page is 'portfolio' your projects post type archive will now exist at http://yoursite.com/portfolio rather than http://yoursite.com/projects.
+
 = 1.0.0 =
 * Initial release. Woo!
 

@@ -21,6 +21,8 @@ global $post;
 		$client 		= esc_attr( get_post_meta( $post->ID, '_client', true ) );
 		$url 			= esc_url( get_post_meta( $post->ID, '_url', true ) );
 
+		do_action( 'projects_before_meta' );
+
 		/**
 		 * Display categories if they're set
 		 */
@@ -52,5 +54,7 @@ global $post;
 			echo '<span class="project-url"><a href="' . $url . '">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects-by-woothemes' ) ) . '</a></span>';
 			echo '</div>';
 		}
+
+		do_action( 'projects_after_meta' );
 	?>
 </div>

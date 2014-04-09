@@ -43,17 +43,17 @@ class Projects_Admin {
 		add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
 		add_action( 'save_post', array( $this, 'meta_box_save' ) );
 		add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
-		add_action( 'admin_print_styles', array( $this, 'enqueue_admin_styles' ), 10 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 		add_action( 'admin_notices', array( $this, 'configuration_admin_notice' ) );
 		add_action( 'do_meta_boxes', array( $this, 'featured_image_label' ) );
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_set_link' ) );
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'featured_image_remove_link' ) );
 		add_filter( 'media_view_strings', array( $this, 'featured_image_popup_set_link' ) );
+		add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+		add_action( 'manage_' . $this->post_type .'_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 
 		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
-			add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-			add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			add_action( 'restrict_manage_posts', array( $this, 'projects_restrict_manage_posts' ) );
 			add_filter( 'parse_query', array( $this, 'projects_post_type_request' ) );
 		}
@@ -288,9 +288,9 @@ class Projects_Admin {
 			$html .= '<tbody>' . "\n";
 
 			foreach ( $field_data as $k => $v ) {
-				$data = $v['default'];
+				$data = isset( $v['default'] ) ? $v['default'] : '';
 				if ( isset( $fields['_' . $k] ) && isset( $fields['_' . $k][0] ) ) {
-					$data = $fields['_' . $k][0];
+					$data = maybe_unserialize( $fields['_' . $k][0] );
 				}
 
 				switch ( $v['type'] ) {
@@ -303,45 +303,80 @@ class Projects_Admin {
 					case 'url':
 						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text" value="' . esc_attr( $data ) . '" />';
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
-						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'textarea':
+						$field = '<textarea name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" class="large-text">' . esc_attr( $data ) . '</textarea>';
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'upload':
+						$data_atts = '';
+						if ( isset( $v['media-frame']['title'] ) ){
+							$data_atts .= sprintf( 'data-title="%s" ', esc_attr( $v['media-frame']['title'] ) );
+						}
+						if ( isset( $v['media-frame']['button'] ) ){
+							$data_atts .= sprintf( 'data-button="%s" ', esc_attr( $v['media-frame']['button'] ) );
+						}
+						if ( isset( $v['media-frame']['library'] ) ){
+							$data_atts .= sprintf( 'data-library="%s" ', esc_attr( $v['media-frame']['library'] ) );
+						}
+
+						$field = '<input name="' . esc_attr( $k ) . '" type="text" id="' . esc_attr( $k ) . '" class="regular-text projects-upload-field" value="' . esc_attr( $data ) . '" />';
+						$field .= '<button id="' . esc_attr( $k ) . '" class="projects-upload button"' . $data_atts . '>' . $v['label'] . '</button>';
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
 					case 'radio':
 						$field = '';
-
 						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
 							foreach ( $v['options'] as $val => $option ){
-								$field .= '<label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="radio" name="' . esc_attr( $k ) . '" value="' . esc_attr( $val ) . '" ' . checked( $val, $data, false ) . ' / >'. $option . '</label>' . "\n";
+								$field .= '<p><label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="radio" name="' . esc_attr( $k ) . '" value="' . esc_attr( $val ) . '" ' . checked( $val, $data, false ) . ' / >'. $option . '</label></p>' . "\n";
 							}
 						}
-
-						$html .= '<tr valign="top" class="projects-radio"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
-						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '<tr valign="top"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'checkbox':
+						$field = '<p><input id="' . esc_attr( $v['name'] ) . '" type="checkbox" name="' . esc_attr( $k ) . '" value="1" ' . checked( 'yes', $data, false ) . ' / ></p>' . "\n";
+						if( isset( $v['description'] ) ) $field .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $v['name'] ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'multicheck':
+						$field = '';
+						if( isset( $v['options'] ) && is_array( $v['options'] ) ){
+							foreach ( $v['options'] as $val => $option ){
+								$field .= '<p><label for="' . esc_attr( $v['name'] . '-' . $val ) . '"><input id="' . esc_attr( $v['name'] . '-' . $val ) . '" type="checkbox" name="' . esc_attr( $k ) . '[]" value="' . esc_attr( $val ) . '" ' . checked( 1, in_array( $val, (array) $data ), false ) . ' / >'. $option . '</label></p>' . "\n";
+							}
+						}
+						$html .= '<tr valign="top"><th scope="row"><label>' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
 					case 'select':
 						$field = '<select name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" >'. "\n";
-
 						if ( isset( $v['options'] ) && is_array( $v['options'] ) ) {
 							foreach ( $v['options'] as $val => $option ){
 								$field .= '<option value="' . esc_attr( $val ) . '" ' . selected( $val, $data, false ) . '>'. $option .'</option>' . "\n";
 							}
 						}
-
 						$field .= '</select>'. "\n";
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
-						$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
 					default:
 						$field = apply_filters( 'projects_data_field_type_' . $v['type'], null, $k, $data, $v );
-
 						if ( $field ) {
 							$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
-							$html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+							if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 							$html .= '</td><tr/>' . "\n";
 						}
-
 						break;
 				}
 
@@ -383,6 +418,7 @@ class Projects_Admin {
 								' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '
 								<ul class="actions">
 									<li><a href="#" class="delete" title="' . __( 'Delete image', 'projects-by-woothemes' ) . '">&times;</a></li>
+									<li><a href="' . get_edit_post_link( $attachment_id ) . '" class="edit">' . __( 'Edit image', 'projects-by-woothemes' ) . '</a></li>
 								</ul>
 							</li>';
 						}
@@ -395,114 +431,6 @@ class Projects_Admin {
 		<p class="add_project_images hide-if-no-js">
 			<a href="#"><?php printf( __( 'Add %s gallery images', 'projects-by-woothemes' ), strtolower( $projects->singular_name ) ); ?></a>
 		</p>
-		<script type="text/javascript">
-			jQuery(document).ready(function($){
-
-				// Uploading files
-				var project_gallery_frame;
-				var $image_gallery_ids 	= $( '#project_image_gallery' );
-				var $project_images 	= $( '#project_images_container ul.project_images' );
-
-				jQuery( '.add_project_images' ).on( 'click', 'a', function( event ) {
-
-					var $el 			= $(this);
-					var attachment_ids 	= $image_gallery_ids.val();
-
-					event.preventDefault();
-
-					// If the media frame already exists, reopen it.
-					if ( project_gallery_frame ) {
-						project_gallery_frame.open();
-						return;
-					}
-
-					// Create the media frame.
-					project_gallery_frame = wp.media.frames.downloadable_file = wp.media({
-						// Set the title of the modal.
-						title: '<?php _e( 'Add Images to Project Gallery', 'projects-by-woothemes' ); ?>',
-						button: {
-							text: '<?php _e( 'Add to gallery', 'projects-by-woothemes' ); ?>',
-						},
-						multiple: true
-					});
-
-					// When an image is selected, run a callback.
-					project_gallery_frame.on( 'select', function() {
-
-						var selection = project_gallery_frame.state().get( 'selection' );
-
-						selection.map( function( attachment ) {
-
-							attachment = attachment.toJSON();
-
-							if ( attachment.id ) {
-								attachment_ids = attachment_ids ? attachment_ids + "," + attachment.id : attachment.id;
-
-								$project_images.append('\
-									<li class="image" data-attachment_id="' + attachment.id + '">\
-										<img src="' + attachment.url + '" />\
-										<ul class="actions">\
-											<li><a href="#" class="delete" title="<?php _e( 'Delete image', 'projects-by-woothemes' ); ?>">&times;</a></li>\
-										</ul>\
-									</li>');
-							}
-
-						} );
-
-						$image_gallery_ids.val( attachment_ids );
-					});
-
-					// Finally, open the modal.
-					project_gallery_frame.open();
-				});
-
-				// Image ordering
-				$project_images.sortable({
-					items: 'li.image',
-					cursor: 'move',
-					scrollSensitivity:40,
-					forcePlaceholderSize: true,
-					forceHelperSize: false,
-					helper: 'clone',
-					opacity: 0.65,
-					placeholder: 'projects-metabox-sortable-placeholder',
-					start:function(event,ui){
-						ui.item.css( 'background-color','#f6f6f6' );
-					},
-					stop:function(event,ui){
-						ui.item.removeAttr( 'style' );
-					},
-					update: function(event, ui) {
-						var attachment_ids = '';
-
-						$( '#project_images_container ul li.image' ).css( 'cursor','default' ).each(function() {
-							var attachment_id = jQuery(this).attr( 'data-attachment_id' );
-							attachment_ids = attachment_ids + attachment_id + ',';
-						});
-
-						$image_gallery_ids.val( attachment_ids );
-					}
-				});
-
-				// Remove images
-				$( '#project_images_container' ).on( 'click', 'a.delete', function() {
-
-					$(this).closest( 'li.image' ).remove();
-
-					var attachment_ids = '';
-
-					$( '#project_images_container ul li.image' ).css( 'cursor','default' ).each(function() {
-						var attachment_id = jQuery(this).attr( 'data-attachment_id' );
-						attachment_ids = attachment_ids + attachment_id + ',';
-					});
-
-					$image_gallery_ids.val( attachment_ids );
-
-					return false;
-				} );
-
-			});
-		</script>
 		<?php
 	} // End meta_box_content_project_images()
 
@@ -537,20 +465,33 @@ class Projects_Admin {
 
 		foreach ( $fields as $f ) {
 
-			${$f} = strip_tags(trim($_POST[$f]));
-
-			// Escape the URLs.
-			if ( 'url' == $field_data[$f]['type'] ) {
-				${$f} = esc_url( ${$f} );
+			switch ( $field_data[$f]['type'] ) {
+				case 'url':
+					${$f} = isset( $_POST[$f] ) ? esc_url( $_POST[$f] ) : '';
+					break;
+				case 'textarea':
+					${$f} = isset( $_POST[$f] ) ? wp_kses_post( trim( $_POST[$f] ) ) : '';
+					break;
+				case 'checkbox':
+					${$f} = isset( $_POST[$f] ) ? 'yes' : 'no';
+					break;
+				case 'multicheck':
+					// ensure checkbox is array and whitelist accepted values against options
+					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) ? (array) array_intersect( (array) $_POST[$f], array_flip( $field_data[$f]['options'] ) ) : '';
+					break;
+				case 'radio':
+				case 'select':
+					// whitelist accepted value against options
+					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
+					break;
+				default :
+					${$f} = isset( $_POST[$f] ) ? strip_tags( trim( $_POST[$f] ) ) : '';
+					break;
 			}
 
-			if ( get_post_meta( $post_id, '_' . $f ) == '' ) {
-				add_post_meta( $post_id, '_' . $f, ${$f}, true );
-			} elseif( ${$f} != get_post_meta( $post_id, '_' . $f, true ) ) {
-				update_post_meta( $post_id, '_' . $f, ${$f} );
-			} elseif ( ${$f} == '' ) {
-				delete_post_meta( $post_id, '_' . $f, get_post_meta( $post_id, '_' . $f, true ) );
-			}
+			// save it
+			update_post_meta( $post_id, '_' . $f, ${$f} );
+
 		}
 
 		// Save the project gallery image IDs.
@@ -609,8 +550,19 @@ class Projects_Admin {
 	 * @return   void
 	 */
 	public function enqueue_admin_styles () {
-		wp_register_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
-		wp_enqueue_style( 'projects-admin' );
+		wp_enqueue_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
+		wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery', 'media-editor' ), '1.0.0', true );
+
+		wp_localize_script( 'projects-admin', 'woo_projects_admin',
+				array(
+					'gallery_title' 	=> __( 'Add Images to Project Gallery', 'projects-by-woothemes' ),
+					'gallery_button' 	=>  __( 'Add to gallery', 'projects-by-woothemes' ),
+					'delete_image'		=> __( 'Delete image', 'projects-by-woothemes' ),
+					'default_title' 	=> __( 'Upload', 'projects-by-woothemes' ),
+					'default_button' 	=> __( 'Select this', 'projects-by-woothemes' ),
+				)
+			);
+
 	} // End enqueue_admin_styles()
 
 	/**

@@ -57,6 +57,13 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	add_action( 'projects_after_loop_item', 'projects_template_short_description', 10 );
 
 	/**
+	 * Before Single Product
+	 *
+	 * @see  projects_woocommerce_messages()
+	 */
+	add_action( 'projects_before_single_project', 'projects_woocommerce_messages' );
+
+	/**
 	 * Before Single Projects Summary Div
 	 *
 	 * @see projects_template_single_title()
@@ -86,6 +93,13 @@ if ( ! is_admin() || defined('DOING_AJAX') ) {
 	 */
 	add_action( 'projects_after_single_project', 'projects_output_testimonial', 1 );
 	add_action( 'projects_after_single_project', 'projects_single_pagination', 5 );
+
+	/**
+	 * After Meta
+	 *
+	 * @see projects_output_product()
+	 */
+	add_action( 'projects_after_meta', 'projects_output_product', 10 );
 
 	/**
 	 * Pagination after projects loops

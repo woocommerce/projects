@@ -1,0 +1,55 @@
+@import "bourbon";
+
+// Vars
+$error:             #f63121;
+
+// Mixins
+@mixin iconbefore( $glyph: "\f179" )
+{
+    font-family: 'dashicons';
+    vertical-align: top;
+    margin-right: .618em;
+    content: $glyph;
+}
+
+@mixin iconafter( $glyph: "\f179" )
+{
+    font-family: 'dashicons';
+    vertical-align: top;
+    margin-left: .618em;
+    content: $glyph;
+}
+
+@mixin icon( $glyph: "\f179" )
+{
+    font-family: 'dashicons';
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin:0;
+    text-indent: 0;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    content: $glyph;
+}
+
+// Mixins
+@mixin border_radius_reset()
+{
+	-webkit-border-radius: none;
+	   -moz-border-radius: none;
+		    border-radius: none;
+}
+
+@mixin opacity($opacity:0.75)
+{
+    opacity: $opacity;
+    filter: alpha(opacity=$opacity * 100);
+}

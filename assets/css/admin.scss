@@ -1,10 +1,5 @@
 // Imports
-@import url(mixins.less);
-
-// Icons
-#adminmenu #menu-posts-project .menu-icon-project div.wp-menu-image:before {
-	content: "\f322";
-}
+@import 'mixins';
 
 // Projects screen
 .post-type-project.edit-php {
@@ -27,14 +22,14 @@
 		margin: 0;
 		padding: 0;
 		.add_project_images {
-			padding: 0 12px;
+			padding: 0 12px 12px;
 		}
 		#project_images_container {
 			padding: 0 0 0 9px;
 			ul {
 				margin: 0;
 				padding: 0;
-				.clearfix;
+				@include clearfix;
 
 				li.image,
 				li.add,
@@ -53,11 +48,11 @@
 						width: 100%;
 						height: auto;
 						display: block;
-						.transition;
+						@include animation(all ease .2s);
 					}
 					&:hover {
 						img {
-							.opacity(0.75);
+							@include opacity(0.75);
 						}
 					}
 				}
@@ -68,13 +63,11 @@
 					position: absolute;
 					top:0;
 					right: 0;
-					.transition;
-					.opacity(0);
+					@include animation(all ease .2s);
+					@include opacity(0);
 					li {
-						-webkit-border-radius: 100%;
-						border-radius: 100%;
 						float: right;
-						margin: 0 0 0 2px;
+						//margin: 0 0 0 1px;
 						a {
 							width: 20px;
 							margin: 0;
@@ -88,19 +81,46 @@
 							line-height: 20px;
 							text-align: center;
 							text-decoration: none;
-							.transition;
+							@include animation(all ease .2s);
+							&.edit,
 							&.delete {
+								text-indent: -999px;
+								position: relative;
 								background: #000;
-								&:hover {
-									background: @error;
+
+								&:before {
+									content: "\f464";
+									display: block;
+									position: absolute;
+									top: 0;
+									right: 0;
+									bottom: 0;
+									left: 0;
+									font-family: 'Dashicons';
 									color: #fff;
+									text-indent: 0;
+									font-weight: normal;
+								}
+
+								&:hover {
+									background: #444;
+								}
+							}
+
+							&.delete {
+								background-color: $error;
+								&:before {
+									content: "\f335";
+								}
+								&:hover {
+									background: $error - #222;
 								}
 							}
 						}
 					}
 				}
 				li:hover ul.actions {
-					.opacity(1);
+					@include opacity(1);
 				}
 			}
 		}

@@ -1,159 +1,111 @@
-@-webkit-keyframes spin-360 {
-  from {
-    -webkit-transform: rotate(0);
-    /* Saf3.1+, Chrome */
-    -moz-transform: rotate(0);
-    /* FF3.5+ */
-    -ms-transform: rotate(0);
-    /* IE9 */
-    -o-transform: rotate(0);
-    /* Opera 10.5 */
-    transform: rotate(0);
-    zoom: 1;
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-    /* Saf3.1+, Chrome */
-    -moz-transform: rotate(180deg);
-    /* FF3.5+ */
-    -ms-transform: rotate(180deg);
-    /* IE9 */
-    -o-transform: rotate(180deg);
-    /* Opera 10.5 */
-    transform: rotate(180deg);
-    zoom: 1;
-  }
-  to {
-    -webkit-transform: rotate(0);
-    /* Saf3.1+, Chrome */
-    -moz-transform: rotate(0);
-    /* FF3.5+ */
-    -ms-transform: rotate(0);
-    /* IE9 */
-    -o-transform: rotate(0);
-    /* Opera 10.5 */
-    transform: rotate(0);
-    zoom: 1;
-  }
-}
-#adminmenu #menu-posts-project .menu-icon-project div.wp-menu-image:before {
-  content: "\f322";
-}
 .post-type-project.edit-php table.wp-list-table .column-image {
   width: 120px;
-  text-align: center;
-}
-.post-type-project.edit-php table.wp-list-table .column-image img {
-  width: 60px;
-  height: auto;
-}
+  text-align: center; }
+  .post-type-project.edit-php table.wp-list-table .column-image img {
+    width: 60px;
+    height: auto; }
+
 #project-images .inside {
   margin: 0;
-  padding: 0;
-}
-#project-images .inside .add_project_images {
-  padding: 0 12px;
-}
-#project-images .inside #project_images_container {
-  padding: 0 0 0 9px;
-}
-#project-images .inside #project_images_container ul {
-  margin: 0;
-  padding: 0;
-}
-#project-images .inside #project_images_container ul:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
-  clear: both;
-}
-#project-images .inside #project_images_container ul li.image,
-#project-images .inside #project_images_container ul li.add,
-#project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder {
-  width: 80px;
-  float: left;
-  cursor: move;
-  margin: 9px 9px 0 0;
-  background: #f7f7f7;
-  position: relative;
-  background: #000;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-}
-#project-images .inside #project_images_container ul li.image img,
-#project-images .inside #project_images_container ul li.add img,
-#project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder img {
-  width: 100%;
-  height: auto;
-  display: block;
-  -webkit-transition: all ease-in-out 0.2s;
-  -moz-transition: all ease-in-out 0.2s;
-  -ms-transition: all ease-in-out 0.2s;
-  -o-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-}
-#project-images .inside #project_images_container ul li.image:hover img,
-#project-images .inside #project_images_container ul li.add:hover img,
-#project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder:hover img {
-  opacity: 0.75;
-  filter: alpha(opacity=@opacity * 100);
-}
-#project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder {
-  background: #f1f1f1;
-}
-#project-images .inside #project_images_container ul ul.actions {
-  position: absolute;
-  top: 0;
-  right: 0;
-  -webkit-transition: all ease-in-out 0.2s;
-  -moz-transition: all ease-in-out 0.2s;
-  -ms-transition: all ease-in-out 0.2s;
-  -o-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-  opacity: 0;
-  filter: alpha(opacity=@opacity * 100);
-}
-#project-images .inside #project_images_container ul ul.actions li {
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
-  float: right;
-  margin: 0 0 0 2px;
-}
-#project-images .inside #project_images_container ul ul.actions li a {
-  width: 20px;
-  margin: 0;
-  height: 20px;
-  font-size: 16px;
-  display: block;
-  overflow: hidden;
-  color: #fff;
-  background: #000;
-  font-weight: 300;
-  line-height: 20px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: all ease-in-out 0.2s;
-  -moz-transition: all ease-in-out 0.2s;
-  -ms-transition: all ease-in-out 0.2s;
-  -o-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-}
-#project-images .inside #project_images_container ul ul.actions li a.delete {
-  background: #000;
-}
-#project-images .inside #project_images_container ul ul.actions li a.delete:hover {
-  background: #f63121;
-  color: #fff;
-}
-#project-images .inside #project_images_container ul li:hover ul.actions {
-  opacity: 1;
-  filter: alpha(opacity=@opacity * 100);
-}
+  padding: 0; }
+  #project-images .inside .add_project_images {
+    padding: 0 12px 12px; }
+  #project-images .inside #project_images_container {
+    padding: 0 0 0 9px; }
+    #project-images .inside #project_images_container ul {
+      margin: 0;
+      padding: 0; }
+      #project-images .inside #project_images_container ul:after {
+        content: "";
+        display: table;
+        clear: both; }
+      #project-images .inside #project_images_container ul li.image,
+      #project-images .inside #project_images_container ul li.add,
+      #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder {
+        width: 80px;
+        float: left;
+        cursor: move;
+        margin: 9px 9px 0 0;
+        background: #f7f7f7;
+        position: relative;
+        background: #000;
+        -webkit-box-sizing: border-box;
+        /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;
+        /* Firefox, other Gecko */
+        box-sizing: border-box;
+        /* Opera/IE 8+ */ }
+        #project-images .inside #project_images_container ul li.image img,
+        #project-images .inside #project_images_container ul li.add img,
+        #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder img {
+          width: 100%;
+          height: auto;
+          display: block;
+          -webkit-animation: all ease 0.2s;
+          -moz-animation: all ease 0.2s;
+          animation: all ease 0.2s; }
+        #project-images .inside #project_images_container ul li.image:hover img,
+        #project-images .inside #project_images_container ul li.add:hover img,
+        #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder:hover img {
+          opacity: 0.75;
+          filter: alpha(opacity=75); }
+      #project-images .inside #project_images_container ul li.projects-metabox-sortable-placeholder {
+        background: #f1f1f1; }
+      #project-images .inside #project_images_container ul ul.actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        -webkit-animation: all ease 0.2s;
+        -moz-animation: all ease 0.2s;
+        animation: all ease 0.2s;
+        opacity: 0;
+        filter: alpha(opacity=0); }
+        #project-images .inside #project_images_container ul ul.actions li {
+          float: right; }
+          #project-images .inside #project_images_container ul ul.actions li a {
+            width: 20px;
+            margin: 0;
+            height: 20px;
+            font-size: 16px;
+            display: block;
+            overflow: hidden;
+            color: #fff;
+            background: #000;
+            font-weight: 300;
+            line-height: 20px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-animation: all ease 0.2s;
+            -moz-animation: all ease 0.2s;
+            animation: all ease 0.2s; }
+            #project-images .inside #project_images_container ul ul.actions li a.edit, #project-images .inside #project_images_container ul ul.actions li a.delete {
+              text-indent: -999px;
+              position: relative;
+              background: #000; }
+              #project-images .inside #project_images_container ul ul.actions li a.edit:before, #project-images .inside #project_images_container ul ul.actions li a.delete:before {
+                content: "\f464";
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                font-family: 'Dashicons';
+                color: #fff;
+                text-indent: 0;
+                font-weight: normal; }
+              #project-images .inside #project_images_container ul ul.actions li a.edit:hover, #project-images .inside #project_images_container ul ul.actions li a.delete:hover {
+                background: #444; }
+            #project-images .inside #project_images_container ul ul.actions li a.delete {
+              background-color: #f63121; }
+              #project-images .inside #project_images_container ul ul.actions li a.delete:before {
+                content: "\f335"; }
+              #project-images .inside #project_images_container ul ul.actions li a.delete:hover {
+                background: #d40f00; }
+      #project-images .inside #project_images_container ul li:hover ul.actions {
+        opacity: 1;
+        filter: alpha(opacity=100); }
+
 .post-type-project .ui-autocomplete {
   font-family: inherit;
   font-size: 1em;
@@ -163,23 +115,18 @@
   -webkit-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
   -webkit-transform: translateY(-1px);
-  transform: translateY(-1px);
-}
-.post-type-project .ui-autocomplete li a {
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  border: 0;
-  background: none;
-}
-.post-type-project .ui-autocomplete li a:hover {
-  border: 0;
-  background: #f6f6f6;
-}
-.post-type-project .ui-autocomplete li:last-child a {
-  -webkit-border-radius: 0 0 4px 4px;
-  border-radius: 0 0 4px 4px;
-}
+  transform: translateY(-1px); }
+  .post-type-project .ui-autocomplete li a {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border: 0;
+    background: none; }
+    .post-type-project .ui-autocomplete li a:hover {
+      border: 0;
+      background: #f6f6f6; }
+  .post-type-project .ui-autocomplete li:last-child a {
+    -webkit-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
 .post-type-project .projects-radio label {
   display: block;
-  line-height: 1.5;
-}
+  line-height: 1.5; }

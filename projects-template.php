@@ -80,6 +80,8 @@ if ( ! function_exists( 'projects_output_content_wrapper' ) ) {
 	/**
 	 * Output the start of the page wrapper.
 	 *
+	 * Hooked into projects_before_main_content
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -87,10 +89,13 @@ if ( ! function_exists( 'projects_output_content_wrapper' ) ) {
 		projects_get_template( 'layout/wrapper-start.php' );
 	}
 }
+
 if ( ! function_exists( 'projects_output_content_wrapper_end' ) ) {
 
 	/**
 	 * Output the end of the page wrapper.
+	 *
+	 * Hooked into projects_after_main_content
 	 *
 	 * @access public
 	 * @return void
@@ -104,6 +109,8 @@ if ( ! function_exists( 'projects_get_sidebar' ) ) {
 
 	/**
 	 * Get the projects sidebar template.
+	 *
+	 * Hooked into projects_sidebar
 	 *
 	 * @access public
 	 * @return void
@@ -187,6 +194,8 @@ if ( ! function_exists( 'projects_taxonomy_archive_description' ) ) {
 	/**
 	 * Show an archive description on taxonomy archives
 	 *
+	 * Hooked into projects_archive_description
+	 *
 	 * @access public
 	 * @subpackage	Archives
 	 * @return void
@@ -204,6 +213,8 @@ if ( ! function_exists( 'projects_project_archive_description' ) ) {
 
 	/**
 	 * Show a projects page description on project archives
+	 *
+	 * Hooked into projects_archive_description
 	 *
 	 * @access public
 	 * @subpackage	Archives
@@ -225,6 +236,8 @@ if ( ! function_exists( 'projects_template_loop_project_thumbnail' ) ) {
 	/**
 	 * Get the project thumbnail for the loop.
 	 *
+	 * Hooked into projects_loop_item
+	 *
 	 * @access public
 	 * @subpackage	Loop
 	 * @return void
@@ -238,6 +251,8 @@ if ( ! function_exists( 'projects_template_loop_project_title' ) ) {
 
 	/**
 	 * Display the project title in the loop.
+	 *
+	 * Hooked into projects_loop_item
 	 *
 	 * @access public
 	 * @subpackage	Loop
@@ -292,6 +307,8 @@ if ( ! function_exists( 'projects_pagination' ) ) {
 	/**
 	 * Output the pagination.
 	 *
+	 * Hooked into projects_after_loop
+	 *
 	 * @access public
 	 * @subpackage	Loop
 	 * @return void
@@ -305,6 +322,8 @@ if ( ! function_exists( 'projects_template_short_description' ) ) {
 
 	/**
 	 * Output the project short description.
+	 *
+	 * Hooked into projects_after_loop_item
 	 *
 	 * @access public
 	 * @subpackage	Project
@@ -322,6 +341,8 @@ if ( ! function_exists( 'projects_template_single_feature' ) ) {
 	/**
 	 * Output the project feature before the single project summary.
 	 *
+	 * Hooked into projects_before_single_project_summary
+	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
@@ -335,6 +356,8 @@ if ( ! function_exists( 'projects_template_single_gallery' ) ) {
 
 	/**
 	 * Output the project gallery before the single project summary.
+	 *
+	 * Hooked into projects_before_single_project_summary
 	 *
 	 * @access public
 	 * @subpackage	Project
@@ -350,6 +373,8 @@ if ( ! function_exists( 'projects_template_single_title' ) ) {
 	/**
 	 * Output the project title.
 	 *
+	 * Hooked into projects_before_single_project_summary
+	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
@@ -363,6 +388,8 @@ if ( ! function_exists( 'projects_template_single_short_description' ) ) {
 
 	/**
 	 * Output the project short description (excerpt).
+	 *
+	 * Hooked into projects_before_single_project_summary
 	 *
 	 * @access public
 	 * @subpackage	Project
@@ -378,6 +405,8 @@ if ( ! function_exists( 'projects_template_single_description' ) ) {
 	/**
 	 * Output the project description.
 	 *
+	 * Hooked into projects_single_project_summary
+	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
@@ -392,6 +421,8 @@ if ( ! function_exists( 'projects_template_single_meta' ) ) {
 	/**
 	 * Output the project meta.
 	 *
+	 * Hooked into projects_single_project_summary
+	 *
 	 * @access public
 	 * @subpackage	Project
 	 * @return void
@@ -405,6 +436,8 @@ if ( ! function_exists( 'projects_single_pagination' ) ) {
 
 	/**
 	 * Output the project pagination.
+	 *
+	 * Hooked into projects_after_single_project
 	 *
 	 * @access public
 	 * @subpackage	Project
@@ -481,6 +514,8 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 	 * This function is only used if the Testimonials plugin is enabled.
 	 * It can be used to output a project's testimonial.
 	 *
+	 * Hooked into projects_after_single_project
+	 *
 	 * @access public
 	 * @return void
 	 * @since  1.1.0
@@ -497,6 +532,60 @@ if ( ! function_exists( 'projects_output_testimonial' ) ) {
 				echo '<div class="project-testimonial">';
 					woothemes_testimonials( $args );
 				echo '</div>';
+			}
+
+		}
+	}
+}
+
+if ( ! function_exists( 'projects_output_product' ) ) {
+
+	/**
+	 * Output Projects Product.
+	 *
+	 * This function is only used if WooCommerce is enabled.
+	 * It can be used to output a 'buy now' button for a product associated with a project.
+	 *
+	 * Hooked into projects_after_meta
+	 *
+	 * @access public
+	 * @return void
+	 * @since  1.2.0
+	 */
+	function projects_output_product() {
+		if ( class_exists( 'WooCommerce' ) && is_singular( 'project' ) ) {
+			global $post;
+			$product_id = esc_attr( get_post_meta( $post->ID, '_products_id', true ) );
+			if ( isset( $product_id ) && '' != $product_id && '0' != $product_id ) {
+				echo '<div class="purchase">';
+				echo '<h3>' . apply_filters( 'projects_meta_woocommerce_title', __( 'Purchase', 'projects-by-woothemes' ) ) . '</h3>';
+				echo do_shortcode( '[add_to_cart id="' . $product_id . '" style=""]' );
+				echo '</div>';
+			}
+
+		}
+	}
+}
+
+if ( ! function_exists( 'projects_woocommerce_messages' ) ) {
+
+	/**
+	 * Output Projects WooCommerce Messages.
+	 *
+	 * Displays WooCommerce Messages on the single project page - for feedback adding products to the cart when js is disabled
+	 *
+	 * Hooked into projects_before_single_project
+	 *
+	 * @access public
+	 * @return void
+	 * @since  1.2.0
+	 */
+	function projects_woocommerce_messages() {
+		if ( class_exists( 'WooCommerce' ) && is_singular( 'project' ) ) {
+			global $post;
+			$product_id = esc_attr( get_post_meta( $post->ID, '_products_id', true ) );
+			if ( isset( $product_id ) && '' != $product_id && '0' != $product_id ) {
+				echo do_shortcode( '[woocommerce_messages]' );
 			}
 
 		}

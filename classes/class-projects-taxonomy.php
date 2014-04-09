@@ -81,7 +81,16 @@ class Projects_Taxonomy {
 	 * @return  array Default arguments.
 	 */
 	private function _get_default_args () {
-		return array( 'labels' => $this->_get_default_labels(), 'public' => true, 'hierarchical' => true, 'show_ui' => true, 'show_admin_column' => true, 'query_var' => true, 'show_in_nav_menus' => false, 'show_tagcloud' => false );
+		return array(
+			'labels' 				=> $this->_get_default_labels(),
+			'public' 				=> true,
+			'hierarchical' 			=> true,
+			'show_ui' 				=> true,
+			'show_admin_column' 	=> true,
+			'query_var' 			=> true,
+			'show_in_nav_menus' 	=> true,
+			'show_tagcloud' 		=> false
+			);
 	} // End _get_default_args()
 
 	/**
@@ -92,7 +101,7 @@ class Projects_Taxonomy {
 	 */
 	private function _get_default_labels () {
 		return array(
-			    'name'                => sprintf( _x( '%s', 'taxonomy general name', 'projects-by-woothemes' ), $this->plural ),
+			    'name'                => sprintf( _x( 'Project %s', 'taxonomy general name', 'projects-by-woothemes' ), $this->plural ),
 			    'singular_name'       => sprintf( _x( '%s', 'taxonomy singular name', 'projects-by-woothemes' ), $this->singular ),
 			    'search_items'        => sprintf( __( 'Search %s', 'projects-by-woothemes' ), $this->plural ),
 			    'all_items'           => sprintf( __( 'All %s', 'projects-by-woothemes' ), $this->plural ),

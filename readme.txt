@@ -1,10 +1,10 @@
 === Projects by WooThemes ===
 Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
-Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art
+Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images
 Requires at least: 3.8
 Tested up to: 3.8.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,13 @@ Hi, I'm your projects showcase plugin for WordPress. Use me to show off a portfo
 
 == Description ==
 
+= Create and display a portfolio of projects =
+
 "Projects" by WooThemes is a clean and easy-to-use portfolio showcase management system for WordPress. Load in your recent projects, and display them on a specified page using our template system, or via a shortcode, widget or template tag.
+
+Projects integrates with our [testimonials plugin](http://wordpress.org/plugins/testimonials-by-woothemes/) allowing you to associate a testimonial with a project and display it on the single project page.
+
+You can even assign a project to a product you've created in [WooCommerce](http://wordpress.org/plugins/woocommerce/) and let customers add it to their cart from the project page.
 
 = Easy to use =
 
@@ -94,10 +100,27 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Upgrade Notice ==
 
+= 1.2.0 =
+
+* The project archive slug now mirrors your projects base page slug isntead of being fixed as 'projects'.  If you're using a base page with a slug other than 'projects' you may want to check any static links to your projects page. For example if your base page is 'portfolio' your projects post type archive will now exist at http://yoursite.com/portfolio rather than http://yoursite.com/projects.
+
 = 1.0.0 =
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.2.0 =
+* 2014-04-09
+* New - Replaced .less files with .scss.
+* New - Integrated with WooCommerce.
+* New - Added config.codekit.
+* New - Project images can now be cropped. (Props @helgatheviking).
+* New - Project archive slug is now retreived from base page slug.
+* Tweak - Added css for multi column layouts when using the shortcode to display projects.
+* Tweak - Project categories can now be added to navigation menus.
+* Tweak - Various new input types can now be easily added using projects_custom_fields filter. (Props @helgatheviking).
+* Tweak - Menu icon added in register_post_type() and now filterable. (Props @helgatheviking).
+* Tweak - Added an edit media link to the project gallery meta box.
 
 = 1.1.0 =
 * 2014-03-25

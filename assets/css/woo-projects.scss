@@ -1,5 +1,5 @@
 // Imports
-@import url(mixins.less);
+@import 'mixins';
 
 /**
  * Layout Styles
@@ -47,7 +47,8 @@
 				-webkit-box-shadow: none;
 				-moz-box-shadow: none;
 				box-shadow: none;
-				.border_radius(0);
+				@include border-top-radius(0);
+				@include border-bottom-radius(0);
 				padding: 0;
 				border: 0;
 				margin: 0 auto;
@@ -67,7 +68,7 @@
 	ul.project-categories {
 		margin-left: 0 !important;
 		padding: 0 !important;
-		.clearfix;
+		@include clearfix;
 		list-style: none;
 
 		li {
@@ -100,9 +101,74 @@
 	}
 }
 
+.projects {
+	&.columns-2,
+	&.columns-3,
+	&.columns-4,
+	&.columns-5,
+	&.columns-6 {
+		@include clearfix;
+
+		ul.projects li.project {
+			float: left;
+			margin-right: 3.8%;
+			clear: none;
+
+			&.first {
+				clear: both;
+			}
+
+			&.last {
+				margin-right: 0;
+			}
+
+			&:nth-child(2) {
+				float: left;
+				clear: none;
+			}
+		}
+	}
+
+	&.columns-1 {
+		ul.projects li.project {
+			width: 100%;
+		}
+	}
+
+	&.columns-2 {
+		ul.projects li.project {
+			width: 48%;
+		}
+	}
+
+	&.columns-3 {
+		ul.projects li.project {
+			width: 30.75%;
+		}
+	}
+
+	&.columns-4 {
+		ul.projects li.project {
+			width: 22.05%;
+		}
+	}
+
+	&.columns-5 {
+		ul.projects li.project {
+			width: 16.9%;
+		}
+	}
+
+	&.columns-6 {
+		ul.projects li.project {
+			width: 13.5%;
+		}
+	}
+}
+
 .single-project {
 	.project {
-		.clearfix;
+		@include clearfix;
 		margin-bottom: 1.618em;
 
 		.single-project-short-description {
@@ -112,19 +178,19 @@
 		.summary {
 			.single-project-categories {
 				li:before {
-					.iconbefore( "\f318" );
+					@include iconbefore( "\f318" );
 				}
 			}
 
 			.client-name {
 				&:before {
-					.iconbefore( "\f338" );
+					@include iconbefore( "\f338" );
 				}
 			}
 
 			.project-url {
 				&:before {
-					.iconbefore( "\f319" );
+					@include iconbefore( "\f319" );
 				}
 			}
 
@@ -138,6 +204,12 @@
 				ul,
 				li {
 					list-style: none;
+				}
+			}
+
+			.purchase {
+				.amount {
+					display: block;
 				}
 			}
 		}
@@ -156,7 +228,8 @@
 			}
 
 			img {
-				.border_radius(0);
+				@include border-top-radius(0);
+				@include border-bottom-radius(0);
 				max-width: 100%;
 				height: auto;
 				-webkit-box-shadow: none;
@@ -169,7 +242,7 @@
 			width: 38%;
 			float: right;
 			padding: 0 0 0 2.618em;
-			.borderbox;
+			@include box-sizing(border-box);
 			> div {
 				font-size: .857em;
 			}
@@ -178,7 +251,7 @@
 
 	&.no-gallery {
 		.summary {
-			.clearfix;
+			@include clearfix;
 
 			.project_title,
 			.single-project-description {
@@ -194,7 +267,7 @@
 	}
 
 	.projects-single-pagination {
-		.clearfix;
+		@include clearfix;
 
 		.previous,
 		.next {
@@ -207,7 +280,7 @@
 			float: right;
 
 			a:after {
-				.iconafter( "\f344" );
+				@include iconafter( "\f344" );
 			}
 		}
 
@@ -215,7 +288,7 @@
 			float: left;
 
 			a:before {
-				.iconbefore( "\f340" );
+				@include iconbefore( "\f340" );
 			}
 		}
 	}
@@ -240,7 +313,7 @@
 		}
 
 		.quote {
-			.clearfix();
+			@include clearfix();
 
 			.avatar-link {
 				float: left;
@@ -266,7 +339,7 @@
 
 		a {
 			display: block;
-			.clearfix;
+			@include clearfix;
 		}
 
 		img {

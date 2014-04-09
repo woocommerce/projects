@@ -1,7 +1,7 @@
 === Projects by WooThemes ===
 Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
-Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art
+Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images
 Requires at least: 3.8
 Tested up to: 3.8.1
 Stable tag: 1.2.0

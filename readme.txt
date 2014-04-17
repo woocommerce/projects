@@ -112,6 +112,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 = 1.2.1 =
 * 2014-04-16
 * Fix - Javascript error in admin
+* Fix - Select box save method. (Props @anija).
 
 = 1.2.0 =
 * 2014-04-09

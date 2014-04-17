@@ -482,7 +482,10 @@ class Projects_Admin {
 				case 'radio':
 				case 'select':
 					// whitelist accepted value against options
-					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
+					$values = array();
+					if ( is_array( $field_data[$f]['options'] ) )
+					    $values = array_keys( $field_data[$f]['options'] );
+					${$f} = isset( $_POST[$f] ) && in_array( $_POST[$f], $values ) ? $_POST[$f] : '';
 					break;
 				default :
 					${$f} = isset( $_POST[$f] ) ? strip_tags( trim( $_POST[$f] ) ) : '';

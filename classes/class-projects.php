@@ -207,7 +207,7 @@ class Projects {
 
 			// Register each image size
 			foreach ( $options as $image_size => $size ) {
-				$crop = isset( $size['crop'] ) & 'yes' == $size['crop'] ? true : false;
+				$crop = isset( $size['crop'] ) && 'yes' == $size['crop'] ? true : false;
 				add_image_size( $image_size, $size['width'], $size['height'], $crop );
 			}
 

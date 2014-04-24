@@ -110,7 +110,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Changelog ==
 
 = 1.2.1 =
-* 2014-04-16
+* 2014-04-24
 * Fix - Javascript error in admin
 * Fix - Select box save method. (Props @anija).
 

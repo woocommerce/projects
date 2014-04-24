@@ -482,7 +482,10 @@ class Projects_Admin {
 				case 'radio':
 				case 'select':
 					// whitelist accepted value against options
-					${$f} = isset( $_POST[$f] ) && is_array( $field_data[$f]['options'] ) && in_array( $_POST[$f], $field_data[$f]['options'] ) ? $_POST[$f] : '';
+					$values = array();
+					if ( is_array( $field_data[$f]['options'] ) )
+					    $values = array_keys( $field_data[$f]['options'] );
+					${$f} = isset( $_POST[$f] ) && in_array( $_POST[$f], $values ) ? $_POST[$f] : '';
 					break;
 				default :
 					${$f} = isset( $_POST[$f] ) ? strip_tags( trim( $_POST[$f] ) ) : '';
@@ -550,13 +553,18 @@ class Projects_Admin {
 	 * @return   void
 	 */
 	public function enqueue_admin_styles () {
+		global $pagenow;
+
 		wp_enqueue_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
-		wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery', 'media-editor' ), '1.0.0', true );
+
+		if ( $pagenow == 'post.php' && get_post_type() == $this->post_type ) {
+			wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery' ), '1.0.0', true );
+		}
 
 		wp_localize_script( 'projects-admin', 'woo_projects_admin',
 				array(
 					'gallery_title' 	=> __( 'Add Images to Project Gallery', 'projects-by-woothemes' ),
-					'gallery_button' 	=>  __( 'Add to gallery', 'projects-by-woothemes' ),
+					'gallery_button' 	=> __( 'Add to gallery', 'projects-by-woothemes' ),
 					'delete_image'		=> __( 'Delete image', 'projects-by-woothemes' ),
 					'default_title' 	=> __( 'Upload', 'projects-by-woothemes' ),
 					'default_button' 	=> __( 'Select this', 'projects-by-woothemes' ),

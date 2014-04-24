@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images
 Requires at least: 3.8
 Tested up to: 3.8.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,11 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.2.1 =
+* 2014-04-24
+* Fix - Javascript error in admin
+* Fix - Select box save method. (Props @anija).
 
 = 1.2.0 =
 * 2014-04-09

@@ -133,6 +133,8 @@ class Woothemes_Widget_Projects extends WP_Widget {
 			echo '</ul>';
 
 			echo $after_widget;
+
+			wp_reset_postdata();
 		}
 
 		// Add actions for plugins/themes to hook onto.

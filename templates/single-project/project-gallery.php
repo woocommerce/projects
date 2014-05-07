@@ -40,7 +40,7 @@ global $post, $projects, $project;
 					if ( ! $image_link )
 						continue;
 
-					$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_project_small_thumbnail_size', 'project-single' ) );
+					$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_project_single_thumbnail_size', 'project-single' ) );
 					$image_class = esc_attr( implode( ' ', $classes ) );
 					$image_title = esc_attr( get_the_title( $attachment_id ) );
 

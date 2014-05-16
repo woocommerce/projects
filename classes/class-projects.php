@@ -31,7 +31,7 @@ class Projects {
 	/**
 	 * @var string
 	 */
-	public $version = '1.2.0';
+	public $version = '1.2.2';
 
 	/**
 	 * Constructor function.

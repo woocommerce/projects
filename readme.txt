@@ -3,7 +3,7 @@ Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
-Tested up to: 3.8.1
+Tested up to: 3.9.1
 Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

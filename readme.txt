@@ -1,7 +1,7 @@
 === Projects by WooThemes ===
 Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
-Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images
+Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
 Tested up to: 3.8.1
 Stable tag: 1.2.2
@@ -43,6 +43,9 @@ Projects includes a responsive layout to integrate with any theme.
 = Customisable =
 
 Get your hands dirty! Customise & extend Projects via a vast array of hooks, filters & templates.
+
+= WooCommerce =
+Assign projects to products and give visitors an easy way to add products to their cart using [WooCommerce](http://wordpress.org/plugins/woocommerce/) functionality.
 
 = Testimonials =
 

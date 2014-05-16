@@ -112,6 +112,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 = 1.2.2 =
 * 2014-05016
 * Tweak - Product linking label now includes sku / id.
+* Fix - Reset post data in projects widget.
 
 = 1.2.1 =
 * 2014-04-24

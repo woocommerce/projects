@@ -65,8 +65,8 @@ class Projects_Taxonomy {
 	public function __construct ( $token = 'project-category', $singular = '', $plural = '', $args = array() ) {
 		$this->post_type 	= 'project';
 		$this->token 		= esc_attr( $token );
-		$this->singular 	= esc_html( $singular );
-		$this->plural 		= esc_html( $plural );
+		$this->singular 	= apply_filters( 'projects_taxonomy_' . $this->token . '_singular_name', esc_html($singular) );
+ +		$this->plural           = apply_filters( 'projects_taxonomy_' . $this->token . '_plural_name', esc_html($plural) );
 
 		if ( '' == $this->singular ) $this->singular = __( 'Category', 'projects-by-woothemes' );
 		if ( '' == $this->plural ) $this->plural = __( 'Categories', 'projects-by-woothemes' );

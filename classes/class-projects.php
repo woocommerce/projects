@@ -68,6 +68,8 @@ class Projects {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
+		add_action( 'widgets_init', array( $this, 'include_widgets' ) );
+
 		add_action( 'after_setup_theme', array( $this, 'ensure_post_thumbnails_support' ) );
 		add_action( 'after_setup_theme', array( $this, 'register_image_sizes' ) );
 
@@ -398,5 +400,16 @@ class Projects {
 
 		return apply_filters( 'projects_get_image_size_' . $image_size, $size );
 	} // End get_image_size()
+
+	/**
+	 * Include Projects widgets.
+	 *
+	 * @access public
+	 * @since  1.2.2
+	 */
+	public function include_widgets() {
+		include_once( 'class-widget-projects.php' );
+		include_once( 'class-widget-project-categories.php' );
+	}
 
 } // End Class

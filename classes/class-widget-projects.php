@@ -214,4 +214,4 @@ class Woothemes_Widget_Projects extends WP_Widget {
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Projects" );' ), 1 );
+register_widget( 'Woothemes_Widget_Projects' );

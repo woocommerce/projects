@@ -89,7 +89,8 @@ class Projects_Taxonomy {
 			'show_admin_column' 	=> true,
 			'query_var' 			=> true,
 			'show_in_nav_menus' 	=> true,
-			'show_tagcloud' 		=> false
+			'show_tagcloud' 		=> false,
+			'rewrite'               => array( 'slug' => 'projects', 'with_front' => false )
 			);
 	} // End _get_default_args()
 

@@ -181,4 +181,4 @@ class Woothemes_Widget_Project_Categories extends WP_Widget {
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Project_Categories" );' ), 1 );
+register_widget( 'Woothemes_Widget_Project_Categories' );

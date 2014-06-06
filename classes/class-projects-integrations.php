@@ -89,7 +89,10 @@ class Projects_Integrations {
 
 			if ( $testimonials ) {
 				foreach ( $testimonials as $testimonial ) {
-					$found_testimonials[] = array( 'id' => $testimonial->ID, 'title' => $testimonial->post_title );
+					$found_testimonials[] = array(
+												'id' 	=> $testimonial->ID,
+												'title' => $testimonial->post_title
+												);
 				}
 			}
 
@@ -200,7 +203,7 @@ class Projects_Integrations {
 	} // End projects_woocommerce_init()
 
 	public function woocommerce_admin_scripts () {
-		wp_enqueue_script( 'jquery-ui-autocomplete', null, array( 'jquery' ), null, false);
+		wp_enqueue_script( 'jquery-ui-autocomplete', null, array( 'jquery' ), null, false );
 	} // End projects_woocommerce_admin_scripts()
 
 	/**
@@ -210,12 +213,11 @@ class Projects_Integrations {
 	 * @return json       	Search Results.
 	 */
 	public function get_products_callback() {
-
 		check_ajax_referer( 'projects_ajax_get_products', 'security' );
 
 		$term = urldecode( stripslashes( strip_tags( $_GET['term'] ) ) );
 
-		if ( !empty( $term ) ) {
+		if ( ! empty( $term ) ) {
 
 			header( 'Content-Type: application/json; charset=utf-8' );
 
@@ -231,13 +233,26 @@ class Projects_Integrations {
 			$found_products = array();
 
 			if ( $products ) {
+
 				foreach ( $products as $product ) {
-					$found_products[] = array( 'id' => $product->ID, 'title' => $product->post_title );
+
+					$_product = new WC_Product( $product->ID );
+
+					if ( $_product->get_sku() ) {
+						$identifier = $_product->get_sku();
+					} else {
+						$identifier = '#' . $_product->id;
+					}
+
+					$found_products[] = array(
+											'id' 			=> $product->ID,
+											'title' 		=> $product->post_title,
+											'identifier'	=> $identifier,
+											);
 				}
 			}
 
 			echo json_encode( $found_products );
-
 		}
 
 		die();
@@ -274,7 +289,7 @@ class Projects_Integrations {
 								success: function( data ) {
 									response( jQuery.map( data, function( item ) {
 										return {
-											label: item.title,
+											label: item.identifier + ' – ' + item.title,
 											value: item.id
 										}
 									}));

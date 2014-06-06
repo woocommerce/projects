@@ -1,10 +1,10 @@
 === Projects by WooThemes ===
 Contributors: woothemes, mattyza, jameskoster, tiagonoronha
 Donate link: http://woothemes.com/
-Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images
+Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
-Tested up to: 3.8.1
-Stable tag: 1.2.1
+Tested up to: 3.9.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ Projects includes a responsive layout to integrate with any theme.
 = Customisable =
 
 Get your hands dirty! Customise & extend Projects via a vast array of hooks, filters & templates.
+
+= WooCommerce =
+Assign projects to products and give visitors an easy way to add products to their cart using [WooCommerce](http://wordpress.org/plugins/woocommerce/) functionality.
 
 = Testimonials =
 
@@ -108,6 +111,13 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.2.2 =
+* 2014-06-06
+* Tweak - Product linking label now includes sku / id.
+* Tweak - Widgets now called via a single function and other minor refactoring.
+* Tweak - Project Category taxonomy names filterable. (Props @abouolia)
+* Fix - Reset post data in projects widget.
 
 = 1.2.1 =
 * 2014-04-24

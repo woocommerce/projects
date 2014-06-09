@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,10 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.2.3 =
+* 2014-06-09
+* Tweak - Category permalinks use base page for structure.
 
 = 1.2.2 =
 * 2014-06-06

@@ -561,6 +561,10 @@ class Projects_Admin {
 			wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery' ), '1.0.0', true );
 		}
 
+		if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && $_GET['post_type'] == $this->post_type && isset( $_GET['page'] ) && $_GET['page'] == 'projects-settings-page' ) {
+			wp_enqueue_script( 'projects-admin-settings', $this->assets_url . '/js/admin-settings.js', array( 'jquery' ), '1.0.0', true );
+		}
+
 		wp_localize_script( 'projects-admin', 'woo_projects_admin',
 				array(
 					'gallery_title' 	=> __( 'Add Images to Project Gallery', 'projects-by-woothemes' ),

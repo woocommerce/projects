@@ -29,12 +29,12 @@ class Projects_Settings {
 
 	public function projects_add_settings_page() {
 		add_submenu_page( 'edit.php?post_type=project', __( 'Settings', 'projects-by-woothemes' ), __( 'Settings', 'projects-by-woothemes' ), 'publish_posts', 'projects-settings-page', array( $this, 'projects_settings_page' ) );
-	}
+	} // End projects_add_settings_page()
 
 	/**
 	 * Retrieve the settings fields details
 	 * @access  public
-	 * @since   1.0.0
+	 * @since   1.2.4
 	 * @return  array        Settings fields.
 	 */
 	public function get_settings_sections () {
@@ -89,7 +89,7 @@ class Projects_Settings {
 
 		</div>
 		<?php
-	}
+	} // End projects_settings_page()
 
 	public function projects_options_init(){
 
@@ -102,16 +102,15 @@ class Projects_Settings {
 			} // End For Loop
 		} // End If Statement
 
-	}
+	} // End projects_options_init()
 
 	public function projects_pages_settings() {
 		?>
 		<p><?php _e( 'Configure projects pages.', 'projects-by-woothemes' ); ?></p>
 		<?php
 			$options = get_option( 'projects-pages-fields' );
-
 			$args = array(
-				'name'					=> 'projects[projects_page_id]',
+				'name'					=> 'projects-pages-fields[projects_page_id]',
 				'selected'				=> absint( $options['projects_page_id'] ),
 				'sort_column' 			=> 'menu_order',
 	            'sort_order'			=> 'ASC',
@@ -130,7 +129,7 @@ class Projects_Settings {
 			</tr>
 		</table>
 		<?php
-	}
+	} // End projects_pages_settings()
 
 	public function projects_images_settings() {
 		?>
@@ -168,7 +167,7 @@ class Projects_Settings {
 				</th>
 				<td>
 					<?php $crop = isset( $options['project-archive']['crop'] ) ? $options['project-archive']['crop'] : 'no'; ?>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][width]" value="<?php echo $options['project-archive']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-archive][height]" value="<?php echo $options['project-archive']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-archive][crop]" value="1" <?php checked( $crop, 'yes' );?> />
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-archive][width]" value="<?php echo $options['project-archive']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-archive][height]" value="<?php echo $options['project-archive']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects-images-fields[project-archive][crop]" value="1" <?php checked( $crop, 'yes' );?> />
 				</td>
 			</tr>
 			<tr valign="top">
@@ -177,7 +176,7 @@ class Projects_Settings {
 				</th>
 				<td>
 					<?php $crop = isset( $options['project-single']['crop'] ) ? $options['project-single']['crop'] : 'no'; ?>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][width]" value="<?php echo $options['project-single']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-single][height]" value="<?php echo $options['project-single']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-single][crop]" value="1" <?php checked( $crop, 'yes' );?> />
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-single][width]" value="<?php echo $options['project-single']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-single][height]" value="<?php echo $options['project-single']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects-images-fields[project-single][crop]" value="1" <?php checked( $crop, 'yes' );?> />
 				</td>
 			</tr>
 			<tr valign="top">
@@ -186,22 +185,34 @@ class Projects_Settings {
 				</th>
 				<td>
 					<?php $crop = isset( $options['project-thumbnail']['crop'] ) ? $options['project-thumbnail']['crop'] : 'no'; ?>
-					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][width]" value="<?php echo $options['project-thumbnail']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects[project-thumbnail][height]" value="<?php echo $options['project-thumbnail']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects[project-thumbnail][crop]" value="1" <?php checked( $crop, 'yes' );?> />
+					<?php _e( 'Width:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-thumbnail][width]" value="<?php echo $options['project-thumbnail']['width']; ?>" /> <?php _e( 'Height:', 'projects-by-woothemes' ); ?> <input type="text" size="3" name="projects-images-fields[project-thumbnail][height]" value="<?php echo $options['project-thumbnail']['height']; ?>" /> <?php _e( 'Crop:', 'projects-by-woothemes' ); ?> <input type="checkbox" name="projects-images-fields[project-thumbnail][crop]" value="1" <?php checked( $crop, 'yes' );?> />
 				</td>
 			</tr>
 		</table>
 		<?php
-	}
+	} // End projects_images_settings()
 
+	/**
+	 * projects_pages_settings_validate validates pages settings form data
+	 * @param  array $input array of form data
+	 * @since  1.2.4
+	 * @return array $input array of sanitized form data
+	 */
 	public function projects_pages_settings_validate( $input ) {
-		// $input here is NULL - why?
+
 		$input['projects_page_id']				= absint( $input['projects_page_id'] );
 
 		return $input;
-	}
+	} // End projects_pages_settings_validate()
 
+	/**
+	 * projects_images_settings_validate validates images settings form data
+	 * @param  array $input array of form data
+	 * @since  1.2.4
+	 * @return array $input array of sanitized form data
+	 */
 	public function projects_images_settings_validate( $input ) {
-		// $input here is NULL - why?
+
 		$input['project-archive']['width'] 		= absint( $input['project-archive']['width'] );
 		$input['project-archive']['height'] 	= absint( $input['project-archive']['height'] );
 		$input['project-archive']['crop'] 		= isset( $input['project-archive']['crop'] ) ? 'yes': 'no';
@@ -215,8 +226,7 @@ class Projects_Settings {
 		$input['project-thumbnail']['crop'] 	= isset( $input['project-thumbnail']['crop'] ) ? 'yes': 'no';
 
 		return $input;
-	}
-
+	} // End projects_images_settings_validate()
 
 } // End Class
 

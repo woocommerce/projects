@@ -34,7 +34,7 @@ class Projects_Settings {
 	/**
 	 * Retrieve the settings fields details
 	 * @access  public
-	 * @since   1.2.4
+	 * @since   1.2.3
 	 * @return  array        Settings fields.
 	 */
 	public function get_settings_sections () {
@@ -195,7 +195,7 @@ class Projects_Settings {
 	/**
 	 * projects_pages_settings_validate validates pages settings form data
 	 * @param  array $input array of form data
-	 * @since  1.2.4
+	 * @since  1.2.3
 	 * @return array $input array of sanitized form data
 	 */
 	public function projects_pages_settings_validate( $input ) {
@@ -208,7 +208,7 @@ class Projects_Settings {
 	/**
 	 * projects_images_settings_validate validates images settings form data
 	 * @param  array $input array of form data
-	 * @since  1.2.4
+	 * @since  1.2.3
 	 * @return array $input array of sanitized form data
 	 */
 	public function projects_images_settings_validate( $input ) {

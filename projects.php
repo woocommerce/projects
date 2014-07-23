@@ -4,7 +4,7 @@
  * Plugin URI: http://woothemes.com/
  * Description: Hi, I'm your project showcase plugin for WordPress. Show off your recent work using our shortcode, widget or template tag.
  * Author: WooThemes
- * Version: 1.2.4
+ * Version: 1.2.3
  * Author URI: http://woothemes.com/
  *
  * @package WordPress
@@ -45,7 +45,7 @@ final class Projects {
 	/**
 	 * @var string
 	 */
-	public $version = '1.2.4';
+	public $version = '1.2.3';
 
 	/**
 	 * Constructor function.
@@ -450,7 +450,7 @@ final class Projects {
 	/**
 	 * upgrade_data upgrades old data structure to the new data structure
 	 * @param  boolean $upgrade_data override setting to run the function
-	 * @since  1.2.4
+	 * @since  1.2.3
 	 * @return void
 	 */
 	private function upgrade_data( $upgrade_data = false ) {

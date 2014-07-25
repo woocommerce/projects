@@ -312,6 +312,15 @@ class Projects_Admin {
 						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
 						break;
+					case 'editor':
+						ob_start();
+						wp_editor( $data, $k, array( 'media_buttons' => false, 'textarea_rows' => 10 ) );
+						$field = ob_get_contents();
+						ob_end_clean();
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
 					case 'upload':
 						$data_atts = '';
 						if ( isset( $v['media-frame']['title'] ) ){
@@ -470,6 +479,7 @@ class Projects_Admin {
 					${$f} = isset( $_POST[$f] ) ? esc_url( $_POST[$f] ) : '';
 					break;
 				case 'textarea':
+				case 'editor':
 					${$f} = isset( $_POST[$f] ) ? wp_kses_post( trim( $_POST[$f] ) ) : '';
 					break;
 				case 'checkbox':

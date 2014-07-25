@@ -510,6 +510,9 @@ class Projects_Admin {
 		// Save the project gallery image IDs.
 		$attachment_ids = array_filter( explode( ',', sanitize_text_field( $_POST['project_image_gallery'] ) ) );
 		update_post_meta( $post_id, '_project_image_gallery', implode( ',', $attachment_ids ) );
+
+		do_action( 'projects_process_meta', $post_id, $field_data, $fields );
+
 	} // End meta_box_save()
 
 	/**

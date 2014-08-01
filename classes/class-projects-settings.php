@@ -43,7 +43,7 @@ class Projects_Settings {
 		$settings_sections['pages-fields'] 		= __( 'Pages', 'projects-by-woothemes' );
 		$settings_sections['images-fields'] 	= __( 'Images', 'projects-by-woothemes' );
 
-		return (array)apply_filters( 'projects-settings-sections', $settings_sections );
+		return (array)apply_filters( 'projects_settings_sections', $settings_sections );
 	} // End get_settings_sections()
 
 	public function projects_settings_page() {

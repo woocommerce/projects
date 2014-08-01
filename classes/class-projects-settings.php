@@ -40,11 +40,8 @@ class Projects_Settings {
 	public function get_settings_sections () {
 		$settings_sections = array();
 
-		$settings_sections['pages-fields'] = __( 'Pages', 'starter-plugin' );
-		$settings_sections['images-fields'] = __( 'Images', 'starter-plugin' );
-		// Add your new sections below here.
-		// Admin tabs will be created for each section.
-		// Don't forget to add fields for the section in the get_settings_fields() function below
+		$settings_sections['pages-fields'] 		= __( 'Pages', 'projects-by-woothemes' );
+		$settings_sections['images-fields'] 	= __( 'Images', 'projects-by-woothemes' );
 
 		return (array)apply_filters( 'projects-settings-sections', $settings_sections );
 	} // End get_settings_sections()

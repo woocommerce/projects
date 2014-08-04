@@ -94,8 +94,13 @@ class Projects_Settings {
 		if ( 0 < count( $sections ) ) {
 			foreach ( $sections as $k => $v ) {
 				$callback_array = explode( '-', $k );
-				register_setting( 'projects-settings-' . $k, 'projects-' . $k, array( $this, 'projects_' . $callback_array[0] . '_settings_validate' ) );
-				add_settings_section( $k, $v, array( $this, 'projects_' . $callback_array[0] . '_settings' ), 'projects-' . $k );
+				if ( method_exists( $this, 'projects_' . $callback_array[0] . '_settings_validate' ) ) {
+					register_setting( 'projects-settings-' . $k, 'projects-' . $k, array( $this, 'projects_' . $callback_array[0] . '_settings_validate' ) );
+					add_settings_section( $k, $v, array( $this, 'projects_' . $callback_array[0] . '_settings' ), 'projects-' . $k );
+				} elseif( function_exists( 'projects_' . $callback_array[0] . '_settings_validate' ) ) {
+					register_setting( 'projects-settings-' . $k, 'projects-' . $k, 'projects_' . $callback_array[0] . '_settings_validate' );
+					add_settings_section( $k, $v, 'projects_' . $callback_array[0] . '_settings', 'projects-' . $k );
+				} // End If Statement
 			} // End For Loop
 		} // End If Statement
 

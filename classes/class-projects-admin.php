@@ -98,7 +98,7 @@ class Projects_Admin {
 	            ) );
 	        }
 	    }
-	}
+	} // projects_restrict_manage_posts()
 
 	/**
 	 * Adjust the query string to use taxonomy slug instead of ID.
@@ -128,7 +128,7 @@ class Projects_Admin {
 	    }
 
 	    return $query;
-	}
+	} // End projects_post_type_request()
 
 	/**
 	 * Add custom columns for the "manage" screen of this post type.
@@ -265,7 +265,7 @@ class Projects_Admin {
 		);
 
 		wp_editor( htmlspecialchars_decode( $post->post_excerpt ), 'excerpt', apply_filters( 'projects_product_short_description_editor_settings', $settings ) );
-	}
+	} // End meta_box_short_description()
 
 	/**
 	 * The contents of our meta box.
@@ -308,6 +308,15 @@ class Projects_Admin {
 						break;
 					case 'textarea':
 						$field = '<textarea name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" class="large-text">' . esc_attr( $data ) . '</textarea>';
+						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
+						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
+						$html .= '</td><tr/>' . "\n";
+						break;
+					case 'editor':
+						ob_start();
+						wp_editor( $data, $k, array( 'media_buttons' => false, 'textarea_rows' => 10 ) );
+						$field = ob_get_contents();
+						ob_end_clean();
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
 						if( isset( $v['description'] ) ) $html .= '<p class="description">' . $v['description'] . '</p>' . "\n";
 						$html .= '</td><tr/>' . "\n";
@@ -470,6 +479,7 @@ class Projects_Admin {
 					${$f} = isset( $_POST[$f] ) ? esc_url( $_POST[$f] ) : '';
 					break;
 				case 'textarea':
+				case 'editor':
 					${$f} = isset( $_POST[$f] ) ? wp_kses_post( trim( $_POST[$f] ) ) : '';
 					break;
 				case 'checkbox':
@@ -500,6 +510,9 @@ class Projects_Admin {
 		// Save the project gallery image IDs.
 		$attachment_ids = array_filter( explode( ',', sanitize_text_field( $_POST['project_image_gallery'] ) ) );
 		update_post_meta( $post_id, '_project_image_gallery', implode( ',', $attachment_ids ) );
+
+		do_action( 'projects_process_meta', $post_id, $field_data, $fields );
+
 	} // End meta_box_save()
 
 	/**
@@ -602,7 +615,7 @@ class Projects_Admin {
 		global $projects;
 	    remove_meta_box( 'postimagediv', 'project', 'side' );
 	    add_meta_box( 'postimagediv', sprintf( __( '%s Cover Image', 'projects-by-woothemes' ), $projects->singular_name ), 'post_thumbnail_meta_box', 'project', 'side' );
-	}
+	} // End featured_image_label()
 
 	/**
 	 * Tweak the 'Set featured image' string to say 'Set cover image'.
@@ -618,7 +631,7 @@ class Projects_Admin {
 		}
 
 		return $content;
-	}
+	} // End featured_image_set_link()
 
 	/**
 	 * Tweak the 'Remove featured image' string to say 'Remove cover image'.
@@ -634,7 +647,7 @@ class Projects_Admin {
 		}
 
 		return $content;
-	}
+	} // End featured_image_remove_link()
 
 	/**
 	 * Tweak the featured image strings in the media popup
@@ -649,7 +662,7 @@ class Projects_Admin {
 			$strings['setFeaturedImage']		= __( 'Set cover image', 'projects-by-woothemes' );
 		}
 		return $strings;
-	}
+	} // End featured_image_popup_set_link()
 
 	/**
 	 * Determine what post type the current admin page is related to
@@ -673,6 +686,6 @@ class Projects_Admin {
             return sanitize_key( $_REQUEST['post_type'] );
 
         return null;
-    }
+    } // End get_current_post_type()
 
 } // End Class

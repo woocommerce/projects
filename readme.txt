@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,14 +103,22 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Upgrade Notice ==
 
-= 1.2.0 =
+= 1.2.3 =
+* The project category urls have been improved to use the base page title as the slug opposed to the `project-category` default. So, previously your project cateogry urls will have looked like: yoursite.com/project-category/illustration. Now, `project-category` is replaced with the slug of your projects base page. So if you're using a page called 'Portfolio' that url will now look like: yoursite.com/portfolio/illustration. You will have to create redirects to make the old urls work.
+* This version adds admin tabs to the settings screens, and will run an update to your existing settings data. If your data is not retained, simply resave your settings.
 
+= 1.2.0 =
 * The project archive slug now mirrors your projects base page slug isntead of being fixed as 'projects'.  If you're using a base page with a slug other than 'projects' you may want to check any static links to your projects page. For example if your base page is 'portfolio' your projects post type archive will now exist at http://yoursite.com/portfolio rather than http://yoursite.com/projects.
 
 = 1.0.0 =
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.2.3 =
+* 2014-07-23
+* Tweak - Adds admin tabs to the settings screens for better UX.
+* Tweak - Category permalinks use base page for structure.
 
 = 1.2.2 =
 * 2014-06-06

@@ -24,7 +24,7 @@ if ( ! function_exists( 'projects_get_page_id' ) ) {
 	 * @return int
 	 */
 	function projects_get_page_id ( $page ) {
-		$options 	= get_option( 'projects' );
+		$options 	= get_option( 'projects-pages-fields' );
 		$page 		= apply_filters( 'projects_get_' . $page . '_page_id', $options[ $page . '_page_id' ] );
 
 		return $page ? $page : -1;

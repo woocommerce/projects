@@ -4,7 +4,7 @@
  * Plugin URI: http://woothemes.com/
  * Description: Hi, I'm your project showcase plugin for WordPress. Show off your recent work using our shortcode, widget or template tag.
  * Author: WooThemes
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author URI: http://woothemes.com/
  *
  * @package WordPress
@@ -45,7 +45,7 @@ final class Projects {
 	/**
 	 * @var string
 	 */
-	public $version = '1.2.2';
+	public $version = '1.2.3';
 
 	/**
 	 * Constructor function.
@@ -61,6 +61,9 @@ final class Projects {
 		$this->assets_url 	= esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token 		= 'projects';
 		$this->post_type 	= 'project';
+
+		// Upgrade data
+		$this->upgrade_data( true );
 
 		// Variables
 		$this->template_url	= apply_filters( 'projects_template_url', 'projects/' );
@@ -116,7 +119,7 @@ final class Projects {
 	private function define_constants() {
 		define( 'PROJECTS_PLUGIN_FILE', __FILE__ );
 		define( 'PROJECTS_VERSION', $this->version );
-	}
+	} // End define_constants()
 
 	/**
 	 * Change the UI names in the admin
@@ -128,7 +131,7 @@ final class Projects {
 	public function post_type_names () {
 		$this->singular_name 	= apply_filters( 'projects_post_type_singular_name', _x( 'Project', 'post type singular name', 'projects-by-woothemes' ) );
 		$this->plural_name 		= apply_filters( 'projects_post_type_plural_name', _x( 'Projects', 'post type general name', 'projects-by-woothemes' ) );
-	}
+	} // End post_type_names()
 
 	/**
 	 * Register the post type.
@@ -201,7 +204,7 @@ final class Projects {
 	public function register_image_sizes () {
 		if ( function_exists( 'add_image_size' ) ) {
 
-			$options = get_option( 'projects' );
+			$options = get_option( 'projects-images-fields' );
 
 			$defaults = apply_filters( 'projects_default_image_size', array(
 				'project-archive' 	=> array(
@@ -408,7 +411,7 @@ final class Projects {
 			return apply_filters( 'projects_get_image_size_' . $image_size, '' );
 
 		// Get image size from options
-		$options 	= get_option( 'projects', array() );
+		$options 	= get_option( 'projects-images-fields', array() );
 		$size 		= $options[ $image_size ];
 
 		$size['width'] 	= isset( $size['width'] ) ? $size['width'] : '300';
@@ -427,7 +430,7 @@ final class Projects {
 	public function include_widgets() {
 		include_once( 'classes/class-widget-projects.php' );
 		include_once( 'classes/class-widget-project-categories.php' );
-	}
+	} // End include_widgets()
 
 	/**
 	 * Include required files.
@@ -442,7 +445,37 @@ final class Projects {
 		require_once( 'projects-template.php' );
 		require_once( 'projects-core-functions.php' );
 		require_once( 'projects-hooks.php' );
-	}
+	} // End includes()
+
+	/**
+	 * upgrade_data upgrades old data structure to the new data structure
+	 * @param  boolean $upgrade_data override setting to run the function
+	 * @since  1.2.3
+	 * @return void
+	 */
+	private function upgrade_data( $upgrade_data = false ) {
+		if ( $upgrade_data ) {
+			// Get old data
+			$old_options = get_option( 'projects' );
+			if ( isset( $old_options['projects_page_id'] ) && is_array( $old_options ) && !empty( $old_options ) ) {
+				// Check if new pages data exists
+				$new_pages_options = get_option( 'projects-pages-fields' );
+				if ( !isset( $new_pages_options['projects_page_id'] ) ) {
+					update_option( 'projects-pages-fields', array( 'projects_page_id' => $old_options['projects_page_id'] ) );
+				} // End If Statement
+				// Check if new images data exists
+				$new_images_options = get_option( 'projects-images-fields' );
+				if ( !isset( $new_images_options['project-archive'] ) && !isset( $new_images_options['project-single'] ) && !isset( $new_images_options['project-thumbnail'] ) ) {
+					update_option( 'projects-images-fields', array( 	'project-archive' => $old_options['project-archive'],
+																		'project-single' => $old_options['project-single'],
+																		'project-thumbnail' => $old_options['project-thumbnail']
+																 ) );
+				} // End If Statement
+				// Remove old data
+				delete_option( 'projects' );
+			} // End If Statement
+		} // End If Statement
+	} // End upgrade_data()
 
 } // End Class
 

@@ -116,7 +116,8 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Changelog ==
 
 = 1.3.1 =
-* 2014-09-20
+* 2014-10-02
+* Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos)
 * Tweak - Improvements to `projects_template_redirect()`.
 
 = 1.3.0 =

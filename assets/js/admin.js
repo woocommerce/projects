@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
 
 					$project_images.append('\
 						<li class="image" data-attachment_id="' + attachment.id + '">\
-							<img src="' + attachment.url + '" />\
+							<img src="' + attachment.sizes.thumbnail.url + '" />\
 								<ul class="actions">\
 									<li><a href="#" class="delete" title="'+ woo_projects_admin.delete_image +'">&times;</a></li>\
 								</ul>\

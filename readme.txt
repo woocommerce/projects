@@ -116,9 +116,10 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Changelog ==
 
 = 1.3.1 =
-* 2014-10-02
+* 2014-10-08
 * Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos)
 * Tweak - Improvements to `projects_template_redirect()`.
+* Tweak - Added `rel="lightbox"` to project galleries for compatibility with lightbox plugins.
 
 = 1.3.0 =
 * 2014-08-26

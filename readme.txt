@@ -123,7 +123,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 * Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos)
 * Tweak - Improvements to `projects_template_redirect()`.
 * Tweak - Added `rel="lightbox"` to project galleries for compatibility with lightbox plugins.
-* Tweak - Project post type default url structure no longer includes project category.
+* Tweak - Project post type default url structure no longer includes project category (resolves attachment page 404's.
 
 = 1.3.0 =
 * 2014-08-26

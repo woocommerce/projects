@@ -120,7 +120,8 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 = 1.4.0 =
 * 2014-10-14
-* Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos)
+* Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos).
+* Fix - Undefined index notice when trashing/untrashing projects. (Props @johnbuck).
 * Tweak - Improvements to `projects_template_redirect()`.
 * Tweak - Added `rel="lightbox"` to project galleries for compatibility with lightbox plugins.
 * Tweak - Project post type default url structure no longer includes project category (resolves attachment page 404's.

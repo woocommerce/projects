@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -119,7 +119,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Changelog ==
 
 = 1.4.0 =
-* 2014-10-14
+* 2014-11-11
 * Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos).
 * Fix - Undefined index notice when trashing/untrashing projects. (Props @johnbuck).
 * Tweak - Improvements to `projects_template_redirect()`.

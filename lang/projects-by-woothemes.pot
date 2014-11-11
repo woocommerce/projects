@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/projects-by-woothemes\n"
-"POT-Creation-Date: 2014-06-06 14:05:53+00:00\n"
+"POT-Creation-Date: 2014-11-11 10:24:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,79 +76,79 @@ msgstr ""
 msgid "%s Gallery"
 msgstr ""
 
-#: classes/class-projects-admin.php:420 classes/class-projects-admin.php:568
+#: classes/class-projects-admin.php:429 classes/class-projects-admin.php:581
 msgid "Delete image"
 msgstr ""
 
-#: classes/class-projects-admin.php:421
+#: classes/class-projects-admin.php:430
 msgid "Edit image"
 msgstr ""
 
-#: classes/class-projects-admin.php:432
+#: classes/class-projects-admin.php:441
 msgid "Add %s gallery images"
 msgstr ""
 
-#: classes/class-projects-admin.php:514 templates/single-project/meta.php:43
+#: classes/class-projects-admin.php:527 templates/single-project/meta.php:43
 msgid "Client"
 msgstr ""
 
-#: classes/class-projects-admin.php:515
+#: classes/class-projects-admin.php:528
 msgid "Enter the client name. (Optional)"
 msgstr ""
 
-#: classes/class-projects-admin.php:522
+#: classes/class-projects-admin.php:535
 msgid "URL"
 msgstr ""
 
-#: classes/class-projects-admin.php:523
+#: classes/class-projects-admin.php:536
 msgid "Enter the project URL. (Optional)"
 msgstr ""
 
-#: classes/class-projects-admin.php:543
+#: classes/class-projects-admin.php:556
 msgid "Enter the %s title here"
 msgstr ""
 
-#: classes/class-projects-admin.php:566
+#: classes/class-projects-admin.php:579
 msgid "Add Images to Project Gallery"
 msgstr ""
 
-#: classes/class-projects-admin.php:567
+#: classes/class-projects-admin.php:580
 msgid "Add to gallery"
 msgstr ""
 
-#: classes/class-projects-admin.php:569
+#: classes/class-projects-admin.php:582
 msgid "Upload"
 msgstr ""
 
-#: classes/class-projects-admin.php:570
+#: classes/class-projects-admin.php:583
 msgid "Select this"
 msgstr ""
 
-#: classes/class-projects-admin.php:590
+#: classes/class-projects-admin.php:603
 msgid "%sProjects by WooThemes is almost ready.%s To get started, %sconfigure your projects page%s."
 msgstr ""
 
-#: classes/class-projects-admin.php:604
+#: classes/class-projects-admin.php:617
 msgid "%s Cover Image"
 msgstr ""
 
-#: classes/class-projects-admin.php:617
+#: classes/class-projects-admin.php:630
 msgid "Set featured image"
 msgstr ""
 
-#: classes/class-projects-admin.php:617 classes/class-projects-admin.php:649
+#: classes/class-projects-admin.php:630 classes/class-projects-admin.php:662
 msgid "Set cover image"
 msgstr ""
 
-#: classes/class-projects-admin.php:633
+#: classes/class-projects-admin.php:646
 msgid "Remove featured image"
 msgstr ""
 
-#: classes/class-projects-admin.php:633
+#: classes/class-projects-admin.php:646
 msgid "Remove cover image"
 msgstr ""
 
-#: classes/class-projects-admin.php:648
+#: classes/class-projects-admin.php:661
 msgid "Set Cover Image"
 msgstr ""
 
@@ -188,69 +188,69 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/class-projects-settings.php:38
-msgid "Projects Settings"
-msgstr ""
-
-#: classes/class-projects-settings.php:47
-msgid "Save Changes"
-msgstr ""
-
-#: classes/class-projects-settings.php:58
+#: classes/class-projects-settings.php:43
 msgid "Pages"
 msgstr ""
 
-#: classes/class-projects-settings.php:59
+#: classes/class-projects-settings.php:44
 msgid "Images"
 msgstr ""
 
-#: classes/class-projects-settings.php:64
+#: classes/class-projects-settings.php:60
+msgid "Projects Settings"
+msgstr ""
+
+#: classes/class-projects-settings.php:82
+msgid "Save Changes"
+msgstr ""
+
+#: classes/class-projects-settings.php:111
 msgid "Configure projects pages."
 msgstr ""
 
-#: classes/class-projects-settings.php:77
+#: classes/class-projects-settings.php:124
 msgid "Projects Page"
 msgstr ""
 
-#: classes/class-projects-settings.php:81
+#: classes/class-projects-settings.php:128
 msgid "The base page of your projects. This is your projects archive."
 msgstr ""
 
-#: classes/class-projects-settings.php:91
+#: classes/class-projects-settings.php:138
 msgid "These settings control the dimensions of thumbnails in your projects. After updating these settings you may need to"
 msgstr ""
 
-#: classes/class-projects-settings.php:91
+#: classes/class-projects-settings.php:138
 msgid "regenerate your thumbnails"
 msgstr ""
 
-#: classes/class-projects-settings.php:121
+#: classes/class-projects-settings.php:168
 msgid "Archive Images"
 msgstr ""
 
-#: classes/class-projects-settings.php:125
-#: classes/class-projects-settings.php:134
-#: classes/class-projects-settings.php:143
+#: classes/class-projects-settings.php:172
+#: classes/class-projects-settings.php:181
+#: classes/class-projects-settings.php:190
 msgid "Width:"
 msgstr ""
 
-#: classes/class-projects-settings.php:125
-#: classes/class-projects-settings.php:134
-#: classes/class-projects-settings.php:143
+#: classes/class-projects-settings.php:172
+#: classes/class-projects-settings.php:181
+#: classes/class-projects-settings.php:190
 msgid "Height:"
 msgstr ""
 
-#: classes/class-projects-settings.php:125
-#: classes/class-projects-settings.php:134
-#: classes/class-projects-settings.php:143
+#: classes/class-projects-settings.php:172
+#: classes/class-projects-settings.php:181
+#: classes/class-projects-settings.php:190
 msgid "Crop:"
 msgstr ""
 
-#: classes/class-projects-settings.php:130
+#: classes/class-projects-settings.php:177
 msgid "Single Images"
 msgstr ""
 
-#: classes/class-projects-settings.php:139
+#: classes/class-projects-settings.php:186
 msgid "Thumbnails"
 msgstr ""
 
@@ -262,49 +262,49 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:104
+#: classes/class-projects-taxonomy.php:105
 msgctxt "taxonomy general name"
 msgid "Project %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:105
+#: classes/class-projects-taxonomy.php:106
 msgctxt "taxonomy singular name"
 msgid "%s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:106
+#: classes/class-projects-taxonomy.php:107
 msgid "Search %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:107
+#: classes/class-projects-taxonomy.php:108
 msgid "All %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:108
+#: classes/class-projects-taxonomy.php:109
 msgid "Parent %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:109
+#: classes/class-projects-taxonomy.php:110
 msgid "Parent %s:"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:110 projects.php:145
+#: classes/class-projects-taxonomy.php:111 projects.php:149
 msgid "Edit %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:111
+#: classes/class-projects-taxonomy.php:112
 msgid "Update %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:112 projects.php:144
+#: classes/class-projects-taxonomy.php:113 projects.php:148
 msgid "Add New %s"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:113
+#: classes/class-projects-taxonomy.php:114
 msgid "New %s Name"
 msgstr ""
 
-#: classes/class-projects-taxonomy.php:114
+#: classes/class-projects-taxonomy.php:115
 msgid "%s"
 msgstr ""
 
@@ -356,33 +356,33 @@ msgstr ""
 msgid "Purchase"
 msgstr ""
 
-#: projects.php:129
+#: projects.php:132
 msgctxt "post type singular name"
 msgid "Project"
 msgstr ""
 
-#: projects.php:130
+#: projects.php:133
 msgctxt "post type general name"
 msgid "Projects"
 msgstr ""
 
-#: projects.php:146
+#: projects.php:150
 msgid "New %s"
 msgstr ""
 
-#: projects.php:148
+#: projects.php:152
 msgid "View %s"
 msgstr ""
 
-#: projects.php:149
+#: projects.php:153
 msgid "Search %a"
 msgstr ""
 
-#: projects.php:150
+#: projects.php:154
 msgid "No %s Found"
 msgstr ""
 
-#: projects.php:151
+#: projects.php:155
 msgid "No %s Found In Trash"
 msgstr ""
 

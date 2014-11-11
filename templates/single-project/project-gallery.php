@@ -9,14 +9,15 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $post, $projects, $project;
+global $post;
 
 ?>
 <div class="gallery">
 
 	<?php
 
-		$attachment_ids = projects_get_gallery_attachment_ids();
+		$attachment_ids 	= projects_get_gallery_attachment_ids();
+		$lightbox_rel 		= apply_filters( 'projects_lightbox_rel', $rel = 'lightbox' );
 
 		if ( $attachment_ids ) { ?>
 
@@ -45,7 +46,7 @@ global $post, $projects, $project;
 					$image_title = esc_attr( get_the_title( $attachment_id ) );
 
 					if ( apply_filters( 'projects_gallery_link_images', true ) ) {
-						echo '<a href="' . $image_link . '" title="' . $image_title . '">' . $image . '</a>';
+						echo '<a href="' . $image_link . '" title="' . $image_title . '" rel="' . $lightbox_rel . ' project-gallery-' . $post->ID . '">' . $image . '</a>';
 					} else {
 						echo $image;
 					}

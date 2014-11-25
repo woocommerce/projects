@@ -118,6 +118,10 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Changelog ==
 
+= 1.4.1 =
+* 2014.11.25
+* Fix - Redirect issue when setting projects page as homepage.
+
 = 1.4.0 =
 * 2014-11-11
 * Fix - Project gallery thumbnail sizes in admin. (Props @corvannoorloos).

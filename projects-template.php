@@ -27,6 +27,10 @@ function projects_template_redirect() {
 		wp_safe_redirect( get_post_type_archive_link( 'project' ) );
 		exit;
 	}
+
+	if ( is_front_page() && is_page( projects_get_page_id( 'projects' ) ) ) {
+		wp_safe_redirect( get_post_type_archive_link( 'project' ) );
+	}
 }
 
 /**

@@ -1,10 +1,10 @@
-# Copyright (C) 2014 
-# This file is distributed under the same license as the  package.
+# Copyright (C) 2014 Projects
+# This file is distributed under the same license as the Projects package.
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/projects-by-woothemes\n"
-"POT-Creation-Date: 2014-11-11 10:24:32+00:00\n"
+"Project-Id-Version: Projects 1.4.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/projects\n"
+"POT-Creation-Date: 2014-12-05 15:32:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -344,15 +344,15 @@ msgctxt "slug"
 msgid "uncategorized"
 msgstr ""
 
-#: projects-template.php:136
+#: projects-template.php:140
 msgid "Search Results: &ldquo;%s&rdquo;"
 msgstr ""
 
-#: projects-template.php:139
+#: projects-template.php:143
 msgid "&nbsp;&ndash; Page %s"
 msgstr ""
 
-#: projects-template.php:561
+#: projects-template.php:565
 msgid "Purchase"
 msgstr ""
 
@@ -396,4 +396,23 @@ msgstr ""
 
 #: templates/single-project/meta.php:54
 msgid "Visit project"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Projects"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://woothemes.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Hi, I'm your project showcase plugin for WordPress. Show off your recent work using our shortcode, widget or template tag."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WooThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://woothemes.com/"
 msgstr ""

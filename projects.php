@@ -168,12 +168,12 @@ final class Projects {
 			'capability_type' 		=> 'post',
 			'has_archive'			=> 	( $projects_page_id = projects_get_page_id( 'projects' ) ) && get_page( $projects_page_id ) ? get_page_uri( $projects_page_id ) : 'projects',
 			'hierarchical' 			=> false,
-			'supports' 				=> array(
+			'supports' 				=> apply_filters( 'projects_post_type_support', array(
 										'title',
 										'editor',
 										'thumbnail',
 										'excerpt'
-										),
+										) ),
 			'menu_position' 		=> 5,
 			'menu_icon' 			=> 'dashicons-portfolio'
 		);

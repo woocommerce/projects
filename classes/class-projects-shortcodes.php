@@ -61,7 +61,13 @@ class Projects_Shortcodes {
 			'orderby' 				=> 'date',
 			'order' 				=> 'desc',
 			'exclude_categories'	=> null,
+			'include_children'		=> true
 		), $atts ) );
+
+		// Cater for fallback on false attribute
+		if ( $include_children === 'false' ) {
+			$include_children = false;
+		} // End If Statement
 
 		$args = array(
 			'post_type'				=> 'project',
@@ -75,6 +81,7 @@ class Projects_Shortcodes {
 											'taxonomy' 	=> 'project-category',
 											'field' 	=> 'id',
 											'terms' 	=> explode( ',', $exclude_categories ),
+											'include_children'	=> $include_children,
 											'operator' 	=> 'NOT IN'
 										)
 									)

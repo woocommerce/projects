@@ -103,6 +103,9 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 
 == Upgrade Notice ==
 
+= 1.4.2 =
+* Removes deprecated constructor call for WP_Widget
+
 = 1.4.0 =
 * The default permalink structure has been tweaked to remove the project category. So http://localhost/network/project/landscapes/the-barrow-downs/ becomes http://localhost/network/project/the-barrow-downs/. Any old links will automatically redirect to their newer counterparts. You may have to re-save your permalink settings after performing this update. You can use the `projects_post_type_rewrite` filter to adjust this.
 
@@ -119,8 +122,9 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Changelog ==
 
 = 1.4.2 =
-* 2015.03.23
+* 2015.07.07
 * Tweak - Allow attribute for include_children inside taxonomy query.
+* Removes deprecated constructor call for WP_Widget
 
 = 1.4.1 =
 * 2014.12.05

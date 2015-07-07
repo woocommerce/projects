@@ -59,7 +59,7 @@ class Woothemes_Widget_Projects extends WP_Widget {
 			);
 
 		/* Create the widget. */
-		$this->WP_Widget( $this->projects_widget_idbase, $this->projects_widget_title, $widget_ops, $control_ops );
+		parent::__construct( $this->projects_widget_idbase, $this->projects_widget_title, $widget_ops, $control_ops );
 	} // End __construct()
 
 	/**

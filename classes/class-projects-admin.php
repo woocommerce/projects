@@ -313,8 +313,9 @@ class Projects_Admin {
 						$html .= '</td><tr/>' . "\n";
 						break;
 					case 'editor':
+						$editor_arguments = array( 'media_buttons' => false, 'textarea_rows' => 10 );
 						ob_start();
-						wp_editor( $data, $k, array( 'media_buttons' => false, 'textarea_rows' => 10 ) );
+						wp_editor( $data, $k, apply_filters( 'projects_editor_arguments' , $editor_arguments ) );
 						$field = ob_get_contents();
 						ob_end_clean();
 						$html .= '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . $v['name'] . '</label></th><td>' . $field . "\n";
@@ -570,7 +571,7 @@ class Projects_Admin {
 
 		wp_enqueue_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
 
-		if ( $pagenow == 'post.php' && get_post_type() == $this->post_type ) {
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && get_post_type() == $this->post_type ) {
 			wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery' ), '1.0.0', true );
 		}
 

@@ -6,6 +6,7 @@
  * Author: WooThemes
  * Version: 1.4.2
  * Author URI: http://woothemes.com/
+ * Text Domain: projects-by-woothemes
  *
  * @package WordPress
  * @subpackage Projects

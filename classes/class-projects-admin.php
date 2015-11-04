@@ -571,7 +571,7 @@ class Projects_Admin {
 
 		wp_enqueue_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
 
-		if ( $pagenow == 'post.php' && get_post_type() == $this->post_type ) {
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && get_post_type() == $this->post_type ) {
 			wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery' ), '1.0.0', true );
 		}
 

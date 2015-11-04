@@ -570,19 +570,21 @@ class Projects_Admin {
 
 		wp_enqueue_style( 'projects-admin', $this->assets_url . '/css/admin.css', array(), '1.0.0' );
 
-		if ( $pagenow == 'post.php' && get_post_type() == $this->post_type ) {
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && get_post_type() == $this->post_type ) {
 			wp_enqueue_script( 'projects-admin', $this->assets_url . '/js/admin.js', array( 'jquery' ), '1.0.0', true );
-		}
+		
 
-		wp_localize_script( 'projects-admin', 'woo_projects_admin',
-				array(
-					'gallery_title' 	=> __( 'Add Images to Project Gallery', 'projects-by-woothemes' ),
-					'gallery_button' 	=> __( 'Add to gallery', 'projects-by-woothemes' ),
-					'delete_image'		=> __( 'Delete image', 'projects-by-woothemes' ),
-					'default_title' 	=> __( 'Upload', 'projects-by-woothemes' ),
-					'default_button' 	=> __( 'Select this', 'projects-by-woothemes' ),
-				)
-			);
+			wp_localize_script( 'projects-admin', 'woo_projects_admin',
+					array(
+						'gallery_title' 	=> __( 'Add Images to Project Gallery', 'projects-by-woothemes' ),
+						'gallery_button' 	=> __( 'Add to gallery', 'projects-by-woothemes' ),
+						'delete_image'		=> __( 'Delete image', 'projects-by-woothemes' ),
+						'default_title' 	=> __( 'Upload', 'projects-by-woothemes' ),
+						'default_button' 	=> __( 'Select this', 'projects-by-woothemes' ),
+					)
+				);
+			
+		}
 
 	} // End enqueue_admin_styles()
 

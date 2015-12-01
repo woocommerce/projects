@@ -61,7 +61,7 @@ final class Projects {
 		$this->assets_dir 	= trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url 	= esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token 		= 'projects';
-		$this->post_type 	= 'project';
+		$this->post_type 	= apply_filters( 'projects_post_type_designation', 'project' );
 
 		// Upgrade data
 		$this->upgrade_data( true );
@@ -159,7 +159,7 @@ final class Projects {
 
 		);
 		$args = array(
-			'labels' 				=> $labels,
+			'labels' 				=> apply_filters( 'projects_post_type_labels', $labels, $labels ),
 			'public' 				=> true,
 			'publicly_queryable' 	=> true,
 			'show_ui' 				=> true,

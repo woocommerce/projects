@@ -227,7 +227,11 @@ if ( ! function_exists( 'projects_project_archive_description' ) ) {
 	function projects_project_archive_description() {
 		if ( is_post_type_archive( 'project' ) && get_query_var( 'paged' ) == 0 || is_page( projects_get_page_id( 'projects' ) ) ) {
 			$projects_page   	= get_post( projects_get_page_id( 'projects' ) );
-			$description 		= apply_filters( 'the_content', $projects_page->post_content );
+			$page_content = '';
+			if ( isset( $projects_page->post_content ) ) {
+				$page_content = $projects_page->post_content;
+			}
+			$description 		= apply_filters( 'the_content', $page_content );
 			if ( $description ) {
 				echo '<div class="page-description">' . $description . '</div>';
 			}

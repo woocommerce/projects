@@ -1,5 +1,5 @@
 === Projects by WooThemes ===
-Contributors: woothemes, mattyza, jameskoster, tiagonoronha
+Contributors: woothemes, mattyza, jameskoster, tiagonoronha, jeffikus
 Donate link: http://woothemes.com/
 Tags: portfolio, projects, project, showcase, artwork, work, creative, photography, art, images, woocommerce
 Requires at least: 4.0

@@ -104,7 +104,7 @@ You sure can! Read about how in the [documentation](http://docs.woothemes.com/do
 == Upgrade Notice ==
 
 = 1.5.0 =
-* Fixes project page not loading
+* Fixes projects page not loading - please resave permalinks after updating!
 
 = 1.4.2 =
 * Removes deprecated constructor call for WP_Widget

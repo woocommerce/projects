@@ -413,6 +413,18 @@ function projects_category_image_flush_transient ( $post_id ) {
 add_action( 'save_post', 'projects_category_image_flush_transient' );
 
 /**
+  * Adds a widget area for above Projects Archive (below Projects Title, above Columns Loop)
+  */
+function projects_archive_description_widget() {
+	register_sidebar( array(
+		'name'          => __( 'Projects Archive Description', 'projects-by-woothemes' ),
+		'id'            => 'projects-by-woothemes-archive-description',
+		'description'   => __( 'Displays before columns loop on Projects Archive view', 'projects-by-woothemes' ),
+	) );
+}
+add_action( 'widgets_init', 'projects_archive_description_widget' );
+
+/**
  * Enqueue styles
  */
 function projects_script() {

@@ -34,7 +34,11 @@ get_header( 'projects' ); ?>
 
 		<?php endif; ?>
 
-		<?php do_action( 'projects_archive_description' ); ?>
+		<?php
+  			do_action( 'projects_archive_description' );
+  			dynamic_sidebar( 'projects-by-woothemes-archive-description' );
+		?>
+
 
 		<?php if ( have_posts() ) : ?>
 

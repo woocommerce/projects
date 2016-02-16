@@ -46,7 +46,7 @@ get_header( 'projects' ); ?>
 				do_action( 'projects_before_loop' );
 			?>
 
-			<div class="projects columns-<?php echo $projects_loop['columns']; ?>">
+			<div class="projects columns-<?php echo $projects_loop['columns']; apply_filters( 'projects_archive_loop_columns_classes', '' ); ?>">
 
 			<?php projects_project_loop_start(); ?>
 

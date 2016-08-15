@@ -87,7 +87,7 @@ class Projects_Admin {
 		        }
 
 	            wp_dropdown_categories( array(
-	                'show_option_all' 	=> __( 'Show All ' . $tax_obj->label, 'projects-by-woothemes' ),
+	                'show_option_all' 	=> sprintf( __( 'Show All %s', 'projects-by-woothemes' ), $tax_obj->label),
 	                'taxonomy' 	  		=> $tax_slug,
 	                'name' 		  		=> $tax_obj->name,
 	                'orderby' 	  		=> 'name',

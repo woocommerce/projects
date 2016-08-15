@@ -51,7 +51,7 @@ global $post;
 		if ( $url ) {
 			echo '<div class="url">';
 			echo '<h3>' . __( 'Link', 'projects-by-woothemes' ) . '</h3>';
-			echo '<span class="project-url"><a href="' . $url . '">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects-by-woothemes' ) ) . '</a></span>';
+			echo '<span class="project-url"><a href="' . $url . '" target="_blank">' . apply_filters( 'projects_visit_project_link', __( 'Visit project', 'projects-by-woothemes' ) ) . '</a></span>';
 			echo '</div>';
 		}
 

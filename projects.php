@@ -177,7 +177,11 @@ final class Projects {
 										),
 			'menu_position' 		=> 5,
 			'menu_icon' 			=> 'dashicons-portfolio',
-			'show_in_rest' 			=> true
+			'show_in_rest' 			=> true,
+			'taxonomies' 			=> array(
+										'post_tag',
+										'category'
+									   )
 		);
 
 		$args = apply_filters( 'projects_register_post_type', $args );

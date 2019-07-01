@@ -57,6 +57,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 </div><!-- #project-<?php the_ID(); ?> -->
 
+/* project tags */
+<div><?php the_tags(); ?></div>
+
 <?php
 	/**
 	 * projects_after_single_project hook

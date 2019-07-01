@@ -175,6 +175,9 @@ final class Projects {
 										'thumbnail',
 										'excerpt'
 										),
+			// Add Project Tags
+            		'taxonomies' 			=> array('post_tag'),
+			
 			'menu_position' 		=> 5,
 			'menu_icon' 			=> 'dashicons-portfolio'
 		);
